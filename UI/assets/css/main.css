@@ -1,0 +1,104 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    padding: 20px;
+    /* background: black; */
+    text-align: right;
+}
+
+header a{
+    color: green;   
+    text-decoration: none;
+    margin: 20px;
+    padding: 15px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+header a:last-child{
+    margin-right: 150px;
+}
+
+header a:hover{
+    background: white;
+}
+
+header a:first-child{
+    margin-right: 750px;
+    text-align: left;
+}
+.backgroundImage{
+    background-image: url('../img/election.jpg');
+    background-size: cover;
+    height: 100vh;
+    margin: auto;
+    color: white;
+}
+
+.overlay{
+    background: rgba(84, 235, 79, 0.87);
+    height: inherit;
+    margin: auto;
+}
+
+.aboutPage{
+    margin: auto;
+    padding-top: 30vh;
+    text-align: center;
+    width: 50%;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.diplayQuote{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: auto;
+    text-align: center;
+    font-size: 2rem;
+    font-style: italic;
+    margin-top: 20px;
+}
+
+.author{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: auto;
+    text-align: center;
+    font-size: 2rem;
+    font-style: italic;
+    margin-left: 250px;
+
+}
+
+.btn{
+    margin: 0 auto;
+}
+a.register{
+    padding: 15px;
+    background: white;
+    border-radius: 15px;
+    text-decoration: none;
+    color: #08b993;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+}
+
+a.register:hover{
+    box-shadow: 15px 10px 5px #08b993;
+}
+
+footer{
+    margin: 0 auto;
+}
+
+footer > p {
+    font-weight: 900;
+    text-align: center;
+    margin: 10px 0;
+    color: green;
+}
