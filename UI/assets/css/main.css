@@ -3,32 +3,37 @@
     padding: 0;
 }
 
-header{
+.navbar{
     padding: 20px;
-    /* background: black; */
+    overflow: hidden;
     text-align: right;
 }
 
-header a{
-    color: green;   
+.navbar a{
+    display: block;
+    float: left;
+    padding: 10px 12px;
+    color: green;
     text-decoration: none;
-    margin: 20px;
-    padding: 15px;
-    font-weight: 600;
-    font-size: 20px;
+    font-size: 1.3rem;
+    margin: 0 1.2rem;
 }
 
-header a:last-child{
+.navbar a:last-child{
     margin-right: 150px;
 }
 
-header a:hover{
+.navbar a:hover{
     background: white;
 }
 
-header a:first-child{
-    margin-right: 750px;
-    text-align: left;
+.navbar a:first-child{
+    margin-right: 60%;
+    margin-left: 6.0rem;
+}
+
+.navbar a:last-child{
+    display: none;
 }
 .backgroundImage{
     background-image: url('../img/election.jpg');
@@ -104,3 +109,47 @@ footer > p {
 }
 
 
+@media screen and (max-width: 600px){
+    .navbar a:not(:first-child){
+        display: none;
+    }
+    .navbar a:first-child{
+        margin-right: 0%;
+        margin-left: 1.0rem;
+        font-size: 1.3rem
+    }
+    .navbar a:last-child {
+        display: block;
+        float: right;
+        font-size: 1.3rem;
+        margin-right: 30px;
+    }
+            .backgroundImage{
+                clear: both;
+            }
+}
+
+@media screen and (max-width: 600px){
+
+    body{
+        width: 100%
+    }
+    .navbar .responsive{
+        position: absolute;
+        /* z-index: 1; */
+    }
+
+    .navbar.responsive a#menu{
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .navbar.responsive a{
+        float: none;
+        display: block;
+        text-align: left;
+        color: green;
+        border-bottom: #f3e4e4 1px solid;
+        }
+
+    }

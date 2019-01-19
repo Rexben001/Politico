@@ -1,3 +1,14 @@
+document.getElementById('menu').addEventListener('click', (e) => {
+    e.preventDefault();
+    const nav = document.getElementById('top_menu');
+
+    if (nav.className === 'navbar') {
+        nav.className += ' responsive';
+        console.log(133);
+    } else {
+        nav.className = 'navbar';
+    }
+});
 
 const quotes = [
     {
@@ -29,4 +40,4 @@ setInterval(() => {
     const rand = quotes[Math.floor(Math.random() * quotes.length)];
     document.getElementById('quotes').innerHTML = rand.quote;
     document.getElementById('author').innerHTML = rand.author;
-}, 1000);
+}, 100000);
