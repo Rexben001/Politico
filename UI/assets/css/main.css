@@ -3,6 +3,15 @@
     padding: 0;
 }
 
+a{
+    text-decoration: none;
+    color: white;
+}
+
+a:hover{
+    color: red;
+}
+
 .navbar{
     padding: 10px;
     overflow: hidden;
@@ -293,3 +302,4 @@ a.register:hover{
                 width: 50%;
             }
         }
+        

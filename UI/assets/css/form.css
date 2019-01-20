@@ -15,6 +15,10 @@
     margin-bottom: 10px;
 }
 
+.sign h4{
+    margin-top: 70px;
+}
+
 .signup{
     box-sizing: border-box;
     background: #ffffff;
@@ -26,7 +30,12 @@
     width: 70%;
     padding: 10px;
 }
+.sign .signup{
+    margin-top: 40px;
+    border-radius: 0 20px 20px 0;
+    width: 60%;
 
+}
 label{
     display: block;
     font-size: 1.2rem;
@@ -112,10 +121,15 @@ input[type=submit]:hover{
     cursor: pointer;
 }
 
+
 .have-account:hover{
     color: red;
 }
 
+
+ .sign .backgroundImage{
+    height: 90vh;
+}
 @media screen and (max-width: 600px){
     body{
         width: 100%;
@@ -129,4 +143,33 @@ input[type=submit]:hover{
     .signup{
         width: 90%;
     }
+    .sign .signup{
+        width: 90%;
+    }
+}
+
+@media screen and (min-width: 601px) and (max-width: 1200px){
+
+    .signup-form{
+        width: 70%;
+    }
+    .signup{
+        width: 90%;
+    }
+    .sign .signup{
+        width: 90%;
+    }
+    label{
+        font-size: 1.5rem;
+        padding: 10px;
+    }
+    input[type=text],
+input[type=email],
+input[type=number],
+input[type=password],
+input[type=date]{
+   font-size: 1.5rem;
+   padding: 10px;
+}
+    
 }
