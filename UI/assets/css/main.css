@@ -25,13 +25,16 @@
 
 .navbar a:not(:last-child):hover{
     background: green;
-    color: white
+    color: white;
+    border-radius: 10px;
+    border: red solid 1px;
 }
 
 
 .navbar a:first-child{
     margin-right: 60%;
     margin-left: 6.0rem;
+    font-weight: 700;
 }
 
 .navbar a:last-child{
@@ -50,7 +53,18 @@
     height: inherit;
     margin: auto;
 }
+ footer{
+     margin: 0 auto;
+    }
+footer > p {
+     font-weight: 900;
+     text-align: center;
+     margin: 10px 0;
+     color: green;
+     }
 
+
+/* Begining of Index page */
 .aboutPage{
     margin: auto;
     padding-top: 20vh;
@@ -65,10 +79,28 @@
     color: green;
     width: 60%;
     margin: auto;
-    padding: 15px;
+    padding: 15px 18px 15px 15px;
     border-left: solid #0fb836 10px;
-    border-radius: 0 15px 15px 0;
     margin-top: 30px;
+    position: relative;
+
+}
+
+.round{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: #28db10b9;
+}
+.triangle{
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 2.5rem 2.5rem 0;
+    border-color: transparent #f1F2f2;
 }
 
 .diplayQuote{
@@ -77,6 +109,7 @@
     text-align: center;
     font-size: 2rem;
     font-style: italic;
+    line-height: 1.3;
 }
 
 
@@ -87,7 +120,7 @@
     font-size: 1.5rem;
     font-style: italic;
     margin-left: 250px;
-
+    
 }
 
 .btn{
@@ -108,21 +141,13 @@ a.register{
 }
 
 a.register:hover{
-    box-shadow: 5px 5px 5px white;
+    box-shadow: 5px 5px 5px rgb(202, 4, 4);
     color: white;
     background: #0fb836;
 }
+/* End of index page */
 
-footer{
-    margin: 0 auto;
-}
 
-footer > p {
-    font-weight: 900;
-    text-align: center;
-    margin: 10px 0;
-    color: green;
-}
 
 
 @media screen and (max-width: 600px){

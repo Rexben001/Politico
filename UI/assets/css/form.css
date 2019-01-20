@@ -1,0 +1,117 @@
+.backgroundImage{
+    height: 140vh;
+}
+.signup-form{
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+}
+
+.signup-form > h4{
+    text-align: center;
+    margin-top: 20px;
+    font-weight: 600;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.signup{
+    box-sizing: border-box;
+    background: #ffffff;
+    color: green;
+    border-radius: 0 30px 30px 0;
+    border-left: #e00909 2px solid;
+    display: block;
+    margin: auto;
+    width: 70%;
+    padding: 10px;
+}
+
+label{
+    display: block;
+    font-size: 1.2rem;
+    padding: 10px 10px 5px;
+    text-align: left;
+    font-weight: 400
+}
+
+input[type=text],
+input[type=email],
+input[type=number],
+input[type=password],
+input[type=date]{
+    padding: 5px;
+    width: 90%;
+    font-size: 1.2rem;
+    font-weight: 500;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid green;
+    color: #0c5511
+}
+
+
+input[type=text]:focus,
+    input[type=password]:focus,
+    input[type=email]:focus,
+    input[type=number]:focus,
+    input[type=search]:focus,
+    input[type=date]:focus
+    {
+        border-bottom: 1px solid #e40e0e;
+    }
+    input[type=text]:hover,
+    input[type=password]:hover,
+    input[type=email]:hover,
+    input[type=number]:hover,
+    input[type=search]:hover,
+    input[type=date]:hover  {
+        border-bottom: 1px solid #e02908;
+    }
+
+    input[type=date]{
+        font-weight: 600;
+    } 
+
+input[type=submit]{
+    color: white;
+    background: green;
+    padding: 10px;
+    border-radius: 10px;
+    width: 75%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px auto;
+}
+
+ input[type=file]{
+    padding: 5px;
+    color: #e00909;
+    margin-bottom: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    padding-left: 10px;
+
+}
+
+input[type=submit]:hover{
+    box-shadow: 5px 5px 5px rgb(202, 4, 4);
+    color: white;
+    background: #0fb836;;
+}
+
+.have-account{
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin: 10px auto;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+}
+
+.have-account:hover{
+    color: red;
+}
