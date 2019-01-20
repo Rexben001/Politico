@@ -141,6 +141,20 @@ a.reset:hover{
     color: red;
 }
 
+ .instruct {
+    padding: 5px;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+#change{
+    display: none;
+}
+
+.error{
+    font-weight: 500;
+    color: red;
+}
 @media screen and (max-width: 600px){
     body{
         width: 100%;

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Reset Password</title>
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="./assets/css/form.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet" />
+
+</head>
+
+<body>
+    <header id="top_menu" class="navbar">
+        <a href="index.html"><i class="fas fa-vote-yea"></i> Politico</a>
+        <a href="signup.html">Sign Up</a>
+        <a href="signin.html">Log In</a>
+        <a href="#" id="menu">Menu</a>
+    </header>
+    <section>
+        <div class="sign">
+            <div class="backgroundImage">
+                <div class="overlay">
+                    <div class="signup-form">
+                        <h4>Reset Password</h4>
+                        <form class="signup" id="reset">
+                            <p class="instruct">Enter the email address associated with your account</p>
+                            <p class="error" id="error"></p>
+                            <label for="email"><span class="icon"><i class="fa fa-envelope"></i></span> Email Address</label>
+                            <input type="email" id="email" required>
+                            <br>
+                            <input type="submit" value="Confirm">
+                        </form>
+
+                        <form class="signup" id="change">
+                            <p class="instruct">Enter new password</p>
+                            <p class="error" id="error"></p>
+                            <label for="password"><span class="icon"><i class="fa fa-lock"></i></span> Password</label>
+                            <input type="password" id="password" required>
+                            <label for="password"><span class="icon"><i class="fa fa-lock"></i></span> Confirm Password</label>
+                            <input type="password" id="c_password" required>
+                            <br>
+                            <input type="submit" value="Submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>&copy Copyright 2019</p>
+    </footer>
+    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/reset.js"></script>
+</body>
+
+</html>
