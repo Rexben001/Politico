@@ -115,3 +115,18 @@ input[type=submit]:hover{
 .have-account:hover{
     color: red;
 }
+
+@media screen and (max-width: 600px){
+    body{
+        width: 100%;
+    }
+    .backgroundImage{
+        height: 110vh;
+    }
+    .signup-form{
+        width: 85%;
+    }
+    .signup{
+        width: 90%;
+    }
+}
