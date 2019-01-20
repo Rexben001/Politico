@@ -130,6 +130,17 @@ input[type=submit]:hover{
  .sign .backgroundImage{
     height: 90vh;
 }
+
+a.reset{
+    color: green;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+a.reset:hover{
+    color: red;
+}
+
 @media screen and (max-width: 600px){
     body{
         width: 100%;
