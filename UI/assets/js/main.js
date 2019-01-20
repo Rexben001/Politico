@@ -4,7 +4,6 @@ document.getElementById('menu').addEventListener('click', (e) => {
 
     if (nav.className === 'navbar') {
         nav.className += ' responsive';
-        console.log(133);
     } else {
         nav.className = 'navbar';
     }
@@ -12,32 +11,30 @@ document.getElementById('menu').addEventListener('click', (e) => {
 
 const quotes = [
     {
-        quote: 'What is a man',
-        author: '~ Me'
+        quote: `"Change will not come if we wait for some other person or some other time. We are the ones we have been waiting for."`,
+        author: `~ Barack Obama`
     },
     {
-        quote: 'Joy to the world',
-        author: '~ Me2'
+        quote: `"Leadership is not about the next election, it's about the next generation."`,
+        author: '~ Simon Sinek'
     },
     {
-        quote: 'Thompson Jones John',
-        author: '~ Meqq'
+        quote: `"One of the reasons people hate politics is that truth is rarely a politician's objective. Election and power are."`,
+        author: '~ Cal Thomas'
     },
     {
-        quote: 'What is a man2',
-        author: '~ Med'
+        quote: `"A politician thinks of the next election. A statesman, of the next generation."`,
+        author: '~ James Freeman Clarke'
     },
     {
-        quote: 'What is a man4',
-        author: '~ we'
+        quote: `"Democracy is not just an election, it is our daily life."`,
+        author: '~ Tsai Ing-wen'
     }
 ];
-
-
 
 
 setInterval(() => {
     const rand = quotes[Math.floor(Math.random() * quotes.length)];
     document.getElementById('quotes').innerHTML = rand.quote;
     document.getElementById('author').innerHTML = rand.author;
-}, 100000);
+}, 10000);

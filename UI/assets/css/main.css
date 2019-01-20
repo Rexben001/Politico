@@ -4,7 +4,7 @@
 }
 
 .navbar{
-    padding: 20px;
+    padding: 10px;
     overflow: hidden;
     text-align: right;
 }
@@ -23,9 +23,11 @@
     margin-right: 150px;
 }
 
-.navbar a:hover{
-    background: white;
+.navbar a:not(:last-child):hover{
+    background: green;
+    color: white
 }
+
 
 .navbar a:first-child{
     margin-right: 60%;
@@ -44,18 +46,29 @@
 }
 
 .overlay{
-    background: rgba(84, 235, 79, 0.87);
+    background: rgba(10, 117, 6, 0.87);
     height: inherit;
     margin: auto;
 }
 
 .aboutPage{
     margin: auto;
-    padding-top: 30vh;
+    padding-top: 20vh;
     text-align: center;
     width: 50%;
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 25px;
+
+}
+
+.quo-bg{
+    background: rgb(192, 187, 187);
+    color: green;
+    width: 60%;
+    margin: auto;
+    padding: 15px;
+    border-left: solid #0fb836 10px;
+    border-radius: 0 15px 15px 0;
+    margin-top: 30px;
 }
 
 .diplayQuote{
@@ -64,14 +77,14 @@
     text-align: center;
     font-size: 2rem;
     font-style: italic;
-    margin-top: 20px;
 }
+
 
 .author{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     margin: auto;
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-style: italic;
     margin-left: 250px;
 
@@ -85,16 +98,19 @@ a.register{
     background: white;
     border-radius: 15px;
     text-decoration: none;
-    color: #08b993;
-    margin: 20px auto;
+    color: green;
+    margin: 40px auto;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 20%;
+    font-size: 1.5rem;
 }
 
 a.register:hover{
-    box-shadow: 15px 10px 5px #08b993;
+    box-shadow: 5px 5px 5px white;
+    color: white;
+    background: #0fb836;
 }
 
 footer{
@@ -116,13 +132,17 @@ footer > p {
     .navbar a:first-child{
         margin-right: 0%;
         margin-left: 1.0rem;
-        font-size: 1.3rem
+        font-size: 1.3rem;
+        font-weight: 600;
+
     }
     .navbar a:last-child {
         display: block;
         float: right;
         font-size: 1.3rem;
-        margin-right: 30px;
+        margin-right: 0px;
+        font-weight: 600;
+
     }
             .backgroundImage{
                 clear: both;
@@ -142,14 +162,109 @@ footer > p {
     .navbar.responsive a#menu{
         position: absolute;
         right: 0;
-        top: 0;
+        top: 2%;
     }
     .navbar.responsive a{
         float: none;
         display: block;
         text-align: left;
-        color: green;
         border-bottom: #f3e4e4 1px solid;
+        font-weight: 600;
         }
 
+        .backgroundImage{
+            height: 95vh;
+        }
+        .aboutPage{
+            padding-top: 20vh;
+            font-size: 21px;
+        }
+        .diplayQuote{
+            padding: 0 15px;
+            font-size: 20px;
+        }
+        .aboutPage > p:last-child{
+            display: none;
+        }
+        .author{
+            font-size: 20px;
+            padding: 0 15px;
+            margin-left: 100px;
+
+        }
+        a.register{
+            width: 70%;
+        }
     }
+
+    @media screen and (min-width: 600px) and (max-width: 1200px){
+        .navbar a:not(:first-child){
+            display: none;
+        }
+        .navbar a:first-child{
+            margin-right: 0%;
+            margin-left: 1.0rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+    
+        }
+        .navbar a:last-child {
+            display: block;
+            float: right;
+            font-size: 1.5rem;
+            margin-right: 0px;
+            font-weight: 600;
+    
+        }
+                .backgroundImage{
+                    clear: both;
+                }
+    }
+    
+
+    @media screen and (min-width: 600px) and (max-width: 1200px){
+
+        body{
+            width: 100%
+        }
+        .navbar .responsive{
+            position: absolute;
+            /* z-index: 1; */
+        }
+    
+        .navbar.responsive a#menu{
+            position: absolute;
+            right: 0;
+            top: 2%;
+        }
+        .navbar.responsive a{
+            float: none;
+            display: block;
+            text-align: left;
+            border-bottom: #f3e4e4 1px solid;
+            font-weight: 600;
+            }
+    
+            .backgroundImage{
+                height: 90vh;
+            }
+            .aboutPage{
+                padding-top: 20vh;
+                font-size: 25px;
+                width: 60%;
+            }
+            .diplayQuote{
+                padding: 0 15px;
+                font-size: 25px;
+            }
+            
+            .author{
+                font-size: 25px;
+                padding: 0 15px;
+                margin-left: 100px;
+    
+            }
+            a.register{
+                width: 50%;
+            }
+        }
