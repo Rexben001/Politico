@@ -71,6 +71,7 @@ a:hover{
 }
  footer{
      margin: 0 auto;
+     clear: both;
     }
 footer > p {
      font-weight: 900;
