@@ -167,11 +167,14 @@ a.register:hover{
 
 /* Politics page */
 .intro{
-    padding: 20px;
+    padding: 20px 0;
+    margin: 40px auto 10px;
+    width: 65%;
 }
 .intro > p {
     color: green;
     font-size: 1.2rem;
+    font-weight: 600;
 }
 
 @media screen and (max-width: 600px){

@@ -28,22 +28,12 @@
         </header>
     </div>
     <section>
-        <div class="intro">
-            <p>Do you have what it takes to leader the people of your dear country?</p>
-            <p>Are a you a bonafide member of one of the registered political parties on this platform</p>
-            <p>Are you ready to take your countrymen to the next level?</p>
-            <p>If yes, Express your interest to run for a political office by filling the form below correctly</p>
-
-
-        </div>
         <div class="signup-form">
-            <h4>Express Interest</h4>
+            <div class="intro">
+                <p>Express your interest to run for a political office by filling the form below correctly</p>
+            </div>
             <form class="signup" id="signup">
-                <label for="fullname"><span class="icon"><i class="fa fa-user-circle"></i></span> Full Name</label>
-                <input type="text" id="fullname" required>
-                <label for="qualification"><span class="icon"><i class="fa fa-user-circle"></i></span> Academic Qualification</label>
-                <input type="text" id="qualification" required>
-                <label for="party"><span class="icon"><i class="fa fa-user-circle"></i></span> Name of Party</label>
+                <label for="party"><span class="icon"><i class="fas fa-address-book"></i></span> Name of Party</label>
                 <select class="select-text">
                     <option disabled selected>Select Party</option>
                     <option value="AGB">Activist Group Of Diabete</option>
@@ -51,7 +41,7 @@
                     <option value="LAP">Lion Action Party</option>
                     <option value="CCG">Cultural Congress Group</option>
                 </select>
-                <label for="office"><span class="icon"><i class="fa fa-user-circle"></i></span> Office</label>
+                <label for="office"><span class="icon"><i class="fas fa-briefcase"></i></span> Office</label>
                 <select class="select-text">
                     <option disabled selected>Select Office</option>
                     <option value="pres">President</option>
@@ -60,7 +50,11 @@
                     <option value="sen">Senator</option>
                     <option value="hop">House of Rep.</option>
                 </select>
-                <label for="region"><span class="icon"><i class="fa fa-user-circle"></i></span> Region/Area</label>
+                <label for="fullname"><span class="icon"><i class="fa fa-user-circle"></i></span> Full Name</label>
+                <input type="text" id="fullname" required>
+                <label for="qualification"><span class="icon"><i class="fas fa-graduation-cap"></i></span> Academic Qualification</label>
+                <input type="text" id="qualification" required>
+                <label for="region"><span class="icon"><i class="fas fa-globe-africa"></i></span> Region/Area</label>
                 <input type="text" id="region" required>
                 <br>
                 <input type="submit" value="Apply">
@@ -71,6 +65,7 @@
     <footer>
         <p>&copy Copyright 2019</p>
     </footer>
+    <script src="./assets/js/main.js"></script>
 </body>
 
 </html>
