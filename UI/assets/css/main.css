@@ -249,13 +249,14 @@ a.register:hover{
         .navbar a:not(:first-child){
             display: none;
         }
-        .navbar a:first-child{
+        .navbar a:first-child, .menu_bar .navbar a:first-child{
             margin-right: 0%;
             margin-left: 1.0rem;
             font-size: 1.5rem;
             font-weight: 600;
     
         }
+    
         .navbar a:last-child {
             display: block;
             float: right;
