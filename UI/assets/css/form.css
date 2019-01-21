@@ -173,7 +173,7 @@ a.reset:hover{
 
 .parties > h4, .list > h4{
     color: green;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     margin-bottom: 10px;
     padding-left: 10px;
     text-align: center;
@@ -213,8 +213,9 @@ table tr th, table tr td{
     font-size: 1.5rem;
 }
 
-th{
+table tr th{
     font-weight: 600;
+    text-align: center;
 }
 
 
