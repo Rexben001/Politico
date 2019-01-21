@@ -165,8 +165,14 @@ a.register:hover{
 
 
 
-/* Admin page */
-
+/* Politics page */
+.intro{
+    padding: 20px;
+}
+.intro > p {
+    color: green;
+    font-size: 1.2rem;
+}
 
 @media screen and (max-width: 600px){
     .navbar a:not(:first-child){
