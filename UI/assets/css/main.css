@@ -33,7 +33,7 @@ a:hover{
 }
 
 .menu_bar .navbar a:first-child{
-    margin-right: 40%;
+    margin-right: 30%;
     margin-left: 6rem;
 }
 
@@ -162,9 +162,9 @@ a.register:hover{
 /* End of index page */
 
 
-.bg_color{
-    background: #0fb836
-}
+
+/* Admin page */
+
 
 @media screen and (max-width: 600px){
     .navbar a:not(:first-child){
@@ -177,6 +177,13 @@ a.register:hover{
         font-weight: 600;
 
     }
+    .menu_bar .navbar a:first-child{
+        margin-right: 0%;
+        margin-left: 1.0rem;
+        font-size: 1.3rem;
+        font-weight: 600;
+    }
+
     .navbar a:last-child {
         display: block;
         float: right;

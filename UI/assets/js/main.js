@@ -9,3 +9,7 @@ document.getElementById('menu').addEventListener('click', (e) => {
     }
 });
 
+
+const logout = () => {
+    window.location.href = './signin.html';
+}
