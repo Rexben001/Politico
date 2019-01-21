@@ -32,6 +32,11 @@ a:hover{
     margin-right: 150px;
 }
 
+.menu_bar .navbar a:first-child{
+    margin-right: 40%;
+    margin-left: 6rem;
+}
+
 .navbar a:not(:last-child):hover{
     background: green;
     color: white;
@@ -157,7 +162,9 @@ a.register:hover{
 /* End of index page */
 
 
-
+.bg_color{
+    background: #0fb836
+}
 
 @media screen and (max-width: 600px){
     .navbar a:not(:first-child){
