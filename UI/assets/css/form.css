@@ -1,0 +1,315 @@
+.backgroundImage{
+    height: 140vh;
+}
+.signup-form{
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+}
+
+.signup-form > h4{
+    text-align: center;
+    margin-top: 20px;
+    font-weight: 600;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.sign h4{
+    margin-top: 70px;
+}
+
+.signup{
+    box-sizing: border-box;
+    background: #ffffff;
+    color: green;
+    border-radius: 0 30px 30px 0;
+    border-left: #e00909 2px solid;
+    display: block;
+    margin: auto;
+    width: 70%;
+    padding: 15px;
+}
+.sign .signup{
+    margin-top: 40px;
+    border-radius: 0 20px 20px 0;
+    width: 60%;
+
+}
+label{
+    display: block;
+    font-size: 1.2rem;
+    padding: 10px 10px 5px;
+    text-align: left;
+    font-weight: 400
+}
+
+input[type=text],
+input[type=email],
+input[type=number],
+input[type=password],
+input[type=date]{
+    padding: 5px;
+    width: 90%;
+    font-size: 1.2rem;
+    font-weight: 500;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid green;
+    color: #0c5511
+}
+
+
+input[type=text]:focus,
+    input[type=password]:focus,
+    input[type=email]:focus,
+    input[type=number]:focus,
+    input[type=search]:focus,
+    input[type=date]:focus
+    {
+        border-bottom: 1px solid #e40e0e;
+    }
+    input[type=text]:hover,
+    input[type=password]:hover,
+    input[type=email]:hover,
+    input[type=number]:hover,
+    input[type=search]:hover,
+    input[type=date]:hover  {
+        border-bottom: 1px solid #e02908;
+    }
+
+    input[type=date]{
+        font-weight: 600;
+    } 
+
+input[type=submit]{
+    color: white;
+    background: green;
+    padding: 10px;
+    border-radius: 10px;
+    width: 75%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px auto;
+    transition: .5s;
+}
+
+ input[type=file]{
+    padding: 5px;
+    color: #e00909;
+    margin-bottom: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    padding-left: 10px;
+
+}
+
+input[type=submit]:hover{
+    box-shadow: 5px 5px 5px rgb(202, 4, 4);
+    color: white;
+    background: #0fb836;;
+}
+
+.have-account{
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin: 10px auto;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+}
+
+
+.have-account:hover{
+    color: red;
+}
+
+
+ .sign .backgroundImage{
+    height: 90vh;
+}
+
+a.reset{
+    color: green;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+a.reset:hover{
+    color: red;
+}
+
+ .instruct {
+    padding: 5px;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+#change{
+    display: none;
+}
+
+.error{
+    font-weight: 500;
+    color: red;
+}
+
+.register_parties{
+    background: hsl(120, 15%, 92%);
+
+}
+.parties{
+    width: 45%;
+    float: left;
+    padding: 10px;
+    margin-top: 40px;
+}
+
+.parties:last-child{
+    margin-left: 60px;
+}
+
+.parties > h4, .list > h4{
+    color: green;
+    font-size: 1.7rem;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    text-align: center;
+    margin-top: 20px;
+}
+.parties .signup{
+    width: 90%;
+    box-shadow: 10px 10px 10px #b6b2b2;
+    border-radius: 0 20px 0 0;
+}
+
+.list{
+    margin: 30px auto;
+    width: 80%;
+    padding: 20px;
+    overflow-x: auto;
+
+}
+
+table{
+    padding: 20px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-left: red solid 2px;
+    border-collapse: collapse;
+    width: 100%;
+    border-spacing: 0;
+    color: #0c5511;
+    box-shadow: 10px 10px 10px #b6b2b2;
+}
+
+table tr th, table tr td{
+    padding: 15px;
+    border-bottom: #b8bac4 solid 1pt;
+    text-align: left;
+    line-height: 1.3;
+    font-size: 1.5rem;
+}
+
+table tr th{
+    font-weight: 600;
+    text-align: center;
+}
+
+
+.edit{
+    border: #000000 solid 1px;
+    border-radius: 4px;
+    padding: 3px;
+    cursor: pointer;
+    margin-left: 2px;
+    color: green;
+}
+
+.delete{
+    background: red;
+    color: white;
+    border-radius: 10px;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.delete:hover{
+    color: #e40e0e;
+    background: #b8bac4;
+}
+
+.select-text{
+    padding: 5px;
+    width: 90%;
+    font-size: 1.2rem;
+    font-weight: 500;
+    background: transparent;
+    margin-top: 10px;
+    color: green;
+    border: #0c5511 solid 1px;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 600px){
+    body{
+        width: 100%;
+    }
+    .backgroundImage{
+        height: 105vh;
+    }
+    .signup-form{
+        width: 85%;
+    }
+    .signup{
+        width: 90%;
+    }
+    .sign .signup{
+        width: 90%;
+    }
+    .parties{
+        clear: both;
+        width: 85%;
+        margin: 20px auto;
+    }
+    .parties:last-child{
+        margin-left: 0px;
+    }
+}
+
+@media screen and (min-width: 601px) and (max-width: 1200px){
+
+    .signup-form{
+        width: 70%;
+    }
+    .signup{
+        width: 90%;
+    }
+    .sign .signup{
+        width: 90%;
+    }
+
+    .parties{
+        width: 85%;
+    }
+    .parties:last-child{
+        margin-left: 0px;
+    }
+    label{
+        font-size: 1.5rem;
+        padding: 10px;
+    }
+    input[type=text],
+input[type=email],
+input[type=number],
+input[type=password],
+input[type=date]{
+   font-size: 1.5rem;
+   padding: 10px;
+}
+
+    
+}

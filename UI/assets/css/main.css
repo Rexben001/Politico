@@ -1,0 +1,374 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+a:hover{
+    color: red;
+}
+
+.navbar{
+    padding: 10px;
+    overflow: hidden;
+    text-align: right;
+    box-shadow: 0 0 15px 0 rgb(120, 136, 136);
+}
+
+.navbar a{
+    display: block;
+    float: left;
+    padding: 10px 12px;
+    color: green;
+    text-decoration: none;
+    font-size: 1.5rem;
+    margin: 0 1.2rem;
+    font-weight: 500;
+    transition: 0.5s ease-in-out;
+}
+
+
+.navbar a#menu{
+    margin-right: 150px;
+}
+
+.menu_bar .navbar a#home{
+    margin-right: 40%;
+    margin-left: 6rem;
+}
+
+.navbar a:not(:last-child):hover, .dropdown:hover .dropbtn{
+    border-bottom: red solid 2px;
+    padding-bottom: 5px;
+
+}
+
+
+.navbar a#home{
+    margin-right: 60%;
+    margin-left: 6.0rem;
+    font-weight: 700;
+}
+
+.navbar a#menu{
+    display: none;
+}
+
+.dropdown {
+    float: left;
+    /* overflow: hidden; */
+  }
+  
+  .dropdown .dropbtn {
+    font-size: 17px;    
+    border: none;
+    outline: none;
+    color: green;
+    padding: 13px 5px 10px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+    font-size: 1.5rem;
+    margin: 0 1.2rem;
+    font-weight: 500;
+    transition: 0.5s;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a{
+    padding: 12px;    
+    text-align: left;
+    display: block;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+
+.backgroundImage{
+    background-image: url('../img/election.jpg');
+    background-size: cover;
+    height: 100vh;
+    margin: auto;
+    color: white;
+}
+
+.overlay{
+    background: rgba(10, 117, 6, 0.87);
+    height: inherit;
+    margin: auto;
+}
+ footer{
+     margin: 0 auto;
+     clear: both;
+    }
+footer > p {
+     font-weight: 900;
+     text-align: center;
+     margin: 10px 0;
+     color: green;
+     }
+
+
+/* Begining of Index page */
+.aboutPage{
+    margin: auto;
+    padding-top: 20vh;
+    text-align: center;
+    width: 50%;
+    font-size: 25px;
+
+}
+
+.quo-bg{
+    background: rgb(192, 187, 187);
+    color: green;
+    width: 60%;
+    margin: auto;
+    padding: 15px 18px 15px 15px;
+    border-left: solid #0fb836 10px;
+    margin-top: 30px;
+    position: relative;
+
+}
+
+.round{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: #28db10b9;
+}
+.triangle{
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 2.5rem 2.5rem 0;
+    border-color: transparent #f1F2f2;
+}
+
+.diplayQuote{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: auto;
+    text-align: center;
+    font-size: 2rem;
+    font-style: italic;
+    line-height: 1.3;
+}
+
+
+.author{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: auto;
+    text-align: center;
+    font-size: 1.5rem;
+    font-style: italic;
+    margin-left: 250px;
+    
+}
+
+.btn{
+    margin: 0 auto;
+}
+a.register{
+    padding: 15px;
+    background: white;
+    border-radius: 15px;
+    text-decoration: none;
+    color: green;
+    margin: 40px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    font-size: 1.5rem;
+}
+
+a.register:hover{
+    box-shadow: 5px 5px 5px rgb(202, 4, 4);
+    color: white;
+    background: #0fb836;
+}
+/* End of index page */
+
+
+
+/* Politics page */
+.intro{
+    padding: 20px 0;
+    margin: 40px auto 10px;
+    width: 65%;
+}
+.intro > p {
+    color: green;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+@media screen and (max-width: 600px){
+    .navbar a:not(:first-child){
+        display: none;
+    }
+    .navbar a:first-child{
+        margin-right: 0%;
+        margin-left: 1.0rem;
+        font-size: 1.3rem;
+        font-weight: 600;
+
+    }
+    .menu_bar .navbar a:first-child{
+        margin-right: 0%;
+        margin-left: 1.0rem;
+        font-size: 1.3rem;
+        font-weight: 600;
+    }
+
+    .navbar a:last-child {
+        display: block;
+        float: right;
+        font-size: 1.3rem;
+        margin-right: 0px;
+        font-weight: 600;
+
+    }
+            .backgroundImage{
+                clear: both;
+            }
+}
+
+@media screen and (max-width: 600px){
+
+    body{
+        width: 100%
+    }
+    .navbar .responsive{
+        position: absolute;
+        /* z-index: 1; */
+    }
+
+    .navbar.responsive a#menu{
+        position: absolute;
+        right: 0;
+        top: 2%;
+    }
+    .navbar.responsive a{
+        float: none;
+        display: block;
+        text-align: left;
+        border-bottom: #f3e4e4 1px solid;
+        font-weight: 600;
+        }
+
+        .backgroundImage{
+            height: 95vh;
+        }
+        .aboutPage{
+            padding-top: 20vh;
+            font-size: 21px;
+        }
+        .diplayQuote{
+            padding: 0 15px;
+            font-size: 20px;
+        }
+        .aboutPage > p:last-child{
+            display: none;
+        }
+        .author{
+            font-size: 20px;
+            padding: 0 15px;
+            margin-left: 100px;
+
+        }
+        a.register{
+            width: 70%;
+        }
+    }
+
+    @media screen and (min-width: 600px) and (max-width: 1200px){
+        .navbar a:not(:first-child){
+            display: none;
+        }
+        .navbar a:first-child, .menu_bar .navbar a:first-child{
+            margin-right: 0%;
+            margin-left: 1.0rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+    
+        }
+    
+        .navbar a:last-child {
+            display: block;
+            float: right;
+            font-size: 1.5rem;
+            margin-right: 0px;
+            font-weight: 600;
+    
+        }
+                .backgroundImage{
+                    clear: both;
+                }
+    }
+    
+
+    @media screen and (min-width: 600px) and (max-width: 1200px){
+
+        body{
+            width: 100%
+        }
+        .navbar .responsive{
+            position: absolute;
+            /* z-index: 1; */
+        }
+    
+        .navbar.responsive a#menu{
+            position: absolute;
+            right: 0;
+            top: 2%;
+        }
+        .navbar.responsive a{
+            float: none;
+            display: block;
+            text-align: left;
+            border-bottom: #f3e4e4 1px solid;
+            font-weight: 600;
+            }
+    
+            .backgroundImage{
+                height: 90vh;
+            }
+            .aboutPage{
+                padding-top: 20vh;
+                font-size: 25px;
+                width: 60%;
+            }
+            .diplayQuote{
+                padding: 0 15px;
+                font-size: 25px;
+            }
+            
+            .author{
+                font-size: 25px;
+                padding: 0 15px;
+                margin-left: 100px;
+    
+            }
+            a.register{
+                width: 50%;
+            }
+        }
+        
