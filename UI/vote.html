@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vote for your candidate</title>
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="./assets/css/form.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet" />
+
+</head>
+
+<body>
+    <div class="menu_bar">
+        <header id="top_menu" class="navbar">
+            <a href="index.html" id="home"><i class="fas fa-vote-yea"></i> Politico</a>
+            <a href="admin.html">Admin</a>
+            <a href="politics.html">Contest</a>
+            <a href="list_all.html">All Parties</a>
+            <div class="dropdown">
+                <button class="dropbtn">User
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="userprofile.html">Profile</a><br>
+                    <a href="vote.html">Vote</a><br>
+                    <a href="#" onclick="logout()">Logout</a><br>
+                </div>
+            </div>
+            <a href="" id="menu">Menu</a>
+        </header>
+    </div>
+
+    <div class="signup-form">
+        <div class="intro">
+            <p>Express your interest to run for a political office by filling the form below correctly</p>
+        </div>
+        <form class="signup" id="signup">
+            <label for="party"><span class="icon"><i class="fas fa-address-book"></i></span> Name of Party</label>
+            <select class="select-text" id="office">
+                <option disabled selected>Select Office</option>
+                <option value="pre">President</option>
+                <option value="sen">Senate</option>
+                <option value="hop">House Of Representative</option>
+                <option value="gov">Governor</option>
+                <option value="lgc">Local Government Chairman</option>
+            </select>
+            <label for="office"><span class="icon"><i class="fas fa-briefcase"></i></span> Office</label>
+            <select class="select-text" id="candidate">
+                <option disabled selected id="disabled">Select candidate</option>
+                <!-- <option value="pres">President</option>
+                <optgroup label="Governor">
+                    <option value="lag">(Lagos)</option>
+                    <option value="og">Ogun</option>
+                    <option value="oyo">Oyo</option>
+                    <option value="ondo">Ondo</option>
+                    <option value="eki">Ekiti</option> -->
+                <!-- </optgroup> -->
+                <!-- <option value="lgc">Local Governement Chairman</option>
+                <option value="sen">Senator</option>
+                <option value="hop">House of Rep.</option> -->
+            </select>
+            <label for="fullname"><span class="icon"><i class="fa fa-user-circle"></i></span> Full Name</label>
+            <input type="text" id="fullname" required>
+            <label for="region"><span class="icon"><i class="fas fa-globe-africa"></i></span> Region/Area</label>
+            <input type="text" id="region" required>
+            <br>
+            <input type="submit" value="Vote">
+        </form>
+</body>
+<script src="./assets/js/main.js"></script>
+<script src="./assets/js/vote.js"></script>
+
+</html>
