@@ -94,6 +94,7 @@ input[type=submit]{
     justify-content: center;
     align-items: center;
     margin: 30px auto;
+    transition: .5s;
 }
 
  input[type=file]{
