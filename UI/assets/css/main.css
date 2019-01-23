@@ -309,7 +309,9 @@ a.register:hover{
     font-size: 1.5rem;
     color: green;
 }
-
+.profile .topic{
+    display: none;
+}
 .voted{
     width: 70%;
     float: right;
@@ -407,6 +409,13 @@ a.register:hover{
         a.register{
             width: 70%;
         }
+        .profile{
+            width: 87%;
+        }
+        .voted{
+            clear: both;
+            width: inherit;
+        }
     }
 
     @media screen and (min-width: 600px) and (max-width: 1200px){
@@ -447,6 +456,25 @@ a.register:hover{
             }
             a.register{
                 width: 50%;
+            }
+            .profile{
+                width: 95%;
+                box-shadow: 0 #b6b2b2;
+            }
+            .profile >.image{
+                width: 50%;
+                float: left;
+            }
+            .profile > p{
+                width: 40%;
+                float: left;
+                padding: 10px;
+                font-size: 1.5rem
+            }
+            
+            .profile .topic{
+                display: block;
+                font-weight: 900;
             }
         }
         
