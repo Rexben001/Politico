@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0;
+    font-family: 'Lato', sans-serif;
 }
 
 a{
@@ -475,6 +476,27 @@ a.register:hover{
             .profile .topic{
                 display: block;
                 font-weight: 900;
+            }
+        }
+
+        @media screen and (max-width: 700px){
+            .sidebar{
+                width: 19%;
+                margin: 0;
+            }
+            .sidebar a{
+                font-size: 1.2rem;
+            }
+            .mainbar{
+                width: 75%;
+                margin: 0;
+                float: left;
+            }
+            .mainbar .signup{
+                width: 90%;
+            }
+            .mainbar table td, .mainbar table th{
+                font-size: 1.4em;
             }
         }
         
