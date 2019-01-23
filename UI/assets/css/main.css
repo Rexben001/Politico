@@ -279,6 +279,41 @@ a.register:hover{
     margin-bottom: 15px;
 }
 
+.profile{
+    width: 25%;
+    background: white;
+    padding: 20px;
+    float: left;
+    margin: 10px;
+    box-shadow: 10px 10px 10px #b6b2b2;
+}
+
+.profile >.image{
+    margin:auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.profile img{
+    height: 250px;
+    width: 250px;
+    border-radius: 240px;
+    background: #b87272;
+    color: #fffffa;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.profile > p{
+    text-align: center;
+    font-size: 1.5rem;
+    color: green;
+}
+
+.voted{
+    width: 70%;
+    float: right;
+}
 @media screen and (max-width: 1200px){
     .navbar a:not(:first-child), .dropdown .dropbtn {
         display: none;
