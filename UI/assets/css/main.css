@@ -113,6 +113,8 @@ a:hover{
  footer{
      margin: 0 auto;
      clear: both;
+     background: #a8f8a5;
+     padding: 5px;
     }
 footer > p {
      font-weight: 900;
@@ -221,6 +223,59 @@ a.register:hover{
 
 .register_parties{
     height: 85vh;
+}
+
+/* Vote Page */
+.sidebar{
+    width: 25%;
+    float: left;
+    margin-right: 10px;
+    background: #04310f;
+    border-right: #0fb836 1px solid;
+    height: 80vh;
+    margin-top: 20px;
+}
+
+.sidebar a{
+    color: white;
+    display: block;
+    padding: 20px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.sidebar a:hover, .sidebar a:focus {
+    border-bottom: 1px solid red;
+    background: white;
+    color: green;
+}
+
+.mainbar{
+    width: 70%;
+    float: right;
+    margin: 10px;
+}
+
+.mainbar .signup-form{
+    width: 95%;
+    margin-top: 30px;
+}
+
+.mainbar .signup{
+    width: 85%;
+}
+
+.cand, .part{
+    display: none;
+}
+
+.heading{
+    text-align: center;
+    color: green;
+    font-size: 1.7rem;
+    font-weight: 600;
+    margin-bottom: 15px;
 }
 
 @media screen and (max-width: 1200px){
