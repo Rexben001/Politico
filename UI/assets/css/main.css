@@ -340,9 +340,9 @@ a.register:hover{
     .navbar a#menu {
         display: block;
         float: right;
-        font-size: 1.3rem;
+        font-size: 1.5rem;
         margin-right: 0px;
-        font-weight: 600;
+        font-weight: 700;
 
     }
             .backgroundImage{
@@ -388,7 +388,10 @@ a.register:hover{
     padding: 10px;
   }
         .backgroundImage{
-            height: 95vh;
+            height: 100vh;
+        }
+        .backgroundImage .signpage{
+            height: 110vh;
         }
         .aboutPage{
             padding-top: 20vh;
@@ -436,9 +439,12 @@ a.register:hover{
             padding: 15px;
         }
     
-            .backgroundImage{
-                height: 90vh;
-            }
+        .backgroundImage{
+            height: 100vh;
+        }
+        .backgroundImage .signpage{
+            height: 100vh;
+        }
             .aboutPage{
                 padding-top: 20vh;
                 font-size: 25px;
