@@ -102,18 +102,18 @@ a:hover{
 .backgroundImage{
     background-image: url('../img/election.jpg');
     background-size: cover;
-    height: 100vh;
+    min-height: 110vh;
     margin: auto;
     color: white;
 }
 
 .overlay{
     background: rgba(18, 155, 13, 0.87);
-    height: inherit;
+    min-height: inherit;
     margin: auto;
 }
  footer{
-     margin: 0 auto;
+     margin: 40px auto 0;
      clear: both;
      background: #a8f8a5;
      padding: 5px;
@@ -186,7 +186,7 @@ footer > p {
 }
 
 .btn{
-    margin: 0 auto;
+    margin: 0 auto 40px;
 }
 a.register{
     padding: 15px;
