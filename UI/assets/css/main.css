@@ -388,14 +388,18 @@ a.register:hover{
     padding: 10px;
   }
         .backgroundImage{
-            height: 100vh;
+            min-height: 100vh;
         }
         .backgroundImage .signpage{
-            height: 110vh;
+            min-height: 130vh;
+        }
+        .signpage .overlay{
+            height: inherit;
         }
         .aboutPage{
-            padding-top: 20vh;
+            padding-top: 10vh;
             font-size: 21px;
+            margin-top: 0;
         }
         .diplayQuote{
             padding: 0 15px;
