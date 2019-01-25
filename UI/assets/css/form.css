@@ -282,6 +282,9 @@ table tr th{
     .parties:last-child{
         margin-left: 0px;
     }
+    .have-account{
+        font-size: 1.3rem;
+    }
 }
 
 @media screen and (min-width: 601px) and (max-width: 1200px){
