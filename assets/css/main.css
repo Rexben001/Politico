@@ -100,18 +100,18 @@ a:hover{
 }
 
 .backgroundImage{
-    background-image: url('../img/election.jpg');
+    background-image: linear-gradient(
+        to right bottom,
+        rgba(18, 155, 13, 0.87),
+        rgba(13, 138, 9, 0.87)
+      ),
+      url(../img/election.jpg);
     background-size: cover;
-    min-height: 110vh;
-    margin: auto;
-    color: white;
+    height: calc(100vh);
+    color: #fff;
+    padding: 40px;
 }
 
-.overlay{
-    background: rgba(18, 155, 13, 0.87);
-    min-height: inherit;
-    margin: auto;
-}
  footer{
      margin: 40px auto 0;
      clear: both;
@@ -393,9 +393,7 @@ a.register:hover{
         .backgroundImage .signpage{
             min-height: 130vh;
         }
-        .signpage .overlay{
-            height: inherit;
-        }
+
         .aboutPage{
             padding-top: 10vh;
             font-size: 21px;
@@ -426,7 +424,7 @@ a.register:hover{
         }
     }
 
-    @media screen and (min-width: 600px) and (max-width: 1200px){
+    @media screen and (min-width: 601px) and (max-width: 1200px){
 
         body{
             width: 100%
