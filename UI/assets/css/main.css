@@ -424,7 +424,7 @@ a.register:hover{
         }
     }
 
-    @media screen and (min-width: 601px) and (max-width: 1200px){
+    @media screen and (min-width: 700px) and (max-width: 1200px){
 
         body{
             width: 100%
@@ -442,10 +442,7 @@ a.register:hover{
         }
     
         .backgroundImage{
-            height: 100vh;
-        }
-        .backgroundImage .signpage{
-            height: 100vh;
+            height: 90vh;
         }
             .aboutPage{
                 padding-top: 20vh;
