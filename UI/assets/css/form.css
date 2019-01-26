@@ -254,6 +254,10 @@ table tr th{
     border-radius: 5px;
 }
 
+.disabled{
+    display: block;
+}
+
 @media screen and (max-width: 600px){
     body{
         width: 100%;
