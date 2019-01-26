@@ -41,7 +41,7 @@
         <a href="" id="petition"><i class="fas fa-address-book"></i> Create a petition</a>
     </div>
     <div class="mainbar">
-        <div id="express">
+        <div id="expressForm">
             <div class="intro">
                 <p>Express your interest to run for a political office by filling the form below correctly</p>
             </div>
@@ -74,29 +74,29 @@
                 <input type="submit" value="Apply">
             </form>
         </div>
-        <div id="petition">
+        <div id="petitionForm">
             <div class="intro">
                 <p>Are you not satisfied the outcome of a particular election activity? Write to us today.</p>
             </div>
+            <form class="signup" id="signup">
+                <label for="fullname"><span class="icon"><i class="fa fa-user-circle"></i></span> Full Name</label>
+                <input type="text" id="fullname" required>
+                <label for="qualification"><span class="icon"><i class="fas fa-graduation-cap"></i></span> Political
+                    office</label>
+                <input type="text" id="qualification" required>
+                <label for="region"><span class="icon"><i class="fas fa-globe-africa"></i></span> Petition</label>
+                <textarea name="express" id="nakePetition" cols="90" rows="40">Write petition here...</textarea>
+                <br>
+                <input type="submit" value="Apply">
+            </form>
         </div>
-        <form class="signup" id="signup">
-            <label for="fullname"><span class="icon"><i class="fa fa-user-circle"></i></span> Full Name</label>
-            <input type="text" id="fullname" required>
-            <label for="qualification"><span class="icon"><i class="fas fa-graduation-cap"></i></span> Political
-                office</label>
-            <input type="text" id="qualification" required>
-            <label for="region"><span class="icon"><i class="fas fa-globe-africa"></i></span> Petition</label>
-            <textarea name="express" id="nakePetition" cols="90" rows="40">Write petition here...</textarea>
-            <br>
-            <input type="submit" value="Apply">
-        </form>
-    </div>
     </div>
 
     <footer>
         <p>&copy Copyright 2019</p>
     </footer>
     <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/politic.js"></script>
 </body>
 
 </html>
