@@ -37,43 +37,62 @@
         </header>
     </div>
     <div class="sidebar">
-        <a href="" id="vote"><i class="fas fa-vote-yea"></i> Cast your vote</a>
-        <a href="" id="pol"><i class="fas fa-address-book"></i> Political Parties</a>
-        <a href="" id="candidates"><i class="fa fa-user-circle"></i> Aspirant</a>
+        <a href="" id="express"><i class="fas fa-vote-yea"></i> Express your interest</a>
+        <a href="" id="petition"><i class="fas fa-address-book"></i> Create a petition</a>
     </div>
     <div class="mainbar">
-        <div class="intro">
-            <p>Express your interest to run for a political office by filling the form below correctly</p>
+        <div id="express">
+            <div class="intro">
+                <p>Express your interest to run for a political office by filling the form below correctly</p>
+            </div>
+            <form class="signup" id="signup">
+                <label for="party"><span class="icon"><i class="fas fa-address-book"></i></span> Name of Party</label>
+                <select class="select-text">
+                    <option disabled selected>Select Party</option>
+                    <option value="AGB">Activist Group Of Diabete</option>
+                    <option value="APP">Active Progress Party</option>
+                    <option value="LAP">Lion Action Party</option>
+                    <option value="CCG">Cultural Congress Group</option>
+                </select>
+                <label for="office"><span class="icon"><i class="fas fa-briefcase"></i></span> Office</label>
+                <select class="select-text">
+                    <option disabled selected>Select Office</option>
+                    <option value="pres">President</option>
+                    <option value="gov">Governor</option>
+                    <option value="lgc">Local Governement Chairman</option>
+                    <option value="sen">Senator</option>
+                    <option value="hop">House of Rep.</option>
+                </select>
+                <label for="fullname"><span class="icon"><i class="fa fa-user-circle"></i></span> Full Name</label>
+                <input type="text" id="fullname" required>
+                <label for="qualification"><span class="icon"><i class="fas fa-graduation-cap"></i></span> Academic
+                    Qualification</label>
+                <input type="text" id="qualification" required>
+                <label for="region"><span class="icon"><i class="fas fa-globe-africa"></i></span> Region/Area</label>
+                <input type="text" id="region" required>
+                <br>
+                <input type="submit" value="Apply">
+            </form>
+        </div>
+        <div id="petition">
+            <div class="intro">
+                <p>Are you not satisfied the outcome of a particular election activity? Write to us today.</p>
+            </div>
         </div>
         <form class="signup" id="signup">
-            <label for="party"><span class="icon"><i class="fas fa-address-book"></i></span> Name of Party</label>
-            <select class="select-text">
-                <option disabled selected>Select Party</option>
-                <option value="AGB">Activist Group Of Diabete</option>
-                <option value="APP">Active Progress Party</option>
-                <option value="LAP">Lion Action Party</option>
-                <option value="CCG">Cultural Congress Group</option>
-            </select>
-            <label for="office"><span class="icon"><i class="fas fa-briefcase"></i></span> Office</label>
-            <select class="select-text">
-                <option disabled selected>Select Office</option>
-                <option value="pres">President</option>
-                <option value="gov">Governor</option>
-                <option value="lgc">Local Governement Chairman</option>
-                <option value="sen">Senator</option>
-                <option value="hop">House of Rep.</option>
-            </select>
             <label for="fullname"><span class="icon"><i class="fa fa-user-circle"></i></span> Full Name</label>
             <input type="text" id="fullname" required>
-            <label for="qualification"><span class="icon"><i class="fas fa-graduation-cap"></i></span> Academic
-                Qualification</label>
+            <label for="qualification"><span class="icon"><i class="fas fa-graduation-cap"></i></span> Political
+                office</label>
             <input type="text" id="qualification" required>
-            <label for="region"><span class="icon"><i class="fas fa-globe-africa"></i></span> Region/Area</label>
-            <input type="text" id="region" required>
+            <label for="region"><span class="icon"><i class="fas fa-globe-africa"></i></span> Petition</label>
+            <textarea name="express" id="nakePetition" cols="90" rows="40">Write petition here...</textarea>
             <br>
             <input type="submit" value="Apply">
         </form>
     </div>
+    </div>
+
     <footer>
         <p>&copy Copyright 2019</p>
     </footer>
