@@ -209,7 +209,7 @@ table{
 table tr th, table tr td{
     padding: 15px;
     border-bottom: #b8bac4 solid 1pt;
-    text-align: left;
+    text-align: center;
     line-height: 1.3;
     font-size: 1.5rem;
 }
@@ -281,6 +281,9 @@ table tr th{
     }
     .parties:last-child{
         margin-left: 0px;
+    }
+    .have-account{
+        font-size: 1.3rem;
     }
 }
 

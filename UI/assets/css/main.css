@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0;
+    font-family: 'Lato', sans-serif;
 }
 
 a{
@@ -99,20 +100,20 @@ a:hover{
 }
 
 .backgroundImage{
-    background-image: url('../img/election.jpg');
+    background-image: linear-gradient(
+        to right bottom,
+        rgba(18, 155, 13, 0.87),
+        rgba(13, 138, 9, 0.87)
+      ),
+      url(../img/election.jpg);
     background-size: cover;
-    height: 100vh;
-    margin: auto;
-    color: white;
+    height: calc(100vh);
+    color: #fff;
+    padding: 40px;
 }
 
-.overlay{
-    background: rgba(18, 155, 13, 0.87);
-    height: inherit;
-    margin: auto;
-}
  footer{
-     margin: 0 auto;
+     margin: 40px auto 0;
      clear: both;
      background: #a8f8a5;
      padding: 5px;
@@ -185,7 +186,7 @@ footer > p {
 }
 
 .btn{
-    margin: 0 auto;
+    margin: 0 auto 40px;
 }
 a.register{
     padding: 15px;
@@ -279,6 +280,43 @@ a.register:hover{
     margin-bottom: 15px;
 }
 
+.profile{
+    width: 25%;
+    background: white;
+    padding: 20px;
+    float: left;
+    margin: 10px;
+    box-shadow: 10px 10px 10px #b6b2b2;
+}
+
+.profile >.image{
+    margin:auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.profile img{
+    height: 250px;
+    width: 250px;
+    border-radius: 240px;
+    background: #b87272;
+    color: #fffffa;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.profile > p{
+    text-align: center;
+    font-size: 1.5rem;
+    color: green;
+}
+.profile .topic{
+    display: none;
+}
+.voted{
+    width: 70%;
+    float: right;
+}
 @media screen and (max-width: 1200px){
     .navbar a:not(:first-child), .dropdown .dropbtn {
         display: none;
@@ -302,9 +340,9 @@ a.register:hover{
     .navbar a#menu {
         display: block;
         float: right;
-        font-size: 1.3rem;
+        font-size: 1.5rem;
         margin-right: 0px;
-        font-weight: 600;
+        font-weight: 700;
 
     }
             .backgroundImage{
@@ -350,11 +388,16 @@ a.register:hover{
     padding: 10px;
   }
         .backgroundImage{
-            height: 95vh;
+            min-height: 100vh;
         }
+        .backgroundImage .signpage{
+            min-height: 130vh;
+        }
+
         .aboutPage{
-            padding-top: 20vh;
+            padding-top: 10vh;
             font-size: 21px;
+            margin-top: 0;
         }
         .diplayQuote{
             padding: 0 15px;
@@ -372,9 +415,16 @@ a.register:hover{
         a.register{
             width: 70%;
         }
+        .profile{
+            width: 87%;
+        }
+        .voted{
+            clear: both;
+            width: inherit;
+        }
     }
 
-    @media screen and (min-width: 600px) and (max-width: 1200px){
+    @media screen and (min-width: 700px) and (max-width: 1200px){
 
         body{
             width: 100%
@@ -391,9 +441,9 @@ a.register:hover{
             padding: 15px;
         }
     
-            .backgroundImage{
-                height: 90vh;
-            }
+        .backgroundImage{
+            height: 90vh;
+        }
             .aboutPage{
                 padding-top: 20vh;
                 font-size: 25px;
@@ -412,6 +462,46 @@ a.register:hover{
             }
             a.register{
                 width: 50%;
+            }
+            .profile{
+                width: 95%;
+                box-shadow: 0 #b6b2b2;
+            }
+            .profile >.image{
+                width: 50%;
+                float: left;
+            }
+            .profile > p{
+                width: 40%;
+                float: left;
+                padding: 10px;
+                font-size: 1.5rem
+            }
+            
+            .profile .topic{
+                display: block;
+                font-weight: 900;
+            }
+        }
+
+        @media screen and (max-width: 700px){
+            .sidebar{
+                width: 19%;
+                margin: 0;
+            }
+            .sidebar a{
+                font-size: 1.2rem;
+            }
+            .mainbar{
+                width: 75%;
+                margin: 0;
+                float: left;
+            }
+            .mainbar .signup{
+                width: 90%;
+            }
+            .mainbar table td, .mainbar table th{
+                font-size: 1.4em;
             }
         }
         
