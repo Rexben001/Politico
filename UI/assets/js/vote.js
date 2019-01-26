@@ -70,15 +70,3 @@ document.getElementById('candidates').addEventListener('click', (e) => {
     parties.style.display = 'none';
     candidate.style.display = 'block';
 });
-
-// const showHide = (vote, votes, party, can) => {
-//     document.getElementById(votes).addEventListener('click', () => {
-
-//         vote.style.display = 'block';
-//         party.style.display = 'none';
-//         can.style.display = 'none';
-//     });
-
-// }
-// showHide(vote, votes, parties, candidate);
-// showHide(parties, pol, vote, candidate);
