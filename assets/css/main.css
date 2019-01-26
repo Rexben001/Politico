@@ -317,6 +317,9 @@ a.register:hover{
     width: 70%;
     float: right;
 }
+#petitionForm{
+    display: none;
+}
 @media screen and (max-width: 1200px){
     .navbar a:not(:first-child), .dropdown .dropbtn {
         display: none;
