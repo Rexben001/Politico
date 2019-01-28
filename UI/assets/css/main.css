@@ -278,8 +278,9 @@ a.register:hover, .edit-profile:hover{
     margin-right: 10px;
     background: #04310f;
     border-right: #0fb836 1px solid;
-    height: 80vh;
-    margin-top: 20px;
+    height: 90vh;
+    margin-top: 2px;
+    padding-top: 10px;
 }
 
 .sidebar a{
@@ -291,8 +292,8 @@ a.register:hover, .edit-profile:hover{
     cursor: pointer;
 }
 
+
 .sidebar a:hover, .sidebar a:focus {
-    border-bottom: 1px solid red;
     background: white;
     color: green;
 }

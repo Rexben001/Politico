@@ -30,6 +30,9 @@
     padding: 15px;
     box-shadow: 2px 2px 10px 10px  #1c4225;
 }
+.not-signup{
+    box-shadow: 2px 2px 10px 10px #b6b2b2;
+}
 .sign .signup{
     margin-top: 40px;
     border-radius: 15px;
@@ -58,6 +61,7 @@ textarea{
     border-bottom: 1px solid green;
     color: #054e0a;
     font-weight: 700;
+    padding-left: 10px;
 }
 
 
@@ -91,13 +95,14 @@ input[type=submit]{
     padding: 10px;
     border-radius: 10px;
     width: 75%;
-    font-size: 1rem;
+    font-size: 1.3rem;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 30px auto;
     transition: .5s;
+    font-weight: 700;
 }
 
  input[type=file]{
@@ -253,13 +258,13 @@ table tr th{
 }
 
 .select-text{
-    padding: 5px;
+    padding: 8px;
     width: 90%;
-    font-size: 1.2rem;
-    font-weight: 500;
+    font-size: 1rem;
+    font-weight: 700;
     background: transparent;
     margin-top: 10px;
-    color: green;
+    color: #054e0a;
     border: #0c5511 solid 1px;
     border-radius: 5px;
 }
