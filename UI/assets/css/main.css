@@ -10,7 +10,7 @@ a{
 }
 
 a:hover{
-    color: red;
+    color: #04310f;
 }
 
 .navbar {
@@ -24,10 +24,10 @@ a:hover{
     display: block;
     color: green;
     text-align: center;
-    padding: 20px;
+    padding: 10px;
     text-decoration: none;
     font-size: 1.5rem;
-    margin: 0 1.2rem;
+    margin: 10px 1.2rem;
     font-weight: 500;
     transition: 0.5s ease-in-out;
   }
@@ -72,9 +72,11 @@ a:hover{
   }
   
   .navbar a:hover, .dropdown:hover .dropbtn {
-      border-bottom: 1.5px solid red;
+      border-left: 1.5px solid rgb(1, 51, 12);
+      border-right: 1.5px solid rgb(1, 51, 12);
       padding-bottom: 8px;
       transition: .5s;
+      background-color: #f9f9f9;
   }
   
   .dropdown-content a:hover {
@@ -102,7 +104,7 @@ a:hover{
 .backgroundImage{
     background-image: linear-gradient(
         to right bottom,
-        rgba(18, 155, 13, 0.87),
+        rgba(46, 167, 42, 0.87),
         rgba(24, 224, 17, 0.87)
       ),
       url(../img/election.jpg);
@@ -115,10 +117,9 @@ a:hover{
  footer{
      margin: auto;
      clear: both;
-     background: green;
      padding: 5px;
      min-height: 130px;
-     color: white;
+     color: #134213;
     }
 
 .footer-img{
@@ -138,6 +139,7 @@ a:hover{
 }
 .column{
     display: block;
+    font-weight: 600;
 }
 
 
@@ -239,6 +241,10 @@ a.register:hover{
 
 .register_parties{
     height: 85vh;
+}
+
+.bg-colors{
+   background-color: hsl(120, 15%, 92%);
 }
 
 /* Vote Page */
