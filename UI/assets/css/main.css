@@ -126,8 +126,16 @@ a:hover{
     margin-top: 20px;
     width: 30%;
     float: left;
-    font-size: 6rem;
+}
+
+.footer-img .fas {
+    font-size: 4.5rem;
     padding-left: 60px;
+}
+
+.footer-img .politico-trademark{
+    padding-left: 7px;
+    font-weight: 600;
 }
 .footer-columns{
     margin-top: 30px;
@@ -140,6 +148,10 @@ a:hover{
 .column{
     display: block;
     font-weight: 600;
+}
+
+.column > p{
+    padding: 5px;
 }
 
 
@@ -240,7 +252,7 @@ a.register:hover{
 }
 
 .register_parties{
-    height: 85vh;
+   min-height: 85vh;
 }
 
 .bg-colors{
@@ -445,6 +457,33 @@ a.register:hover{
             clear: both;
             width: inherit;
         }
+        .footer{
+            width: 100%;
+        }
+        .footer-img{
+            width: 40%;
+        }
+        .footer-img .fas{
+            font-size: 4rem;
+        }
+        .politico-trademark{
+            display: block;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .footer-columns{
+            display: block;
+            width: 50%;
+        }
+        .column{
+            padding-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        .column:first-child{
+            display: none;
+        }
+
     }
 
     @media screen and (min-width: 700px) and (max-width: 1200px){
