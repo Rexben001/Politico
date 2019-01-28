@@ -11,7 +11,7 @@
     text-align: center;
     margin-top: 20px;
     font-weight: 600;
-    font-size: 2rem;
+    font-size: 1.7rem;
     margin-bottom: 10px;
 }
 
@@ -23,24 +23,26 @@
     box-sizing: border-box;
     background: #ffffff;
     color: green;
-    border-radius: 0 30px 30px 0;
-    border-left: #e00909 2px solid;
+    border-radius: 15px;
     display: block;
     margin: auto;
     width: 70%;
     padding: 15px;
-    box-shadow: 10px 10px 10px #b6b2b2;
+    box-shadow: 2px 2px 10px 10px  #1c4225;
+}
+.not-signup{
+    box-shadow: 2px 2px 10px 10px #b6b2b2;
 }
 .sign .signup{
     margin-top: 40px;
-    border-radius: 0 20px 20px 0;
-    width: 60%;
+    border-radius: 15px;
+    width: 50%;
 
 }
 label{
     display: block;
-    font-size: 1.2rem;
-    padding: 10px 10px 5px;
+    font-size: 1rem;
+    padding: 5px;
     text-align: left;
     font-weight: 400
 }
@@ -51,14 +53,15 @@ input[type=number],
 input[type=password],
 input[type=date],
 textarea{
-    padding: 5px;
     width: 90%;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 500;
     background: transparent;
     border: none;
     border-bottom: 1px solid green;
-    color: #0c5511
+    color: #054e0a;
+    font-weight: 700;
+    padding-left: 10px;
 }
 
 
@@ -70,7 +73,7 @@ input[type=text]:focus,
     input[type=date]:focus,
     textarea:focus
     {
-        border-bottom: 1px solid #e40e0e;
+        border-bottom: 1px solid #04310f;
     }
     input[type=text]:hover,
     input[type=password]:hover,
@@ -79,7 +82,7 @@ input[type=text]:focus,
     input[type=search]:hover,
     input[type=date]:hover,
     textarea:hover  {
-        border-bottom: 1px solid #e02908;
+        border-bottom: 1px solid #04310f;
     }
 
     input[type=date]{
@@ -92,18 +95,19 @@ input[type=submit]{
     padding: 10px;
     border-radius: 10px;
     width: 75%;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 30px auto;
     transition: .5s;
+    font-weight: 700;
 }
 
  input[type=file]{
     padding: 5px;
-    color: #e00909;
+    color: #04310f;
     margin-bottom: 10px;
     font-weight: 600;
     cursor: pointer;
@@ -112,9 +116,9 @@ input[type=submit]{
 }
 
 input[type=submit]:hover{
-    box-shadow: 5px 5px 5px rgb(202, 4, 4);
+    box-shadow: 5px 5px 5px #04310f;
     color: white;
-    background: #0fb836;;
+    background: #0fb836;
 }
 
 textarea{
@@ -133,10 +137,6 @@ textarea{
 }
 
 
-.have-account:hover{
-    color: red;
-}
-
 
  .sign .backgroundImage{
     height: 90vh;
@@ -144,12 +144,13 @@ textarea{
 
 a.reset{
     color: green;
-    font-size: 1.5rem;
+    font-size: 1rem;
     cursor: pointer;
 }
 
 a.reset:hover{
-    color: red;
+    color: #04310f;
+    font-weight: 700;
 }
 
  .instruct {
@@ -164,19 +165,16 @@ a.reset:hover{
 
 .error{
     font-weight: 500;
-    color: red;
+    color: rgb(161, 13, 13);
 }
 
-.register_parties{
-    background: hsl(120, 15%, 92%);
 
-}
 .parties{
-    width: 45%;
+    width: 47%;
     float: left;
-    padding: 10px;
     margin-top: 40px;
 }
+
 
 .parties:last-child{
     margin-left: 60px;
@@ -184,16 +182,16 @@ a.reset:hover{
 
 .parties > h4, .list > h4{
     color: green;
-    font-size: 1.7rem;
-    margin-bottom: 10px;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
     padding-left: 10px;
     text-align: center;
     margin-top: 20px;
 }
 .parties .signup{
-    width: 90%;
-    box-shadow: 10px 10px 10px #b6b2b2;
-    border-radius: 0 20px 0 0;
+    width: 70%;
+    box-shadow: 2px 2px 10px 10px #b6b2b2;
+    border-radius: 15px;
 }
 
 .list{
@@ -208,12 +206,11 @@ table{
     padding: 20px;
     margin: 0 auto;
     background: #ffffff;
-    border-left: red solid 2px;
     border-collapse: collapse;
     width: 100%;
     border-spacing: 0;
     color: #0c5511;
-    box-shadow: 10px 10px 10px #b6b2b2;
+    box-shadow: 2px 2px 10px 10px #b6b2b2;
 }
 
 table tr th, table tr td{
@@ -221,7 +218,12 @@ table tr th, table tr td{
     border-bottom: #b8bac4 solid 1pt;
     text-align: center;
     line-height: 1.3;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+}
+
+table tr th{
+    border-bottom: #b8bac4 solid 2pt;
+
 }
 
 table tr th{
@@ -231,35 +233,41 @@ table tr th{
 
 
 .edit{
-    border: #000000 solid 1px;
+    border: #04310f solid 1px;
     border-radius: 4px;
     padding: 3px;
     cursor: pointer;
     margin-left: 2px;
     color: green;
+    background: #ddd;
+}
+
+.edit:hover{
+    color: #ddd;
+    background: green;
 }
 
 .delete{
-    background: red;
-    color: white;
+    background: rgb(141, 4, 4);
+    color: #ddd;
     border-radius: 10px;
     padding: 8px;
     cursor: pointer;
 }
 
 .delete:hover{
-    color: #e40e0e;
-    background: #b8bac4;
+    color:  rgb(141, 4, 4);
+    background: #ddd;
 }
 
 .select-text{
-    padding: 5px;
+    padding: 8px;
     width: 90%;
-    font-size: 1.2rem;
-    font-weight: 500;
+    font-size: 1rem;
+    font-weight: 700;
     background: transparent;
     margin-top: 10px;
-    color: green;
+    color: #054e0a;
     border: #0c5511 solid 1px;
     border-radius: 5px;
 }
