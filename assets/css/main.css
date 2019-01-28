@@ -10,7 +10,7 @@ a{
 }
 
 a:hover{
-    color: red;
+    color: #04310f;
 }
 
 .navbar {
@@ -24,10 +24,10 @@ a:hover{
     display: block;
     color: green;
     text-align: center;
-    padding: 20px;
+    padding: 10px;
     text-decoration: none;
     font-size: 1.5rem;
-    margin: 0 1.2rem;
+    margin: 10px 1.2rem;
     font-weight: 500;
     transition: 0.5s ease-in-out;
   }
@@ -72,9 +72,11 @@ a:hover{
   }
   
   .navbar a:hover, .dropdown:hover .dropbtn {
-      border-bottom: 1.5px solid red;
+      border-left: 1.5px solid rgb(1, 51, 12);
+      border-right: 1.5px solid rgb(1, 51, 12);
       padding-bottom: 8px;
       transition: .5s;
+      background-color: #f9f9f9;
   }
   
   .dropdown-content a:hover {
@@ -102,8 +104,8 @@ a:hover{
 .backgroundImage{
     background-image: linear-gradient(
         to right bottom,
-        rgba(18, 155, 13, 0.87),
-        rgba(13, 138, 9, 0.87)
+        rgba(46, 167, 42, 0.87),
+        rgba(24, 224, 17, 0.87)
       ),
       url(../img/election.jpg);
     background-size: cover;
@@ -113,17 +115,33 @@ a:hover{
 }
 
  footer{
-     margin: 40px auto 0;
+     margin: auto;
      clear: both;
-     background: #a8f8a5;
      padding: 5px;
+     min-height: 130px;
+     color: #134213;
     }
-footer > p {
-     font-weight: 900;
-     text-align: center;
-     margin: 10px 0;
-     color: green;
-     }
+
+.footer-img{
+    margin-top: 20px;
+    width: 30%;
+    float: left;
+    font-size: 6rem;
+    padding-left: 60px;
+}
+.footer-columns{
+    margin-top: 30px;
+    width: 60%;
+    float: right;
+    display: grid;    
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+.column{
+    display: block;
+    font-weight: 600;
+}
+
 
 
 /* Begining of Index page */
@@ -166,7 +184,6 @@ footer > p {
 }
 
 .diplayQuote{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     margin: auto;
     text-align: center;
     font-size: 2rem;
@@ -176,7 +193,6 @@ footer > p {
 
 
 .author{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     margin: auto;
     text-align: center;
     font-size: 1.5rem;
@@ -225,6 +241,10 @@ a.register:hover{
 
 .register_parties{
     height: 85vh;
+}
+
+.bg-colors{
+   background-color: hsl(120, 15%, 92%);
 }
 
 /* Vote Page */
