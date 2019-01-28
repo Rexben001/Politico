@@ -46,10 +46,10 @@ a:hover{
     border: none;
     outline: none;
     color: green;
-    padding: 20px 20px 15px;
+    padding: 10px 20px 15px;
     background-color: inherit;
     font-family: inherit;
-    margin: 0;
+    margin: 10px 0;
     font-size: 1.5rem;
   }
   
@@ -72,11 +72,13 @@ a:hover{
   }
   
   .navbar a:hover, .dropdown:hover .dropbtn {
-      border-left: 1.5px solid rgb(1, 51, 12);
-      border-right: 1.5px solid rgb(1, 51, 12);
+      border-left: 1.5px solid green;
+      border-right: 1.5px solid green;
       padding-bottom: 8px;
       transition: .5s;
-      background-color: #f9f9f9;
+      background-color: #ddd;
+      color: #134213;
+      font-weight: 700;
   }
   
   .dropdown-content a:hover {
@@ -120,12 +122,14 @@ a:hover{
      padding: 5px;
      min-height: 130px;
      color: #134213;
+
     }
 
 .footer-img{
     margin-top: 20px;
     width: 30%;
     float: left;
+    margin-left: 6.0rem;
 }
 
 .footer-img .fas {
@@ -175,6 +179,7 @@ a:hover{
     border-left: solid #0fb836 10px;
     margin-top: 30px;
     position: relative;
+    height: 100px;
 
 }
 
@@ -198,7 +203,8 @@ a:hover{
 .diplayQuote{
     margin: auto;
     text-align: center;
-    font-size: 2rem;
+    font-size: 3.5vh;
+    resize: both;
     font-style: italic;
     line-height: 1.3;
 }
@@ -207,7 +213,8 @@ a:hover{
 .author{
     margin: auto;
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 2.5vh;
+    resize: both;
     font-style: italic;
     margin-left: 250px;
     
@@ -434,21 +441,26 @@ a.register:hover{
             font-size: 21px;
             margin-top: 0;
         }
+        .quo-bg{
+            height: 150px;
+        }
         .diplayQuote{
             padding: 0 15px;
-            font-size: 20px;
+            font-size: 2.2vh;
+            resize: both;
         }
         .aboutPage > p:last-child{
             display: none;
         }
         .author{
-            font-size: 20px;
+            font-size: 1.7vh;
             padding: 0 15px;
-            margin-left: 100px;
+            margin-left: 40px;
+            resize: both;
 
         }
         a.register{
-            width: 70%;
+            width: 60%;
         }
         .profile{
             width: 87%;
@@ -462,6 +474,7 @@ a.register:hover{
         }
         .footer-img{
             width: 40%;
+            margin-left: 5px;
         }
         .footer-img .fas{
             font-size: 4rem;
