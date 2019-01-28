@@ -233,25 +233,31 @@ table tr th{
 
 
 .edit{
-    border: #000000 solid 1px;
+    border: #04310f solid 1px;
     border-radius: 4px;
     padding: 3px;
     cursor: pointer;
     margin-left: 2px;
     color: green;
+    background: #ddd;
+}
+
+.edit:hover{
+    color: #ddd;
+    background: green;
 }
 
 .delete{
     background: rgb(141, 4, 4);
-    color: white;
+    color: #ddd;
     border-radius: 10px;
     padding: 8px;
     cursor: pointer;
 }
 
 .delete:hover{
-    color: #680606;
-    background: #b8bac4;
+    color:  rgb(141, 4, 4);
+    background: #ddd;
 }
 
 .select-text{
