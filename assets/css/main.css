@@ -130,10 +130,6 @@ a:hover{
         background: #ddd;
     }
 
-    .others .politics{
-        margin-top: 400px;
-    }
-
 .footer-img{
     margin-top: 20px;
     width: 30%;
@@ -260,16 +256,22 @@ a.register:hover, .edit-profile:hover{
 .intro{
     padding: 20px 0;
     margin: 40px auto 10px;
-    width: 75%;
+    width: 65%;
 }
 .intro > p {
     color: green;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 600;
+    text-align: center;
 }
 
 .register_parties{
    min-height: 85vh;
+   margin: auto;
+   width: 80%;
+   display: grid;    
+   grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
 }
 
 .bg-colors{
@@ -283,7 +285,7 @@ a.register:hover, .edit-profile:hover{
     margin-right: 10px;
     background: #04310f;
     border-right: #0fb836 1px solid;
-    height: 90vh;
+    height: 100vh;
     margin-top: 2px;
     padding-top: 10px;
 }
@@ -316,7 +318,7 @@ a.register:hover, .edit-profile:hover{
 }
 
 .mainbar .signup{
-    width: 85%;
+    width: 65%;
 }
 
 .cand, .part{
@@ -521,6 +523,12 @@ a.register:hover, .edit-profile:hover{
         .column:first-child{
             display: none;
         }
+
+        .register_parties{
+            display: block;
+            width: 100%;
+        }
+
         
     }
 
