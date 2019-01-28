@@ -111,7 +111,7 @@ a:hover{
       ),
       url(../img/election.jpg);
     background-size: cover;
-    height: calc(100vh);
+    height: 90vh;
     color: #fff;
     padding: 40px;
 }
@@ -120,9 +120,13 @@ a:hover{
      margin: auto;
      clear: both;
      padding: 5px;
-     min-height: 130px;
+     height: 22vh;
      color: #134213;
 
+    }
+
+    .others{
+        background: #ddd;
     }
 
 .footer-img{
@@ -235,10 +239,11 @@ a.register{
     align-items: center;
     width: 20%;
     font-size: 1.5rem;
+    transition: .5s;
 }
 
-a.register:hover{
-    box-shadow: 5px 5px 5px rgb(202, 4, 4);
+a.register:hover, .edit-profile:hover{
+    box-shadow: 5px 5px 5px #04310f;
     color: white;
     background: #0fb836;
 }
@@ -346,12 +351,25 @@ a.register:hover{
 
 .profile > p{
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: green;
 }
 .profile .topic{
     display: none;
 }
+
+.edit-profile{
+    margin-top: 30px;
+    text-align: center;
+    background: green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+}
+
 .voted{
     width: 70%;
     float: right;
