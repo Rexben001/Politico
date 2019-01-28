@@ -582,6 +582,7 @@ a.register:hover, .edit-profile:hover{
             .sidebar{
                 width: 19%;
                 margin: 0;
+                height: 70vh;
             }
             .sidebar a{
                 font-size: 1.2rem;
