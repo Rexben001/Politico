@@ -103,7 +103,7 @@ a:hover{
     background-image: linear-gradient(
         to right bottom,
         rgba(18, 155, 13, 0.87),
-        rgba(13, 138, 9, 0.87)
+        rgba(24, 224, 17, 0.87)
       ),
       url(../img/election.jpg);
     background-size: cover;
@@ -113,17 +113,33 @@ a:hover{
 }
 
  footer{
-     margin: 40px auto 0;
+     margin: auto;
      clear: both;
-     background: #a8f8a5;
+     background: green;
      padding: 5px;
+     min-height: 130px;
+     color: white;
     }
-footer > p {
-     font-weight: 900;
-     text-align: center;
-     margin: 10px 0;
-     color: green;
-     }
+
+.footer-img{
+    margin-top: 20px;
+    width: 30%;
+    float: left;
+    font-size: 6rem;
+    padding-left: 60px;
+}
+.footer-columns{
+    margin-top: 30px;
+    width: 60%;
+    float: right;
+    display: grid;    
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+.column{
+    display: block;
+}
+
 
 
 /* Begining of Index page */
@@ -166,7 +182,6 @@ footer > p {
 }
 
 .diplayQuote{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     margin: auto;
     text-align: center;
     font-size: 2rem;
@@ -176,7 +191,6 @@ footer > p {
 
 
 .author{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     margin: auto;
     text-align: center;
     font-size: 1.5rem;
