@@ -497,14 +497,18 @@ a.register:hover, .edit-profile:hover{
             width: inherit;
         }
         footer{
-            height: 27vh;
+           min-height: 27vh;
+           margin: 10px auto 0;
         }
         .footer-img{
-            width: 40%;
-            margin-left: 5px;
+            margin: auto;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .footer-img .fas{
-            font-size: 4rem;
+            padding-left: 20px;
         }
         .politico-trademark{
             display: block;
@@ -514,11 +518,12 @@ a.register:hover, .edit-profile:hover{
 
         .footer-columns{
             display: block;
-            width: 50%;
+            margin: auto;
         }
         .column{
             padding-bottom: 15px;
             font-size: 1.2rem;
+            padding-left: 25px;
         }
         .column:first-child{
             display: none;
