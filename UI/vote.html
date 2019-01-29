@@ -36,14 +36,18 @@
     <div class="sidebar">
         <a href="" id="vote"><i class="fas fa-vote-yea"></i> Cast your vote</a>
         <a href="" id="pol"><i class="fas fa-address-book"></i> Political Parties</a>
-        <a href="" id="candidates"><i class="fa fa-user-circle"></i> Aspirant</a>
+        <a href="" id="candidates"><i class="fa fa-user-circle"></i> Aspirants</a>
     </div>
     <div class="mainbar">
         <div class="signup-form" id="votes">
             <div class="heading">
                 <h4>Vote wisely</h4>
             </div>
-            <form class="signup" id="voting">
+            <form class="signup not-signup" id="voting">
+                <label for="fullname"><span class="icon"><i class="fa fa-user-circle"></i></span> Full Name</label>
+                <input type="text" id="name" value="Rex Ben" disabled>
+                <label for="region"><span class="icon"><i class="fas fa-globe-africa"></i></span> Region/Area</label>
+                <input type="text" id="region" value="Ikorodu, Lagos State" disabled>
                 <label for="party"><span class="icon"><i class="fas fa-address-book"></i></span> Name of Party</label>
                 <select class="select-text" id="office">
                     <option disabled selected>Select Office</option>
@@ -57,10 +61,6 @@
                 <select class="select-text" id="disabled">
                     <option disabled selected>Select candidate</option>
                 </select>
-                <label for="fullname"><span class="icon"><i class="fa fa-user-circle"></i></span> Full Name</label>
-                <input type="text" id="fullname" required>
-                <label for="region"><span class="icon"><i class="fas fa-globe-africa"></i></span> Region/Area</label>
-                <input type="text" id="region" required>
                 <br>
                 <input type="submit" value="Vote">
             </form>
@@ -76,7 +76,7 @@
                 </tr>
                 <tr>
                     <td>1</td>
-                    <td>Activist Group Of Diabete (AGD)</td>
+                    <td>Activist Group Of Truth (AGT)</td>
                     <td>10, Lagos Road, Surulere, Lagos</td>
                     <td>http://www.politico.com/agd_logo</td>
 
@@ -157,8 +157,27 @@
             </table>
         </div>
     </div>
-    <footer>
-        <p>&copy Copyright 2019</p>
+    <footer class="others">
+        <div class="footer-img">
+            <p><i class="fas fa-vote-yea"></i> <span class="politico-trademark">Politico &reg;</span></p>
+        </div>
+        <div class="footer-columns">
+            <div class="column">
+                <p>User Accounts</p>
+                <p>Vote</p>
+                <p>Profile</p>
+            </div>
+            <div class="column">
+                <p>Terms and Conditions</p>
+                <p>Privacy Policy</p>
+            </div>
+            <div class="column">
+                <p><i class="fab fa-facebook"></i> Facebook</p>
+                <p><i class="fab fa-twitter"></i> Twitter</p>
+                <p><i class="fab fa-linkedin-in"></i> LinkedIn</p>
+
+            </div>
+        </div>
     </footer>
 </body>
 <script src="./assets/js/main.js"></script>

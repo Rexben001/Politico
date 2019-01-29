@@ -45,11 +45,16 @@
             <div class="intro">
                 <p>Express your interest to run for a political office by filling the form below correctly</p>
             </div>
-            <form class="signup" id="signup">
+            <form class="signup not-signup" id="signup">
+                <label for="fullname"><span class="icon"><i class="fa fa-user-circle"></i></span> Full Name</label>
+                <input type="text" id="name" value="Rex Ben" disabled>
+                <label for="qualification"><span class="icon"><i class="fas fa-graduation-cap"></i></span> Academic
+                    Qualification</label>
+                <input type="text" id="qualification" value="Bsc." disabled>
                 <label for="party"><span class="icon"><i class="fas fa-address-book"></i></span> Name of Party</label>
                 <select class="select-text">
                     <option disabled selected>Select Party</option>
-                    <option value="AGB">Activist Group Of Diabete</option>
+                    <option value="AGT">Activist Group Of Truth</option>
                     <option value="APP">Active Progress Party</option>
                     <option value="LAP">Lion Action Party</option>
                     <option value="CCG">Cultural Congress Group</option>
@@ -63,37 +68,50 @@
                     <option value="sen">Senator</option>
                     <option value="hop">House of Rep.</option>
                 </select>
-                <label for="fullname"><span class="icon"><i class="fa fa-user-circle"></i></span> Full Name</label>
-                <input type="text" id="fullname" required>
-                <label for="qualification"><span class="icon"><i class="fas fa-graduation-cap"></i></span> Academic
-                    Qualification</label>
-                <input type="text" id="qualification" required>
                 <label for="region"><span class="icon"><i class="fas fa-globe-africa"></i></span> Region/Area</label>
                 <input type="text" id="region" required>
                 <br>
                 <input type="submit" value="Apply">
             </form>
-        </div>
+        </div><br>
+
         <div id="petitionForm">
             <div class="intro">
                 <p>Are you not satisfied the outcome of a particular election activity? Write to us today.</p>
             </div>
-            <form class="signup" id="signup">
+            <form class="signup not-signup" id="contestForm">
                 <label for="fullname"><span class="icon"><i class="fa fa-user-circle"></i></span> Full Name</label>
-                <input type="text" id="fullname" required>
-                <label for="qualification"><span class="icon"><i class="fas fa-graduation-cap"></i></span> Political
-                    office</label>
+                <input type="text" id="name" value="Rex Ben" disabled>
+                <label for="qualification"><span class="icon"><i class="fas fa-briefcase"></i></span>
+                    Political Office</label>
                 <input type="text" id="qualification" required>
                 <label for="region"><span class="icon"><i class="fas fa-globe-africa"></i></span> Petition</label>
-                <textarea name="express" id="makePetition" cols="50" rows="20" placeholder="Write petition here..."></textarea>
+                <textarea name="express" id="makePetition" cols="50" rows="10" placeholder="Write petition here..."></textarea>
                 <br>
-                <input type="submit" value="Apply">
+                <input type="submit" value="Submit">
             </form>
-        </div>
+        </div><br>
     </div>
+    <footer class="others">
+        <div class="footer-img">
+            <p><i class="fas fa-vote-yea"></i> <span class="politico-trademark">Politico &reg;</span></p>
+        </div>
+        <div class="footer-columns">
+            <div class="column">
+                <p>User Accounts</p>
+                <p>Vote</p>
+                <p>Profile</p>
+            </div>
+            <div class="column">
+                <p>Terms and Conditions</p>
+                <p>Privacy Policy</p>
+            </div>
+            <div class="column">
+                <p><i class="fab fa-facebook"></i> Facebook</p>
+                <p><i class="fab fa-twitter"></i> Twitter</p>
+                <p><i class="fab fa-linkedin-in"></i> LinkedIn</p>
 
-    <footer>
-        <p>&copy Copyright 2019</p>
+            </div>
     </footer>
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/politic.js"></script>
