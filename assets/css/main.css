@@ -501,7 +501,7 @@ a.register:hover, .edit-profile:hover{
            margin: 10px auto 0;
         }
         .footer-img{
-            margin: auto;
+            margin: 20px auto 5px;
             text-align: center;
             display: flex;
             justify-content: center;
@@ -509,16 +509,18 @@ a.register:hover, .edit-profile:hover{
         }
         .footer-img .fas{
             padding-left: 20px;
+            font-size: 3rem;
         }
         .politico-trademark{
             display: block;
             text-align: center;
             font-size: 1.2rem;
+            margin-left: 10px;
         }
 
         .footer-columns{
             display: block;
-            margin: auto;
+            margin:20px  auto 5px;
         }
         .column{
             padding-bottom: 15px;
