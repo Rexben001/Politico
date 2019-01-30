@@ -12,3 +12,5 @@ const parties = [
         logoUrl: 'https://politico.com/ap_logo'
     }
 ];
+
+export default parties;
