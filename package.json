@@ -10,10 +10,13 @@
     "type": "git",
     "url": "git+https://github.com/Rexben001/Politico.git"
   },
-  "author": "Rexben",
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Rexben001/Politico/issues"
   },
-  "homepage": "https://github.com/Rexben001/Politico#readme"
+  "homepage": "https://github.com/Rexben001/Politico#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
