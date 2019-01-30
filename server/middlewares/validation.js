@@ -12,8 +12,8 @@ class Validation {
 
         validator.check().then(function (matched) {
             if (!matched) {
-                return res.status(422).json({
-                    "status": 422,
+                return res.status(400).json({
+                    "status": 400,
                     "error": 'Unable to process your request, make sure the fields are entered correctly'
                 });
             }
