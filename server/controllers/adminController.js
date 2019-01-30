@@ -23,6 +23,13 @@ class AdminController {
             });
         }
     }
+
+    static getAllParties(req, res) {
+        return res.status(200).json({
+            "status": 200,
+            "data": dummyDatabase
+        });
+    }
 }
 
 export default AdminController;

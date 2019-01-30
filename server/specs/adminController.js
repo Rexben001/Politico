@@ -39,3 +39,18 @@ describe('POST /parties', () => {
     }));
 
 });
+
+describe('GET /parties', () => {
+    it('it should get all political parties', ((done) => {
+        chai.request(app)
+            .get('/api/v1/parties')
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.body.data.should.be.a('Array');
+                res.body.data[0].name.should.equal('Action People (AP)');
+                res.body.data[1].logoUrl.should.equal('https://politico.com/ppp_logo');
+                res.body.data[2].hqAddress.should.equal('10, Allison Street, Jos');
+                done(err);
+            });
+    }));
+});
