@@ -10,7 +10,7 @@ class AdminController {
             const newParty = {
                 party_id, name, hqAddress, logoUrl
             };
-            party.push(newParty);
+            dummyDatabase.push(newParty);
 
             return res.status(201).json({
                 "status": 201,
