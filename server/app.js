@@ -16,3 +16,6 @@ app.get('/', (req, res) => res.status(200).json({
 app.listen(process.env.PORT || 8080, () => {
     console.log('Working');
 });
+
+
+export default app;
