@@ -25,17 +25,10 @@ class AdminController {
     }
 
     static getAllParties(req, res) {
-        try {
-            return res.status(200).json({
-                "status": 200,
-                "data": dummyDatabase
-            });
-        } catch (error) {
-            return res.status(400).json({
-                "status": 400,
-                "error": 'Unable to get all parties'
-            });
-        }
+        return res.status(200).json({
+            "status": 200,
+            "data": dummyDatabase
+        });
     }
 }
 
