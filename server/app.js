@@ -1,6 +1,6 @@
 import express from 'express';
 import router from './routes/route';
-import bodyParser from 'body-parser'
+import bodyParser from 'body-parser';
 
 const app = express();
 
@@ -16,7 +16,9 @@ app.get('/', (req, res) => res.status(200).json({
 
 app.use('/api/v1', router);
 
-app.listen(process.env.PORT || 8080);
+app.listen(process.env.PORT || 8080, () => {
+    console.log('Working');
+});
 
 
 export default app;
