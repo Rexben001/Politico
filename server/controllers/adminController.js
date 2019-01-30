@@ -28,7 +28,7 @@ class AdminController {
         try {
             return res.status(200).json({
                 "status": 200,
-                "data": party
+                "data": dummyDatabase
             });
         } catch (error) {
             return res.status(400).json({
