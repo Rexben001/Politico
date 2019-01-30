@@ -1,0 +1,19 @@
+{
+  "name": "politico",
+  "version": "1.0.0",
+  "description": "An e-voting platform",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rexben001/Politico.git"
+  },
+  "author": "Rexben",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rexben001/Politico/issues"
+  },
+  "homepage": "https://github.com/Rexben001/Politico#readme"
+}
