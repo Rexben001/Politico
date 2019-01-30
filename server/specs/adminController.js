@@ -23,7 +23,7 @@ describe('POST /parties', () => {
             });
     }));
 
-    it('it should post a new political party', ((done) => {
+    it('it should return status code of 400 and an error message', ((done) => {
         const newParty = {
             party_id: 4,
             name: 'Faithful People (FP)'
