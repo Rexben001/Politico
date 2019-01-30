@@ -30,6 +30,21 @@ class AdminController {
             "data": dummyDatabase
         });
     }
+
+    static getOneParty(req, res) {
+        const id = Number(req.params.party_id);
+        const singleParty = dummyDatabase.find(p => p.party_id == id);
+        if (!singleParty) {
+            return res.status(404).json({
+                status: 404,
+                error: 'Unable to retrieve party'
+            });
+        }
+        return res.status(200).json({
+            status: 200,
+            data: singleParty,
+        });
+    }
 }
 
 export default AdminController;
