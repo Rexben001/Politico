@@ -36,13 +36,13 @@ class AdminController {
         const singleParty = dummyDatabase.find(parties => parties.party_id == id);
         if (!singleParty) {
             return res.status(404).json({
-                status: 404,
-                error: 'Unable to retrieve party'
+                "status": 404,
+                "error": 'Unable to retrieve party'
             });
         }
         return res.status(200).json({
-            status: 200,
-            data: singleParty,
+            "status": 200,
+            "data": singleParty,
         });
     }
 }

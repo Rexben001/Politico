@@ -54,3 +54,26 @@ describe('GET /parties', () => {
             });
     }));
 });
+
+describe('GET /parties/<party-id>', () => {
+    it('it should get a specific political party', ((done) => {
+        chai.request(app)
+            .get('/api/v1/parties/1')
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.body.data.name.should.equal('Action People (AP)');
+                res.body.data.logoUrl.should.equal('https://politico.com/ap_logo');
+                done(err);
+            });
+    }));
+
+    it('it should return error 404', ((done) => {
+        chai.request(app)
+            .get('/api/v1/parties/5')
+            .end((err, res) => {
+                res.should.have.status(404);
+                res.body.error.should.equal('Unable to retrieve party');
+                done(err);
+            });
+    }));
+});
