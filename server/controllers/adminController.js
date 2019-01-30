@@ -33,7 +33,7 @@ class AdminController {
 
     static getOneParty(req, res) {
         const id = Number(req.params.party_id);
-        const singleParty = dummyDatabase.find(p => p.party_id == id);
+        const singleParty = dummyDatabase.find(parties => parties.party_id == id);
         if (!singleParty) {
             return res.status(404).json({
                 status: 404,
