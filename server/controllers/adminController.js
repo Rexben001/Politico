@@ -23,6 +23,20 @@ class AdminController {
             });
         }
     }
+
+    static getAllParties(req, res) {
+        try {
+            return res.status(200).json({
+                "status": 200,
+                "data": party
+            });
+        } catch (error) {
+            return res.status(400).json({
+                "status": 400,
+                "error": 'Unable to get all parties'
+            });
+        }
+    }
 }
 
 export default AdminController;
