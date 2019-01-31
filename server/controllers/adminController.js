@@ -1,5 +1,7 @@
 import dummyDatabase from '../models/dummyDatabase';
 
+const { parties, offices } = dummyDatabase;
+
 class AdminController {
     static registerParty(req, res) {
         try {
@@ -10,7 +12,7 @@ class AdminController {
             const newParty = {
                 party_id, name, hqAddress, logoUrl
             };
-            dummyDatabase.push(newParty);
+            parties.push(newParty);
 
             return res.status(201).json({
                 "status": 201,
@@ -27,13 +29,13 @@ class AdminController {
     static getAllParties(req, res) {
         return res.status(200).json({
             "status": 200,
-            "data": dummyDatabase
+            "data": parties
         });
     }
 
     static getOneParty(req, res) {
         const id = Number(req.params.party_id);
-        const singleParty = dummyDatabase.find(parties => parties.party_id == id);
+        const singleParty = parties.find(parties => parties.party_id == id);
         if (!singleParty) {
             return res.status(404).json({
                 "status": 404,
@@ -51,7 +53,7 @@ class AdminController {
         const {
             name, hqAddress, logoUrl
         } = req.body;
-        const singleParty = dummyDatabase.find(parties => parties.party_id == id);
+        const singleParty = parties.find(parties => parties.party_id == id);
         if (!singleParty) {
             return res.status(404).json({
                 "status": 404,
@@ -68,19 +70,42 @@ class AdminController {
     }
     static deleteOneParty(req, res) {
         const id = Number(req.params.party_id);
-        const singleParty = dummyDatabase.find(parties => parties.party_id == id);
+        const singleParty = parties.find(parties => parties.party_id == id);
         if (!singleParty) {
             return res.status(404).json({
                 "status": 404,
                 "error": 'Unable to retrieve party'
             });
         }
-        dummyDatabase.splice(singleParty, 1);
+        parties.splice(singleParty, 1);
         return res.status(200).json({
             "status": 200,
             "data": { "message": `You have successfully deleted ${singleParty.name}` }
         });
     }
+
+    static registerOffice(req, res) {
+        const {
+            office_id, type, name, region
+        } = req.body;
+
+        const newOffice = {
+            office_id, type, name, region
+        };
+
+        office.push(newOffice);
+        return res.status(201).json({
+            "status": 201,
+            "data": newOffice
+        });
+    } catch(error) {
+        return res.status(400).json({
+            "status": 400,
+            "error": 'Unable to create a new party'
+        });
+    }
 }
+
+
 
 export default AdminController;
