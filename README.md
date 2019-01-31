@@ -18,8 +18,16 @@ Politico enables citizens give their mandate to politicians running for differen
 * User can reset password.
 * A politician can create a petition against a concluded political office election.
 
+## Technology needed to run the project locally ##
+* Any text editor preferably Visual Studio Code
+* Git bash
+* Any web browser preferably Google Chrome
+* Postman
+
 ## Link to GitHub pages ##
    https://rexben001.github.io/Politico/
+
+## Link to API hosting
 
 ## How to Clone project ##
 To clone this repository:
@@ -29,6 +37,22 @@ To clone this repository:
 ## How test GitHub pages ##
 To Log in,
 * use `rexben.rb@gmail.com` as your email address and any password of your choice
+
+## How to test the API endpoints
+* `npm i` to install the npm packages
+* `npm run start-dev` to start the server
+* `npm test` to run the test files
+
+## List of API Endpoints ##
+* POST `/parties`
+* GET `/parties`
+* GET `/parties/:party_id`
+* PATCH `/parties/:party_id/name`
+* DELETE `/parties/:party_id`
+* POST `/offices`
+* GET `/offices`
+
+
 
 ## Author ##
 * Ajewole Benjamin
