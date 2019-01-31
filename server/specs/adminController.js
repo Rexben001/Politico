@@ -110,3 +110,26 @@ describe('PATCH /parties/<party-id>/name', () => {
             });
     }));
 });
+
+describe('DELETE /parties/<party-id>', () => {
+    it('it should delete a specific political party', ((done) => {
+        chai.request(app)
+            .delete('/api/v1/parties/1')
+            .end((err, res) => {
+                console.log(res.body.data);
+                res.should.have.status(200);
+                res.body.data.message.should.equal('You have successfully deleted National Action People (NAP)');
+                done(err);
+            });
+    }));
+
+    it('it should return error 404', ((done) => {
+        chai.request(app)
+            .delete('/api/v1/parties/5')
+            .end((err, res) => {
+                res.should.have.status(404);
+                res.body.error.should.equal('Unable to retrieve party');
+                done(err);
+            });
+    }));
+});
