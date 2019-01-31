@@ -108,8 +108,8 @@ class AdminController {
     }
 
     static getOneOffice(req, res) {
-        const id = Number(req.params.Office_id);
-        const singleOffice = parties.find(offices => offices.office_id == id);
+        const id = Number(req.params.office_id);
+        const singleOffice = offices.find(offices => offices.office_id == id);
         if (!singleOffice) {
             return res.status(404).json({
                 "status": 404,
