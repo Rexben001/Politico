@@ -116,7 +116,6 @@ describe('DELETE /parties/<party-id>', () => {
         chai.request(app)
             .delete('/api/v1/parties/1')
             .end((err, res) => {
-                console.log(res.body.data);
                 res.should.have.status(200);
                 res.body.data.message.should.equal('You have successfully deleted National Action People (NAP)');
                 done(err);
@@ -133,3 +132,54 @@ describe('DELETE /parties/<party-id>', () => {
             });
     }));
 });
+
+describe('POST /offices', () => {
+    it('it should post a new political office', ((done) => {
+        const newOffice = {
+            office_id: 3,
+            type: 'Federal',
+            name: 'President',
+            region: 'Natioal'
+        };
+        chai.request(app)
+            .post('/api/v1/offices')
+            .send(newOffice)
+            .end((err, res) => {
+                res.should.have.status(201);
+                res.body.data.type.should.equal('Federal');
+                res.body.data.name.should.equal('President');
+                res.body.data.region.should.be.a('String');
+                done(err);
+            });
+    }));
+    it('it should return status code of 400 and an error message', ((done) => {
+        const newOffice = {
+            office_id: 4,
+            name: 'Faithful People (FP)'
+        };
+        chai.request(app)
+            .post('/api/v1/offices')
+            .send(newOffice)
+            .end((err, res) => {
+                res.should.have.status(400);
+                res.body.error.should.equal('Unable to process your request, make sure the fields are entered correctly');
+                done(err);
+            });
+    }));
+
+});
+
+describe('GET /offices', () => {
+    it('it should get all political offices', ((done) => {
+        chai.request(app)
+            .get('/api/v1/offices')
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.body.data.should.be.a('Array');
+                res.body.data[0].type.should.equal('State');
+                res.body.data[1].name.should.equal('Senator');
+                done(err);
+            });
+    }));
+});
+
