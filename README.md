@@ -27,7 +27,8 @@ Politico enables citizens give their mandate to politicians running for differen
 ## Link to GitHub pages ##
    https://rexben001.github.io/Politico/
 
-## Link to API hosting
+## Link to App on Heroku ##
+https://politico-voting.herokuapp.com/
 
 ## How to Clone project ##
 To clone this repository:
