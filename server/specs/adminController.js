@@ -16,9 +16,7 @@ describe('POST /parties', () => {
             .send(newParty)
             .end((err, res) => {
                 res.should.have.status(201);
-                res.body.data.name.should.equal('Lion Action People (LAP)');
-                res.body.data.logoUrl.should.equal('https://politico.com/lap_logo');
-                res.body.data.hqAddress.should.be.a('String');
+                res.body.data[0].name.should.equal('Lion Action People (LAP)');
                 done(err);
             });
     }));
@@ -60,9 +58,10 @@ describe('GET /parties/<party-id>', () => {
         chai.request(app)
             .get('/api/v1/parties/1')
             .end((err, res) => {
+                console.log(res.body.data);
                 res.should.have.status(200);
-                res.body.data.name.should.equal('Action People (AP)');
-                res.body.data.logoUrl.should.equal('https://politico.com/ap_logo');
+                res.body.data[0].name.should.equal('Action People (AP)');
+                res.body.data[0].logoUrl.should.equal('https://politico.com/ap_logo');
                 done(err);
             });
     }));
@@ -89,9 +88,10 @@ describe('PATCH /parties/<party-id>/name', () => {
             .patch('/api/v1/parties/1/name')
             .send(editParty)
             .end((err, res) => {
+                console.log(res.body.data)
                 res.should.have.status(201);
-                res.body.data.name.should.equal('National Action People (NAP)');
-                res.body.data.party_id.should.equal(1);
+                res.body.data[0].name.should.equal('National Action People (NAP)');
+                res.body.data[0].id.should.equal(1);
                 done(err);
             });
     }));
@@ -117,7 +117,7 @@ describe('DELETE /parties/<party-id>', () => {
             .delete('/api/v1/parties/1')
             .end((err, res) => {
                 res.should.have.status(200);
-                res.body.data.message.should.equal('You have successfully deleted National Action People (NAP)');
+                res.body.data[0].message.should.equal('You have successfully deleted National Action People (NAP)');
                 done(err);
             });
     }));
@@ -146,9 +146,8 @@ describe('POST /offices', () => {
             .send(newOffice)
             .end((err, res) => {
                 res.should.have.status(201);
-                res.body.data.type.should.equal('Federal');
-                res.body.data.name.should.equal('President');
-                res.body.data.region.should.be.a('String');
+                res.body.data[0].type.should.equal('Federal');
+                res.body.data[0].name.should.equal('President');
                 done(err);
             });
     }));
