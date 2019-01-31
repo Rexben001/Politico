@@ -45,6 +45,7 @@ class AdminController {
             "data": singleParty,
         });
     }
+
     static editOneParty(req, res) {
         const id = Number(req.params.party_id);
         const {
