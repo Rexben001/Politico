@@ -50,7 +50,7 @@ class AdminController {
         const {
             name, hqAddress, logoUrl
         } = req.body;
-        const singleParty = party.find(parties => parties.party_id == id);
+        const singleParty = dummyDatabase.find(parties => parties.party_id == id);
         if (!singleParty) {
             return res.status(404).json({
                 "status": 404,
