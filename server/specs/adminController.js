@@ -58,7 +58,6 @@ describe('GET /parties/<party-id>', () => {
         chai.request(app)
             .get('/api/v1/parties/1')
             .end((err, res) => {
-                console.log(res.body.data);
                 res.should.have.status(200);
                 res.body.data[0].name.should.equal('Action People (AP)');
                 res.body.data[0].logoUrl.should.equal('https://politico.com/ap_logo');
@@ -182,3 +181,25 @@ describe('GET /offices', () => {
     }));
 });
 
+describe('GET /offices/<office-id>', () => {
+    it('it should get a specific political office', ((done) => {
+        chai.request(app)
+            .get('/api/v1/offices/1')
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.body.data[0].name.should.equal('Governor');
+                res.body.data[0].type.should.equal('State');
+                done(err);
+            });
+    }));
+
+    it('it should return error 404', ((done) => {
+        chai.request(app)
+            .get('/api/v1/offices/5')
+            .end((err, res) => {
+                res.should.have.status(404);
+                res.body.error.should.equal('Unable to retrieve Office');
+                done(err);
+            });
+    }));
+});

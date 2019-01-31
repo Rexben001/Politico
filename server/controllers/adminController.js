@@ -134,8 +134,8 @@ class AdminController {
             "status": 200,
             "data": [{
                 "id": singleOffice.office_id,
-                "name": singleOffice.name,
-                "logoUrl": singleOffice.logoUrl
+                "type": singleOffice.type,
+                "name": singleOffice.name
             }]
         });
     }
