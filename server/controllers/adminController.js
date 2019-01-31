@@ -98,13 +98,9 @@ class AdminController {
             "status": 201,
             "data": newOffice
         });
-    } catch(error) {
-        return res.status(400).json({
-            "status": 400,
-            "error": 'Unable to create a new party'
-        });
     }
 }
+
 
 
 

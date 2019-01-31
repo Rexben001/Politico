@@ -133,3 +133,39 @@ describe('DELETE /parties/<party-id>', () => {
             });
     }));
 });
+
+describe('POST /offices', () => {
+    it('it should post a new political office', ((done) => {
+        const newOffice = {
+            office_id: 3,
+            type: 'Federal',
+            name: 'President',
+            region: 'Natioal'
+        };
+        chai.request(app)
+            .post('/api/v1/offices')
+            .send(newOffice)
+            .end((err, res) => {
+                res.should.have.status(201);
+                res.body.data.type.should.equal('Federal');
+                res.body.data.name.should.equal('President');
+                res.body.data.region.should.be.a('String');
+                done(err);
+            });
+    }));
+    it('it should return status code of 400 and an error message', ((done) => {
+        const newOffice = {
+            office_id: 4,
+            name: 'Faithful People (FP)'
+        };
+        chai.request(app)
+            .post('/api/v1/offices')
+            .send(newOffice)
+            .end((err, res) => {
+                res.should.have.status(400);
+                res.body.error.should.equal('Unable to process your request, make sure the fields are entered correctly');
+                done(err);
+            });
+    }));
+
+});
