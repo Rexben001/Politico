@@ -93,7 +93,7 @@ class AdminController {
             office_id, type, name, region
         };
 
-        office.push(newOffice);
+        offices.push(newOffice);
         return res.status(201).json({
             "status": 201,
             "data": newOffice
