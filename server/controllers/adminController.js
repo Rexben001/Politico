@@ -107,9 +107,21 @@ class AdminController {
         });
     }
 
+    static getOneOffice(req, res) {
+        const id = Number(req.params.Office_id);
+        const singleOffice = parties.find(offices => offices.office_id == id);
+        if (!singleOffice) {
+            return res.status(404).json({
+                "status": 404,
+                "error": 'Unable to retrieve Office'
+            });
+        }
+        return res.status(200).json({
+            "status": 200,
+            "data": singleOffice,
+        });
+    }
 }
-
-
 
 
 export default AdminController;
