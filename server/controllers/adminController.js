@@ -66,6 +66,21 @@ class AdminController {
             "data": singleParty
         });
     }
+    static deleteOneParty(req, res) {
+        const id = Number(req.params.party_id);
+        const singleParty = dummyDatabase.find(parties => parties.party_id == id);
+        if (!singleParty) {
+            return res.status(404).json({
+                status: 404,
+                error: 'Unable to retrieve party'
+            });
+        }
+        party.splice(singleParty, 1);
+        return res.status(200).json({
+            status: 200,
+            data: { message: `You have successfully deleted ${singleParty.name}` }
+        });
+    }
 }
 
 export default AdminController;
