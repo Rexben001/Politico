@@ -14,7 +14,7 @@ class Validation {
             if (!matched) {
                 return res.status(400).json({
                     "status": 400,
-                    "error": validator.errors.find
+                    "error": validator.errors
                 });
             }
             next();
