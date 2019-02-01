@@ -70,28 +70,25 @@ class AdminController {
     singleParty.name = name;
     singleParty.hqAddress = hqAddress;
     singleParty.logoUrl = logoUrl;
-    return res.status(201).json({
-      status: 201,
-      data: [{
-        id: singleParty.party_id,
-        name: singleParty.name,
-      }]
-    });
-  }
 
+    return res.status(200).json({
+      status: 
+    })
+  }
   static deleteOneParty(req, res) {
     const id = Number(req.params.party_id);
     const singleParty = parties.find(parties => parties.party_id == id);
     if (!singleParty) {
       return res.status(404).json({
-        status: 404,
-        error: 'Unable to retrieve party'
+        "status": 404,
+        "error": 'Unable to retrieve party'
       });
     }
-    parties.splice(singleParty, 1);
+    const indexOfSignleParty = parties.indexOf(singleParty);
+    parties.splice(indexOfSignleParty, 1);
     return res.status(200).json({
-      status: 200,
-      data: [{ message: `You have successfully deleted ${singleParty.name}` }]
+      "status": 200,
+      "data": [{ "message": `You have successfully deleted ${singleParty.name}` }]
     });
   }
 

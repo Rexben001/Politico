@@ -19,6 +19,7 @@
     margin-top: 70px;
 }
 
+
 .signup{
     box-sizing: border-box;
     background: #ffffff;
@@ -43,8 +44,9 @@ label{
     display: block;
     font-size: 1rem;
     padding: 5px;
+    padding-left: 22px;
     text-align: left;
-    font-weight: 400
+    font-weight: 400;
 }
 
 input[type=text],
@@ -112,6 +114,8 @@ input[type=submit]{
     font-weight: 600;
     cursor: pointer;
     padding-left: 10px;
+    text-align: left;
+    margin-left: 1px;
 
 }
 
@@ -125,6 +129,10 @@ textarea{
     border: 1px solid green;
     border-radius: 10px;
     padding: 10px;
+}
+
+form{
+    text-align: center;
 }
 
 .have-account{
@@ -282,6 +290,7 @@ table tr th{
         height: 105vh;
     }
     .signup-form{
+        text-align: center;
         width: 85%;
     }
     .signup{
@@ -289,6 +298,10 @@ table tr th{
     }
     .sign .signup{
         width: 90%;
+    }
+    label{
+        padding-left: 5px;
+
     }
     .parties{
         clear: both;
