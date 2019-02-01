@@ -16,7 +16,10 @@ class AdminController {
 
             return res.status(201).json({
                 "status": 201,
-                "data": newParty
+                "data": [{
+                    "id": newParty.party_id,
+                    "name": newParty.name
+                }]
             });
         } catch (error) {
             return res.status(500).json({
@@ -27,7 +30,7 @@ class AdminController {
     }
 
     static getAllParties(req, res) {
-        return res.status(200).json({
+        return res.status(200).send({
             "status": 200,
             "data": parties
         });
@@ -44,7 +47,11 @@ class AdminController {
         }
         return res.status(200).json({
             "status": 200,
-            "data": singleParty,
+            "data": [{
+                "id": singleParty.party_id,
+                "name": singleParty.name,
+                "logoUrl": singleParty.logoUrl
+            }]
         });
     }
 
@@ -65,7 +72,10 @@ class AdminController {
         singleParty.logoUrl = logoUrl;
         return res.status(201).json({
             "status": 201,
-            "data": singleParty
+            "data": [{
+                "id": singleParty.party_id,
+                "name": singleParty.name,
+            }]
         });
     }
     static deleteOneParty(req, res) {
@@ -80,7 +90,7 @@ class AdminController {
         parties.splice(singleParty, 1);
         return res.status(200).json({
             "status": 200,
-            "data": { "message": `You have successfully deleted ${singleParty.name}` }
+            "data": [{ "message": `You have successfully deleted ${singleParty.name}` }]
         });
     }
 
@@ -96,7 +106,11 @@ class AdminController {
         offices.push(newOffice);
         return res.status(201).json({
             "status": 201,
-            "data": newOffice
+            "data": [{
+                "id": newOffice.office_id,
+                "type": newOffice.type,
+                "name": newOffice.name
+            }]
         });
     }
 
@@ -104,6 +118,25 @@ class AdminController {
         return res.status(200).json({
             "status": 200,
             "data": offices
+        });
+    }
+
+    static getOneOffice(req, res) {
+        const id = Number(req.params.office_id);
+        const singleOffice = offices.find(offices => offices.office_id == id);
+        if (!singleOffice) {
+            return res.status(404).json({
+                "status": 404,
+                "error": 'Unable to retrieve Office'
+            });
+        }
+        return res.status(200).json({
+            "status": 200,
+            "data": [{
+                "id": singleOffice.office_id,
+                "type": singleOffice.type,
+                "name": singleOffice.name
+            }]
         });
     }
 }
