@@ -4,23 +4,23 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/61d6fbc4ff34b3870c91/test_coverage)](https://codeclimate.com/github/Rexben001/Politico/test_coverage)
 
 # Politico
-Politico enables citizens give their mandate to politicians running for different government offices while building trust in the process through transparency.
+Politico enables citizens to give their mandate to politicians running for different government offices while building trust in the process through transparency.
 
 ## Feature ##
 * There are two types of Users, the Admin and the regular User.
 * Users can sign up.
-* Users can login.
+* Users can log in.
 * Admin (electoral body) can create political parties.
 * Admin (electoral body) can delete a political party.
 * Admin (electoral body) can create different political offices
 * Users can vote for only one politician per political office.
-* Users can see the results of election.
-* User can reset password.
+* Users can see the results of an election.
+* User can reset a password.
 * A politician can create a petition against a concluded political office election.
 
 ## Technology needed to run the project locally ##
 * Any text editor preferably Visual Studio Code
-* Git bash
+* Git Bash
 * Any web browser preferably Google Chrome
 * Postman
 
@@ -29,6 +29,9 @@ Politico enables citizens give their mandate to politicians running for differen
 
 ## Link to App on Heroku ##
 https://politico-voting.herokuapp.com/
+
+## Link to Pivotal Tracker Board ##
+https://www.pivotaltracker.com/n/projects/2238808
 
 ## How to Clone project ##
 To clone this repository:
@@ -52,8 +55,7 @@ To Log in,
 * DELETE `/parties/:party_id`
 * POST `/offices`
 * GET `/offices`
-
-
+* GET `/offices/:office_id`
 
 ## Author ##
 * Ajewole Benjamin
