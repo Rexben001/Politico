@@ -9,7 +9,8 @@
     "start-dev": "nodemon --require @babel/register server/app.js",
     "test": "nyc ./node_modules/.bin/mocha --timeout 100000 --require @babel/register --require @babel/polyfill server/specs/*.js --exit || true",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
-    "coverage": "nyc report --reporter=text-lcov | coveralls && nyc report --reporter=lcov"
+    "coverage": "nyc report --reporter=text-lcov | coveralls && nyc report --reporter=lcov",
+    "lint": "eslint server/ --fix"
   },
   "repository": {
     "type": "git",
