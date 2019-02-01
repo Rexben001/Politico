@@ -5,7 +5,7 @@ class Validation {
 
         let validator = new validate(req.body, {
             party_id: 'required|integer',
-            name: 'required|minLength:5',
+            name: 'required|string|minLength:5',
             hqAddress: 'required|string|minLength:10',
             logoUrl: 'required|string'
         });
@@ -14,7 +14,7 @@ class Validation {
             if (!matched) {
                 return res.status(400).json({
                     "status": 400,
-                    "error": 'Unable to process your request, make sure the fields are entered correctly'
+                    "error": validator.errors
                 });
             }
             next();
@@ -35,7 +35,7 @@ class Validation {
             if (!matched) {
                 return res.status(400).json({
                     "status": 400,
-                    "error": 'Unable to process your request, make sure the fields are entered correctly'
+                    "error": validator.errors
                 });
             }
             next();
@@ -55,7 +55,7 @@ class Validation {
             if (!matched) {
                 return res.status(400).json({
                     "status": 400,
-                    "error": 'Unable to process your request, make sure the fields are entered correctly'
+                    "error": validator.errors
                 });
             }
             next();

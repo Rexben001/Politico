@@ -87,7 +87,8 @@ class AdminController {
                 "error": 'Unable to retrieve party'
             });
         }
-        parties.splice(singleParty, 1);
+        const indexOfSignleParty = parties.indexOf(singleParty);
+        parties.splice(indexOfSignleParty, 1);
         return res.status(200).json({
             "status": 200,
             "data": [{ "message": `You have successfully deleted ${singleParty.name}` }]
