@@ -2,7 +2,18 @@ import dummyDatabase from '../models/dummyDatabase';
 
 const { parties, offices } = dummyDatabase;
 
+/**
+ * @class AdminController
+ */
 class AdminController {
+  /**
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @returns
+   * @memberof AdminController
+   */
   static registerParty(req, res) {
     try {
       const {
@@ -15,86 +26,132 @@ class AdminController {
       parties.push(newParty);
 
       return res.status(201).json({
-        "status": 201,
-        "data": [{
-          "id": newParty.party_id,
-          "name": newParty.name
+        status: 201,
+        data: [{
+          id: newParty.party_id,
+          name: newParty.name
         }]
       });
     } catch (error) {
       return res.status(500).json({
-        "status": 500,
-        "error": 'Unable to create a new party'
+        status: 500,
+        error: 'Unable to create a new party'
       });
     }
   }
 
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @returns
+   * @memberof AdminController
+   */
   static getAllParties(req, res) {
     return res.status(200).json({
-      "status": 200,
-      "data": parties
+      status: 200,
+      data: parties
     });
   }
 
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @returns
+   * @memberof AdminController
+   */
   static getOneParty(req, res) {
     const id = Number(req.params.party_id);
-    const singleParty = parties.find(parties => parties.party_id == id);
+    const singleParty = parties.find(oneParty => oneParty.party_id === id);
     if (!singleParty) {
       return res.status(404).json({
-        "status": 404,
-        "error": 'Unable to retrieve party'
+        status: 404,
+        error: 'Unable to retrieve party'
       });
     }
     return res.status(200).json({
-      "status": 200,
-      "data": [{
-        "id": singleParty.party_id,
-        "name": singleParty.name,
-        "logoUrl": singleParty.logoUrl
+      status: 200,
+      data: [{
+        id: singleParty.party_id,
+        name: singleParty.name,
+        logoUrl: singleParty.logoUrl
       }]
     });
   }
 
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @returns
+   * @memberof AdminController
+   */
   static editOneParty(req, res) {
     const id = Number(req.params.party_id);
     const {
       name, hqAddress, logoUrl
     } = req.body;
-    const singleParty = parties.find(parties => parties.party_id == id);
+    const singleParty = parties.find(oneParty => oneParty.party_id === id);
     if (!singleParty) {
       return res.status(404).json({
-        "status": 404,
-        "error": 'Unable to retrieve party'
+        status: 404,
+        error: 'Unable to retrieve party'
       });
     }
     singleParty.name = name;
     singleParty.hqAddress = hqAddress;
     singleParty.logoUrl = logoUrl;
     return res.status(201).json({
-      "status": 201,
-      "data": [{
-        "id": singleParty.party_id,
-        "name": singleParty.name,
+      status: 201,
+      data: [{
+        id: singleParty.party_id,
+        name: singleParty.name,
       }]
     });
   }
+
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @returns
+   * @memberof AdminController
+   */
   static deleteOneParty(req, res) {
     const id = Number(req.params.party_id);
-    const singleParty = parties.find(parties => parties.party_id == id);
+    const singleParty = parties.find(oneParty => oneParty.party_id === id);
     if (!singleParty) {
       return res.status(404).json({
-        "status": 404,
-        "error": 'Unable to retrieve party'
+        status: 404,
+        error: 'Unable to retrieve party'
       });
     }
     const indexOfSignleParty = parties.indexOf(singleParty);
     parties.splice(indexOfSignleParty, 1);
     return res.status(200).json({
-      "status": 200,
-      "data": [{ "message": `You have successfully deleted ${singleParty.name}` }]
+      status: 200,
+      data: [{ message: `You have successfully deleted ${singleParty.name}` }]
     });
   }
 
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @returns
+   * @memberof AdminController
+   */
   static registerOffice(req, res) {
     const {
       office_id, type, name, region
@@ -106,37 +163,55 @@ class AdminController {
 
     offices.push(newOffice);
     return res.status(201).json({
-      "status": 201,
-      "data": [{
-        "id": newOffice.office_id,
-        "type": newOffice.type,
-        "name": newOffice.name
+      status: 201,
+      data: [{
+        id: newOffice.office_id,
+        type: newOffice.type,
+        name: newOffice.name
       }]
     });
   }
 
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @returns
+   * @memberof AdminController
+   */
   static getAllOffices(req, res) {
     return res.status(200).json({
-      "status": 200,
-      "data": offices
+      status: 200,
+      data: offices
     });
   }
 
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @returns
+   * @memberof AdminController
+   */
   static getOneOffice(req, res) {
     const id = Number(req.params.office_id);
-    const singleOffice = offices.find(offices => offices.office_id == id);
+    const singleOffice = offices.find(oneOffice => oneOffice.office_id === id);
     if (!singleOffice) {
       return res.status(404).json({
-        "status": 404,
-        "error": 'Unable to retrieve Office'
+        status: 404,
+        error: 'Unable to retrieve Office'
       });
     }
     return res.status(200).json({
-      "status": 200,
-      "data": [{
-        "id": singleOffice.office_id,
-        "type": singleOffice.type,
-        "name": singleOffice.name
+      status: 200,
+      data: [{
+        id: singleOffice.office_id,
+        type: singleOffice.type,
+        name: singleOffice.name
       }]
     });
   }
