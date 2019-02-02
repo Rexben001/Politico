@@ -4,6 +4,7 @@ import app from '../app';
 chai.should();
 
 describe('POST /parties', () => {
+<<<<<<< HEAD
   it('it should post a new political party', ((done) => {
     const newParty = {
       party_id: 3,
@@ -35,6 +36,39 @@ describe('POST /parties', () => {
         done(err);
       });
   }));
+=======
+    it('it should post a new political party', ((done) => {
+        const newParty = {
+            party_id: 3,
+            name: 'Lion Action People (LAP)',
+            hqAddress: '10, Allison Street, Jos',
+            logoUrl: 'https://politico.com/lap_logo'
+        };
+        chai.request(app)
+            .post('/api/v1/parties')
+            .send(newParty)
+            .end((err, res) => {
+                res.should.have.status(201);
+                res.body.data[0].name.should.equal('Lion Action People (LAP)');
+                done(err);
+            });
+    }));
+
+    it('it should return status code of 400 and an error message', ((done) => {
+        const newParty = {
+            party_id: 4,
+            name: 'Faithful People (FP)'
+        };
+        chai.request(app)
+            .post('/api/v1/parties')
+            .send(newParty)
+            .end((err, res) => {
+                res.should.have.status(400);
+                done(err);
+            });
+    }));
+
+>>>>>>> 2d326097e4c75ba26acf79713506edbf67913966
 });
 
 describe('GET /parties', () => {
@@ -53,6 +87,7 @@ describe('GET /parties', () => {
 });
 
 describe('GET /parties/<party-id>', () => {
+<<<<<<< HEAD
   it('it should get a specific political party', ((done) => {
     chai.request(app)
       .get('/api/v1/parties/1')
@@ -107,6 +142,60 @@ describe('PATCH /parties/<party-id>/name', () => {
         done(err);
       });
   }));
+=======
+    it('it should get a specific political party', ((done) => {
+        chai.request(app)
+            .get('/api/v1/parties/1')
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.body.data[0].name.should.equal('Action People (AP)');
+                res.body.data[0].logoUrl.should.equal('https://politico.com/ap_logo');
+                done(err);
+            });
+    }));
+
+    it('it should return error 404', ((done) => {
+        chai.request(app)
+            .get('/api/v1/parties/5')
+            .end((err, res) => {
+                res.should.have.status(404);
+                done(err);
+            });
+    }));
+});
+
+describe('PATCH /parties/<party-id>/name', () => {
+    it('it should edit a specific political party', ((done) => {
+        const editParty = {
+            name: 'National Action People (NAP)',
+            hqAddress: '10, Anthony Street, Delta',
+            logoUrl: 'http://www.politico.com/nap'
+        };
+        chai.request(app)
+            .patch('/api/v1/parties/1/name')
+            .send(editParty)
+            .end((err, res) => {
+                console.log(res.body.data)
+                res.should.have.status(201);
+                res.body.data[0].name.should.equal('National Action People (NAP)');
+                res.body.data[0].id.should.equal(1);
+                done(err);
+            });
+    }));
+
+    it('it should return error 404', ((done) => {
+        const editParty = {
+            name: 'National Action People (NAP)'
+        };
+        chai.request(app)
+            .patch('/api/v1/parties/5/name')
+            .send(editParty)
+            .end((err, res) => {
+                res.should.have.status(400);
+                done(err);
+            });
+    }));
+>>>>>>> 2d326097e4c75ba26acf79713506edbf67913966
 });
 
 describe('DELETE /parties/<party-id>', () => {
@@ -132,6 +221,7 @@ describe('DELETE /parties/<party-id>', () => {
 });
 
 describe('POST /offices', () => {
+<<<<<<< HEAD
   it('it should post a new political office', ((done) => {
     const newOffice = {
       office_id: 3,
@@ -163,6 +253,39 @@ describe('POST /offices', () => {
         done(err);
       });
   }));
+=======
+    it('it should post a new political office', ((done) => {
+        const newOffice = {
+            office_id: 3,
+            type: 'Federal',
+            name: 'President',
+            region: 'Natioal'
+        };
+        chai.request(app)
+            .post('/api/v1/offices')
+            .send(newOffice)
+            .end((err, res) => {
+                res.should.have.status(201);
+                res.body.data[0].type.should.equal('Federal');
+                res.body.data[0].name.should.equal('President');
+                done(err);
+            });
+    }));
+    it('it should return status code of 400 and an error message', ((done) => {
+        const newOffice = {
+            office_id: 4,
+            name: 'Faithful People (FP)'
+        };
+        chai.request(app)
+            .post('/api/v1/offices')
+            .send(newOffice)
+            .end((err, res) => {
+                res.should.have.status(400);
+                done(err);
+            });
+    }));
+
+>>>>>>> 2d326097e4c75ba26acf79713506edbf67913966
 });
 
 describe('GET /offices', () => {
