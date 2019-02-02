@@ -38,7 +38,7 @@ const users = async () => {
         );`;
   await pool.query(userTable)
     .then((res) => {
-      // console.log('users table created!: ', res);
+      console.log('users table created!: ', res);
     }).catch((err) => {
       console.log('An error occured while creating users table: ', err);
       pool.end();
