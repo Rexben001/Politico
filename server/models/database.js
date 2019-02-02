@@ -45,4 +45,4 @@ const users = async () => {
         });
 };
 
-export default { users };
+export default { pool, users };
