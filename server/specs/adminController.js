@@ -31,7 +31,6 @@ describe('POST /parties', () => {
             .send(newParty)
             .end((err, res) => {
                 res.should.have.status(400);
-                res.body.error.should.equal('Unable to process your request, make sure the fields are entered correctly');
                 done(err);
             });
     }));
@@ -70,7 +69,6 @@ describe('GET /parties/<party-id>', () => {
             .get('/api/v1/parties/5')
             .end((err, res) => {
                 res.should.have.status(404);
-                res.body.error.should.equal('Unable to retrieve party');
                 done(err);
             });
     }));
@@ -104,7 +102,6 @@ describe('PATCH /parties/<party-id>/name', () => {
             .send(editParty)
             .end((err, res) => {
                 res.should.have.status(400);
-                res.body.error.should.equal('Unable to process your request, make sure the fields are entered correctly');
                 done(err);
             });
     }));
@@ -160,7 +157,6 @@ describe('POST /offices', () => {
             .send(newOffice)
             .end((err, res) => {
                 res.should.have.status(400);
-                res.body.error.should.equal('Unable to process your request, make sure the fields are entered correctly');
                 done(err);
             });
     }));
