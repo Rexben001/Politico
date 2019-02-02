@@ -1,3 +1,4 @@
+import jwt from 'jsonwebtoken';
 import database from '../models/database';
 
 const { pool } = database;
@@ -27,20 +28,20 @@ class UserControllers {
         email, phonenumber, password, false, passportUrl];
       client.query(query, value, (error, result) => {
         done();
-        if (error) {
-          res.status(500).json({ status: 500, message: 'An error occured while trying to save user' });
-        } else {
-          if (result.rowCount === 0) {
-            res.status(500).json({ staus: 500, message: 'The user could not be saved' });
-          }
-          res.status(200).json({
-            status: 200,
-            data: [{
-              token: 34567,
-              user: result.rows[0]
-            }]
-          });
+        if (error || result.rowCount === 0) {
+          return res.status(500).json({ status: 500, error: error.detail });
         }
+        jwt.sign({ username, password },
+          process.env.SECRETKEY, (err, token) => {
+            if (err) throw err;
+            res.status(200).json({
+              status: 200,
+              data: [{
+                token,
+                user: result.rows[0]
+              }]
+            });
+          });
       });
     });
   }
