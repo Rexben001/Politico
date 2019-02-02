@@ -14,3 +14,8 @@ const localhost = {
 const onlineDB = process.env.ELEPHANTSQL;
 
 const pool = new pg.Pool(localhost || onlineDB);
+
+pool.on('connect', () => {
+    console.log('connected to the Database');
+});
+
