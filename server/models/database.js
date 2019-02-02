@@ -4,11 +4,11 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const localhost = {
-    user: process.env.PGUSER,
-    host: process.env.PGHOST,
-    database: process.env.PGDATABASE,
-    password: process.env.PGPASSWORD,
-    port: process.env.PGPORT
+  user: process.env.PGUSER,
+  host: process.env.PGHOST,
+  database: process.env.PGDATABASE,
+  password: process.env.PGPASSWORD,
+  port: process.env.PGPORT
 };
 
 const onlineDB = process.env.ELEPHANTSQL;
@@ -16,12 +16,12 @@ const onlineDB = process.env.ELEPHANTSQL;
 const pool = new pg.Pool(localhost || onlineDB);
 
 pool.on('connect', () => {
-    console.log('connected to the Database');
+  console.log('connected to the Database');
 });
 
 
 const users = async () => {
-    const userTable = `
+  const userTable = `
     CREATE TABLE IF NOT EXISTS 
     users(
         user_id SERIAL PRIMARY KEY,
@@ -36,13 +36,13 @@ const users = async () => {
         passportUrl VARCHAR(128) NOT NULL,
         UNIQUE(username, email)
         );`;
-    await pool.query(userTable)
-        .then((res) => {
-            // console.log('users table created!: ', res);
-        }).catch((err) => {
-            console.log('An error occured while creating users table: ', err);
-            pool.end();
-        });
+  await pool.query(userTable)
+    .then((res) => {
+      // console.log('users table created!: ', res);
+    }).catch((err) => {
+      console.log('An error occured while creating users table: ', err);
+      pool.end();
+    });
 };
 
 export default { pool, users };
