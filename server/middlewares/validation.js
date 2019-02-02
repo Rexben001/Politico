@@ -10,7 +10,7 @@ class Validation {
             logoUrl: 'required|string'
         });
 
-        validator.check().then(function (matched) {
+        validate.check().then(function (matched) {
             if (!matched) {
                 return res.status(400).json({
                     "status": 400,
@@ -31,7 +31,7 @@ class Validation {
             logoUrl: 'required|string'
         });
 
-        validator.check().then(function (matched) {
+        validate.check().then(function (matched) {
             if (!matched) {
                 return res.status(400).json({
                     "status": 400,
@@ -51,7 +51,7 @@ class Validation {
             region: 'required|string'
         });
 
-        validator.check().then(function (matched) {
+        validate.check().then(function (matched) {
             if (!matched) {
                 return res.status(400).json({
                     "status": 400,
