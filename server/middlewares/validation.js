@@ -86,6 +86,30 @@ class Validation {
       next();
     });
   }
+
+  static userValidator(req, res, next) {
+    const validator = new validate(req.body, {
+      firstname: 'required|string',
+      lastname: 'required|string',
+      othernames: 'required|string',
+      username: 'required|string',
+      email: 'required|string',
+      phonenumber: 'required|string',
+      password: 'required|string',
+      passportUrl: 'required|string'
+    });
+
+    validator.check().then((matched) => {
+      if (!matched) {
+        return res.status(400).json({
+          status: 400,
+          error: validator.errors
+        });
+      }
+      next();
+    });
+  }
+
 }
 
 export default Validation;
