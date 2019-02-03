@@ -83,24 +83,44 @@ class AdminController {
     }
   }
 
-  // static getOneParty(req, res) {
-  //   const id = Number(req.params.party_id);
-  //   const singleParty = parties.find(parties => parties.party_id == id);
-  //   if (!singleParty) {
-  //     return res.status(404).json({
-  //       status: 404,
-  //       error: 'Unable to retrieve party'
-  //     });
-  //   }
-  //   return res.status(200).json({
-  //     status: 200,
-  //     data: [{
-  //       id: singleParty.party_id,
-  //       name: singleParty.name,
-  //       logoUrl: singleParty.logoUrl
-  //     }]
-  //   });
-  // }
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @returns
+   * @memberof AdminController
+   */
+  static getOneParty(req, res) {
+    try {
+      const id = Number(req.params.party_id);
+      pool.connect((err, client, done) => {
+        if (err) throw err;
+        const query = `SELECT * FROM parties WHERE party_id=${id}`;
+        client.query(query, (error, result) => {
+          done();
+          if (error) {
+            res.status(500).json({ status: 500, message: `An error occured while trying to get a party, ${error}` });
+          } else {
+            if (result.rowCount === 0) {
+              res.status(500).json({ staus: 500, message: 'Party could not be fetched' });
+            }
+            res.status(200).json({
+              status: 200,
+              data: result.rows[0]
+            });
+          }
+        });
+      });
+    } catch (error) {
+      return res.status(400).json({
+        status: 400,
+        error
+      });
+    }
+  }
+
 
   // static editOneParty(req, res) {
   //   const id = Number(req.params.party_id);

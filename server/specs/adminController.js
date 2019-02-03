@@ -46,7 +46,6 @@ describe('GET /parties', () => {
         res.should.have.status(200);
         res.body.data.should.be.a('Array');
         res.body.data[0].should.have.property('name');
-        res.body.data[0].should.have.property('hqaddress');
         res.body.data[0].should.have.property('logourl');
         done(err);
       });
