@@ -11,7 +11,7 @@ const localhost = {
   port: process.env.PGPORT
 };
 
-const onlineDB = process.env.ELEPHANTSQL;
+const onlineDB = { connectionString: process.env.ELEPHANTSQL };
 
 const pool = new pg.Pool(localhost || onlineDB);
 
