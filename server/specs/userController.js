@@ -12,9 +12,9 @@ describe('POST /auth/signup', () => {
       firstname: 'Ben',
       lastname: 'Rex',
       othernames: 'Seyi',
-      email: 'bexy@gmail.com',
+      email: 'dexy@gmail.com',
       password: '1234',
-      username: 'beny',
+      username: 'benny',
       phonenumber: '+234567890',
       passportUrl: 'http://www.politico.com/aban'
     };
