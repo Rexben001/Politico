@@ -68,7 +68,7 @@ class UserControllers {
           if (result.rowCount === 0) {
             res.status(500).json({ staus: 500, message: 'The user could not be saved' });
           }
-          jwt.sign({ username, password },
+          jwt.sign({ email, password },
             process.env.SECRETKEY, (err, token) => {
               if (err) throw err;
               res.status(201).json({
@@ -79,10 +79,10 @@ class UserControllers {
                 }]
               });
             });
-        });
+        }
+      });
     });
   }
-
 }
 
 export default UserControllers;

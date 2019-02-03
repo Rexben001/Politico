@@ -86,6 +86,15 @@ class Validation {
     });
   }
 
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   * @memberof Validation
+   */
   static userValidator(req, res, next) {
     const validator = new validate(req.body, {
       firstname: 'required|string',
@@ -96,6 +105,32 @@ class Validation {
       phonenumber: 'required|string',
       password: 'required|string',
       passportUrl: 'required|string'
+    });
+
+    validator.check().then((matched) => {
+      if (!matched) {
+        return res.status(400).json({
+          status: 400,
+          error: validator.errors
+        });
+      }
+      next();
+    });
+  }
+
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   * @memberof Validation
+   */
+  static loginValidator(req, res, next) {
+    const validator = new validate(req.body, {
+      email: 'required|string',
+      password: 'required|string'
     });
 
     validator.check().then((matched) => {
