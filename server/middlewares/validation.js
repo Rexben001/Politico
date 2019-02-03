@@ -69,10 +69,8 @@ class Validation {
    */
   static officeValidator(req, res, next) {
     const validator = new validate(req.body, {
-      office_id: 'required|integer',
       type: 'required|string',
       name: 'required|string',
-      region: 'required|string'
     });
 
     validator.check().then((matched) => {
@@ -101,7 +99,7 @@ class Validation {
       lastname: 'required|string',
       othernames: 'required|string',
       username: 'required|string',
-      email: 'required|string',
+      email: 'required|email',
       phonenumber: 'required|string',
       password: 'required|string',
       passportUrl: 'required|string'
@@ -144,6 +142,30 @@ class Validation {
     });
   }
 
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   * @memberof Validation
+   */
+  static resetValidator(req, res, next) {
+    const validator = new validate(req.body, {
+      email: 'required|string',
+    });
+
+    validator.check().then((matched) => {
+      if (!matched) {
+        return res.status(400).json({
+          status: 400,
+          error: validator.errors
+        });
+      }
+      next();
+    });
+  }
 }
 
 export default Validation;

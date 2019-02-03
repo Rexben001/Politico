@@ -34,8 +34,8 @@ class UserControllers {
             const value = [firstname, lastname, othernames, username,
               email, phonenumber, passwordHash, false, passportUrl];
             client.query(query, value, (error, result) => {
+              done();
               if (error || result.rowCount === 0) {
-                done();
                 return res.status(400).json({ status: 400, error: error.detail });
               }
               jwt.sign({ username, password },
@@ -101,6 +101,36 @@ class UserControllers {
     } catch (error) {
       return res.status(500).json({ status: 500, error: 'Server error' });
     }
+  }
+
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @memberof UserControllers
+   */
+  static resetPassword(req, res) {
+    const { email } = req.body;
+    pool.connect((err, client, done) => {
+      if (err) throw err;
+      const query = 'SELECT * FROM users WHERE email=$1';
+      const value = [email];
+      client.query(query, value, (error, result) => {
+        done();
+        if (error || result.rowCount === 0) {
+          return res.status(404).json({ status: 404, error: 'There is no account associated with this email' });
+        }
+        res.status(200).json({
+          status: 200,
+          data: [{
+            message: 'Check your email for password reset link',
+            email: result.rows[0].email
+          }]
+        });
+      });
+    });
   }
 }
 

@@ -13,9 +13,11 @@ const localhost = {
 
 // const onlineDB = process.env.ELEPHANTSQL;
 
-const pool = new pg.Pool({
-  connectionString: 'postgres://gklwunop:LhHMN3D61GirLtgdpHyzSK3shzT7tSev@elmer.db.elephantsql.com:5432/gklwunop'
-});
+const pool = new pg.Pool(
+  {
+    connectionString: 'postgres://gklwunop:LhHMN3D61GirLtgdpHyzSK3shzT7tSev@elmer.db.elephantsql.com:5432/gklwunop'
+  } || localhost
+);
 
 // console.log(onlineDB);
 
@@ -41,12 +43,47 @@ const users = async () => {
         UNIQUE(username, email)
         );`;
   await pool.query(userTable)
-    .then((res) => {
-      console.log('users table created!: ', res);
+    .then(() => {
+      console.log('users table created!: ');
     }).catch((err) => {
       console.log('An error occured while creating users table: ', err);
       pool.end();
     });
 };
 
-export default { pool, users };
+const party = async () => {
+  const partyTable = `
+      CREATE TABLE IF NOT EXISTS 
+      parties(
+        party_id SERIAL PRIMARY KEY,
+        name VARCHAR NOT NULL,
+        hqAddress VARCHAR NOT NULL,
+        logoUrl VARCHAR NOT NULL
+      );`;
+  await pool.query(partyTable)
+    .then(() => {
+      console.log('parties table created!: ');
+    }).catch((err) => {
+      console.log('An error occured while creating party table: ', err);
+      pool.end();
+    });
+};
+
+const office = async () => {
+  const officeTable = `
+  CREATE TABLE IF NOT EXISTS 
+  offices(
+      office_id SERIAL PRIMARY KEY,
+      type VARCHAR NOT NULL,
+      name VARCHAR NOT NULL
+      );`;
+  await pool.query(officeTable)
+    .then(() => {
+      console.log('offices table created!: ');
+    }).catch((err) => {
+      console.log('An error occured while creating office table: ', err);
+      pool.end();
+    });
+};
+
+export default { pool, users, party, office };

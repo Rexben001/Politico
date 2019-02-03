@@ -1,7 +1,6 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../app';
-import database from '../models/database';
 
 chai.should();
 chai.use(chaiHttp);
@@ -10,7 +9,6 @@ chai.use(chaiHttp);
 describe('POST /parties', () => {
   it('it should post a new political party', ((done) => {
     const newParty = {
-      party_id: 3,
       name: 'Lion Action People (LAP)',
       hqAddress: '10, Allison Street, Jos',
       logoUrl: 'https://politico.com/lap_logo'
@@ -47,9 +45,8 @@ describe('GET /parties', () => {
       .end((err, res) => {
         res.should.have.status(200);
         res.body.data.should.be.a('Array');
-        res.body.data[0].name.should.equal('Action People (AP)');
-        res.body.data[1].logoUrl.should.equal('https://politico.com/ppp_logo');
-        res.body.data[2].hqAddress.should.equal('10, Allison Street, Jos');
+        res.body.data[0].should.have.property('name');
+        res.body.data[0].should.have.property('logourl');
         done(err);
       });
   }));
@@ -61,17 +58,8 @@ describe('GET /parties/<party-id>', () => {
       .get('/api/v1/parties/1')
       .end((err, res) => {
         res.should.have.status(200);
-        res.body.data[0].name.should.equal('Action People (AP)');
-        res.body.data[0].logoUrl.should.equal('https://politico.com/ap_logo');
-        done(err);
-      });
-  }));
-
-  it('it should return error 404', ((done) => {
-    chai.request(app)
-      .get('/api/v1/parties/5')
-      .end((err, res) => {
-        res.should.have.status(404);
+        res.body.data[0].should.have.property('name');
+        res.body.data[0].should.have.property('logoUrl');
         done(err);
       });
   }));
@@ -88,8 +76,7 @@ describe('PATCH /parties/<party-id>/name', () => {
       .patch('/api/v1/parties/1/name')
       .send(editParty)
       .end((err, res) => {
-        console.log(res.body.data);
-        res.should.have.status(201);
+        res.should.have.status(200);
         res.body.data[0].name.should.equal('National Action People (NAP)');
         res.body.data[0].id.should.equal(1);
         done(err);
@@ -101,7 +88,7 @@ describe('PATCH /parties/<party-id>/name', () => {
       name: 'National Action People (NAP)'
     };
     chai.request(app)
-      .patch('/api/v1/parties/5/name')
+      .patch('/api/v1/parties/100/name')
       .send(editParty)
       .end((err, res) => {
         res.should.have.status(400);
@@ -116,17 +103,17 @@ describe('DELETE /parties/<party-id>', () => {
       .delete('/api/v1/parties/1')
       .end((err, res) => {
         res.should.have.status(200);
-        res.body.data[0].message.should.equal('You have successfully deleted National Action People (NAP)');
+        res.body.should.have.property('message');
         done(err);
       });
   }));
 
   it('it should return error 404', ((done) => {
     chai.request(app)
-      .delete('/api/v1/parties/5')
+      .delete('/api/v1/parties/1')
       .end((err, res) => {
         res.should.have.status(404);
-        res.body.error.should.equal('Unable to retrieve party');
+        res.body.error.should.equal('Cant fetch any party with this ID');
         done(err);
       });
   }));
@@ -135,7 +122,6 @@ describe('DELETE /parties/<party-id>', () => {
 describe('POST /offices', () => {
   it('it should post a new political office', ((done) => {
     const newOffice = {
-      office_id: 3,
       type: 'Federal',
       name: 'President',
       region: 'Natioal'
@@ -172,8 +158,8 @@ describe('GET /offices', () => {
       .end((err, res) => {
         res.should.have.status(200);
         res.body.data.should.be.a('Array');
-        res.body.data[0].type.should.equal('State');
-        res.body.data[1].name.should.equal('Senator');
+        res.body.data[0].should.have.property('name');
+        res.body.data[0].should.have.property('type');
         done(err);
       });
   }));
@@ -185,18 +171,18 @@ describe('GET /offices/<office-id>', () => {
       .get('/api/v1/offices/1')
       .end((err, res) => {
         res.should.have.status(200);
-        res.body.data[0].name.should.equal('Governor');
-        res.body.data[0].type.should.equal('State');
+        res.body.data[0].should.have.property('name');
+        res.body.data[0].should.have.property('type');
         done(err);
       });
   }));
 
   it('it should return error 404', ((done) => {
     chai.request(app)
-      .get('/api/v1/offices/5')
+      .get('/api/v1/offices/100')
       .end((err, res) => {
         res.should.have.status(404);
-        res.body.error.should.equal('Unable to retrieve Office');
+        res.body.error.should.equal('The office with this ID cannot be retrieved');
         done(err);
       });
   }));
