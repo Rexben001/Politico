@@ -11,7 +11,7 @@ const localhost = {
   port: process.env.PGPORT
 };
 
-const onlineDB = { connectionString: process.env.ELEPHANTSQL };
+const onlineDB = { connectionString: 'postgres://gklwunop:LhHMN3D61GirLtgdpHyzSK3shzT7tSev@elmer.db.elephantsql.com:5432/gklwunop' };
 
 const pool = new pg.Pool(localhost || onlineDB);
 
