@@ -6,7 +6,7 @@ node_js:
 env:
   global:
     - CC_TEST_REPORTER_ID=ba5cbb3545afb698e99b0f96b2a806c5c05b8a3a5cac487a29d3a6a1886e87ad
-  ELEPHANTSQL=postgres://gklwunop:LhHMN3D61GirLtgdpHyzSK3shzT7tSev@elmer.db.elephantsql.com:5432/gklwunop
+    - ELEPHANTSQL=postgres://gklwunop:LhHMN3D61GirLtgdpHyzSK3shzT7tSev@elmer.db.elephantsql.com:5432/gklwunop
 
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
