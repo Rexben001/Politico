@@ -65,38 +65,38 @@ describe('GET /parties/<party-id>', () => {
   }));
 });
 
-// describe('PATCH /parties/<party-id>/name', () => {
-//   it('it should edit a specific political party', ((done) => {
-//     const editParty = {
-//       name: 'National Action People (NAP)',
-//       hqAddress: '10, Anthony Street, Delta',
-//       logoUrl: 'http://www.politico.com/nap'
-//     };
-//     chai.request(app)
-//       .patch('/api/v1/parties/1/name')
-//       .send(editParty)
-//       .end((err, res) => {
-//         console.log(res.body.data);
-//         res.should.have.status(201);
-//         res.body.data[0].name.should.equal('National Action People (NAP)');
-//         res.body.data[0].id.should.equal(1);
-//         done(err);
-//       });
-//   }));
+describe('PATCH /parties/<party-id>/name', () => {
+  it('it should edit a specific political party', ((done) => {
+    const editParty = {
+      name: 'National Action People (NAP)',
+      hqAddress: '10, Anthony Street, Delta',
+      logoUrl: 'http://www.politico.com/nap'
+    };
+    chai.request(app)
+      .patch('/api/v1/parties/1/name')
+      .send(editParty)
+      .end((err, res) => {
+        console.log(res.body.data);
+        res.should.have.status(201);
+        res.body.data[0].name.should.equal('National Action People (NAP)');
+        res.body.data[0].id.should.equal(1);
+        done(err);
+      });
+  }));
 
-//   it('it should return error 404', ((done) => {
-//     const editParty = {
-//       name: 'National Action People (NAP)'
-//     };
-//     chai.request(app)
-//       .patch('/api/v1/parties/5/name')
-//       .send(editParty)
-//       .end((err, res) => {
-//         res.should.have.status(400);
-//         done(err);
-//       });
-//   }));
-// });
+  it('it should return error 404', ((done) => {
+    const editParty = {
+      name: 'National Action People (NAP)'
+    };
+    chai.request(app)
+      .patch('/api/v1/parties/5/name')
+      .send(editParty)
+      .end((err, res) => {
+        res.should.have.status(400);
+        done(err);
+      });
+  }));
+});
 
 // describe('DELETE /parties/<party-id>', () => {
 //   it('it should delete a specific political party', ((done) => {
