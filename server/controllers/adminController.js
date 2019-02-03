@@ -46,12 +46,42 @@ class AdminController {
     }
   }
 
-  // static getAllParties(req, res) {
-  //   return res.status(200).json({
-  //     status: 200,
-  //     data: parties
-  //   });
-  // }
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @returns
+   * @memberof AdminController
+   */
+  static getAllParties(req, res) {
+    try {
+      pool.connect((err, client, done) => {
+        if (err) throw err;
+        const query = 'SELECT * FROM parties';
+        client.query(query, (error, result) => {
+          done();
+          if (error) {
+            res.status(500).json({ status: 500, message: `An error occured while trying to get parties, ${error}` });
+          } else {
+            if (result.rowCount === 0) {
+              res.status(500).json({ staus: 500, message: 'The list of parties could not be fetched' });
+            }
+            res.status(200).json({
+              status: 200,
+              data: result.rows
+            });
+          }
+        });
+      });
+    } catch (error) {
+      return res.status(400).json({
+        status: 400,
+        error
+      });
+    }
+  }
 
   // static getOneParty(req, res) {
   //   const id = Number(req.params.party_id);
