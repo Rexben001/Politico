@@ -27,15 +27,16 @@ class UserControllers {
       const value = [firstname, lastname, othernames, username,
         email, phonenumber, password, false, passportUrl];
       client.query(query, value, (error, result) => {
-        done();
         if (error || result.rowCount === 0) {
-          return res.status(500).json({ status: 500, error: error.detail });
+          console.log(error);
+          done();
+          return res.status(400).json({ status: 400, error: error.detail });
         }
         jwt.sign({ username, password },
           process.env.SECRETKEY, (err, token) => {
             if (err) throw err;
-            res.status(200).json({
-              status: 200,
+            res.status(201).json({
+              status: 201,
               data: [{
                 token,
                 user: result.rows[0]

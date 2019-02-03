@@ -18,7 +18,7 @@ app.get('/', (req, res) => res.status(200).json({
 
 const createTable = async () => {
   await users();
-}
+};
 
 createTable();
 

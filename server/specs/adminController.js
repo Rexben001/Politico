@@ -1,7 +1,11 @@
 import chai from 'chai';
+import chaiHttp from 'chai-http';
 import app from '../app';
+import database from '../models/database';
 
 chai.should();
+chai.use(chaiHttp);
+
 
 describe('POST /parties', () => {
   it('it should post a new political party', ((done) => {
@@ -197,3 +201,5 @@ describe('GET /offices/<office-id>', () => {
       });
   }));
 });
+
+
