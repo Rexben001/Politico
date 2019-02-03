@@ -69,10 +69,8 @@ class Validation {
    */
   static officeValidator(req, res, next) {
     const validator = new validate(req.body, {
-      office_id: 'required|integer',
       type: 'required|string',
       name: 'required|string',
-      region: 'required|string'
     });
 
     validator.check().then((matched) => {
