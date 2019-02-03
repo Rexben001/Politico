@@ -214,12 +214,35 @@ class AdminController {
     }
   }
 
-  // static getAllOffices(req, res) {
-  //   return res.status(200).json({
-  //     status: 200,
-  //     data: offices
-  //   });
-  // }
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @returns
+   * @memberof AdminController
+   */
+  static getAllOffices(req, res) {
+    try {
+      pool.connect((err, client, done) => {
+        if (err) throw err;
+        const query = 'SELECT * FROM offices';
+        client.query(query, (error, result) => {
+          done();
+          if (error || result.rowCount === 0) {
+            return res.status(404).json({ staus: 404, message: 'The list of offices could not be fetched' });
+          }
+          return res.status(200).json({
+            status: 200,
+            data: result.rows
+          });
+        });
+      });
+    } catch (error) {
+      return res.status(500).json({ status: 500, error: 'Server error' });
+    }
+  }
 
   // static getOneOffice(req, res) {
   //   const id = Number(req.params.office_id);
