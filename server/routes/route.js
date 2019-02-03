@@ -13,7 +13,7 @@ router.delete('/parties/:party_id', AdminController.deleteOneParty);
 
 router.post('/offices', validator.officeValidator, AdminController.registerOffice);
 router.get('/offices', AdminController.getAllOffices);
-// router.get('/offices/:office_id', AdminController.getOneOffice);
+router.get('/offices/:office_id', AdminController.getOneOffice);
 
 router.post('/auth/signup', validator.userValidator, UserController.createUser);
 router.post('/auth/login', validator.loginValidator, UserController.loginUser);
