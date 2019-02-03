@@ -11,9 +11,11 @@ const localhost = {
   port: process.env.PGPORT
 };
 
-const onlineDB = { connectionString: process.env.ELEPHANTSQL };
+const onlineDB = process.env.ELEPHANTSQL;
 
-const pool = new pg.Pool(localhost || onlineDB);
+const pool = new pg.Pool(onlineDB);
+
+console.log(onlineDB);
 
 pool.on('connect', () => {
   console.log('connected to the Database');

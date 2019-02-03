@@ -7,7 +7,6 @@ chai.use(chaiHttp);
 
 
 describe('POST /auth/signup', () => {
-
   it('it should create a new user', ((done) => {
     const newUser = {
       firstname: 'Ben',
