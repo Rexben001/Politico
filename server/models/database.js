@@ -49,4 +49,22 @@ const users = async () => {
     });
 };
 
-export default { pool, users };
+const party = async () => {
+  const partyTable = `
+      CREATE TABLE IF NOT EXISTS 
+      parties(
+        party_id SERIAL PRIMARY KEY,
+        name VARCHAR NOT NULL,
+        hqAddress VARCHAR NOT NULL,
+        logoUrl VARCHAR NOT NULL
+      );`;
+  await pool.query(partyTable)
+    .then((res) => {
+      console.log('party table created!: ', res);
+    }).catch((err) => {
+      console.log('An error occured while creating party table: ', err);
+      pool.end();
+    });
+};
+
+export default { pool, users, party };
