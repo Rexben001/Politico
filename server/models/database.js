@@ -44,8 +44,8 @@ const users = async () => {
         UNIQUE(username, email)
         );`;
   await pool.query(userTable)
-    .then((res) => {
-      console.log('users table created!: ', res);
+    .then(() => {
+      console.log('users table created!: ');
     }).catch((err) => {
       console.log('An error occured while creating users table: ', err);
       pool.end();
@@ -62,8 +62,8 @@ const party = async () => {
         logoUrl VARCHAR NOT NULL
       );`;
   await pool.query(partyTable)
-    .then((res) => {
-      console.log('party table created!: ', res);
+    .then(() => {
+      console.log('parties table created!: ');
     }).catch((err) => {
       console.log('An error occured while creating party table: ', err);
       pool.end();
@@ -79,8 +79,8 @@ const office = async () => {
       name VARCHAR NOT NULL
       );`;
   await pool.query(officeTable)
-    .then((res) => {
-      console.log('office table created!: ', res);
+    .then(() => {
+      console.log('offices table created!: ');
     }).catch((err) => {
       console.log('An error occured while creating office table: ', err);
       pool.end();

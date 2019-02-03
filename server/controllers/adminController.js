@@ -63,7 +63,7 @@ class AdminController {
         client.query(query, (error, result) => {
           done();
           if (error || result.rowCount === 0) {
-            return res.status(404).json({ staus: 404, message: 'The list of parties could not be fetched' });
+            return res.status(404).json({ staus: 404, error: 'The list of parties could not be fetched' });
           }
           return res.status(200).json({
             status: 200,
@@ -94,7 +94,7 @@ class AdminController {
         client.query(query, (error, result) => {
           done();
           if (error || result.rowCount === 0) {
-            return res.status(404).json({ staus: 404, message: 'The list of parties could not be fetched' });
+            return res.status(404).json({ staus: 404, message: 'The party with this ID could not be fetched' });
           }
           return res.status(200).json({
             status: 200,
@@ -130,7 +130,7 @@ class AdminController {
         client.query(query, value, (error, result) => {
           done();
           if (error || result.rowCount === 0) {
-            return res.status(404).json({ staus: 404, message: 'The list of parties could not be fetched' });
+            return res.status(404).json({ staus: 404, message: 'The party with this ID could not be fetched' });
           }
           return res.status(200).json({
             status: 201,
@@ -231,7 +231,7 @@ class AdminController {
         client.query(query, (error, result) => {
           done();
           if (error || result.rowCount === 0) {
-            return res.status(404).json({ staus: 404, message: 'The list of offices could not be fetched' });
+            return res.status(404).json({ staus: 404, error: 'The list of offices could not be fetched' });
           }
           return res.status(200).json({
             status: 200,
@@ -255,14 +255,14 @@ class AdminController {
  */
   static getOneOffice(req, res) {
     try {
-      const id = Number(req.params.poffice_id);
+      const id = Number(req.params.office_id);
       pool.connect((err, client, done) => {
         if (err) throw err;
         const query = `SELECT * FROM offices WHERE office_id=${id}`;
         client.query(query, (error, result) => {
           done();
           if (error || result.rowCount === 0) {
-            return res.status(404).json({ staus: 404, message: 'The office with this ID cannot be retrieved' });
+            return res.status(404).json({ staus: 404, error: 'The office with this ID cannot be retrieved' });
           }
           return res.status(200).json({
             status: 200,

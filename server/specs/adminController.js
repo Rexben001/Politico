@@ -165,27 +165,27 @@ describe('GET /offices', () => {
   }));
 });
 
-// describe('GET /offices/<office-id>', () => {
-//   it('it should get a specific political office', ((done) => {
-//     chai.request(app)
-//       .get('/api/v1/offices/1')
-//       .end((err, res) => {
-//         res.should.have.status(200);
-//         res.body.data[0].name.should.equal('Governor');
-//         res.body.data[0].type.should.equal('State');
-//         done(err);
-//       });
-//   }));
+describe('GET /offices/<office-id>', () => {
+  it('it should get a specific political office', ((done) => {
+    chai.request(app)
+      .get('/api/v1/offices/1')
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.data[0].should.have.property('name');
+        res.body.data[0].should.have.property('type');
+        done(err);
+      });
+  }));
 
-//   it('it should return error 404', ((done) => {
-//     chai.request(app)
-//       .get('/api/v1/offices/5')
-//       .end((err, res) => {
-//         res.should.have.status(404);
-//         res.body.error.should.equal('Unable to retrieve Office');
-//         done(err);
-//       });
-//   }));
-// });
+  it('it should return error 404', ((done) => {
+    chai.request(app)
+      .get('/api/v1/offices/100')
+      .end((err, res) => {
+        res.should.have.status(404);
+        res.body.error.should.equal('The office with this ID cannot be retrieved');
+        done(err);
+      });
+  }));
+});
 
 
