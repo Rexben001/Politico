@@ -177,26 +177,42 @@ class AdminController {
     }
   }
 
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @returns
+   * @memberof AdminController
+   */
+  static registerOffice(req, res) {
+    try {
+      const { type, name } = req.body;
 
-  // static registerOffice(req, res) {
-  //   const {
-  //     office_id, type, name, region
-  //   } = req.body;
-
-  //   const newOffice = {
-  //     office_id, type, name, region
-  //   };
-
-  //   offices.push(newOffice);
-  //   return res.status(201).json({
-  //     status: 201,
-  //     data: [{
-  //       id: newOffice.office_id,
-  //       type: newOffice.type,
-  //       name: newOffice.name
-  //     }]
-  //   });
-  // }
+      pool.connect((err, client, done) => {
+        if (err) throw err;
+        const query = 'INSERT INTO offices (name, type) VALUES($1,$2) RETURNING*';
+        const value = [name, type];
+        client.query(query, value, (error, result) => {
+          done();
+          if (error || result.rowCount === 0) {
+            return res.status(400).json({ status: 400, error: error.detail });
+          }
+          return res.status(201).json({
+            status: 201,
+            data: [{
+              id: result.rows[0].office_id,
+              type: result.rows[0].type,
+              name: result.rows[0].name
+            }]
+          });
+        });
+      });
+    } catch (error) {
+      return res.status(500).json({ status: 500, error: 'Server error' });
+    }
+  }
 
   // static getAllOffices(req, res) {
   //   return res.status(200).json({
