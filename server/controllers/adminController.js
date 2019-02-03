@@ -244,24 +244,40 @@ class AdminController {
     }
   }
 
-  // static getOneOffice(req, res) {
-  //   const id = Number(req.params.office_id);
-  //   const singleOffice = offices.find(offices => offices.office_id == id);
-  //   if (!singleOffice) {
-  //     return res.status(404).json({
-  //       status: 404,
-  //       error: 'Unable to retrieve Office'
-  //     });
-  //   }
-  //   return res.status(200).json({
-  //     status: 200,
-  //     data: [{
-  //       id: singleOffice.office_id,
-  //       type: singleOffice.type,
-  //       name: singleOffice.name
-  //     }]
-  //   });
-  // }
+  /**
+ *
+ *
+ * @static
+ * @param {*} req
+ * @param {*} res
+ * @returns
+ * @memberof AdminController
+ */
+  static getOneOffice(req, res) {
+    try {
+      const id = Number(req.params.poffice_id);
+      pool.connect((err, client, done) => {
+        if (err) throw err;
+        const query = `SELECT * FROM offices WHERE office_id=${id}`;
+        client.query(query, (error, result) => {
+          done();
+          if (error || result.rowCount === 0) {
+            return res.status(404).json({ staus: 404, message: 'The office with this ID cannot be retrieved' });
+          }
+          return res.status(200).json({
+            status: 200,
+            data: [{
+              id: result.rows[0].party_id,
+              name: result.rows[0].name,
+              type: result.rows[0].type
+            }]
+          });
+        });
+      });
+    } catch (error) {
+      return res.status(500).json({ status: 500, error: 'Server error' });
+    }
+  }
 }
 
 
