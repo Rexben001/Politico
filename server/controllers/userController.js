@@ -102,6 +102,41 @@ class UserControllers {
       return res.status(500).json({ status: 500, error: 'Server error' });
     }
   }
+
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @memberof UserControllers
+   */
+  static resetPassword(req, res) {
+    const { email } = req.body;
+    pool.connect((err, client, done) => {
+      if (err) throw err;
+      const query = 'SELECT * FROM users WHERE email=$1';
+      const value = [email];
+      client.query(query, value, (error, result) => {
+        done();
+        if (error) {
+          res.status(500).json({ status: 500, message: 'An error occured while trying to fetch user' });
+        } else {
+          if (result.rowCount === 0) {
+            res.status(500).json({ staus: 500, message: 'The user could not be saved' });
+          }
+          res.status(200).json({
+            status: 200,
+            data: [{
+              message: 'Check your email for password reset link',
+              email: result.rows[0].email
+            }]
+          });
+        }
+      });
+    });
+  }
+
 }
 
 export default UserControllers;
