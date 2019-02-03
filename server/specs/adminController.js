@@ -151,19 +151,19 @@ describe('POST /offices', () => {
   }));
 });
 
-// describe('GET /offices', () => {
-//   it('it should get all political offices', ((done) => {
-//     chai.request(app)
-//       .get('/api/v1/offices')
-//       .end((err, res) => {
-//         res.should.have.status(200);
-//         res.body.data.should.be.a('Array');
-//         res.body.data[0].type.should.equal('State');
-//         res.body.data[1].name.should.equal('Senator');
-//         done(err);
-//       });
-//   }));
-// });
+describe('GET /offices', () => {
+  it('it should get all political offices', ((done) => {
+    chai.request(app)
+      .get('/api/v1/offices')
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.data.should.be.a('Array');
+        res.body.data[0].should.have.property('name');
+        res.body.data[0].should.have.property('type');
+        done(err);
+      });
+  }));
+});
 
 // describe('GET /offices/<office-id>', () => {
 //   it('it should get a specific political office', ((done) => {
