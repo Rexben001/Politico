@@ -59,7 +59,7 @@ describe('GET /parties/<party-id>', () => {
       .end((err, res) => {
         res.should.have.status(200);
         res.body.data[0].should.have.property('name');
-        res.body.data[0].should.have.property('logourl');
+        res.body.data[0].should.have.property('logoUrl');
         done(err);
       });
   }));

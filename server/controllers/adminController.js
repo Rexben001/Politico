@@ -108,7 +108,11 @@ class AdminController {
             }
             res.status(200).json({
               status: 200,
-              data: [result.rows[0]]
+              data: [{
+                id: result.rows[0].party_id,
+                name: result.rows[0].name,
+                logoUrl: result.rows[0].logourl
+              }]
             });
           }
         });
@@ -121,30 +125,53 @@ class AdminController {
     }
   }
 
-
-  // static editOneParty(req, res) {
-  //   const id = Number(req.params.party_id);
-  //   const {
-  //     name, hqAddress, logoUrl
-  //   } = req.body;
-  //   const singleParty = parties.find(parties => parties.party_id == id);
-  //   if (!singleParty) {
-  //     return res.status(404).json({
-  //       status: 404,
-  //       error: 'Unable to retrieve party'
-  //     });
-  //   }
-  //   singleParty.name = name;
-  //   singleParty.hqAddress = hqAddress;
-  //   singleParty.logoUrl = logoUrl;
-  //   return res.status(201).json({
-  //     status: 201,
-  //     data: [{
-  //       id: singleParty.party_id,
-  //       name: singleParty.name,
-  //     }]
-  //   });
-  // }
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @returns
+   * @memberof AdminController
+   */
+  static editOneParty(req, res) {
+    try {
+      const id = Number(req.params.party_id);
+      const { name, hqAddress, logoUrl } = req.body;
+      try {
+        pool.connect((err, client) => {
+          const query = 'UPDATE parties SET name=$1, hqAddress=$2, logoUrl=$3 WHERE party_id=$4 RETURNING *';
+          const value = [name, hqAddress, logoUrl, id];
+          client.query(query, value, (error, result) => {
+            if (error) {
+              res.status(500).json({ status: 500, message: `An error occured while trying to updating a party, ${error}` });
+            } else {
+              if (result.rowCount === 0) {
+                res.status(500).json({ staus: 500, message: 'Party could not be updated' });
+              }
+              res.status(200).json({
+                status: 200,
+                data: [{
+                  id: result.rows[0].party_id,
+                  name: result.rows[0].name
+                }]
+              });
+            }
+          });
+        });
+      } catch (error) {
+        return res.status(400).json({
+          status: 400,
+          error
+        });
+      }
+    } catch (error) {
+      return res.status(400).json({
+        status: 400,
+        error
+      });
+    }
+  }
 
   // static deleteOneParty(req, res) {
   //   const id = Number(req.params.party_id);
