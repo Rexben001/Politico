@@ -28,7 +28,6 @@ class UserControllers {
         email, phonenumber, password, false, passportUrl];
       client.query(query, value, (error, result) => {
         if (error || result.rowCount === 0) {
-          console.log(error);
           done();
           return res.status(400).json({ status: 400, error: error.detail });
         }
@@ -69,15 +68,18 @@ class UserControllers {
           if (result.rowCount === 0) {
             res.status(500).json({ staus: 500, message: 'The user could not be saved' });
           }
-          res.status(200).json({
-            status: 200,
-            data: [{
-              token: 34567,
-              user: result.rows[0]
-            }]
-          });
-        }
-      });
+          jwt.sign({ username, password },
+            process.env.SECRETKEY, (err, token) => {
+              if (err) throw err;
+              res.status(201).json({
+                status: 201,
+                data: [{
+                  token,
+                  user: result.rows[0]
+                }]
+              });
+            });
+        });
     });
   }
 
