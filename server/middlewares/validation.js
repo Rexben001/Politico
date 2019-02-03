@@ -1,7 +1,6 @@
 import validate from 'node-input-validator';
 /**
  *
- *
  * @class Validation
  */
 class Validation {
