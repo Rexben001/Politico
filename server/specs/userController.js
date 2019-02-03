@@ -74,3 +74,34 @@ describe('GET /auth/login', () => {
       });
   }));
 });
+
+describe('GET /auth/reset', () => {
+  it('it should reset the password the user', ((done) => {
+    const reset = {
+      email: 'dexy@gmail.com',
+
+    };
+    chai.request(app)
+      .post('/api/v1/auth/reset')
+      .send(reset)
+      .end((err, res) => {
+        res.should.have.status(201);
+        res.body.data[0].user.should.have.property('email');
+        
+        done(err);
+      });
+  }));
+
+  it('it should return status code of 400 and an error message', ((done) => {
+    const reset = {
+      email: 123456
+    };
+    chai.request(app)
+      .post('/api/v1/auth/reset')
+      .send(reset)
+      .end((err, res) => {
+        res.should.have.status(400);
+        done(err);
+      });
+  }));
+});
