@@ -25,7 +25,7 @@ class AdminController {
 
       pool.connect((err, client, done) => {
         if (err) throw err;
-        const query = 'NSERT INTO FROM parties (name, hqAddress, logoUrl) VALUES($1,$2,$3)';
+        const query = 'INSERT INTO FROM parties (name, hqAddress, logoUrl) VALUES($1,$2,$3)';
         const value = [name, hqAddress, logoUrl];
         client.query(query, value, (error, result) => {
           done();
