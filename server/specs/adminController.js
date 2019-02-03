@@ -119,38 +119,37 @@ describe('DELETE /parties/<party-id>', () => {
   }));
 });
 
-// describe('POST /offices', () => {
-//   it('it should post a new political office', ((done) => {
-//     const newOffice = {
-//       office_id: 3,
-//       type: 'Federal',
-//       name: 'President',
-//       region: 'Natioal'
-//     };
-//     chai.request(app)
-//       .post('/api/v1/offices')
-//       .send(newOffice)
-//       .end((err, res) => {
-//         res.should.have.status(201);
-//         res.body.data[0].type.should.equal('Federal');
-//         res.body.data[0].name.should.equal('President');
-//         done(err);
-//       });
-//   }));
-//   it('it should return status code of 400 and an error message', ((done) => {
-//     const newOffice = {
-//       office_id: 4,
-//       name: 'Faithful People (FP)'
-//     };
-//     chai.request(app)
-//       .post('/api/v1/offices')
-//       .send(newOffice)
-//       .end((err, res) => {
-//         res.should.have.status(400);
-//         done(err);
-//       });
-//   }));
-// });
+describe('POST /offices', () => {
+  it('it should post a new political office', ((done) => {
+    const newOffice = {
+      type: 'Federal',
+      name: 'President',
+      region: 'Natioal'
+    };
+    chai.request(app)
+      .post('/api/v1/offices')
+      .send(newOffice)
+      .end((err, res) => {
+        res.should.have.status(201);
+        res.body.data[0].type.should.equal('Federal');
+        res.body.data[0].name.should.equal('President');
+        done(err);
+      });
+  }));
+  it('it should return status code of 400 and an error message', ((done) => {
+    const newOffice = {
+      office_id: 4,
+      name: 'Faithful People (FP)'
+    };
+    chai.request(app)
+      .post('/api/v1/offices')
+      .send(newOffice)
+      .end((err, res) => {
+        res.should.have.status(400);
+        done(err);
+      });
+  }));
+});
 
 // describe('GET /offices', () => {
 //   it('it should get all political offices', ((done) => {
