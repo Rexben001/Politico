@@ -15,6 +15,8 @@ const router = express.Router();
 // router.get('/offices/:office_id', AdminController.getOneOffice);
 
 router.post('/auth/signup', validator.userValidator, UserController.createUser);
+router.post('/auth/login', validator.loginValidator, UserController.loginUser);
+
 
 
 export default router;
