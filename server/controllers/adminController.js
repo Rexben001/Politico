@@ -108,7 +108,7 @@ class AdminController {
             }
             res.status(200).json({
               status: 200,
-              data: result.rows[0]
+              data: [result.rows[0]]
             });
           }
         });
