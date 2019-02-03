@@ -25,15 +25,15 @@ class AdminController {
 
       pool.connect((err, client, done) => {
         if (err) throw err;
-        const query = 'INSERT INTO FROM parties (name, hqAddress, logoUrl) VALUES($1,$2,$3)';
+        const query = 'INSERT INTO parties (name, hqAddress, logoUrl) VALUES($1,$2,$3) RETURNING*';
         const value = [name, hqAddress, logoUrl];
         client.query(query, value, (error, result) => {
           done();
           if (error || result.rowCount === 0) {
-            return res.status(404).json({ status: 404, error: 'Unable to create a party' });
+            return res.status(400).json({ status: 400, error: error.detail });
           }
-          res.status(200).json({
-            status: 200,
+          res.status(201).json({
+            status: 201,
             data: [{
               id: result.rows[0].party_id,
               name: result.rows[0].name

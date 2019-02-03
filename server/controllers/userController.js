@@ -34,8 +34,8 @@ class UserControllers {
             const value = [firstname, lastname, othernames, username,
               email, phonenumber, passwordHash, false, passportUrl];
             client.query(query, value, (error, result) => {
+              done();
               if (error || result.rowCount === 0) {
-                done();
                 return res.status(400).json({ status: 400, error: error.detail });
               }
               jwt.sign({ username, password },
@@ -132,7 +132,6 @@ class UserControllers {
       });
     });
   }
-
 }
 
 export default UserControllers;

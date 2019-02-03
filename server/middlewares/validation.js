@@ -101,7 +101,7 @@ class Validation {
       lastname: 'required|string',
       othernames: 'required|string',
       username: 'required|string',
-      email: 'required|string',
+      email: 'required|email',
       phonenumber: 'required|string',
       password: 'required|string',
       passportUrl: 'required|string'

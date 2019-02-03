@@ -85,16 +85,15 @@ describe('GET /auth/reset', () => {
       .post('/api/v1/auth/reset')
       .send(reset)
       .end((err, res) => {
-        res.should.have.status(201);
-        res.body.data[0].user.should.have.property('email');
-        
+        res.should.have.status(200);
+        res.body.data[0].should.have.property('email');
         done(err);
       });
   }));
 
   it('it should return status code of 400 and an error message', ((done) => {
     const reset = {
-      email: 123456
+      firstname: 'Ben'
     };
     chai.request(app)
       .post('/api/v1/auth/reset')
