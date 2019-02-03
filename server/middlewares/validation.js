@@ -144,6 +144,30 @@ class Validation {
     });
   }
 
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   * @memberof Validation
+   */
+  static resetValidator(req, res, next) {
+    const validator = new validate(req.body, {
+      email: 'required|string',
+    });
+
+    validator.check().then((matched) => {
+      if (!matched) {
+        return res.status(400).json({
+          status: 400,
+          error: validator.errors
+        });
+      }
+      next();
+    });
+  }
 }
 
 export default Validation;
