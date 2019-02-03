@@ -76,8 +76,7 @@ describe('PATCH /parties/<party-id>/name', () => {
       .patch('/api/v1/parties/1/name')
       .send(editParty)
       .end((err, res) => {
-        console.log(res.body.data);
-        res.should.have.status(201);
+        res.should.have.status(200);
         res.body.data[0].name.should.equal('National Action People (NAP)');
         res.body.data[0].id.should.equal(1);
         done(err);
@@ -89,7 +88,7 @@ describe('PATCH /parties/<party-id>/name', () => {
       name: 'National Action People (NAP)'
     };
     chai.request(app)
-      .patch('/api/v1/parties/5/name')
+      .patch('/api/v1/parties/100/name')
       .send(editParty)
       .end((err, res) => {
         res.should.have.status(400);
@@ -98,27 +97,27 @@ describe('PATCH /parties/<party-id>/name', () => {
   }));
 });
 
-// describe('DELETE /parties/<party-id>', () => {
-//   it('it should delete a specific political party', ((done) => {
-//     chai.request(app)
-//       .delete('/api/v1/parties/1')
-//       .end((err, res) => {
-//         res.should.have.status(200);
-//         res.body.data[0].message.should.equal('You have successfully deleted National Action People (NAP)');
-//         done(err);
-//       });
-//   }));
+describe('DELETE /parties/<party-id>', () => {
+  it('it should delete a specific political party', ((done) => {
+    chai.request(app)
+      .delete('/api/v1/parties/1')
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.have.property('message');
+        done(err);
+      });
+  }));
 
-//   it('it should return error 404', ((done) => {
-//     chai.request(app)
-//       .delete('/api/v1/parties/5')
-//       .end((err, res) => {
-//         res.should.have.status(404);
-//         res.body.error.should.equal('Unable to retrieve party');
-//         done(err);
-//       });
-//   }));
-// });
+  it('it should return error 404', ((done) => {
+    chai.request(app)
+      .delete('/api/v1/parties/1')
+      .end((err, res) => {
+        res.should.have.status(404);
+        res.body.error.should.equal('Cant fetch any party with this ID');
+        done(err);
+      });
+  }));
+});
 
 // describe('POST /offices', () => {
 //   it('it should post a new political office', ((done) => {

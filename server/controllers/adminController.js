@@ -163,24 +163,17 @@ class AdminController {
         const query = `DELETE FROM parties WHERE party_id=${id}`;
         client.query(query, (error, result) => {
           done();
-          if (error) {
-            res.status(500).json({ status: 500, message: `An error occured while trying to get a party, ${error}` });
-          } else {
-            if (result.rowCount === 0) {
-              res.status(500).json({ staus: 500, message: 'Party could not be fetched' });
-            }
-            res.status(200).json({
-              status: 200,
-              data: result.rows[0]
-            });
+          if (error || result.rowCount === 0) {
+            return res.status(404).json({ staus: 404, error: 'Cant fetch any party with this ID' });
           }
+          return res.status(200).json({
+            status: 200,
+            message: 'Party deleted successfully'
+          });
         });
       });
     } catch (error) {
-      return res.status(400).json({
-        status: 400,
-        error
-      });
+      return res.status(500).json({ status: 500, error: 'Server error' });
     }
   }
 
