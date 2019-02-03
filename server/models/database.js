@@ -17,7 +17,7 @@ const pool = new pg.Pool({
   connectionString: 'postgres://gklwunop:LhHMN3D61GirLtgdpHyzSK3shzT7tSev@elmer.db.elephantsql.com:5432/gklwunop'
 });
 
-console.log(onlineDB);
+// console.log(onlineDB);
 
 pool.on('connect', () => {
   console.log('connected to the Database');
