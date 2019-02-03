@@ -70,4 +70,21 @@ const party = async () => {
     });
 };
 
-export default { pool, users, party };
+const office = async () => {
+  const officeTable = `
+  CREATE TABLE IF NOT EXISTS 
+  offices(
+      office_id SERIAL PRIMARY KEY,
+      type VARCHAR NOT NULL,
+      name VARCHAR NOT NULL
+      );`;
+  await pool.query(officeTable)
+    .then((res) => {
+      console.log('office table created!: ', res);
+    }).catch((err) => {
+      console.log('An error occured while creating office table: ', err);
+      pool.end();
+    });
+};
+
+export default { pool, users, party, office };
