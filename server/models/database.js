@@ -14,9 +14,10 @@ const localhost = {
 // const onlineDB = process.env.ELEPHANTSQL;
 
 const pool = new pg.Pool(
-  {
-    connectionString: 'postgres://gklwunop:LhHMN3D61GirLtgdpHyzSK3shzT7tSev@elmer.db.elephantsql.com:5432/gklwunop'
-  } || localhost
+  // {
+  //   connectionString: 'postgres://gklwunop:LhHMN3D61GirLtgdpHyzSK3shzT7tSev@elmer.db.elephantsql.com:5432/gklwunop'
+  // } || 
+  localhost
 );
 
 // console.log(onlineDB);

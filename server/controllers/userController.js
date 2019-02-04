@@ -163,7 +163,7 @@ class UserControllers {
             status: 200,
             data: {
               office: result.rows[0].office,
-              user: result.rows[0].user_id
+              user: result.rows[0].createdby
             }
           });
         });
