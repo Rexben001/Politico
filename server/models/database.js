@@ -10,17 +10,17 @@ const localhost = {
   password: process.env.PGPASSWORD,
   port: process.env.PGPORT
 };
+let pool;
+const proDB = process.env.PRODUCTION;
+const testDB = process.env.TESTING;
 
-// const onlineDB = process.env.ELEPHANTSQL;
+if (process.env.NODE_ENV === 'development') {
+  pool = new pg.Pool(proDB);
+} else if (process.env.NODE_ENV === 'test') {
+  pool = new pg.Pool(testDB);
+}
 
-const pool = new pg.Pool(
-  // {
-  //   connectionString: 'postgres://gklwunop:LhHMN3D61GirLtgdpHyzSK3shzT7tSev@elmer.db.elephantsql.com:5432/gklwunop'
-  // } || 
-  localhost
-);
-
-// console.log(onlineDB);
+console.log(process.env.NODE_ENV);
 
 pool.on('connect', () => {
   console.log('connected to the Database');
