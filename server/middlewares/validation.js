@@ -179,7 +179,7 @@ class Validation {
   static contestValidator(req, res, next) {
     const validator = new validate(req.body, {
       office: 'required',
-      party: 'required|string'
+      party: 'required'
     });
 
     validator.check().then((matched) => {
