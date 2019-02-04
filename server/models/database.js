@@ -92,7 +92,6 @@ const candidate = async () => {
   candidates(
     candidate_id SERIAL NOT NULL UNIQUE,
     office INTEGER,
-    qualification VARCHAR(29) NOT NULL,
     party INTEGER,
     createdBy INTEGER,
     FOREIGN KEY (party) REFERENCES parties(party_id),
