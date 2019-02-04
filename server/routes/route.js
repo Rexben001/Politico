@@ -18,6 +18,7 @@ router.get('/offices/:office_id', AdminController.getOneOffice);
 router.post('/auth/signup', validator.userValidator, UserController.createUser);
 router.post('/auth/login', validator.loginValidator, UserController.loginUser);
 router.post('/auth/reset', validator.resetValidator, UserController.resetPassword);
+router.post('/office/:user_id/register', UserController.contestInElection);
 
 
 export default router;
