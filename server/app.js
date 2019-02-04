@@ -4,7 +4,7 @@ import router from './routes/route';
 import database from './models/database';
 
 const app = express();
-const { users, party, office } = database;
+const { users, party, office, candidate } = database;
 
 app.use(bodyParser.urlencoded({
   extended: false,
@@ -20,6 +20,7 @@ const createTable = async () => {
   await users();
   await party();
   await office();
+  await candidate();
 };
 
 createTable();

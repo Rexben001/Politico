@@ -86,4 +86,28 @@ const office = async () => {
     });
 };
 
-export default { pool, users, party, office };
+const candidate = async () => {
+  const candidateTable = `
+  CREATE TABLE IF NOT EXISTS 
+  candidates(
+    candidate_id SERIAL NOT NULL UNIQUE,
+    office INTEGER,
+    qualification VARCHAR(29) NOT NULL,
+    party INTEGER,
+    createdBy INTEGER,
+    FOREIGN KEY (party) REFERENCES parties(party_id),
+    FOREIGN KEY (createdBy) REFERENCES users(user_id),
+    FOREIGN KEY (office) REFERENCES offices(office_id),
+    PRIMARY KEY (createdBy, office)
+  );`;
+  await pool.query(candidateTable)
+    .then(() => {
+      console.log('candidate table created!: ');
+    }).catch((err) => {
+      console.log('An error occured while creating candidate table: ', err);
+      pool.end();
+    });
+};
+
+
+export default { pool, users, party, office, candidate };
