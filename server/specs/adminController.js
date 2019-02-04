@@ -187,5 +187,3 @@ describe('GET /offices/<office-id>', () => {
       });
   }));
 });
-
-

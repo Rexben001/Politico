@@ -31,7 +31,7 @@ const users = async () => {
   const userTable = `
     CREATE TABLE IF NOT EXISTS 
     users(
-        user_id SERIAL PRIMARY KEY,
+        user_id SERIAL NOT NULL UNIQUE,
         firstname VARCHAR(128) NOT NULL,
         lastname VARCHAR(128) NOT NULL,
         othernames VARCHAR(128) NOT NULL,
@@ -56,7 +56,7 @@ const party = async () => {
   const partyTable = `
       CREATE TABLE IF NOT EXISTS 
       parties(
-        party_id SERIAL PRIMARY KEY,
+        party_id SERIAL NOT NULL UNIQUE,
         name VARCHAR NOT NULL,
         hqAddress VARCHAR NOT NULL,
         logoUrl VARCHAR NOT NULL

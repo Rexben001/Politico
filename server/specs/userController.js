@@ -104,3 +104,33 @@ describe('GET /auth/reset', () => {
       });
   }));
 });
+
+describe('GET /office/:user_id/register', () => {
+  it('it should create a new candidate', ((done) => {
+    const newCandidate = {
+      office: 1,
+      party: 2
+    };
+    chai.request(app)
+      .post('/api/v1/office/1/register')
+      .send(newCandidate)
+      .end((err, res) => {
+        res.should.have.status(201);
+        res.body.data.should.have.property('office');
+        done(err);
+      });
+  }));
+
+  it('it should return status code of 400 and an error message', ((done) => {
+    const newCandidate = {
+      party: 1
+    };
+    chai.request(app)
+      .post('/api/v1/office/1/register')
+      .send(newCandidate)
+      .end((err, res) => {
+        res.should.have.status(400);
+        done(err);
+      });
+  }));
+});

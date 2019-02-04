@@ -157,10 +157,11 @@ class UserControllers {
         client.query(query, value, (error, result) => {
           done();
           if (error || result.rowCount === 0) {
+            console.log(error);
             return res.status(404).json({ status: 404, error: `Unable to create a contestant, ${error}` });
           }
-          return res.status(200).json({
-            status: 200,
+          return res.status(201).json({
+            status: 201,
             data: {
               office: result.rows[0].office,
               user: result.rows[0].createdby
