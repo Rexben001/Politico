@@ -172,6 +172,29 @@ class UserControllers {
       return res.status(500).json({ status: 500, error: 'Server error' });
     }
   }
+
+  static makeAdmin(req, res) {
+    try {
+      const id = Number(req.params.party_id);
+      pool.connect((err, client, done) => {
+        const query = 'UPDATE users SET is_admin=$1, user_id=$2 RETURNING*';
+        const value = [false, id];
+        client.query(query, value, (error, result) => {
+          done();
+          if (error || result.rowCount === 0) {
+            return res.status(404).json({ staus: 404, message: 'The user with this ID could not be fetched' });
+          }
+          return res.status(200).json({
+            status: 201,
+            data: result.rows[0]
+          });
+        });
+      });
+    } catch (error) {
+      return res.status(500).json({ status: 500, error: 'Server error' });
+    }
+  }
+
 }
 
 export default UserControllers;
