@@ -14,13 +14,15 @@ let pool;
 const proDB = process.env.PRODUCTION;
 const testDB = process.env.TESTING;
 
+console.log(process.env.NODE_ENV);
 if (process.env.NODE_ENV === 'development') {
   pool = new pg.Pool(proDB);
-} else if (process.env.NODE_ENV === 'test') {
+  console.log(pool);
+} else {
   pool = new pg.Pool(testDB);
+  console.log(testDB);
 }
 
-console.log(process.env.NODE_ENV);
 
 pool.on('connect', () => {
   console.log('connected to the Database');
