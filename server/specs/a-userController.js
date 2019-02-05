@@ -5,12 +5,12 @@ import app from '../app';
 chai.should();
 chai.use(chaiHttp);
 
-describe('PATCH /makeAdmin/:user_id', () => {
-  it('it should edit a specific political party', ((done) => {
+describe('PATCH /makeAdmin/', () => {
+  it('it should return no token provided', ((done) => {
     chai.request(app)
-      .patch('/api/v1/makeAdmin/1')
+      .patch('/api/v1/makeAdmin')
       .end((err, res) => {
-        res.should.have.status(201);
+        res.should.have.status(403);
         done(err);
       });
   }));
@@ -87,7 +87,7 @@ describe('GET /auth/login', () => {
 });
 
 describe('GET /auth/reset', () => {
-  it('it should reset the password the user', ((done) => {
+  it('it should return no token provided', ((done) => {
     const reset = {
       email: 'dexy@gmail.com',
 
@@ -96,8 +96,7 @@ describe('GET /auth/reset', () => {
       .post('/api/v1/auth/reset')
       .send(reset)
       .end((err, res) => {
-        res.should.have.status(200);
-        res.body.data[0].should.have.property('email');
+        res.should.have.status(403);
         done(err);
       });
   }));
@@ -117,7 +116,7 @@ describe('GET /auth/reset', () => {
 });
 
 describe('GET /office/:user_id/register', () => {
-  it('it should create a new candidate', ((done) => {
+  it('it should return no token provided', ((done) => {
     const newCandidate = {
       office: 1,
       party: 2
@@ -126,8 +125,7 @@ describe('GET /office/:user_id/register', () => {
       .post('/api/v1/office/1/register')
       .send(newCandidate)
       .end((err, res) => {
-        res.should.have.status(201);
-        res.body.data.should.have.property('office');
+        res.should.have.status(403);
         done(err);
       });
   }));
@@ -138,6 +136,37 @@ describe('GET /office/:user_id/register', () => {
     };
     chai.request(app)
       .post('/api/v1/office/1/register')
+      .send(newCandidate)
+      .end((err, res) => {
+        res.should.have.status(400);
+        done(err);
+      });
+  }));
+});
+
+describe('POST /votes', () => {
+  it('it should return no token provided', ((done) => {
+    const newCandidate = {
+      office: 2,
+      createdBy: 2,
+      candidate: 2
+
+    };
+    chai.request(app)
+      .post('/api/v1/votes')
+      .send(newCandidate)
+      .end((err, res) => {
+        res.should.have.status(403);
+        done(err);
+      });
+  }));
+
+  it('it should return status code of 400 and an error message', ((done) => {
+    const newCandidate = {
+      office: 1
+    };
+    chai.request(app)
+      .post('/api/v1/votes')
       .send(newCandidate)
       .end((err, res) => {
         res.should.have.status(400);

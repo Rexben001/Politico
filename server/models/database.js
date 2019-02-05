@@ -111,5 +111,29 @@ const candidate = async () => {
     });
 };
 
+const vote = async () => {
+  const voteTable = `
+  CREATE TABLE IF NOT EXISTS 
+  votes(
+    vote_id SERIAL NOT NULL UNIQUE,
+    createdOn DATE NOT NULL,
+    createdBy INTEGER,
+    candidate INTEGER,
+    office INTEGER,
+    FOREIGN KEY (createdBy) REFERENCES users(user_id),
+    FOREIGN KEY (office) REFERENCES offices(office_id),
+    FOREIGN KEY (candidate) REFERENCES candidates(candidate_id),
+    PRIMARY KEY (office, createdBy)
+  );`;
+  await pool.query(voteTable)
+    .then(() => {
+      console.log('vote table created!: ');
+    }).catch((err) => {
+      console.log('An error occured while creating vote table: ', err);
+      pool.end();
+    });
+};
 
-export default { pool, users, party, office, candidate };
+export default {
+  pool, users, party, office, candidate, vote
+};
