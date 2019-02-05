@@ -10,16 +10,19 @@ const localhost = {
   password: process.env.PGPASSWORD,
   port: process.env.PGPORT
 };
+let pool;
+const proDB = process.env.PRODUCTION;
+// const testDB = process.env.TESTING;
 
-// const onlineDB = process.env.ELEPHANTSQL;
+console.log(process.env.NODE_ENV);
+if (process.env.NODE_ENV === 'development') {
+  pool = new pg.Pool(proDB);
+  console.log(pool);
+} else {
+  pool = new pg.Pool(localhost);
+  console.log(localhost);
+}
 
-const pool = new pg.Pool(
-  {
-    connectionString: 'postgres://gklwunop:LhHMN3D61GirLtgdpHyzSK3shzT7tSev@elmer.db.elephantsql.com:5432/gklwunop'
-  } || localhost
-);
-
-// console.log(onlineDB);
 
 pool.on('connect', () => {
   console.log('connected to the Database');
@@ -30,7 +33,7 @@ const users = async () => {
   const userTable = `
     CREATE TABLE IF NOT EXISTS 
     users(
-        user_id SERIAL PRIMARY KEY,
+        user_id SERIAL NOT NULL UNIQUE,
         firstname VARCHAR(128) NOT NULL,
         lastname VARCHAR(128) NOT NULL,
         othernames VARCHAR(128) NOT NULL,
@@ -55,7 +58,7 @@ const party = async () => {
   const partyTable = `
       CREATE TABLE IF NOT EXISTS 
       parties(
-        party_id SERIAL PRIMARY KEY,
+        party_id SERIAL NOT NULL UNIQUE,
         name VARCHAR NOT NULL,
         hqAddress VARCHAR NOT NULL,
         logoUrl VARCHAR NOT NULL
@@ -86,4 +89,27 @@ const office = async () => {
     });
 };
 
-export default { pool, users, party, office };
+const candidate = async () => {
+  const candidateTable = `
+  CREATE TABLE IF NOT EXISTS 
+  candidates(
+    candidate_id SERIAL NOT NULL UNIQUE,
+    office INTEGER,
+    party INTEGER,
+    createdBy INTEGER,
+    FOREIGN KEY (party) REFERENCES parties(party_id),
+    FOREIGN KEY (createdBy) REFERENCES users(user_id),
+    FOREIGN KEY (office) REFERENCES offices(office_id),
+    PRIMARY KEY (createdBy, office)
+  );`;
+  await pool.query(candidateTable)
+    .then(() => {
+      console.log('candidate table created!: ');
+    }).catch((err) => {
+      console.log('An error occured while creating candidate table: ', err);
+      pool.end();
+    });
+};
+
+
+export default { pool, users, party, office, candidate };

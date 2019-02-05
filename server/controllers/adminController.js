@@ -22,25 +22,28 @@ class AdminController {
       const {
         name, hqAddress, logoUrl
       } = req.body;
-
-      pool.connect((err, client, done) => {
-        if (err) throw err;
-        const query = 'INSERT INTO parties (name, hqAddress, logoUrl) VALUES($1,$2,$3) RETURNING*';
-        const value = [name, hqAddress, logoUrl];
-        client.query(query, value, (error, result) => {
-          done();
-          if (error || result.rowCount === 0) {
-            return res.status(400).json({ status: 400, error: error.detail });
-          }
-          return res.status(201).json({
-            status: 201,
-            data: [{
-              id: result.rows[0].party_id,
-              name: result.rows[0].name
-            }]
+      if (req.admin) {
+        pool.connect((err, client, done) => {
+          if (err) throw err;
+          const query = 'INSERT INTO parties (name, hqAddress, logoUrl) VALUES($1,$2,$3) RETURNING*';
+          const value = [name, hqAddress, logoUrl];
+          client.query(query, value, (error, result) => {
+            done();
+            if (error || result.rowCount === 0) {
+              return res.status(400).json({ status: 400, error: error.detail });
+            }
+            return res.status(201).json({
+              status: 201,
+              data: [{
+                id: result.rows[0].party_id,
+                name: result.rows[0].name
+              }]
+            });
           });
         });
-      });
+      } else {
+        return res.status(401).json({ status: 401, error: 'You are not authorized to use this route' });
+      }
     } catch (error) {
       return res.status(500).json({ status: 500, error: 'Server error' });
     }
@@ -122,25 +125,29 @@ class AdminController {
    */
   static editOneParty(req, res) {
     try {
-      const id = Number(req.params.party_id);
-      const { name, hqAddress, logoUrl } = req.body;
-      pool.connect((err, client, done) => {
-        const query = 'UPDATE parties SET name=$1, hqAddress=$2, logoUrl=$3 WHERE party_id=$4 RETURNING *';
-        const value = [name, hqAddress, logoUrl, id];
-        client.query(query, value, (error, result) => {
-          done();
-          if (error || result.rowCount === 0) {
-            return res.status(404).json({ staus: 404, message: 'The party with this ID could not be fetched' });
-          }
-          return res.status(200).json({
-            status: 201,
-            data: [{
-              id: result.rows[0].party_id,
-              name: result.rows[0].name
-            }]
+      if (req.admin) {
+        const id = Number(req.params.party_id);
+        const { name, hqAddress, logoUrl } = req.body;
+        pool.connect((err, client, done) => {
+          const query = 'UPDATE parties SET name=$1, hqAddress=$2, logoUrl=$3 WHERE party_id=$4 RETURNING *';
+          const value = [name, hqAddress, logoUrl, id];
+          client.query(query, value, (error, result) => {
+            done();
+            if (error || result.rowCount === 0) {
+              return res.status(404).json({ staus: 404, message: 'The party with this ID could not be fetched' });
+            }
+            return res.status(201).json({
+              status: 201,
+              data: [{
+                id: result.rows[0].party_id,
+                name: result.rows[0].name
+              }]
+            });
           });
         });
-      });
+      } else {
+        return res.status(401).json({ status: 401, error: 'You are not authorized to use this route' });
+      }
     } catch (error) {
       return res.status(500).json({ status: 500, error: 'Server error' });
     }
@@ -157,21 +164,25 @@ class AdminController {
    */
   static deleteOneParty(req, res) {
     try {
-      const id = Number(req.params.party_id);
-      pool.connect((err, client, done) => {
-        if (err) throw err;
-        const query = `DELETE FROM parties WHERE party_id=${id}`;
-        client.query(query, (error, result) => {
-          done();
-          if (error || result.rowCount === 0) {
-            return res.status(404).json({ staus: 404, error: 'Cant fetch any party with this ID' });
-          }
-          return res.status(200).json({
-            status: 200,
-            message: 'Party deleted successfully'
+      if (req.admin) {
+        const id = Number(req.params.party_id);
+        pool.connect((err, client, done) => {
+          if (err) throw err;
+          const query = `DELETE FROM parties WHERE party_id=${id}`;
+          client.query(query, (error, result) => {
+            done();
+            if (error || result.rowCount === 0) {
+              return res.status(404).json({ staus: 404, error: 'Cant fetch any party with this ID' });
+            }
+            return res.status(200).json({
+              status: 200,
+              message: 'Party deleted successfully'
+            });
           });
         });
-      });
+      } else {
+        return res.status(401).json({ status: 401, error: 'You are not authorized to use this route' });
+      }
     } catch (error) {
       return res.status(500).json({ status: 500, error: 'Server error' });
     }
@@ -188,27 +199,31 @@ class AdminController {
    */
   static registerOffice(req, res) {
     try {
-      const { type, name } = req.body;
+      if (req.admin) {
+        const { type, name } = req.body;
 
-      pool.connect((err, client, done) => {
-        if (err) throw err;
-        const query = 'INSERT INTO offices (name, type) VALUES($1,$2) RETURNING*';
-        const value = [name, type];
-        client.query(query, value, (error, result) => {
-          done();
-          if (error || result.rowCount === 0) {
-            return res.status(400).json({ status: 400, error: error.detail });
-          }
-          return res.status(201).json({
-            status: 201,
-            data: [{
-              id: result.rows[0].office_id,
-              type: result.rows[0].type,
-              name: result.rows[0].name
-            }]
+        pool.connect((err, client, done) => {
+          if (err) throw err;
+          const query = 'INSERT INTO offices (name, type) VALUES($1,$2) RETURNING*';
+          const value = [name, type];
+          client.query(query, value, (error, result) => {
+            done();
+            if (error || result.rowCount === 0) {
+              return res.status(400).json({ status: 400, error: error.detail });
+            }
+            return res.status(201).json({
+              status: 201,
+              data: [{
+                id: result.rows[0].office_id,
+                type: result.rows[0].type,
+                name: result.rows[0].name
+              }]
+            });
           });
         });
-      });
+      } else {
+        return res.status(401).json({ status: 401, error: 'You are not authorized to use this route' });
+      }
     } catch (error) {
       return res.status(500).json({ status: 500, error: 'Server error' });
     }

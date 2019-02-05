@@ -1,9 +1,12 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../app';
+import seed from '../models/seed';
+
 
 chai.should();
 chai.use(chaiHttp);
+seed();
 
 
 describe('POST /parties', () => {
@@ -76,7 +79,7 @@ describe('PATCH /parties/<party-id>/name', () => {
       .patch('/api/v1/parties/1/name')
       .send(editParty)
       .end((err, res) => {
-        res.should.have.status(200);
+        res.should.have.status(201);
         res.body.data[0].name.should.equal('National Action People (NAP)');
         res.body.data[0].id.should.equal(1);
         done(err);
@@ -187,5 +190,3 @@ describe('GET /offices/<office-id>', () => {
       });
   }));
 });
-
-

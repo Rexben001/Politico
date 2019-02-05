@@ -5,6 +5,17 @@ import app from '../app';
 chai.should();
 chai.use(chaiHttp);
 
+describe('PATCH /makeAdmin/:user_id', () => {
+  it('it should edit a specific political party', ((done) => {
+    chai.request(app)
+      .patch('/api/v1/makeAdmin/1')
+      .end((err, res) => {
+        res.should.have.status(201);
+        done(err);
+      });
+  }));
+});
+
 
 describe('POST /auth/signup', () => {
   it('it should create a new user', ((done) => {
@@ -98,6 +109,36 @@ describe('GET /auth/reset', () => {
     chai.request(app)
       .post('/api/v1/auth/reset')
       .send(reset)
+      .end((err, res) => {
+        res.should.have.status(400);
+        done(err);
+      });
+  }));
+});
+
+describe('GET /office/:user_id/register', () => {
+  it('it should create a new candidate', ((done) => {
+    const newCandidate = {
+      office: 1,
+      party: 2
+    };
+    chai.request(app)
+      .post('/api/v1/office/1/register')
+      .send(newCandidate)
+      .end((err, res) => {
+        res.should.have.status(201);
+        res.body.data.should.have.property('office');
+        done(err);
+      });
+  }));
+
+  it('it should return status code of 400 and an error message', ((done) => {
+    const newCandidate = {
+      party: 1
+    };
+    chai.request(app)
+      .post('/api/v1/office/1/register')
+      .send(newCandidate)
       .end((err, res) => {
         res.should.have.status(400);
         done(err);

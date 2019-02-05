@@ -166,6 +166,32 @@ class Validation {
       next();
     });
   }
+
+  /**
+ *
+ *
+ * @static
+ * @param {*} req
+ * @param {*} res
+ * @param {*} next
+ * @memberof Validation
+ */
+  static contestValidator(req, res, next) {
+    const validator = new validate(req.body, {
+      office: 'required',
+      party: 'required'
+    });
+
+    validator.check().then((matched) => {
+      if (!matched) {
+        return res.status(400).json({
+          status: 400,
+          error: validator.errors
+        });
+      }
+      next();
+    });
+  }
 }
 
 export default Validation;
