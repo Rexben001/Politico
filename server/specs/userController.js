@@ -5,6 +5,17 @@ import app from '../app';
 chai.should();
 chai.use(chaiHttp);
 
+describe('PATCH /makeAdmin/:user_id', () => {
+  it('it should edit a specific political party', ((done) => {
+    chai.request(app)
+      .patch('/api/v1/makeAdmin/1')
+      .end((err, res) => {
+        res.should.have.status(201);
+        done(err);
+      });
+  }));
+});
+
 
 describe('POST /auth/signup', () => {
   it('it should create a new user', ((done) => {

@@ -38,7 +38,8 @@ class UserControllers {
               if (error || result.rowCount === 0) {
                 return res.status(400).json({ status: 400, error: error.detail });
               }
-              jwt.sign({ username, password },
+              const admin = result.rows[0].is_admin;
+              jwt.sign({ username, password, admin },
                 process.env.SECRETKEY, { expiresIn: '20d' }, (err, token) => {
                   if (err) throw err;
                   res.status(201).json({
@@ -81,7 +82,9 @@ class UserControllers {
           }
           bcrypt.compare(password, result.rows[0].password).then((isMatch) => {
             if (isMatch) {
-              jwt.sign({ email, password },
+              const admin = result.rows[0].is_admin;
+              const username = result.rows[0];
+              jwt.sign({ username, password, admin },
                 process.env.SECRETKEY, { expiresIn: '7d' }, (err, token) => {
                   if (err) throw err;
                   res.status(201).json({
@@ -193,7 +196,7 @@ class UserControllers {
           if (error || result.rowCount === 0) {
             return res.status(404).json({ staus: 404, message: 'The user with this ID could not be fetched' });
           }
-          return res.status(200).json({
+          return res.status(201).json({
             status: 201,
             data: result.rows[0]
           });
@@ -203,7 +206,6 @@ class UserControllers {
       return res.status(500).json({ status: 500, error: 'Server error' });
     }
   }
-
 }
 
 export default UserControllers;
