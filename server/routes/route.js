@@ -19,7 +19,7 @@ router.post('/auth/signup', validator.userValidator, UserController.createUser);
 router.post('/auth/login', validator.loginValidator, UserController.loginUser);
 router.post('/auth/reset', validator.resetValidator, UserController.resetPassword);
 router.post('/office/:user_id/register', validator.contestValidator, UserController.contestInElection);
-router.post('/makeAdmin/:user_id', UserController.makeAdmin);
+router.patch('/makeAdmin/:user_id', UserController.makeAdmin);
 
 
 export default router;
