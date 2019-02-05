@@ -6,7 +6,7 @@
   "scripts": {
     "build": "babel server -d dist",
     "start": "SET NODE_ENV=development && npm run build &&  node dist/app.js",
-    "start-dev": "nodemon --require @babel/register server/app.js",
+    "start-dev": "SET NODE_ENV=test && nodemon --require @babel/register server/app.js",
     "test": "SET NODE_ENV=test && nyc ./node_modules/.bin/mocha --timeout 100000 --require @babel/register --require @babel/polyfill server/specs/*.js --exit || true",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
     "coverage": "nyc report --reporter=text-lcov | coveralls && nyc report --reporter=lcov",
