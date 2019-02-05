@@ -175,7 +175,7 @@ class UserControllers {
 
   static makeAdmin(req, res) {
     try {
-      const id = Number(req.params.party_id);
+      const id = Number(req.params.user_id);
       pool.connect((err, client, done) => {
         const query = 'UPDATE users SET is_admin=$1, user_id=$2 RETURNING*';
         const value = [false, id];
