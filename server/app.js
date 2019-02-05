@@ -2,7 +2,6 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import router from './routes/route';
 import database from './models/database';
-import seed from './models/seed';
 
 const app = express();
 const {
@@ -24,7 +23,6 @@ const createTable = async () => {
   await party();
   await office();
   await candidate();
-  await seed();
 };
 
 createTable();
