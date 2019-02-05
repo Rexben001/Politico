@@ -1,9 +1,12 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../app';
+import seed from '../models/seed';
+
 
 chai.should();
 chai.use(chaiHttp);
+seed();
 
 
 describe('POST /parties', () => {
