@@ -173,12 +173,21 @@ class UserControllers {
     }
   }
 
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @returns
+   * @memberof UserControllers
+   */
   static makeAdmin(req, res) {
     try {
       const id = Number(req.params.user_id);
       pool.connect((err, client, done) => {
         const query = 'UPDATE users SET is_admin=$1, user_id=$2 RETURNING*';
-        const value = [false, id];
+        const value = [true, id];
         client.query(query, value, (error, result) => {
           done();
           if (error || result.rowCount === 0) {
