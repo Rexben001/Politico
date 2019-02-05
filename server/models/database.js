@@ -12,15 +12,15 @@ const localhost = {
 };
 let pool;
 const proDB = process.env.PRODUCTION;
-const testDB = process.env.TESTING;
+// const testDB = process.env.TESTING;
 
 console.log(process.env.NODE_ENV);
 if (process.env.NODE_ENV === 'development') {
   pool = new pg.Pool(proDB);
   console.log(pool);
 } else {
-  pool = new pg.Pool(testDB);
-  console.log(testDB);
+  pool = new pg.Pool(localhost);
+  console.log(localhost);
 }
 
 
