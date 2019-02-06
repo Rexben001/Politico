@@ -30,13 +30,13 @@ class UserControllers {
           pool.connect((err, client, done) => {
             if (err) throw err;
             const query = `INSERT INTO users(firstname, lastname, othernames, username,
-                  email, phoneNumber, password, is_admin, passportUrl) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING *`;
+                  email, phoneNumber, password, is_admin, passportUrl) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING user_id, firstname, lastname, email`;
             const value = [firstname, lastname, othernames, username,
               email, phonenumber, passwordHash, false, passportUrl];
             client.query(query, value, (error, result) => {
               done();
               if (error || result.rowCount === 0) {
-                return res.status(400).json({ status: 400, error: error.detail });
+                return res.status(400).json({ status: 400, error: `Unable to create user, ${error.detail}` });
               }
               const admin = result.rows[0].is_admin;
               jwt.sign({ username, password, admin },
@@ -91,7 +91,11 @@ class UserControllers {
                     status: 201,
                     data: [{
                       token,
-                      user: result.rows[0]
+                      user: {
+                        id: result.rows[0].user_id,
+                        username: result.rows[0].username,
+                        email: result.rows[0].email
+                      }
                     }]
                   });
                 });
@@ -188,20 +192,25 @@ class UserControllers {
    */
   static makeAdmin(req, res) {
     try {
-      pool.connect((err, client, done) => {
-        const query = 'UPDATE users SET is_admin=$1 RETURNING*';
-        const value = [true];
-        client.query(query, value, (error, result) => {
-          done();
-          if (error || result.rowCount === 0) {
-            return res.status(404).json({ staus: 404, message: 'The user with this ID could not be fetched' });
-          }
-          return res.status(201).json({
-            status: 201,
-            data: result.rows[0]
+      const id = Number(req.params.user_id);
+      if (req.admin) {
+        pool.connect((err, client, done) => {
+          const query = 'UPDATE users SET is_admin=$1 WHERE user_id=$2 RETURNING user_id, username, email, is_admin';
+          const value = [true, id];
+          client.query(query, value, (error, result) => {
+            done();
+            if (error || result.rowCount === 0) {
+              return res.status(404).json({ staus: 404, error: `The user with this ID could not be fetched, ${error}` });
+            }
+            return res.status(201).json({
+              status: 201,
+              data: result.rows[0]
+            });
           });
         });
-      });
+      } else {
+        return res.status(401).json({ status: 401, error: 'You are not authorized to use this route' });
+      }
     } catch (error) {
       return res.status(500).json({ status: 500, error: 'Server error' });
     }
@@ -223,21 +232,17 @@ class UserControllers {
       const value = [office, createdBy, candidate];
       client.query(query, value, (error, result) => {
         done();
-        if (error) {
-          res.status(500).json({ status: 500, message: `An error occured while trying to save contest, ${error}` });
-        } else {
-          if (result.rowCount === 0) {
-            res.status(500).json({ staus: 500, message: 'The contest could not be saved' });
-          }
-          res.status(200).json({
-            status: 200,
-            data: {
-              office: result.rows[0].office,
-              candidate: result.rows[0].candidate,
-              voter: result.rows[0].createdBy
-            }
-          });
+        if (error || result.rowCount === 0) {
+          return res.status(404).json({ staus: 404, message: `User can not vote, ${error}` });
         }
+        res.status(200).json({
+          status: 200,
+          data: {
+            office: result.rows[0].office,
+            candidate: result.rows[0].candidate,
+            voter: result.rows[0].createdBy
+          }
+        });
       });
     });
   }

@@ -11,6 +11,8 @@ router.get('/parties', Authentication.verifyUser, AdminController.getAllParties)
 router.get('/parties/:party_id', Authentication.verifyUser, AdminController.getOneParty);
 router.patch('/parties/:party_id/name', validator.editPartyValidator, Authentication.verifyUser, AdminController.editOneParty);
 router.delete('/parties/:party_id', Authentication.verifyUser, AdminController.deleteOneParty);
+router.get('/office/:office_id/result', Authentication.verifyUser, AdminController.getAllResults);
+
 
 router.post('/offices', validator.officeValidator, Authentication.verifyUser, AdminController.registerOffice);
 router.get('/offices', Authentication.verifyUser, AdminController.getAllOffices);
@@ -20,7 +22,7 @@ router.post('/auth/signup', validator.userValidator, UserController.createUser);
 router.post('/auth/login', validator.loginValidator, UserController.loginUser);
 router.post('/auth/reset', validator.resetValidator, Authentication.verifyUser, UserController.resetPassword);
 router.post('/office/:user_id/register', validator.contestValidator, Authentication.verifyUser, UserController.contestInElection);
-router.patch('/makeAdmin', Authentication.verifyUser, UserController.makeAdmin);
+router.patch('/makeAdmin/:user_id', Authentication.verifyUser, UserController.makeAdmin);
 router.post('/votes', validator.voteValidator, Authentication.verifyUser, UserController.userVote);
 
 

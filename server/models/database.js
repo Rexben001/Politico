@@ -3,26 +3,9 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const localhost = {
-  user: process.env.PGUSER,
-  host: process.env.PGHOST,
-  database: process.env.PGDATABASE,
-  password: process.env.PGPASSWORD,
-  port: process.env.PGPORT
-};
-let pool;
-const proDB = process.env.PRODUCTION;
-// const testDB = process.env.TESTING;
-
-console.log(process.env.NODE_ENV);
-if (process.env.NODE_ENV === 'development') {
-  pool = new pg.Pool(proDB);
-  console.log(pool);
-} else {
-  pool = new pg.Pool(localhost);
-  console.log(localhost);
-}
-
+const pool = new pg.Pool({
+  connectionString: process.env.PRODUCTION
+})
 
 pool.on('connect', () => {
   console.log('connected to the Database');
