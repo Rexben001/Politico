@@ -112,6 +112,7 @@ class UserControllers {
    * @static
    * @param {*} req
    * @param {*} res
+   * @returns
    * @memberof UserControllers
    */
   static resetPassword(req, res) {
@@ -187,10 +188,9 @@ class UserControllers {
    */
   static makeAdmin(req, res) {
     try {
-      const id = Number(req.params.user_id);
       pool.connect((err, client, done) => {
-        const query = 'UPDATE users SET is_admin=$1, user_id=$2 RETURNING*';
-        const value = [true, id];
+        const query = 'UPDATE users SET is_admin=$1 RETURNING*';
+        const value = [true];
         client.query(query, value, (error, result) => {
           done();
           if (error || result.rowCount === 0) {
@@ -205,6 +205,41 @@ class UserControllers {
     } catch (error) {
       return res.status(500).json({ status: 500, error: 'Server error' });
     }
+  }
+
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @memberof UserControllers
+   */
+  static userVote(req, res) {
+    const { office, createdBy, candidate } = req.body;
+    pool.connect((err, client, done) => {
+      if (err) throw err;
+      const query = 'INSERT INTO votes(office, createdBy, createdOn, candidate) VALUES($1, $2, NOW(), $3) RETURNING*';
+      const value = [office, createdBy, candidate];
+      client.query(query, value, (error, result) => {
+        done();
+        if (error) {
+          res.status(500).json({ status: 500, message: `An error occured while trying to save contest, ${error}` });
+        } else {
+          if (result.rowCount === 0) {
+            res.status(500).json({ staus: 500, message: 'The contest could not be saved' });
+          }
+          res.status(200).json({
+            status: 200,
+            data: {
+              office: result.rows[0].office,
+              candidate: result.rows[0].candidate,
+              voter: result.rows[0].createdBy
+            }
+          });
+        }
+      });
+    });
   }
 }
 

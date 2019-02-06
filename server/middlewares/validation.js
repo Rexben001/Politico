@@ -127,7 +127,7 @@ class Validation {
    */
   static loginValidator(req, res, next) {
     const validator = new validate(req.body, {
-      email: 'required|string',
+      email: 'required|email',
       password: 'required|string'
     });
 
@@ -153,7 +153,7 @@ class Validation {
    */
   static resetValidator(req, res, next) {
     const validator = new validate(req.body, {
-      email: 'required|string',
+      email: 'required|email',
     });
 
     validator.check().then((matched) => {
@@ -178,8 +178,35 @@ class Validation {
  */
   static contestValidator(req, res, next) {
     const validator = new validate(req.body, {
-      office: 'required',
-      party: 'required'
+      office: 'required|integer',
+      party: 'required|integer'
+    });
+
+    validator.check().then((matched) => {
+      if (!matched) {
+        return res.status(400).json({
+          status: 400,
+          error: validator.errors
+        });
+      }
+      next();
+    });
+  }
+
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   * @memberof Validation
+   */
+  static voteValidator(req, res, next) {
+    const validator = new validate(req.body, {
+      office: 'required|integer',
+      createdBy: 'required|integer',
+      candidate: 'required|integer'
     });
 
     validator.check().then((matched) => {

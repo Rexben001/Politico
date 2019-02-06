@@ -23,8 +23,8 @@ class Auth {
     // Read from token.txt or added manually
     const token = req.headers['authorization'];
     if (!token || token === undefined) {
-      return res.status(404).json({
-        status: 404,
+      return res.status(403).json({
+        status: 403,
         error: 'No token provided.'
       });
     }
