@@ -34,6 +34,7 @@ class Auth {
       }
       req.user = decode.username;
       req.admin = decode.admin;
+      req.id = decode.id;
       next();
     });
   }
