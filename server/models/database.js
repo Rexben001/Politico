@@ -42,9 +42,9 @@ const party = async () => {
       CREATE TABLE IF NOT EXISTS 
       parties(
         party_id SERIAL NOT NULL UNIQUE,
-        name VARCHAR NOT NULL,
-        hqAddress VARCHAR NOT NULL,
-        logoUrl VARCHAR NOT NULL
+        name VARCHAR NOT NULL UNIQUE,
+        hqAddress VARCHAR NOT NULL UNIQUE,
+        logoUrl VARCHAR NOT NULL UNIQUE
       );`;
   await pool.query(partyTable)
     .then(() => {
@@ -79,7 +79,7 @@ const candidate = async () => {
     candidate_id SERIAL NOT NULL UNIQUE,
     office INTEGER,
     party INTEGER,
-    createdBy INTEGER,
+    createdBy INTEGER UNIQUE,
     FOREIGN KEY (party) REFERENCES parties(party_id),
     FOREIGN KEY (createdBy) REFERENCES users(user_id),
     FOREIGN KEY (office) REFERENCES offices(office_id),
@@ -100,13 +100,13 @@ const vote = async () => {
   votes(
     vote_id SERIAL NOT NULL UNIQUE,
     createdOn DATE NOT NULL,
-    createdBy INTEGER,
+    voter INTEGER,
     candidate INTEGER,
     office INTEGER,
-    FOREIGN KEY (createdBy) REFERENCES users(user_id),
+    FOREIGN KEY (voter) REFERENCES users(user_id),
     FOREIGN KEY (office) REFERENCES offices(office_id),
     FOREIGN KEY (candidate) REFERENCES candidates(candidate_id),
-    PRIMARY KEY (office, createdBy)
+    PRIMARY KEY (office, voter, candidate)
   );`;
   await pool.query(voteTable)
     .then(() => {

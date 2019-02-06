@@ -1,6 +1,9 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import router from './routes/route';
+import partyRouter from './routes/partyRoute';
+import officeRouter from './routes/officeRoute';
+import userRouter from './routes/userRoute';
+import adminRouter from './routes/adminRoute';
 import database from './models/database';
 
 const app = express();
@@ -29,7 +32,11 @@ const createTable = async () => {
 createTable();
 
 
-app.use('/api/v1', router);
+app.use('/api/v1', partyRouter);
+app.use('/api/v1', userRouter);
+app.use('/api/v1', officeRouter);
+app.use('/api/v1', adminRouter);
+
 
 app.listen(process.env.PORT || 8080, () => {
   console.log('Working');
