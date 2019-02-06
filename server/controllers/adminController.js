@@ -293,6 +293,41 @@ class AdminController {
       return res.status(500).json({ status: 500, error: 'Server error' });
     }
   }
+
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @returns
+   * @memberof AdminController
+   */
+  static getAllResults(req, res) {
+    try {
+      if (req.admin) {
+        const id = Number(req.params.office_id);
+        pool.connect((err, client, done) => {
+          if (err) throw err;
+          const query = `SELECT COUNT(votes.candidate) AS result, candidates.candidate_id, candidates.office FROM votes JOIN candidates ON candidates.candidate_id =votes.candidate  WHERE votes.office = ${id} GROUP BY candidates.candidate_id, candidates.createdBy, candidates.office`;
+          client.query(query, (error, result) => {
+            done();
+            if (error || result.rowCount === 0) {
+              return res.status(500).json({ staus: 500, message: `Vote could not be fetched, ${error}` });
+            }
+            return res.status(200).json({
+              status: 200,
+              data: result.rows
+            });
+          });
+        });
+      } else {
+        return res.status(401).json({ status: 401, error: 'You are not authorized to use this route' });
+      }
+    } catch (error) {
+      return res.status(500).json({ status: 500, error: 'Server error' });
+    }
+  }
 }
 
 
