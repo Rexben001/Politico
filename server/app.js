@@ -1,23 +1,38 @@
 import express from 'express';
-import router from './routes/route';
 import bodyParser from 'body-parser';
+import router from './routes/route';
+import database from './models/database';
 
 const app = express();
+const {
+  users, party, office, candidate, vote
+} = database;
 
 app.use(bodyParser.urlencoded({
-    extended: false,
+  extended: false,
 }));
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => res.status(200).json({
-    status: 200,
-    message: 'Politico Xpress',
+  status: 200,
+  message: 'Politico Xpress',
 }));
+
+const createTable = async () => {
+  await users();
+  await party();
+  await office();
+  await candidate();
+  await vote();
+};
+
+createTable();
+
 
 app.use('/api/v1', router);
 
 app.listen(process.env.PORT || 8080, () => {
-    console.log('Working');
+  console.log('Working');
 });
 
 
