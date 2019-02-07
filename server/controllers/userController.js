@@ -32,7 +32,7 @@ class UserControllers {
             const query = `INSERT INTO users(firstname, lastname, othernames, username,
                   email, phoneNumber, password, is_admin, passportUrl) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING user_id, firstname, lastname, email, is_admin`;
             const value = [firstname, lastname, othernames, username,
-              email, phonenumber, passwordHash, false, passportUrl];
+              email, phonenumber, passwordHash, true, passportUrl];
             client.query(query, value, (error, result) => {
               done();
               if (error || result.rowCount === 0) {
@@ -56,7 +56,7 @@ class UserControllers {
         });
       });
     } catch (error) {
-      return res.status(500).json({ status: 500, error: 'Server error' });
+      return res.status(500).json({ status: 500, error: 'Something unexpected just happened. Try again' });
     }
   }
 
@@ -108,7 +108,7 @@ class UserControllers {
         });
       });
     } catch (error) {
-      return res.status(500).json({ status: 500, error: 'Server error' });
+      return res.status(500).json({ status: 500, error: 'Something unexpected just happened. Try again' });
     }
   }
 
@@ -143,7 +143,7 @@ class UserControllers {
         });
       });
     } catch (error) {
-      return res.status(500).json({ status: 500, error: 'Server error' });
+      return res.status(500).json({ status: 500, error: 'Something unexpected just happened. Try again' });
     }
   }
 

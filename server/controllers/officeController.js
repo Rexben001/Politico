@@ -46,7 +46,7 @@ class OfficeCOntroller {
         return res.status(401).json({ status: 401, error: 'You are not authorized to use this route' });
       }
     } catch (error) {
-      return res.status(500).json({ status: 500, error: 'Server error' });
+      return res.status(500).json({ status: 500, error: 'Something unexpected just happened. Try again' });
     }
   }
 
@@ -79,7 +79,7 @@ class OfficeCOntroller {
         });
       });
     } catch (error) {
-      return res.status(500).json({ status: 500, error: 'Server error' });
+      return res.status(500).json({ status: 500, error: 'Something unexpected just happened. Try again' });
     }
   }
 
@@ -94,6 +94,7 @@ class OfficeCOntroller {
    */
   static getOneParty(req, res) {
     try {
+
       const id = Number(req.params.party_id);
       pool.connect((err, client, done) => {
         if (err) throw err;
@@ -114,7 +115,7 @@ class OfficeCOntroller {
         });
       });
     } catch (error) {
-      return res.status(500).json({ status: 500, error: 'Server error' });
+      return res.status(500).json({ status: 500, error: 'Something unexpected just happened. Try again' });
     }
   }
 
@@ -130,6 +131,7 @@ class OfficeCOntroller {
   static editOneParty(req, res) {
     try {
       if (req.admin) {
+
         const id = Number(req.params.party_id);
         const {
           name, hqAddress, logoUrl
@@ -155,7 +157,7 @@ class OfficeCOntroller {
         return res.status(401).json({ status: 401, error: 'You are not authorized to use this route' });
       }
     } catch (error) {
-      return res.status(500).json({ status: 500, error: 'Server error' });
+      return res.status(500).json({ status: 500, error: 'Something unexpected just happened. Try again' });
     }
   }
 
@@ -171,10 +173,11 @@ class OfficeCOntroller {
   static deleteOneParty(req, res) {
     try {
       if (req.admin) {
+
         const id = Number(req.params.party_id);
         pool.connect((err, client, done) => {
           if (err) throw err;
-          const query = `DEconstE FROM parties WHERE party_id=${id}`;
+          const query = `DELETE FROM parties WHERE party_id=${id}`;
           client.query(query, (error, result) => {
             done();
             if (error || result.rowCount === 0) {
@@ -182,7 +185,7 @@ class OfficeCOntroller {
             }
             return res.status(200).json({
               status: 200,
-              message: 'Party deconsted successfully'
+              message: 'Party deleted successfully'
             });
           });
         });
@@ -190,7 +193,7 @@ class OfficeCOntroller {
         return res.status(401).json({ status: 401, error: 'You are not authorized to use this route' });
       }
     } catch (error) {
-      return res.status(500).json({ status: 500, error: 'Server error' });
+      return res.status(500).json({ status: 500, error: 'Something unexpected just happened. Try again' });
     }
   }
 
@@ -233,7 +236,7 @@ class OfficeCOntroller {
         return res.status(401).json({ status: 401, error: 'You are not authorized to use this route' });
       }
     } catch (error) {
-      return res.status(500).json({ status: 500, error: 'Server error' });
+      return res.status(500).json({ status: 500, error: 'Something unexpected just happened. Try again' });
     }
   }
 
@@ -266,7 +269,7 @@ class OfficeCOntroller {
         });
       });
     } catch (error) {
-      return res.status(500).json({ status: 500, error: 'Server error' });
+      return res.status(500).json({ status: 500, error: 'Something unexpected just happened. Try again' });
     }
   }
 
@@ -281,6 +284,7 @@ class OfficeCOntroller {
  */
   static getOneOffice(req, res) {
     try {
+
       const id = Number(req.params.office_id);
       pool.connect((err, client, done) => {
         if (err) throw err;
@@ -301,7 +305,7 @@ class OfficeCOntroller {
         });
       });
     } catch (error) {
-      return res.status(500).json({ status: 500, error: 'Server error' });
+      return res.status(500).json({ status: 500, error: 'Something unexpected just happened. Try again' });
     }
   }
 
@@ -317,6 +321,7 @@ class OfficeCOntroller {
   static getAllResults(req, res) {
     try {
       if (req.admin) {
+
         const id = Number(req.params.office_id);
         pool.connect((err, client, done) => {
           if (err) throw err;
@@ -336,7 +341,7 @@ class OfficeCOntroller {
         return res.status(401).json({ status: 401, error: 'You are not authorized to use this route' });
       }
     } catch (error) {
-      return res.status(500).json({ status: 500, error: 'Server error' });
+      return res.status(500).json({ status: 500, error: 'Something unexpected just happened. Try again' });
     }
   }
 }

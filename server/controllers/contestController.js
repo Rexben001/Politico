@@ -19,9 +19,6 @@ class contestController {
   static contestInElection(req, res) {
     try {
       if (req.admin) {
-        if (typeof (req.params.user_id) !== 'number') {
-          return res.status(400).json({ status: 400, error: 'ID must be a number' });
-        }
         const id = Number(req.params.user_id);
         const { office, party } = req.body;
         pool.connect((err, client, done) => {
@@ -46,7 +43,7 @@ class contestController {
         return res.status(401).json({ status: 401, error: 'You are not authorized to use this route' });
       }
     } catch (error) {
-      return res.status(500).json({ status: 500, error: 'Server error' });
+      return res.status(500).json({ status: 500, error: 'Something unexpected just happened. Try again' });
     }
   }
 }

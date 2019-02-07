@@ -2,10 +2,10 @@ const officeValidator = (req, res, next) => {
     let {
         name, type
     } = req.body;
-    if (!name || typeof (name) !== 'number') {
+    if (!name || typeof (name) !== 'string') {
         return res.status(422).json({ status: 422, error: 'Enter a valid name' });
     }
-    if (!type || typeof (type) !== 'number') {
+    if (!type || typeof (type) !== 'string') {
         return res.status(422).json({ status: 422, error: 'Enter a valid type' });
     }
 
