@@ -30,16 +30,17 @@ class UserControllers {
           pool.connect((err, client, done) => {
             if (err) throw err;
             const query = `INSERT INTO users(firstname, lastname, othernames, username,
-                  email, phoneNumber, password, is_admin, passportUrl) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING user_id, firstname, lastname, email`;
+                  email, phoneNumber, password, is_admin, passportUrl) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING user_id, firstname, lastname, email, is_admin`;
             const value = [firstname, lastname, othernames, username,
               email, phonenumber, passwordHash, false, passportUrl];
             client.query(query, value, (error, result) => {
               done();
               if (error || result.rowCount === 0) {
-                return res.status(400).json({ status: 400, error: `Unable to create user, ${error.detail}` });
+                return res.status(400).json({ status: 400, error: `Unable to create user, ${error}` });
               }
               const admin = result.rows[0].is_admin;
-              jwt.sign({ username, password, admin },
+              const id = result.rows[0].user_id;
+              jwt.sign({ username, password, admin, id },
                 process.env.SECRETKEY, { expiresIn: '20d' }, (err, token) => {
                   if (err) throw err;
                   res.status(201).json({
@@ -84,7 +85,8 @@ class UserControllers {
             if (isMatch) {
               const admin = result.rows[0].is_admin;
               const username = result.rows[0];
-              jwt.sign({ username, password, admin },
+              const id = result.rows[0].user_id;
+              jwt.sign({ username, password, admin, id },
                 process.env.SECRETKEY, { expiresIn: '7d' }, (err, token) => {
                   if (err) throw err;
                   res.status(201).json({
@@ -151,85 +153,14 @@ class UserControllers {
    * @static
    * @param {*} req
    * @param {*} res
-   * @returns
-   * @memberof UserControllers
-   */
-  static contestInElection(req, res) {
-    try {
-      const id = Number(req.params.user_id);
-      const { office, party } = req.body;
-      pool.connect((err, client, done) => {
-        if (err) throw err;
-        const query = 'INSERT INTO candidates(office, party, createdBy) VALUES($1, $2, $3) RETURNING*';
-        const value = [office, party, id];
-        client.query(query, value, (error, result) => {
-          done();
-          if (error || result.rowCount === 0) {
-            return res.status(404).json({ status: 404, error: `Unable to create a contestant, ${error}` });
-          }
-          return res.status(201).json({
-            status: 201,
-            data: {
-              office: result.rows[0].office,
-              user: result.rows[0].createdby
-            }
-          });
-        });
-      });
-    } catch (error) {
-      return res.status(500).json({ status: 500, error: 'Server error' });
-    }
-  }
-
-  /**
-   *
-   *
-   * @static
-   * @param {*} req
-   * @param {*} res
-   * @returns
-   * @memberof UserControllers
-   */
-  static makeAdmin(req, res) {
-    try {
-      const id = Number(req.params.user_id);
-      if (req.admin) {
-        pool.connect((err, client, done) => {
-          const query = 'UPDATE users SET is_admin=$1 WHERE user_id=$2 RETURNING user_id, username, email, is_admin';
-          const value = [true, id];
-          client.query(query, value, (error, result) => {
-            done();
-            if (error || result.rowCount === 0) {
-              return res.status(404).json({ staus: 404, error: `The user with this ID could not be fetched, ${error}` });
-            }
-            return res.status(201).json({
-              status: 201,
-              data: result.rows[0]
-            });
-          });
-        });
-      } else {
-        return res.status(401).json({ status: 401, error: 'You are not authorized to use this route' });
-      }
-    } catch (error) {
-      return res.status(500).json({ status: 500, error: 'Server error' });
-    }
-  }
-
-  /**
-   *
-   *
-   * @static
-   * @param {*} req
-   * @param {*} res
    * @memberof UserControllers
    */
   static userVote(req, res) {
-    const { office, createdBy, candidate } = req.body;
+    const { office, candidate } = req.body;
     pool.connect((err, client, done) => {
       if (err) throw err;
-      const query = 'INSERT INTO votes(office, createdBy, createdOn, candidate) VALUES($1, $2, NOW(), $3) RETURNING*';
-      const value = [office, createdBy, candidate];
+      const query = 'INSERT INTO votes(office, voter, createdOn, candidate) VALUES($1, $2, NOW(), $3) RETURNING*';
+      const value = [office, req.id, candidate];
       client.query(query, value, (error, result) => {
         done();
         if (error || result.rowCount === 0) {
@@ -247,5 +178,4 @@ class UserControllers {
     });
   }
 }
-
 export default UserControllers;
