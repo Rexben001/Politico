@@ -1,15 +1,7 @@
 const quotes = [
     {
-        quote: `"Change will not come if we wait for some other person or some other time. We are the ones we have been waiting for."`,
-        author: `~ Barack Obama`
-    },
-    {
         quote: `"Leadership is not about the next election, it's about the next generation."`,
         author: '~ Simon Sinek'
-    },
-    {
-        quote: `"One of the reasons people hate politics is that truth is rarely a politician's objective. Election and power are."`,
-        author: '~ Cal Thomas'
     },
     {
         quote: `"A politician thinks of the next election. A statesman, of the next generation."`,

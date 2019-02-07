@@ -75,7 +75,7 @@ a:hover{
   .navbar a:hover, .dropdown:hover .dropbtn {
       border-left: 1.5px solid green;
       border-right: 1.5px solid green;
-      padding-bottom: 8px;
+      /* padding-bottom: 8px; */
       transition: .5s;
       background-color: #ddd;
       color: #134213;
@@ -180,11 +180,11 @@ a:hover{
     color: green;
     width: 60%;
     margin: auto;
-    padding: 15px 18px 15px 15px;
+    padding: 18px 18px 15px 15px;
     border-left: solid #0fb836 10px;
     margin-top: 30px;
     position: relative;
-    height: 100px;
+    height: 90px;
 
 }
 
@@ -192,8 +192,8 @@ a:hover{
     position: absolute;
     top: 0;
     right: 0;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2.2rem;
+    height: 2.2rem;
     background-color: #28db10b9;
 }
 .triangle{
@@ -201,7 +201,7 @@ a:hover{
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 0 2.5rem 2.5rem 0;
+    border-width: 0 2.2rem 2.2rem 0;
     border-color: transparent #f1F2f2;
 }
 
@@ -218,7 +218,7 @@ a:hover{
 .author{
     margin: auto;
     text-align: center;
-    font-size: 2.5vh;
+    font-size: 2.7vh;
     resize: both;
     font-style: italic;
     margin-left: 250px;
@@ -339,7 +339,7 @@ a.register:hover, .edit-profile:hover{
     padding: 20px;
     float: left;
     margin: 10px;
-    box-shadow: 10px 10px 10px #b6b2b2;
+    box-shadow: 7px 7px 7px #b6b2b2;
 }
 
 .profile >.image{
@@ -460,7 +460,7 @@ a.register:hover, .edit-profile:hover{
             min-height: 100vh;
         }
         .backgroundImage .signpage{
-            min-height: 130vh;
+            min-height: 80vh;
         }
 
         .aboutPage{
@@ -469,10 +469,10 @@ a.register:hover, .edit-profile:hover{
             margin-top: 0;
         }
         .quo-bg{
-            height: 150px;
+            height: 130px;
         }
         .diplayQuote{
-            padding: 0 15px;
+            padding: 0 18px;
             font-size: 2.2vh;
             resize: both;
         }
@@ -480,11 +480,10 @@ a.register:hover, .edit-profile:hover{
             display: none;
         }
         .author{
-            font-size: 1.7vh;
+            font-size: 1.8vh;
             padding: 0 15px;
             margin-left: 40px;
             resize: both;
-
         }
         a.register{
             width: 60%;
