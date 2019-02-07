@@ -1,6 +1,6 @@
 const voteValidator = (req, res, next) => {
     let {
-        office, createdBy, candidate
+        office, candidate
     } = req.body;
     if (!office || typeof (office) !== 'number') {
         return res.status(422).json({ status: 422, error: 'Enter a valid office' });
