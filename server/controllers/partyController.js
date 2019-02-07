@@ -33,7 +33,7 @@ class PartyController {
           client.query(query, value, (error, result) => {
             done();
             if (error || result.rowCount === 0) {
-              return res.status(400).json({ status: 400, error: 'Unable to create an ID' });
+              return res.status(400).json({ status: 400, error: 'Unable to create a party' });
             }
             return res.status(201).json({
               status: 201,
@@ -48,7 +48,7 @@ class PartyController {
         return res.status(401).json({ status: 401, error: 'You are not authorized to use this route' });
       }
     } catch (error) {
-      return res.status(500).json({ status: 500, error: 'Server error' });
+      return res.status(500).json({ status: 500, error: 'Something unexpected just happened. Try again' });
     }
   }
 
@@ -78,7 +78,7 @@ class PartyController {
         });
       });
     } catch (error) {
-      return res.status(500).json({ status: 500, error: 'Server error' });
+      return res.status(500).json({ status: 500, error: 'Something unexpected just happened. Try again' });
     }
   }
 
@@ -93,9 +93,6 @@ class PartyController {
    */
   static getOneParty(req, res) {
     try {
-      if (typeof (req.params.party_id) !== 'number') {
-        return res.status(400).json({ status: 400, error: 'ID must be a number' });
-      }
       const id = Number(req.params.party_id);
       pool.connect((err, client, done) => {
         if (err) throw err;
@@ -116,7 +113,7 @@ class PartyController {
         });
       });
     } catch (error) {
-      return res.status(500).json({ status: 500, error: 'Server error' });
+      return res.status(500).json({ status: 500, error: 'Something unexpected just happened. Try again' });
     }
   }
 
@@ -132,9 +129,7 @@ class PartyController {
   static editOneParty(req, res) {
     try {
       if (req.admin) {
-        if (typeof (req.params.party_id) !== 'number') {
-          return res.status(400).json({ status: 400, error: 'ID must be a number' });
-        }
+
         const id = Number(req.params.party_id);
         const {
           name, hqAddress, logoUrl
@@ -161,7 +156,7 @@ class PartyController {
         return res.status(401).json({ status: 401, error: 'You are not authorized to use this route' });
       }
     } catch (error) {
-      return res.status(500).json({ status: 500, error: 'Server error' });
+      return res.status(500).json({ status: 500, error: 'Something unexpected just happened. Try again' });
     }
   }
 
@@ -177,9 +172,7 @@ class PartyController {
   static deleteOneParty(req, res) {
     try {
       if (req.admin) {
-        if (typeof (req.params.party_id) !== 'number') {
-          return res.status(400).json({ status: 400, error: 'ID must be a number' });
-        }
+
         const id = Number(req.params.party_id);
         pool.connect((err, client, done) => {
           if (err) throw err;
@@ -199,7 +192,7 @@ class PartyController {
         return res.status(401).json({ status: 401, error: 'You are not authorized to use this route' });
       }
     } catch (error) {
-      return res.status(500).json({ status: 500, error: 'Server error' });
+      return res.status(500).json({ status: 500, error: 'Something unexpected just happened. Try again' });
     }
   }
 }
