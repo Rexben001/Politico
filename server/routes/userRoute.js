@@ -6,6 +6,7 @@ import voteValidator from '../middlewares/Validators/voteValidator';
 import loginValidator from '../middlewares/Validators/loginValidator';
 import signupValidator from '../middlewares/Validators/signupValidator';
 import contestValidator from '../middlewares/Validators/contestValidator';
+import petitionValidator from '../middlewares/Validators/petitionValidator';
 import Authentication from '../middlewares/auth';
 
 const userRoute = express.Router();
@@ -16,5 +17,6 @@ userRoute.post('/auth/reset', Authentication.verifyUser, UserController.resetPas
 userRoute.post('/office/:user_id/register', contestValidator, Authentication.verifyUser, ContestController.contestInElection);
 userRoute.patch('/makeAdmin/:user_id', Authentication.verifyUser, AdminController.makeAdmin);
 userRoute.post('/votes', voteValidator, Authentication.verifyUser, UserController.userVote);
+userRoute.post('/petitions', petitionValidator, Authentication.verifyUser, UserController.writePetition);
 
 export default userRoute;

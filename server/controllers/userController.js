@@ -177,5 +177,32 @@ class UserControllers {
       });
     });
   }
+
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @memberof UserControllers
+   */
+  static writePetition(req, res) {
+    const { office, body, evidence } = req.body;
+    pool.connect((err, client, done) => {
+      if (err) throw err;
+      const query = 'INSERT INTO petitions(office, createdOn, createdBy, body, evidence) VALUES($1, NOW(), $2, $3, $4) RETURNING*';
+      const value = [office, req.id, body, evidence];
+      client.query(query, value, (error, result) => {
+        done();
+        if (error || result.rowCount === 0) {
+          return res.status(400).json({ status: 400, error: `Unable to create user, ${error}` });
+        }
+        res.status(201).json({
+          status: 201,
+          data: result.rows[0]
+        });
+      });
+    });
+  }
 }
 export default UserControllers;

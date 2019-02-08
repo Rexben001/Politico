@@ -9,7 +9,7 @@ let token;
 describe('GET /auth/login', () => {
   it('it should log in the user', ((done) => {
     const loginDetails = {
-      email: 'admin@gmail.com',
+      email: 'admin@politico.com',
       password: '1234'
     };
     chai.request(app)
@@ -19,7 +19,6 @@ describe('GET /auth/login', () => {
         res.should.have.status(201);
         res.body.data[0].user.should.have.property('email');
         res.body.data[0].should.have.property('token');
-        // console.log(res.body.data[0].token);
         token = res.body.data[0].token;
         done(err);
       });

@@ -11,7 +11,7 @@ let token;
 describe('GET /auth/login', () => {
   it('it should log in the user', ((done) => {
     const loginDetails = {
-      email: 'admin@gmail.com',
+      email: 'admin@politico.com',
       password: '1234'
     };
     chai.request(app)
@@ -21,7 +21,7 @@ describe('GET /auth/login', () => {
         res.should.have.status(201);
         res.body.data[0].user.should.have.property('email');
         res.body.data[0].should.have.property('token');
-        // console.log(res.body.data[0].token);
+        res.body.data[0].user.email.should.equal('admin@politico.com');
         token = res.body.data[0].token;
         done(err);
       });
@@ -41,6 +41,7 @@ describe('POST /parties', () => {
       .send(newParty)
       .end((err, res) => {
         res.should.have.status(201);
+        res.body.data[0].user.name.should.equal('Lion Action People (LAP)');
         done(err);
       });
   }));

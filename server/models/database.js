@@ -117,6 +117,26 @@ const vote = async () => {
     });
 };
 
+const petition = async () => {
+  const petitionTable = `
+  CREATE TABLE IF NOT EXISTS 
+  petitions(
+    petition_id SERIAL PRIMARY KEY,
+    createdOn DATE NOT NULL,
+    createdBy INTEGER REFERENCES users(user_id),
+    office INTEGER REFERENCES offices(office_id),
+    body VARCHAR NOT NULL,
+    evidence VARCHAR
+  );`;
+  await pool.query(petitionTable)
+    .then((res) => {
+      console.log('petition table created!: ');
+    }).catch((err) => {
+      console.log('An error occured while creating petition table: ', err);
+      pool.end();
+    });
+};
+
 export default {
-  pool, users, party, office, candidate, vote
+  pool, users, party, office, candidate, vote, petition
 };

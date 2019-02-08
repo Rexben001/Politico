@@ -8,7 +8,7 @@ import database from './models/database';
 
 const app = express();
 const {
-  users, party, office, candidate, vote
+  users, party, office, candidate, vote, petition
 } = database;
 
 app.use(bodyParser.urlencoded({
@@ -27,6 +27,7 @@ const createTable = async () => {
   await office();
   await candidate();
   await vote();
+  await petition();
 };
 
 createTable();

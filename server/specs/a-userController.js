@@ -50,7 +50,7 @@ describe('POST /auth/signup', () => {
 describe('GET /auth/login', () => {
   it('it should log in the user', ((done) => {
     const loginDetails = {
-      email: 'admin@gmail.com',
+      email: 'admin@politico.com',
       password: '1234'
     };
     chai.request(app)
@@ -59,6 +59,7 @@ describe('GET /auth/login', () => {
       .end((err, res) => {
         res.should.have.status(201);
         res.body.data[0].user.should.have.property('email');
+        res.body.data[0].user.email.should.equal('admin@politico.com');
         res.body.data[0].should.have.property('token');
         // console.log(res.body.data[0].token);
         token = res.body.data[0].token;
@@ -92,6 +93,7 @@ describe('GET /auth/reset', () => {
       .send(reset)
       .end((err, res) => {
         res.should.have.status(200);
+        res.body.data[0].user.email.should.equal('admin@politico.com');
         done(err);
       });
   }));
@@ -123,3 +125,35 @@ describe('GET /auth/reset', () => {
   }));
 });
 
+
+describe('POST /petitions', () => {
+  it('it should log in the user', ((done) => {
+    const petitionsDetails = {
+      office: 1,
+      body: 'Election outcome not free and fair',
+      evidence: 'trikmd.jpg'
+    };
+    chai.request(app)
+      .post('/api/v1/petitions')
+      .send(petitionsDetails)
+      .set('authorization', token)
+      .end((err, res) => {
+        res.should.have.status(201);
+        res.body.data[0].user.should.have.property('office');
+        done(err);
+      });
+  }));
+
+  it('it should return status code of 400 and an error message', ((done) => {
+    const petitions = {
+      firstname: 'Ben'
+    };
+    chai.request(app)
+      .post('/api/v1/auth/petitions')
+      .send(petitions)
+      .end((err, res) => {
+        res.should.have.status(400);
+        done(err);
+      });
+  }));
+});
