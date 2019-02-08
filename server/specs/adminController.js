@@ -165,7 +165,7 @@ describe('PATCH /parties/<party-id>/name', () => {
 describe('DELETE /parties/<party-id>', () => {
   it('it should delete a specific political party', ((done) => {
     chai.request(app)
-      .delete('/api/v1/parties/14')
+      .delete('/api/v1/parties/7')
       .set('authorization', token)
       .end((err, res) => {
         res.should.have.status(200);

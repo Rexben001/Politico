@@ -2,6 +2,8 @@ const petitionValidator = (req, res, next) => {
     let {
         office, body, evidence
     } = req.body;
+    body = body.trim();
+    evidence = evidence.trim();
     if (!office || typeof (office) !== 'number') {
         return res.status(422).json({ status: 422, error: 'Enter a valid office' });
     }

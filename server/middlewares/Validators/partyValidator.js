@@ -1,11 +1,14 @@
 import database from '../../models/database';
 
-const { pool } = database;
 
 const partyValidator = (req, res, next) => {
     let {
         name, hqAddress, logoUrl
     } = req.body;
+    name = name.trim();
+    hqAddress = hqAddress.trim();
+    logoUrl = logoUrl.trim();
+
     if (!name || typeof (name) !== 'string') {
         return res.status(422).json({ status: 422, error: 'Enter a valid name' });
     }

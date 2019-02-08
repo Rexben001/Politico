@@ -2,6 +2,16 @@ const signupValidator = (req, res, next) => {
     let {
         firstname, lastname, othernames, username, email, phonenumber, password, passportUrl
     } = req.body;
+    firstname = firstname.trim();
+    lastname = lastname.trim();
+    othernames = othernames.trim();
+    username = username.trim();
+    email = email.trim();
+    phonenumber = phonenumber.trim();
+    password = password.trim();
+    passportUrl = passportUrl.trim();
+
+
     const check = /\S+@\S+\.\S+/;
     if (!firstname || typeof (firstname) !== 'string') {
         return res.status(422).json({ status: 422, error: 'Enter a valid firstname' });
