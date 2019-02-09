@@ -7,9 +7,7 @@ const pool = new pg.Pool({
   connectionString: process.env.PRODUCTION
 })
 
-pool.on('connect', () => {
-  console.log('connected to the Database');
-});
+pool.on('connect', () => { });
 
 
 const users = async () => {

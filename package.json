@@ -17,7 +17,7 @@
     "type": "git",
     "url": "git+https://github.com/Rexben001/Politico.git"
   },
-  "author": "",
+  "author": "Ajewole Benjamin",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Rexben001/Politico/issues"
@@ -37,6 +37,7 @@
     "body-parser": "^1.18.3",
     "chai": "^4.2.0",
     "chai-http": "^4.2.1",
+    "cors": "^2.8.5",
     "coveralls": "^3.0.2",
     "dotenv": "^6.2.0",
     "eslint-config-airbnb-base": "^13.1.0",
@@ -45,11 +46,14 @@
     "jsonwebtoken": "^8.4.0",
     "mocha": "^5.2.0",
     "mocha-lcov-reporter": "^1.3.0",
+    "momentjs": "^2.0.0",
     "node-input-validator": "^3.1.0",
     "nodemon": "^1.18.9",
     "nyc": "^13.1.0",
     "pg": "^7.8.0",
-    "should": "^13.2.3"
+    "should": "^13.2.3",
+    "swagger-ui-express": "^4.0.2",
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "eslint": "^5.3.0",
