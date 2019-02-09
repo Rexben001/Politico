@@ -5,7 +5,7 @@ info:
   description: Politico enables citizens give their mandate to politicians running for different government offices while building trust in the process through transparency.
   contact: 
     email: "rexben.rb@gmail.com"
-host: https://politico-voting.herokuapp.com
+host: politico-voting.herokuapp.com
 basePath: /
 schemes:
 - https
@@ -37,7 +37,7 @@ paths:
         schema:
           $ref: '#/definitions/signupRequest'
       responses:
-        200:
+        201:
           description: ''
           headers: {}
   /api/v1/auth/reset:
@@ -63,20 +63,31 @@ paths:
         schema:
           $ref: '#/definitions/resetpasswordRequest'
       responses:
-        200:
+        201:
           description: ''
           headers: {}
   /api/v1/auth/login:
-    get:
+    post:
       description: Log in a user
       summary: login
       tags:
       - Users
-      operationId: ApiV1AuthResetGet
+      operationId: ApiV1AuthLoginPost
       deprecated: false
       produces:
       - application/json
-      parameters: []
+      parameters:
+      - name: Content-Type
+        in: header
+        required: true
+        type: string
+        description: ''
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/loginRequest'
       responses:
         200:
           description: ''
@@ -97,7 +108,7 @@ paths:
           description: ''
           headers: {}
     post:
-      description: 'TODO: Add Description'
+      description: Create a new party
       summary: post party
       tags:
       - Parties
@@ -121,7 +132,6 @@ paths:
         200:
           description: ''
           headers: {}
-
   /api/v1/parties/3:
    get:
       description: Get a specific party
@@ -160,7 +170,7 @@ paths:
         schema:
           $ref: '#/definitions/editapartyRequest'
       responses:
-        200:
+        201:
           description: ''
           headers: {}
   /api/v1/parties/10:
@@ -181,7 +191,7 @@ paths:
   /api/v1/offices:
     post:
       description: 'Create a new office'
-      summary: post office
+      summary: post offices
       tags:
       - Offices
       operationId: ApiV1OfficesPost
@@ -201,13 +211,28 @@ paths:
         schema:
           $ref: '#/definitions/postofficeRequest'
       responses:
+        201:
+          description: ''
+          headers: {}
+  /api/v1/offices:
+    get:
+      description: Get list of offices
+      summary: get lsit of all offices
+      tags:
+      - Offices
+      operationId: ApiV1officesGet
+      deprecated: false
+      produces:
+      - application/json
+      parameters: []
+      responses:
         200:
           description: ''
           headers: {}
   /api/v1/offices/1:
     get:
       description: 'Get a specific office'
-      summary: get office
+      summary: get one office
       tags:
       - Offices
       operationId: ApiV1Offices1Get
@@ -242,7 +267,7 @@ paths:
         schema:
           $ref: '#/definitions/candidateRequest'
       responses:
-        200:
+        201:
           description: ''
           headers: {}
   /api/v1/users:
@@ -272,7 +297,7 @@ paths:
       - application/json
       parameters: []
       responses:
-        200:
+        201:
           description: ''
           headers: {}
   /api/v1/votes/1/result:
@@ -313,7 +338,7 @@ paths:
         schema:
           $ref: '#/definitions/voteRequest'
       responses:
-        200:
+        201:
           description: ''
           headers: {}
   /api/v1/petitions:
@@ -338,6 +363,21 @@ paths:
         description: ''
         schema:
           $ref: '#/definitions/postpetitionsRequest'
+      responses:
+        201:
+          description: ''
+          headers: {}
+  /api/v1/votes/1/result:
+    get:
+      description: 'Collates and fetch election results per office'
+      summary: results
+      tags:
+      - Vote
+      operationId: ApiV1Votes1ResultGet
+      deprecated: false
+      produces:
+      - application/json
+      parameters: []
       responses:
         200:
           description: ''
@@ -391,20 +431,42 @@ definitions:
         type: string
     required:
     - email
+  loginRequest:
+    title: loginRequest
+    example:
+      email: rex@gmail.com
+      password: 1234
+    type: object
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
   editapartyRequest:
     title: editapartyRequest
     example:
-      name: NNN
+      name: 'People Party'
+      hqAddress: '10, Adeniy Drive, Lagos'
+      logoUrl: https://politico.com/pp_logo
     type: object
     properties:
       name:
         type: string
+      hqAddress:
+        type: string
+      logoUrl:
+        type: string
     required:
     - name
+    - hqAddress
+    - logoUrl
   postpartyRequest:
     title: postpartyRequest
     example:
-      name: 'Atention   People Party    '
+      name: 'Atention People Party'
       hqAddress: '10, Allison Street, Lagos'
       logoUrl: https://politico.com/ap_logo
     type: object

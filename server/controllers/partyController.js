@@ -12,8 +12,8 @@ class PartyController {
    *
    *
    * @static
-   * @param {*} req
-   * @param {*} res
+   * @param {Object} req
+   * @param {Object} res
    * @returns
    * @memberof PartyController
    */
@@ -35,7 +35,7 @@ class PartyController {
           }
           pool.query(query, value, (error, result) => {
             if (error) {
-              return res.status(400).json({ status: 400, error: '' });
+              return res.status(400).json({ status: 400, error: 'Unable to create party' });
             }
             return res.status(201).json({
               status: 201,
@@ -58,8 +58,8 @@ class PartyController {
    *
    *
    * @static
-   * @param {*} req
-   * @param {*} res
+   * @param {Object} req
+   * @param {Object} res
    * @returns
    * @memberof PartyController
    */
@@ -87,8 +87,8 @@ class PartyController {
    *
    *
    * @static
-   * @param {*} req
-   * @param {*} res
+   * @param {Object} req
+   * @param {Object} res
    * @returns
    * @memberof PartyController
    */
@@ -119,8 +119,8 @@ class PartyController {
    *
    *
    * @static
-   * @param {*} req
-   * @param {*} res
+   * @param {Object} req
+   * @param {Object} res
    * @returns
    * @memberof PartyController
    */
@@ -158,8 +158,8 @@ class PartyController {
    *
    *
    * @static
-   * @param {*} req
-   * @param {*} res
+   * @param {Object} req
+   * @param {Object} res
    * @returns
    * @memberof PartyController
    */

@@ -11,8 +11,8 @@ class contestController {
    *
    *
    * @static
-   * @param {*} req
-   * @param {*} res
+   * @param {Object} req
+   * @param {Object} res
    * @returns
    * @memberof contestController
    */

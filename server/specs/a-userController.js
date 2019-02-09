@@ -1,11 +1,9 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../app';
-import seed from '../models/seed';
 
 chai.should();
 chai.use(chaiHttp);
-seed();
 
 let token;
 
@@ -15,9 +13,9 @@ describe('POST /auth/signup', () => {
       firstname: 'Ben',
       lastname: 'Rex',
       othernames: 'Seyi',
-      email: 'mex@gmail.com',
+      email: 'cex@gmail.com',
       password: '1234',
-      username: 'benns',
+      username: 'cenns',
       phonenumber: '+234567890',
       passportUrl: 'http://www.politico.com/aban'
     };
@@ -31,8 +29,26 @@ describe('POST /auth/signup', () => {
         done(err);
       });
   }));
-
-  it('it should return status code of 400 and an error message', ((done) => {
+  it('it should return error 409', ((done) => {
+    const newUserr = {
+      firstname: 'Ben',
+      lastname: 'Rex',
+      othernames: 'Seyi',
+      email: 'cex@gmail.com',
+      password: '1234',
+      username: 'cenns',
+      phonenumber: '+234567890',
+      passportUrl: 'http://www.politico.com/aban'
+    };
+    chai.request(app)
+      .post('/api/v1/auth/signup')
+      .send(newUserr)
+      .end((err, res) => {
+        res.should.have.status(409);
+        done(err);
+      });
+  }));
+  it('it should return status code of 422 and an error message', ((done) => {
     const newUser = {
       firstname: 'Ben'
     };
@@ -40,7 +56,7 @@ describe('POST /auth/signup', () => {
       .post('/api/v1/auth/signup')
       .send(newUser)
       .end((err, res) => {
-        res.should.have.status(400);
+        res.should.have.status(422);
         done(err);
       });
   }));
@@ -61,13 +77,12 @@ describe('GET /auth/login', () => {
         res.body.data[0].user.should.have.property('email');
         res.body.data[0].user.email.should.equal('admin@politico.com');
         res.body.data[0].should.have.property('token');
-        // console.log(res.body.data[0].token);
         token = res.body.data[0].token;
         done(err);
       });
   }));
 
-  it('it should return status code of 400 and an error message', ((done) => {
+  it('it should return status code of 422 and an error message', ((done) => {
     const login = {
       firstname: 'Ben'
     };
@@ -75,7 +90,7 @@ describe('GET /auth/login', () => {
       .post('/api/v1/auth/login')
       .send(login)
       .end((err, res) => {
-        res.should.have.status(400);
+        res.should.have.status(422);
         done(err);
       });
   }));
@@ -85,7 +100,7 @@ describe('GET /auth/reset', () => {
 
   it('it should reset password', ((done) => {
     const reset = {
-      email: 'dexy@gmail.com',
+      email: 'rex@gmail.com',
     };
     chai.request(app)
       .post('/api/v1/auth/reset')
@@ -93,14 +108,14 @@ describe('GET /auth/reset', () => {
       .send(reset)
       .end((err, res) => {
         res.should.have.status(200);
-        res.body.data[0].user.email.should.equal('admin@politico.com');
+        // res.body.data[0].email.should.equal('rex@gmail.com');
         done(err);
       });
   }));
 
   it('it should return no token provided', ((done) => {
     const reset = {
-      email: 'dexy@gmail.com',
+      email: 'admin@politico.com',
     };
     chai.request(app)
       .post('/api/v1/auth/reset')
@@ -110,24 +125,11 @@ describe('GET /auth/reset', () => {
         done(err);
       });
   }));
-
-  it('it should return status code of 400 and an error message', ((done) => {
-    const reset = {
-      firstname: 'Ben'
-    };
-    chai.request(app)
-      .post('/api/v1/auth/reset')
-      .send(reset)
-      .end((err, res) => {
-        res.should.have.status(400);
-        done(err);
-      });
-  }));
 });
 
 
 describe('POST /petitions', () => {
-  it('it should log in the user', ((done) => {
+  it('it should create petition', ((done) => {
     const petitionsDetails = {
       office: 1,
       body: 'Election outcome not free and fair',
@@ -139,20 +141,20 @@ describe('POST /petitions', () => {
       .set('authorization', token)
       .end((err, res) => {
         res.should.have.status(201);
-        res.body.data[0].user.should.have.property('office');
+        res.body.data.should.have.property('office');
         done(err);
       });
   }));
 
-  it('it should return status code of 400 and an error message', ((done) => {
+  it('it should return status code of 422 and an error message', ((done) => {
     const petitions = {
-      firstname: 'Ben'
+      office: 1
     };
     chai.request(app)
-      .post('/api/v1/auth/petitions')
+      .post('/api/v1/petitions')
       .send(petitions)
       .end((err, res) => {
-        res.should.have.status(400);
+        res.should.have.status(422);
         done(err);
       });
   }));

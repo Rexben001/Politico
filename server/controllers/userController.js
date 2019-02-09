@@ -13,8 +13,8 @@ class UserControllers {
    *
    *
    * @static
-   * @param {*} req
-   * @param {*} res
+   * @param {Object} req
+   * @param {Object} res
    * @returns
    * @memberof UserControllers
    */
@@ -71,8 +71,8 @@ class UserControllers {
    *
    *
    * @static
-   * @param {*} req
-   * @param {*} res
+   * @param {Object} req
+   * @param {Object} res
    * @returns
    * @memberof UserControllers
    */
@@ -118,8 +118,8 @@ class UserControllers {
    *
    *
    * @static
-   * @param {*} req
-   * @param {*} res
+   * @param {Object} req
+   * @param {Object} res
    * @returns
    * @memberof UserControllers
    */
@@ -149,8 +149,8 @@ class UserControllers {
    *
    *
    * @static
-   * @param {*} req
-   * @param {*} res
+   * @param {Object} req
+   * @param {Object} res
    * @memberof UserControllers
    */
   static userVote(req, res) {
@@ -166,7 +166,7 @@ class UserControllers {
       }
       pool.query(query, value, (error, result) => {
         if (error) {
-          return res.status(404).json({ staus: 404, message: 'User can not vote' });
+          return res.status(404).json({ staus: 404, message: 'An error occurred' });
         }
         res.status(200).json({
           status: 200,
@@ -184,8 +184,8 @@ class UserControllers {
    *
    *
    * @static
-   * @param {*} req
-   * @param {*} res
+   * @param {Object} req
+   * @param {Object} res
    * @memberof UserControllers
    */
   static writePetition(req, res) {
@@ -194,7 +194,7 @@ class UserControllers {
     const value = [office, req.id, body, evidence];
     pool.query(query, value, (error, result) => {
       if (error || result.rowCount === 0) {
-        return res.status(400).json({ status: 400, error: `Unable to create user, ${error}` });
+        return res.status(400).json({ status: 400, error: 'Unable to create petition' });
       }
       res.status(201).json({
         status: 201,

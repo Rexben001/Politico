@@ -27,10 +27,7 @@ const users = async () => {
         UNIQUE(username, email)
         );`;
   await pool.query(userTable)
-    .then(() => {
-      console.log('users table created!: ');
-    }).catch((err) => {
-      console.log('An error occured while creating users table: ', err);
+    .then(() => { }).catch(() => {
       pool.end();
     });
 };
@@ -41,14 +38,12 @@ const party = async () => {
       parties(
         party_id SERIAL NOT NULL UNIQUE,
         name VARCHAR NOT NULL UNIQUE,
-        hqAddress VARCHAR NOT NULL UNIQUE,
+        hqAdds VARCHAR NOT NULL UNIQUE,
         logoUrl VARCHAR NOT NULL UNIQUE
       );`;
   await pool.query(partyTable)
     .then(() => {
-      console.log('parties table created!: ');
-    }).catch((err) => {
-      console.log('An error occured while creating party table: ', err);
+    }).catch(() => {
       pool.end();
     });
 };
@@ -63,9 +58,7 @@ const office = async () => {
       );`;
   await pool.query(officeTable)
     .then(() => {
-      console.log('offices table created!: ');
-    }).catch((err) => {
-      console.log('An error occured while creating office table: ', err);
+    }).catch(() => {
       pool.end();
     });
 };
@@ -78,16 +71,14 @@ const candidate = async () => {
     office INTEGER,
     party INTEGER,
     createdBy INTEGER UNIQUE,
-    FOREIGN KEY (party) REFERENCES parties(party_id),
-    FOREIGN KEY (createdBy) REFERENCES users(user_id),
-    FOREIGN KEY (office) REFERENCES offices(office_id),
+    FOREIGN KEY (party) REFERENCES parties(party_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (createdBy) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (office) REFERENCES offices(office_id) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (createdBy, office)
   );`;
   await pool.query(candidateTable)
     .then(() => {
-      console.log('candidate table created!: ');
-    }).catch((err) => {
-      console.log('An error occured while creating candidate table: ', err);
+    }).catch(() => {
       pool.end();
     });
 };
@@ -101,16 +92,14 @@ const vote = async () => {
     voter INTEGER,
     candidate INTEGER,
     office INTEGER,
-    FOREIGN KEY (voter) REFERENCES users(user_id),
-    FOREIGN KEY (office) REFERENCES offices(office_id),
-    FOREIGN KEY (candidate) REFERENCES candidates(candidate_id),
+    FOREIGN KEY (voter) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (office) REFERENCES offices(office_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (candidate) REFERENCES candidates(candidate_id) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (office, voter, candidate)
   );`;
   await pool.query(voteTable)
     .then(() => {
-      console.log('vote table created!: ');
-    }).catch((err) => {
-      console.log('An error occured while creating vote table: ', err);
+    }).catch(() => {
       pool.end();
     });
 };
@@ -121,16 +110,14 @@ const petition = async () => {
   petitions(
     petition_id SERIAL PRIMARY KEY,
     createdOn DATE NOT NULL,
-    createdBy INTEGER REFERENCES users(user_id),
-    office INTEGER REFERENCES offices(office_id),
+    createdBy INTEGER REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    office INTEGER REFERENCES offices(office_id) ON DELETE CASCADE ON UPDATE CASCADE,
     body VARCHAR NOT NULL,
     evidence VARCHAR
   );`;
   await pool.query(petitionTable)
-    .then((res) => {
-      console.log('petition table created!: ');
-    }).catch((err) => {
-      console.log('An error occured while creating petition table: ', err);
+    .then(() => {
+    }).catch(() => {
       pool.end();
     });
 };

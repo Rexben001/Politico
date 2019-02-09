@@ -12,8 +12,8 @@ class AdminController {
      *
      *
      * @static
-     * @param {*} req
-     * @param {*} res
+     * @param {Object} req
+     * @param {Object} res
      * @returns
      * @memberof AdminController
      */
@@ -25,7 +25,7 @@ class AdminController {
         const value = [true, id];
         pool.query(query, value, (error, result) => {
           if (error || result.rowCount === 0) {
-            return res.status(404).json({ staus: 404, error: `The user with this ID could not be fetched, ${error}` });
+            return res.status(404).json({ staus: 404, error: 'The user with this ID could not be fetched' });
           }
           return res.status(201).json({
             status: 201,
@@ -42,10 +42,10 @@ class AdminController {
 
   /**
       *
-      *
+      *@method getAllResults
       * @static
-      * @param {*} req
-      * @param {*} res
+      * @param {Object} req
+      * @param {Object} res
       * @returns
       * @memberof OfficeCOntroller
       */
@@ -59,7 +59,7 @@ class AdminController {
           client.query(query, (error, result) => {
             done();
             if (error || result.rowCount === 0) {
-              return res.status(500).json({ staus: 500, message: `Vote could not be fetched, ${error}` });
+              return res.status(500).json({ staus: 500, message: 'Vote could not be fetched' });
             }
             return res.status(200).json({
               status: 200,
