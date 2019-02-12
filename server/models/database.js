@@ -5,7 +5,14 @@ dotenv.config();
 
 const pool = new pg.Pool({
   connectionString: process.env.PRODUCTION
-})
+
+  // user: 'rex',
+  // host: 'localhost',
+  // database: 'politicodb',
+  // password: '73941995',
+  // port: 5432
+
+});
 
 pool.on('connect', () => { });
 
@@ -38,7 +45,7 @@ const party = async () => {
       parties(
         party_id SERIAL NOT NULL UNIQUE,
         name VARCHAR NOT NULL UNIQUE,
-        hqAdds VARCHAR NOT NULL UNIQUE,
+        hqAddress VARCHAR NOT NULL UNIQUE,
         logoUrl VARCHAR NOT NULL UNIQUE
       );`;
   await pool.query(partyTable)
@@ -83,6 +90,26 @@ const candidate = async () => {
     });
 };
 
+const acceptedCandidate = async () => {
+  const candidateTable2 = `
+  CREATE TABLE IF NOT EXISTS 
+  accept_candidates(
+    candidate_id SERIAL NOT NULL UNIQUE,
+    office INTEGER,
+    party INTEGER,
+    createdBy INTEGER UNIQUE,
+    FOREIGN KEY (party) REFERENCES parties(party_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (createdBy) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (office) REFERENCES offices(office_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    PRIMARY KEY (createdBy, office)
+  );`;
+  await pool.query(candidateTable2)
+    .then(() => {
+    }).catch(() => {
+      pool.end();
+    });
+};
+
 const vote = async () => {
   const voteTable = `
   CREATE TABLE IF NOT EXISTS 
@@ -94,11 +121,12 @@ const vote = async () => {
     office INTEGER,
     FOREIGN KEY (voter) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (office) REFERENCES offices(office_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (candidate) REFERENCES candidates(candidate_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (candidate) REFERENCES accept_candidates(createdBy) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (office, voter, candidate)
   );`;
   await pool.query(voteTable)
     .then(() => {
+      console.log('Votes table created')
     }).catch(() => {
       pool.end();
     });
@@ -123,5 +151,5 @@ const petition = async () => {
 };
 
 export default {
-  pool, users, party, office, candidate, vote, petition
+  pool, users, party, office, candidate, acceptedCandidate, vote, petition,
 };

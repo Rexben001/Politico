@@ -37,6 +37,8 @@
         <a href="" id="vote"><i class="fas fa-vote-yea"></i> Cast your vote</a>
         <a href="" id="pol"><i class="fas fa-address-book"></i> Political Parties</a>
         <a href="" id="candidates"><i class="fa fa-user-circle"></i> Aspirants</a>
+        <a href="" id="resul"><i class="fa fa-user-circle"></i> Election Results</a>
+
     </div>
     <div class="mainbar">
         <div class="signup-form" id="votes">
@@ -44,116 +46,53 @@
                 <h4>Vote wisely</h4>
             </div>
             <form class="signup not-signup" id="voting">
-                <label for="fullname"><span class="icon"><i class="fa fa-user-circle"></i></span> Full Name</label>
-                <input type="text" id="name" value="Rex Ben" disabled>
-                <label for="region"><span class="icon"><i class="fas fa-globe-africa"></i></span> Region/Area</label>
-                <input type="text" id="region" value="Ikorodu, Lagos State" disabled>
-                <label for="party"><span class="icon"><i class="fas fa-address-book"></i></span> Name of Party</label>
-                <select class="select-text" id="office">
+                <label for="party"><span class="icon"><i class="fas fa-address-book"></i></span> Office</label>
+                <select class="select-text" id="office" onchange="onVal()">
                     <option disabled selected>Select Office</option>
-                    <option value="pre">President</option>
-                    <option value="sen">Senate</option>
-                    <option value="hop">House Of Representative</option>
-                    <option value="gov">Governor</option>
-                    <option value="lgc">Local Government Chairman</option>
                 </select>
-                <label for="office"><span class="icon"><i class="fas fa-briefcase"></i></span> Office</label>
-                <select class="select-text" id="disabled">
+                <label for="office"><span class="icon"><i class="fas fa-briefcase"></i></span> Candidate</label>
+                <select class="select-text" id="candidate" onchange="onVal2()">
                     <option disabled selected>Select candidate</option>
+
                 </select>
                 <br>
                 <input type="submit" value="Vote">
             </form>
         </div>
         <div class="list part" id="parties">
-            <h4>List of registered political parties</h4>
-            <table>
+            <table id="partiess">
+                <h4>List of registered political parties</h4>
                 <tr>
                     <th>S/N</th>
                     <th>Name</th>
                     <th>HQ. Address</th>
                     <th>Logo URL</th>
                 </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Activist Group Of Truth (AGT)</td>
-                    <td>10, Lagos Road, Surulere, Lagos</td>
-                    <td>http://www.politico.com/agd_logo</td>
-
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Active Progress Party (APP)</td>
-                    <td>Km. 10, Mohammed ALi, Kano</td>
-                    <td>http://www.politico.com/app_logo</td>
-
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Lion Action Party (LAP)</td>
-                    <td>Block 12, Benin/Ore ExpressWay, Benin</td>
-                    <td>http://www.politico.com/lap_logo</td>
-
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Cultural Congress Group (CGP)</td>
-                    <td>Plot 99, Aso Rock Villa, Abuja</td>
-                    <td>http://www.politico.com/cgp_logo</td>
-
-                </tr>
+                <p id="no-data"></p>
             </table>
         </div>
         <div class="list cand" id="candy">
-            <table>
+            <table id="candidatess">
                 <h4>List of qualified candidate</h4>
                 <tr>
                     <th>S/N</th>
                     <th>Name</th>
                     <th>Government Office</th>
-                    <th>Region</th>
                     <th>Political Party</th>
                 </tr>
+            </table>
+        </div>
+        <div class="list result" id="resulty">
+            <div id="display"></div>
+            <table id="results">
+                <h4>Election results</h4>
                 <tr>
-                    <td>1</td>
-                    <td>James John</td>
-                    <td>Senator</td>
-                    <td>lagos West Senatorial District</td>
-                    <td>ADD</td>
-
+                    <th>S/N</th>
+                    <th>Office</th>
+                    <th>Candidate</th>
+                    <th>Result</th>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Tunde Thompson</td>
-                    <td>Governor</td>
-                    <td>Kano</td>
-                    <td>PDD</td>
-
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Babalola Esther</td>
-                    <td>President</td>
-                    <td>-</td>
-                    <td>LAP</td>
-
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>ALiu Babangida</td>
-                    <td>Local Govt. Chairman</td>
-                    <td>Otun LGA. Jos</td>
-                    <td>ADD</td>
-
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Mary Ebube</td>
-                    <td>House of Rep.</td>
-                    <td>Delta North Constituency</td>
-                    <td>ADD</td>
-
-                </tr>
+                <p id="no-data"></p>
             </table>
         </div>
     </div>

@@ -321,7 +321,7 @@ a.register:hover, .edit-profile:hover{
     width: 65%;
 }
 
-.cand, .part{
+.cand, .part, .result{
     display: none;
 }
 
@@ -385,6 +385,18 @@ a.register:hover, .edit-profile:hover{
 }
 #petitionForm{
     display: none;
+}
+ .editPage{
+     margin: 0 auto;
+    width: 40%;
+    box-sizing: border-box;
+    background: #ffffff;
+    color: green;
+    border-radius: 15px;
+    display: block;
+    margin: auto;
+    padding: 15px;
+    box-shadow: 2px 2px 5px 5px  #1c4225;
 }
 @media screen and (max-width: 1200px){
     .navbar a:not(:first-child), .dropdown .dropbtn {
