@@ -45,31 +45,15 @@
             <div class="intro">
                 <p>Express your interest to run for a political office by filling the form below correctly</p>
             </div>
-            <form class="signup not-signup" id="signup">
-                <label for="fullname"><span class="icon"><i class="fa fa-user-circle"></i></span> Full Name</label>
-                <input type="text" id="name" value="Rex Ben" disabled>
-                <label for="qualification"><span class="icon"><i class="fas fa-graduation-cap"></i></span> Academic
-                    Qualification</label>
-                <input type="text" id="qualification" value="Bsc." disabled>
+            <form class="signup not-signup" id="register">
                 <label for="party"><span class="icon"><i class="fas fa-address-book"></i></span> Name of Party</label>
-                <select class="select-text">
+                <select class="select-text" id="party" onchange="onVal2()">
                     <option disabled selected>Select Party</option>
-                    <option value="AGT">Activist Group Of Truth</option>
-                    <option value="APP">Active Progress Party</option>
-                    <option value="LAP">Lion Action Party</option>
-                    <option value="CCG">Cultural Congress Group</option>
                 </select>
                 <label for="office"><span class="icon"><i class="fas fa-briefcase"></i></span> Office</label>
-                <select class="select-text">
+                <select class="select-text" id="offices" onchange="onVal()">
                     <option disabled selected>Select Office</option>
-                    <option value="pres">President</option>
-                    <option value="gov">Governor</option>
-                    <option value="lgc">Local Governement Chairman</option>
-                    <option value="sen">Senator</option>
-                    <option value="hop">House of Rep.</option>
                 </select>
-                <label for="region"><span class="icon"><i class="fas fa-globe-africa"></i></span> Region/Area</label>
-                <input type="text" id="region" required>
                 <br>
                 <input type="submit" value="Apply">
             </form>
@@ -80,11 +64,12 @@
                 <p>Are you not satisfied the outcome of a particular election activity? Write to us today.</p>
             </div>
             <form class="signup not-signup" id="contestForm">
-                <label for="fullname"><span class="icon"><i class="fa fa-user-circle"></i></span> Full Name</label>
-                <input type="text" id="name" value="Rex Ben" disabled>
-                <label for="qualification"><span class="icon"><i class="fas fa-briefcase"></i></span>
-                    Political Office</label>
-                <input type="text" id="qualification" required>
+                <label for="office"><span class="icon"><i class="fas fa-briefcase"></i></span> Office</label>
+                <select class="select-text" id="offices2" onchange="onVal3()">
+                    <option disabled selected>Select Office</option>
+                </select>
+                <label for="region"><span class="icon"><i class="fas fa-globe-africa"></i></span> Evidence</label>
+                <input type="text" name="" id="evidence">
                 <label for="region"><span class="icon"><i class="fas fa-globe-africa"></i></span> Petition</label>
                 <textarea name="express" id="makePetition" cols="50" rows="10" placeholder="Write petition here..."></textarea>
                 <br>

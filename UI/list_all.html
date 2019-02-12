@@ -37,7 +37,7 @@
             </header>
     </div>
     <div class="list">
-        <table>
+        <table id="parties">
             <h4>List of registered political parties</h4>
             <tr>
                 <th>S/N</th>
@@ -47,84 +47,34 @@
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
-            <tr>
-                <td>1</td>
-                <td>Activist Group Of Truth (AGT)</td>
-                <td>10, Lagos Road, Surulere, Lagos</td>
-                <td>http://www.politico.com/agd_logo</td>
-                <td><a href="" class="edit" id="edit">Edit</a></td>
-                <td><a href="" class="delete" id="delete">Delete</a></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Active Progress Party (APP)</td>
-                <td>Km. 10, Mohammed ALi, Kano</td>
-                <td>http://www.politico.com/app_logo</td>
-                <td><a href="" class="edit" id="edit">Edit</a></td>
-                <td><a href="" class="delete" id="delete">Delete</a></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Lion Action Party (LAP)</td>
-                <td>Block 12, Benin/Ore ExpressWay, Benin</td>
-                <td>http://www.politico.com/lap_logo</td>
-                <td><a href="" class="edit" id="edit">Edit</a></td>
-                <td><a href="" class="delete" id="delete">Delete</a></td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Cultural Congress Group (CGP)</td>
-                <td>Plot 99, Aso Rock Villa, Abuja</td>
-                <td>http://www.politico.com/cgp_logo</td>
-                <td><a href="" class="edit" id="edit">Edit</a></td>
-                <td><a href="" class="delete" id="delete">Delete</a></td>
-            </tr>
+            <p id="no-data"></p>
         </table>
     </div>
 
     <div class="list">
-        <table>
+        <table id="offices">
             <h4>List of Government Offices</h4>
             <tr>
                 <th>S/N</th>
                 <th>Name</th>
                 <th>Level</th>
-                <th>Region</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
+        </table>
+    </div>
+    <div class="list">
+        <table id="candidate">
+            <h4>List of candidates(Pending)</h4>
             <tr>
-                <td>1</td>
-                <td>President</td>
-                <td>Federal</td>
-                <td>Country</td>
-                <td><a href="" class="edit" id="edit">Edit</a></td>
-                <td><a href="" class="delete" id="delete">Delete</a></td>
+                <th>S/N</th>
+                <th>Candidate</th>
+                <th>Office</th>
+                <th>Party</th>
+                <th>Accept</th>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>Governor</td>
-                <td>State</td>
-                <td>Lagos State</td>
-                <td><a href="" class="edit" id="edit">Edit</a></td>
-                <td><a href="" class="delete" id="delete">Delete</a></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Ward Chairman</td>
-                <td>Local Government</td>
-                <td>Benin State</td>
-                <td><a href="" class="edit" id="edit">Edit</a></td>
-                <td><a href="" class="delete" id="delete">Delete</a></td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Senate</td>
-                <td>Federal</td>
-                <td>Kano West Senatorial District</td>
-                <td><a href="" class="edit" id="edit">Edit</a></td>
-                <td><a href="" class="delete" id="delete">Delete</a></td>
-            </tr>
+            <p id="no-data3"></p>
+
         </table>
     </div>
     <footer class="others">
@@ -150,6 +100,7 @@
         </div>
     </footer>
     <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/editAdmin.js"></script>
 </body>
 
 </html>

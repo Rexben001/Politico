@@ -68,7 +68,7 @@ class PartyController {
       const query = 'SELECT * FROM parties';
       pool.query(query, (error, result) => {
         if (error) {
-          return res.status(404).json({ staus: 404, error: 'The list of parties could not be fetched' });
+          return res.status(500).json({ staus: 500, error: 'The list of parties could not be fetched' });
         }
         if (result.rowCount === 0) {
           return res.status(404).json({ staus: 404, data: [] });
@@ -99,15 +99,15 @@ class PartyController {
       const query = `SELECT * FROM parties WHERE party_id=${id}`;
       pool.query(query, (error, result) => {
         if (error) {
+          return res.status(404).json({ staus: 404, message: 'An error just occurred' });
+        }
+        if (result.rowCount === 0) {
           return res.status(404).json({ staus: 404, message: 'The party with this ID could not be fetched' });
         }
         return res.status(200).json({
           status: 200,
-          data: [{
-            id: result.rows[0].party_id,
-            name: result.rows[0].name,
-            logoUrl: result.rows[0].logourl
-          }]
+          data: result.rows[0]
+
         });
       });
     } catch (error) {
