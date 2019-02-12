@@ -1,8 +1,12 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
+import multer from '../middlewares/multer';
+import config from '../config';
 import database from '../models/database';
 
 const { pool } = database;
+const { dataUri } = multer;
+const { uploader } = config;
 /**
  *
  *
@@ -18,18 +22,26 @@ class UserControllers {
    * @returns
    * @memberof UserControllers
    */
-  static createUser(req, res) {
+  static async createUser(req, res) {
     try {
       const {
-        firstname, lastname, othernames, username, email, phonenumber, password, passportUrl
+        firstname, lastname, othernames, username, email, phonenumber, password
       } = req.body;
+      let passportUrl;
+      if (req.file) {
+        const file = dataUri(req).content;
+        const uploadFile = await uploader.upload(file);
+        if (uploadFile) {
+          passportUrl = uploadFile.url;
+        }
+      }
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(password, salt, (err, hash) => {
           const passwordHash = hash;
           const query = `INSERT INTO users(firstname, lastname, othernames, username,
                   email, phoneNumber, password, is_admin, passportUrl) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING user_id, firstname, lastname, email, is_admin`;
           const value = [firstname, lastname, othernames, username,
-            email, phonenumber, passwordHash, false, passportUrl];
+            email, phonenumber, passwordHash, true, passportUrl];
           // eslint-disable-next-line no-unused-expressions
           pool.query('SELECT * FROM users WHERE email=$1 OR username=$2', [email, username], (err, resCheck) => {
             if (err) {
@@ -63,7 +75,7 @@ class UserControllers {
         });
       });
     } catch (error) {
-      return res.status(500).json({ status: 500, error: 'Something unexpected just happened. Try again' });
+      return res.status(500).json({ status: 500, error: `Something unexpected just happened. Try again, ${error}` });
     }
   }
 
@@ -166,10 +178,10 @@ class UserControllers {
       }
       pool.query(query, value, (error, result) => {
         if (error) {
-          return res.status(404).json({ staus: 404, message: 'An error occurred' });
+          return res.status(404).json({ staus: 404, message: `An error occurred, ${error}` });
         }
-        res.status(200).json({
-          status: 200,
+        res.status(201).json({
+          status: 201,
           data: {
             office: result.rows[0].office,
             candidate: result.rows[0].candidate,
@@ -189,9 +201,9 @@ class UserControllers {
    * @memberof UserControllers
    */
   static writePetition(req, res) {
-    const { office, body, evidence } = req.body;
+    const { office, bodyValue, evidence } = req.body;
     const query = 'INSERT INTO petitions(office, createdOn, createdBy, body, evidence) VALUES($1, NOW(), $2, $3, $4) RETURNING*';
-    const value = [office, req.id, body, evidence];
+    const value = [office, req.id, bodyValue, evidence];
     pool.query(query, value, (error, result) => {
       if (error || result.rowCount === 0) {
         return res.status(400).json({ status: 400, error: 'Unable to create petition' });
@@ -199,6 +211,81 @@ class UserControllers {
       res.status(201).json({
         status: 201,
         data: result.rows[0]
+      });
+    });
+  }
+
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @memberof UserControllers
+   */
+  static totalVotes(req, res) {
+    const query = 'select office, count(office) as total_no from votes where voter=$1 group by office';
+    const value = [req.id];
+    pool.query(query, value, (error, result) => {
+      if (error || result.rowCount === 0) {
+        return res.status(400).json({ status: 400, error: `Unable to get total votes, ${error}` });
+      }
+      res.status(200).json({
+        status: 200,
+        data: result.rows[0],
+        username: req.user.username,
+        email: req.user.email,
+        passport: req.user.passportUrl
+      });
+    });
+  }
+
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @memberof UserControllers
+   */
+  static userProfile(req, res) {
+    const query = 'select * from users where user_id=$1';
+    const value = [req.id];
+    pool.query(query, value, (error, result) => {
+      if (error || result.rowCount === 0) {
+        return res.status(400).json({ status: 400, error: `Unable to get total votes, ${error}` });
+      }
+      res.status(200).json({
+        status: 200,
+        username: req.user.username,
+        email: req.user.email,
+        passport: req.user.passportUrl
+      });
+    });
+  }
+
+
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @memberof UserControllers
+   */
+  static allVotes(req, res) {
+    const query = 'select * from votes where voter=$1';
+    const value = [req.id];
+    pool.query(query, value, (error, result) => {
+      if (error) {
+        return res.status(500).json({ status: 500, error: 'Server error' });
+      }
+      if (result.rowCount === 0) {
+        return res.status(404).json({ status: 404, error: 'No votes has been casted' });
+      }
+      res.status(200).json({
+        status: 200,
+        data: result.rows
       });
     });
   }
