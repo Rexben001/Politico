@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-
+const basePath = 'https://politico-voting.herokuapp.com';
 const getToken = () => {
   const token = window.localStorage.getItem('user_token')
   if (token) {
@@ -16,7 +16,7 @@ document.getElementById('office').addEventListener('submit', (e) => {
     type: document.getElementById('type').value
   }
 
-  fetch('/api/v1/offices', {
+  fetch(`${basePath}/api/v1/offices`, {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
@@ -30,9 +30,9 @@ document.getElementById('office').addEventListener('submit', (e) => {
         document.getElementById('type').value = '';
         document.getElementById('office_message').innerHTML = 'Office successfully created';
       } else if (response.status === 403) {
-        window.location.href = '../403.html';
+        window.location.href = './403.html';
       } else if (response.status === 401) {
-        window.location.href = '../401.html';
+        window.location.href = './401.html';
       }
     })
     .catch(error => console.log('Error:', error));
@@ -47,7 +47,7 @@ document.getElementById('party').addEventListener('submit', (e) => {
     passportUrl: document.getElementById('passport').files[0]
   }
 
-  fetch('/api/v1/parties', {
+  fetch(`${basePath}/api/v1/parties`, {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
@@ -62,9 +62,9 @@ document.getElementById('party').addEventListener('submit', (e) => {
         document.getElementById('passport').value = '';
 
       } else if (response.status === 403) {
-        window.location.href = '../403.html';
+        window.location.href = './403.html';
       } else if (response.status === 401) {
-        window.location.href = '../401.html';
+        window.location.href = './401.html';
       }
     })
     .catch(error => console.log('Error:', error));

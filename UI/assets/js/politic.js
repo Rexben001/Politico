@@ -26,8 +26,9 @@ const getToken = () => {
   }
   return 'No token Found';
 };
+const basePath = 'https://politico-voting.herokuapp.com';
 
-fetch('/api/v1/offices', {
+fetch(`${basePath}/api/v1/offices`, {
   method: 'GET',
   headers: {
     'Content-Type': 'application/json',
@@ -47,17 +48,17 @@ fetch('/api/v1/offices', {
       const { data } = response;
       const populate = document.getElementById('offices');
       data.forEach((off) => {
-        populate.innerHTML += `<option id=${off.office_id}>${off.name}, ${off.type}</option>`;
+        populate.innerHTML += `< option id = ${off.office_id} > ${off.name}, ${off.type}</option > `;
       });
     } else if (response.status === 403) {
-      window.location.href = '../403.html';
+      window.location.href = './403.html';
     } else if (response.status === 401) {
-      window.location.href = '../401.html';
+      window.location.href = './401.html';
     }
   })
   .catch(error => console.log('Error:', error));
 
-fetch('/api/v1/parties', {
+fetch(`${basePath}/api/v1/parties`, {
   method: 'GET',
   headers: {
     'Content-Type': 'application/json',
@@ -77,12 +78,12 @@ fetch('/api/v1/parties', {
       const { data } = response;
       const populate = document.getElementById('party');
       data.forEach((part) => {
-        populate.innerHTML += `<option id="${part.party_id}">${part.name}</option>`;
+        populate.innerHTML += `< option id = "${part.party_id}" > ${part.name}</option > `;
       });
     } else if (response.status === 403) {
-      window.location.href = '../403.html';
+      window.location.href = './403.html';
     } else if (response.status === 401) {
-      window.location.href = '../401.html';
+      window.location.href = './401.html';
     }
   })
   .catch(error => console.log('Error:', error));
@@ -108,7 +109,7 @@ document.getElementById('register').addEventListener('submit', (e) => {
     office: officeValue,
     party: partyValue
   };
-  fetch('/api/v1/office/register', {
+  fetch(`${basePath}/api/v1/office/register`, {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
@@ -128,9 +129,9 @@ document.getElementById('register').addEventListener('submit', (e) => {
       if (response.status === 201) {
         console.log('Worked');
       } else if (response.status === 403) {
-        window.location.href = '../403.html';
+        window.location.href = './403.html';
       } else if (response.status === 401) {
-        window.location.href = '../401.html';
+        window.location.href = './401.html';
       }
     })
     .catch(error => console.log('Error:', error));
@@ -150,7 +151,7 @@ document.getElementById('contestForm').addEventListener('submit', (e) => {
     bodyValue: document.getElementById('makePetition').value
   }
   console.log(data.office);
-  fetch('/api/v1/petitions', {
+  fetch(`${basePath}/api/v1/petitions`, {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
@@ -170,15 +171,15 @@ document.getElementById('contestForm').addEventListener('submit', (e) => {
       if (response.status === 201) {
         console.log('Worked');
       } else if (response.status === 403) {
-        window.location.href = '../403.html';
+        window.location.href = './403.html';
       } else if (response.status === 401) {
-        window.location.href = '../401.html';
+        window.location.href = './401.html';
       }
     })
     .catch(error => console.log('Error:', error));
 });
 
-fetch('/api/v1/offices', {
+fetch(`${basePath}/api/v1/offices`, {
   method: 'GET',
   headers: {
     'Content-Type': 'application/json',
@@ -198,12 +199,12 @@ fetch('/api/v1/offices', {
       const { data } = response;
       const populate = document.getElementById('offices2');
       data.forEach((off) => {
-        populate.innerHTML += `<option id=${off.office_id}>${off.name}, ${off.type}</option>`;
+        populate.innerHTML += `< option id = ${off.office_id} > ${off.name}, ${off.type}</option > `;
       });
     } else if (response.status === 403) {
-      window.location.href = '../403.html';
+      window.location.href = './403.html';
     } else if (response.status === 401) {
-      window.location.href = '../401.html';
+      window.location.href = './401.html';
     }
   })
   .catch(error => console.log('Error:', error));

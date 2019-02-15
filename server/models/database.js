@@ -4,13 +4,13 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const pool = new pg.Pool({
-  connectionString: process.env.PRODUCTION
+  // connectionString: process.env.PRODUCTION
 
-  // user: 'rex',
-  // host: 'localhost',
-  // database: 'politicodb',
-  // password: '73941995',
-  // port: 5432
+  user: 'rex',
+  host: 'localhost',
+  database: 'politicodb',
+  password: '73941995',
+  port: 5432
 
 });
 

@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
+const basePath = 'https://politico-voting.herokuapp.com';
+
 
 const getToken = () => {
   const token = window.localStorage.getItem('user_token')
@@ -9,7 +11,7 @@ const getToken = () => {
   return 'No token Found';
 };
 
-fetch('/api/v1/offices', {
+fetch(`${basePath}/api/v1/offices`, {
   method: 'GET',
   headers: {
     'Content-Type': 'application/json',
@@ -36,15 +38,15 @@ fetch('/api/v1/offices', {
         <td><a href="#" class="delete" id="del">Delete</a></td></tr>`;
       });
     } else if (response.status === 403) {
-      window.location.href = '../403.html';
+      window.location.href = './403.html';
     } else if (response.status === 401) {
-      window.location.href = '../401.html';
+      window.location.href = './401.html';
     }
   })
   .catch(error => console.log('Error:', error));
 
 
-fetch('/api/v1/parties', {
+fetch(`${basePath}/api/v1/parties`, {
   method: 'GET',
   headers: {
     'Content-Type': 'application/json',
@@ -71,9 +73,9 @@ fetch('/api/v1/parties', {
           <td><a href="#" class="delete" onclick="deleteFile(${part.party_id})" id="del">Delete</a></td></tr>`
       })
     } else if (response.status === 403) {
-      window.location.href = '../403.html';
+      window.location.href = './403.html';
     } else if (response.status === 401) {
-      window.location.href = '../401.html';
+      window.location.href = './401.html';
     }
   })
   .catch(error => console.log('Error:', error));
@@ -83,7 +85,7 @@ const editFile = (id) => {
 };
 
 const deleteFile = (id) => {
-  fetch(`/api/v1/parties/${id}`, {
+  fetch(`${basePath}/api/v1/parties/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -100,17 +102,17 @@ const deleteFile = (id) => {
         console.log(404);
       }
       if (response.status === 200) {
-        window.location.href = '../list_all.html'
+        window.location.href = './list_all.html'
       } else if (response.status === 403) {
-        window.location.href = '../403.html';
+        window.location.href = './403.html';
       } else if (response.status === 401) {
-        window.location.href = '../401.html';
+        window.location.href = './401.html';
       }
     })
     .catch(error => console.log('Error:', error));
 };
 
-fetch('/api/v1/candidates', {
+fetch(`${basePath}/api/v1/candidates`, {
   method: 'GET',
   headers: {
     'Content-Type': 'application/json',
@@ -138,16 +140,16 @@ fetch('/api/v1/candidates', {
         <td><a href="#" id="editLo" onclick="acceptIt(${cand.candidate_id})" class="edit">Accept</a></td>`;
       });
     } else if (response.status === 403) {
-      window.location.href = '../403.html';
+      window.location.href = './403.html';
     } else if (response.status === 401) {
-      window.location.href = '../401.html';
+      window.location.href = './401.html';
     }
   })
   .catch(error => console.log('Error:', error));
 
 const acceptIt = (id) => {
   console.log(id);
-  fetch(`/api/v1/office/${id}/register`, {
+  fetch(`${basePath}/api/v1/office/${id}/register`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -164,11 +166,11 @@ const acceptIt = (id) => {
         document.getElementById('no-data3').innerHTML = 'No party has been created';
       }
       if (response.status === 201) {
-        window.location.href = '../list_all.html';
+        window.location.href = './list_all.html';
       } else if (response.status === 403) {
-        window.location.href = '../403.html';
+        window.location.href = './403.html';
       } else if (response.status === 401) {
-        window.location.href = '../401.html';
+        window.location.href = './401.html';
       }
     })
     .catch(error => console.log('Error:', error));
