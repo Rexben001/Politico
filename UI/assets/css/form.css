@@ -172,7 +172,7 @@ a.reset:hover{
 }
 
 .error{
-    font-weight: 500;
+    font-weight: 6bb00;
     color: rgb(161, 13, 13);
 }
 
@@ -204,7 +204,19 @@ a.reset:hover{
     width: 80%;
     padding: 20px;
     overflow-x: auto;
+}
 
+.oficeList{
+    width: 20%;
+    border-radius: 10px;
+    border: green solid 1px;
+    color: #04310f;
+    display: block;
+    margin: 10px;
+    padding: 5px;
+    font-size: 1.3rem;
+    text-align: center;
+    cursor: pointer;
 }
 
 table{
@@ -247,7 +259,7 @@ table tr th{
     background: #ddd;
 }
 
-.edit:hover{
+.edit:hover, .oficeList:hover{
     color: #ddd;
     background: green;
 }
@@ -313,6 +325,9 @@ table tr th{
     }
     .have-account{
         font-size: 1.3rem;
+    }
+    .select-text option{
+        width: 50% !important;
     }
 }
 

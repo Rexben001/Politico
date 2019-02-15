@@ -33,6 +33,9 @@ https://politico-voting.herokuapp.com/
 ## Link to Pivotal Tracker Board ##
 https://www.pivotaltracker.com/n/projects/2238808
 
+## Link to API documentation ##
+https://politico-voting.herokuapp.com/api-docs
+
 ## How to Clone project ##
 To clone this repository:
 * git clone https://github.com/Rexben001/Politico.git

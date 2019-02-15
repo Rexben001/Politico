@@ -1,0 +1,578 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: Politico
+  description: Politico enables citizens give their mandate to politicians running for different government offices while building trust in the process through transparency.
+  contact: 
+    email: "rexben.rb@gmail.com"
+host: politico-voting.herokuapp.com
+basePath: /
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  /api/v1/auth/signup:
+    post:
+      description: Create new users
+      summary: signup
+      tags:
+      - Users
+      operationId: ApiV1AuthSignupPost
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Content-Type
+        in: header
+        required: true
+        type: string
+        description: ''
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/signupRequest'
+      responses:
+        201:
+          description: ''
+          headers: {}
+  /api/v1/auth/reset:
+    post:
+      description: Reset password of a user
+      summary: reset password
+      tags:
+      - Users
+      operationId: ApiV1AuthResetPost
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Content-Type
+        in: header
+        required: true
+        type: string
+        description: ''
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/resetpasswordRequest'
+      responses:
+        201:
+          description: ''
+          headers: {}
+  /api/v1/auth/login:
+    post:
+      description: Log in a user
+      summary: login
+      tags:
+      - Users
+      operationId: ApiV1AuthLoginPost
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Content-Type
+        in: header
+        required: true
+        type: string
+        description: ''
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/loginRequest'
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /api/v1/parties:
+    get:
+      description: Get list of parties
+      summary: get party
+      tags:
+      - Parties
+      operationId: ApiV1PartiesGet
+      deprecated: false
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: ''
+          headers: {}
+    post:
+      description: Create a new party
+      summary: post party
+      tags:
+      - Parties
+      operationId: ApiV1PartiesPost
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Content-Type
+        in: header
+        required: true
+        type: string
+        description: ''
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/postpartyRequest'
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /api/v1/parties/3:
+   get:
+      description: Get a specific party
+      summary: get a specific party
+      tags:
+      - Parties
+      operationId: ApiV1Parties3Get
+      deprecated: false
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /api/v1/parties/3/name:
+    patch:
+      description: Edit a party
+      summary: edit a party
+      tags:
+      - Parties
+      operationId: ApiV1Parties3NamePatch
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Content-Type
+        in: header
+        required: true
+        type: string
+        description: ''
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/editapartyRequest'
+      responses:
+        201:
+          description: ''
+          headers: {}
+  /api/v1/parties/10:
+    delete:
+      description: 'Delete a party'
+      summary: delete party
+      tags:
+      - Parties
+      operationId: ApiV1Parties10Delete
+      deprecated: false
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /api/v1/offices:
+    post:
+      description: 'Create a new office'
+      summary: post offices
+      tags:
+      - Offices
+      operationId: ApiV1OfficesPost
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Content-Type
+        in: header
+        required: true
+        type: string
+        description: ''
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/postofficeRequest'
+      responses:
+        201:
+          description: ''
+          headers: {}
+  /api/v1/offices:
+    get:
+      description: Get list of offices
+      summary: get lsit of all offices
+      tags:
+      - Offices
+      operationId: ApiV1officesGet
+      deprecated: false
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /api/v1/offices/1:
+    get:
+      description: 'Get a specific office'
+      summary: get one office
+      tags:
+      - Offices
+      operationId: ApiV1Offices1Get
+      deprecated: false
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /api/v1/office/1/register:
+    post:
+      description: 'Register a user as a candidate'
+      summary: candidate
+      tags:
+      - Admin
+      operationId: ApiV1Office1RegisterPost
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Content-Type
+        in: header
+        required: true
+        type: string
+        description: ''
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/candidateRequest'
+      responses:
+        201:
+          description: ''
+          headers: {}
+  /api/v1/users:
+    get:
+      description: 'Get the list of all users in the App'
+      summary: get all users
+      tags:
+      - Admin
+      operationId: ApiV1UsersGet
+      deprecated: false
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /api/v1/makeAdmin/1:
+    post:
+      description: 'Make a user an Admin'
+      summary: make Admin
+      tags:
+      - Admin
+      operationId: ApiV1MakeAdmin1Post
+      deprecated: false
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        201:
+          description: ''
+          headers: {}
+  /api/v1/votes/1/result:
+    get:
+      description: 'Collates and fetch election results per office'
+      summary: results
+      tags:
+      - Admin
+      operationId: ApiV1Votes1ResultGet
+      deprecated: false
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /api/v1/votes:
+    post:
+      description: 'User can be able to vote'
+      summary: vote
+      tags:
+      - Vote
+      operationId: ApiV1VotesPost
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Content-Type
+        in: header
+        required: true
+        type: string
+        description: ''
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/voteRequest'
+      responses:
+        201:
+          description: ''
+          headers: {}
+  /api/v1/petitions:
+    post:
+      description: 'Write petitions'
+      summary: post petitions
+      tags:
+      - Vote
+      operationId: ApiV1PetitionsPost
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Content-Type
+        in: header
+        required: true
+        type: string
+        description: ''
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/postpetitionsRequest'
+      responses:
+        201:
+          description: ''
+          headers: {}
+  /api/v1/votes/1/result:
+    get:
+      description: 'Collates and fetch election results per office'
+      summary: results
+      tags:
+      - Vote
+      operationId: ApiV1Votes1ResultGet
+      deprecated: false
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: ''
+          headers: {}
+definitions:
+  signupRequest:
+    title: signupRequest
+    example:
+      firstname: ABen
+      lastname: ARex
+      othernames: ASeyi
+      email: rdex@gmail.com
+      password: 1234
+      username: nebn
+      phonenumber: +234567890
+      passportUrl: http://www.politico.com/aban
+    type: object
+    properties:
+      firstname:
+        type: string
+      lastname:
+        type: string
+      othernames:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+      username:
+        type: string
+      phonenumber:
+        type: string
+      passportUrl:
+        type: string
+    required:
+    - firstname
+    - lastname
+    - othernames
+    - email
+    - password
+    - username
+    - phonenumber
+    - passportUrl
+  resetpasswordRequest:
+    title: resetpasswordRequest
+    example:
+      email: rex@gmail.com
+    type: object
+    properties:
+      email:
+        type: string
+    required:
+    - email
+  loginRequest:
+    title: loginRequest
+    example:
+      email: rex@gmail.com
+      password: 1234
+    type: object
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
+  editapartyRequest:
+    title: editapartyRequest
+    example:
+      name: 'People Party'
+      hqAddress: '10, Adeniy Drive, Lagos'
+      logoUrl: https://politico.com/pp_logo
+    type: object
+    properties:
+      name:
+        type: string
+      hqAddress:
+        type: string
+      logoUrl:
+        type: string
+    required:
+    - name
+    - hqAddress
+    - logoUrl
+  postpartyRequest:
+    title: postpartyRequest
+    example:
+      name: 'Atention People Party'
+      hqAddress: '10, Allison Street, Lagos'
+      logoUrl: https://politico.com/ap_logo
+    type: object
+    properties:
+      name:
+        type: string
+      hqAddress:
+        type: string
+      logoUrl:
+        type: string
+    required:
+    - name
+    - hqAddress
+    - logoUrl
+  postofficeRequest:
+    title: postofficeRequest
+    example:
+      office_id: 2
+      type: federal
+      name: Senator
+      region: Gombe
+    type: object
+    properties:
+      office_id:
+        type: integer
+        format: int32
+      type:
+        type: string
+      name:
+        type: string
+      region:
+        type: string
+    required:
+    - office_id
+    - type
+    - name
+    - region
+  candidateRequest:
+    title: candidateRequest
+    example:
+      office: 1
+      party: 1
+    type: object
+    properties:
+      office:
+        type: integer
+        format: int32
+      party:
+        type: integer
+        format: int32
+    required:
+    - office
+    - party
+  voteRequest:
+    title: voteRequest
+    example:
+      office: 1
+      createdBy: 1
+      candidate: 2
+    type: object
+    properties:
+      office:
+        type: integer
+        format: int32
+      createdBy:
+        type: integer
+        format: int32
+      candidate:
+        type: integer
+        format: int32
+    required:
+    - office
+    - createdBy
+    - candidate
+  postpetitionsRequest:
+    title: postpetitionsRequest
+    example:
+      office: 1
+      createdBy: 1
+      body: Insatisfaction
+      evidence: Img_t789oijc
+    type: object
+    properties:
+      office:
+        type: integer
+        format: int32
+      createdBy:
+        type: integer
+        format: int32
+      body:
+        type: string
+      evidence:
+        type: string
+    required:
+    - office
+    - createdBy
+    - body
+    - evidence
+tags:
+- name: Users
+  description: 'All users operations'
+- name: Parties
+  description: 'All parties operations'
+- name: Offices
+  description: 'All offices operations'
+- name: Admin
+  description: 'All admin operations'
+- name: Vote
+  description: 'All vote operations'
