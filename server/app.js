@@ -4,7 +4,7 @@ import swaggerUi from 'swagger-ui-express';
 import yaml from 'yamljs';
 import cors from 'cors';
 import path from 'path';
-import config from '../config';
+import config from './config';
 import partyRouter from './routes/partyRoute';
 import officeRouter from './routes/officeRoute';
 import userRouter from './routes/userRoute';

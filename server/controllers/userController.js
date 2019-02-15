@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import multer from '../middlewares/multer';
-import config from '../../config';
+import config from '../config';
 import database from '../models/database';
 
 const { pool } = database;
