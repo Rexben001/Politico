@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "An e-voting platform",
   "main": "app.js",
+  "engines": {
+    "node": "8.12.0",
+    "npm": "6.4.1"
+  },
   "scripts": {
-    "build": "babel server -d dist",
-    "start": "npm run build &&  node dist/app.js",
+    "build": "babel server UI -d dist",
+    "start": "babel-node server/app.js",
     "start-dev": "nodemon --require @babel/register server/app.js",
     "test": "nyc ./node_modules/.bin/mocha --timeout 100000 --require @babel/register --require @babel/polyfill server/specs/*.js --exit || true",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",

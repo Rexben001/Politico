@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
+const basePath = 'https://politico-voting.herokuapp.com';
 
 const getToken = () => {
   const token = window.localStorage.getItem('user_token')
@@ -8,7 +9,7 @@ const getToken = () => {
   }
   return 'No token Found';
 };
-fetch('/api/v1/votes/user', {
+fetch(`${basePath}/api/v1/votes/user`, {
   method: 'GET',
   headers: {
     'Content-Type': 'application/json',
@@ -32,15 +33,15 @@ fetch('/api/v1/votes/user', {
       document.getElementById('email').innerHTML = response.email;
       document.getElementById('username').innerHTML = response.username;
     } else if (response.status === 403) {
-      window.location.href = '../403.html';
+      window.location.href = './403.html';
     } else if (response.status === 401) {
-      window.location.href = '../401.html';
+      window.location.href = './401.html';
     }
   })
   .catch(error => console.log('Error:', error));
 
 
-fetch('/api/v1/votes/offices&candidates', {
+fetch(`${basePath}/api/v1/votes/offices&candidates`, {
   method: 'GET',
   headers: {
     'Content-Type': 'application/json',
@@ -68,14 +69,14 @@ fetch('/api/v1/votes/offices&candidates', {
         <td><a href="#" class="delete" id="del">Delete</a></td></tr>`;
       });
     } else if (response.status === 403) {
-      window.location.href = '../403.html';
+      window.location.href = './403.html';
     } else if (response.status === 401) {
-      window.location.href = '../401.html';
+      window.location.href = './401.html';
     }
   })
   .catch(error => console.log('Error:', error));
 
-fetch('/api/v1/users/profile', {
+fetch(`${basePath}/api/v1/users/profile`, {
   method: 'GET',
   headers: {
     'Content-Type': 'application/json',
@@ -96,9 +97,9 @@ fetch('/api/v1/users/profile', {
       document.getElementById('email').innerHTML = response.email;
       document.getElementById('username').innerHTML = response.username;
     } else if (response.status === 403) {
-      window.location.href = '../403.html';
+      window.location.href = './403.html';
     } else if (response.status === 401) {
-      window.location.href = '../401.html';
+      window.location.href = './401.html';
     }
   })
   .catch(error => console.log('Error:', error));
