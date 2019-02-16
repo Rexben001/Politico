@@ -62,4 +62,4 @@ typings/
 
 .nyc_output/
 
-dist
+dist/

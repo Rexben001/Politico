@@ -4,12 +4,17 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const pool = new pg.Pool({
-  connectionString: process.env.PRODUCTION
-})
+  // connectionString: process.env.PRODUCTION
 
-pool.on('connect', () => {
-  console.log('connected to the Database');
+  user: 'rex',
+  host: 'localhost',
+  database: 'politicodb',
+  password: '73941995',
+  port: 5432
+
 });
+
+pool.on('connect', () => { });
 
 
 const users = async () => {
@@ -29,10 +34,7 @@ const users = async () => {
         UNIQUE(username, email)
         );`;
   await pool.query(userTable)
-    .then(() => {
-      console.log('users table created!: ');
-    }).catch((err) => {
-      console.log('An error occured while creating users table: ', err);
+    .then(() => { }).catch(() => {
       pool.end();
     });
 };
@@ -42,15 +44,13 @@ const party = async () => {
       CREATE TABLE IF NOT EXISTS 
       parties(
         party_id SERIAL NOT NULL UNIQUE,
-        name VARCHAR NOT NULL,
-        hqAddress VARCHAR NOT NULL,
-        logoUrl VARCHAR NOT NULL
+        name VARCHAR NOT NULL UNIQUE,
+        hqAddress VARCHAR NOT NULL UNIQUE,
+        logoUrl VARCHAR NOT NULL UNIQUE
       );`;
   await pool.query(partyTable)
     .then(() => {
-      console.log('parties table created!: ');
-    }).catch((err) => {
-      console.log('An error occured while creating party table: ', err);
+    }).catch(() => {
       pool.end();
     });
 };
@@ -65,9 +65,7 @@ const office = async () => {
       );`;
   await pool.query(officeTable)
     .then(() => {
-      console.log('offices table created!: ');
-    }).catch((err) => {
-      console.log('An error occured while creating office table: ', err);
+    }).catch(() => {
       pool.end();
     });
 };
@@ -79,17 +77,35 @@ const candidate = async () => {
     candidate_id SERIAL NOT NULL UNIQUE,
     office INTEGER,
     party INTEGER,
-    createdBy INTEGER,
-    FOREIGN KEY (party) REFERENCES parties(party_id),
-    FOREIGN KEY (createdBy) REFERENCES users(user_id),
-    FOREIGN KEY (office) REFERENCES offices(office_id),
+    createdBy INTEGER UNIQUE,
+    FOREIGN KEY (party) REFERENCES parties(party_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (createdBy) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (office) REFERENCES offices(office_id) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (createdBy, office)
   );`;
   await pool.query(candidateTable)
     .then(() => {
-      console.log('candidate table created!: ');
-    }).catch((err) => {
-      console.log('An error occured while creating candidate table: ', err);
+    }).catch(() => {
+      pool.end();
+    });
+};
+
+const acceptedCandidate = async () => {
+  const candidateTable2 = `
+  CREATE TABLE IF NOT EXISTS 
+  accept_candidates(
+    candidate_id SERIAL NOT NULL UNIQUE,
+    office INTEGER,
+    party INTEGER,
+    createdBy INTEGER UNIQUE,
+    FOREIGN KEY (party) REFERENCES parties(party_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (createdBy) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (office) REFERENCES offices(office_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    PRIMARY KEY (createdBy, office)
+  );`;
+  await pool.query(candidateTable2)
+    .then(() => {
+    }).catch(() => {
       pool.end();
     });
 };
@@ -100,23 +116,40 @@ const vote = async () => {
   votes(
     vote_id SERIAL NOT NULL UNIQUE,
     createdOn DATE NOT NULL,
-    createdBy INTEGER,
+    voter INTEGER,
     candidate INTEGER,
     office INTEGER,
-    FOREIGN KEY (createdBy) REFERENCES users(user_id),
-    FOREIGN KEY (office) REFERENCES offices(office_id),
-    FOREIGN KEY (candidate) REFERENCES candidates(candidate_id),
-    PRIMARY KEY (office, createdBy)
+    FOREIGN KEY (voter) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (office) REFERENCES offices(office_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (candidate) REFERENCES accept_candidates(createdBy) ON DELETE CASCADE ON UPDATE CASCADE,
+    PRIMARY KEY (office, voter, candidate)
   );`;
   await pool.query(voteTable)
     .then(() => {
-      console.log('vote table created!: ');
-    }).catch((err) => {
-      console.log('An error occured while creating vote table: ', err);
+      console.log('Votes table created')
+    }).catch(() => {
+      pool.end();
+    });
+};
+
+const petition = async () => {
+  const petitionTable = `
+  CREATE TABLE IF NOT EXISTS 
+  petitions(
+    petition_id SERIAL PRIMARY KEY,
+    createdOn DATE NOT NULL,
+    createdBy INTEGER REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    office INTEGER REFERENCES offices(office_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    body VARCHAR NOT NULL,
+    evidence VARCHAR
+  );`;
+  await pool.query(petitionTable)
+    .then(() => {
+    }).catch(() => {
       pool.end();
     });
 };
 
 export default {
-  pool, users, party, office, candidate, vote
+  pool, users, party, office, candidate, acceptedCandidate, vote, petition,
 };
