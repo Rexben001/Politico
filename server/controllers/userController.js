@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
+import nodeMailer from 'nodemailer';
 import multer from '../middlewares/multer';
 import config from '../config';
 import database from '../models/database';
@@ -25,16 +26,16 @@ class UserControllers {
   static async createUser(req, res) {
     try {
       const {
-        firstname, lastname, othernames, username, email, phonenumber, password
+        firstname, lastname, othernames, username, email, phonenumber, password, passportUrl
       } = req.body;
-      let passportUrl;
-      if (req.file) {
-        const file = dataUri(req).content;
-        const uploadFile = await uploader.upload(file);
-        if (uploadFile) {
-          passportUrl = uploadFile.url;
-        }
-      }
+      // let passportUrl;
+      // if (req.file) {
+      //   const file = dataUri(req).content;
+      //   const uploadFile = await uploader.upload(file);
+      //   if (uploadFile) {
+      //     passportUrl = uploadFile.url;
+      //   }
+      // }
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(password, salt, (err, hash) => {
           const passwordHash = hash;
@@ -56,11 +57,13 @@ class UserControllers {
 
             pool.query(query, value, (error, result) => {
               if (error) {
-                return res.status(400).json({ status: 400, error: 'Unable to create user' });
+                return res.status(400).json({ status: 400, error: `Unable to create user, ${error}` });
               }
               const admin = result.rows[0].is_admin;
               const id = result.rows[0].user_id;
-              jwt.sign({ username, password, admin, id },
+              jwt.sign({
+                username, admin, id
+              },
                 process.env.SECRETKEY, { expiresIn: '20d' }, (err, token) => {
                   res.status(201).json({
                     status: 201,
@@ -102,7 +105,7 @@ class UserControllers {
             const admin = result.rows[0].is_admin;
             const username = result.rows[0];
             const id = result.rows[0].user_id;
-            jwt.sign({ username, password, admin, id },
+            jwt.sign({ username, admin, id },
               process.env.SECRETKEY, { expiresIn: '7d' }, (err, token) => {
                 res.status(201).json({
                   status: 201,
@@ -126,6 +129,8 @@ class UserControllers {
     }
   }
 
+
+
   /**
    *
    *
@@ -137,23 +142,98 @@ class UserControllers {
    */
   static resetPassword(req, res) {
     try {
+      const basePath = 'localhost:8080/api/v1';
+      const transporter = nodeMailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
+        auth: {
+          user: 'politicoxpress@gmail.com',
+          pass: 'politico.7394'
+        }
+      });
       const { email } = req.body;
       const query = 'SELECT * FROM users WHERE email=$1';
       const value = [email];
       pool.query(query, value, (error, result) => {
         if (error || result.rowCount === 0) {
-          return res.status(404).json({ status: 404, error: 'There is no account associated with this email' });
+          res.status(404).json({ status: 404, error: 'There is no account associated with this email' });
         }
-        res.status(200).json({
-          status: 200,
-          data: [{
-            message: 'Check your email for password reset link',
-            email: result.rows[0].email
-          }]
-        });
+        const id = result.rows[0].user_id;
+        jwt.sign({ email, id },
+          process.env.SECRETKEY, { expiresIn: '1d' }, (errToken, token) => {
+            if (errToken) res.status(400).json({ status: 400, message: 'Unable to create a token' });
+            const mailOptions = {
+              from: 'politicoxpress@gmail.com',
+              to: email,
+              subject: 'Reset Password Link - Politico',
+              html: `<p>You requested to reset your password. Click <a href="http://localhost:8080/api/v1/resetpassword/${token}">here</a> to reset it</p><p>Pls, ignore if you are not the one</p>. <p>Contact mail us @ politicoxpress@gmail.com for help</p>`
+            };
+            transporter.sendMail(mailOptions, (err, info) => {
+              if (err) {
+                return res.status(500).json({ status: 500, message: `Server error, ${err}` });
+              }
+              res.status(200).json({
+                status: 200,
+                data: [{
+                  message: 'Check your email for password reset link',
+                  email: result.rows[0].email,
+                  info
+                }]
+              });
+            });
+          });
       });
     } catch (error) {
       return res.status(500).json({ status: 500, error: 'Something unexpected just happened. Try again' });
+    }
+  }
+
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @memberof UserControllers
+   */
+  static passwordChanged(req, res) {
+    const { password } = req.body;
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(password, salt, (err, hash) => {
+        const passwordHash = hash;
+        const query = 'UPDATE users SET password=$1  WHERE user_id=$2 RETURNING *';
+        pool.query(query, [passwordHash, req.id], (err, result) => {
+          if (err) res.status(500).json({ status: 500, message: 'Unable to update password' });
+          if (result.rowCount === 0) res.status(404).json({ status: 404, message: 'User can not be found' });
+          res.status(200).json({
+            status: 200,
+            data: [{
+              message: 'Password changed successfully'
+            }]
+          })
+        })
+      });
+    });
+  }
+
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @memberof UserControllers
+   */
+  static loadResetPage(req, res) {
+    try {
+      res.sendFile('changepassword.html', { root: './UI' });
+      // res.json({
+      //   display,
+      //   token: req.token
+      // });
+    } catch (e) {
+      console.log(e);
     }
   }
 

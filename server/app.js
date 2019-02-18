@@ -3,7 +3,6 @@ import bodyParser from 'body-parser';
 import swaggerUi from 'swagger-ui-express';
 import yaml from 'yamljs';
 import cors from 'cors';
-import path from 'path';
 import config from './config';
 import partyRouter from './routes/partyRoute';
 import officeRouter from './routes/officeRoute';
@@ -20,9 +19,6 @@ const {
 
 const swaggerDoc = yaml.load(`${process.cwd()}/swagger.yaml`);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
-// const VIEWS = path.join(process.env.PWD, './../ui');
-// app.use('./../ui', express.static(VIEWS));
-// app.use('/../ui', express.static(path.join(__dirname, '/../ui')));
 
 
 app.use(bodyParser.urlencoded({
@@ -34,7 +30,6 @@ app.use('*', cloudinaryConfig);
 
 
 app.get('/', (req, res) => {
-  // res.sendFile(path.join(__dirname, 'index.html'));
   res.json('Welcome to politico Express');
 });
 
