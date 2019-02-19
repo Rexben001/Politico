@@ -6,12 +6,7 @@ const basePath = 'https://politico-voting.herokuapp.com';
 let imageLink;
 cloudinary.applyUploadWidget('#upload_widget_opener', {
   cloudName: 'rexben',
-<<<<<<< HEAD:assets/js/signup.js
   uploadPreset: 'lcxc1pn1'
-=======
-  uploadPreset: 'lcxc1pn1',
-  cropping: true,
->>>>>>> ft-save-images-cloudinary-164051322:UI/assets/js/signup.js
 }, (error, result) => {
   if (result && result.event === 'success') {
     // do something
@@ -21,12 +16,6 @@ cloudinary.applyUploadWidget('#upload_widget_opener', {
 })
 document.getElementById('signup').addEventListener('submit', (e) => {
   e.preventDefault();
-<<<<<<< HEAD:assets/js/signup.js
-  uploadWidget.open();
-
-  console.log('Hey');
-=======
->>>>>>> ft-save-images-cloudinary-164051322:UI/assets/js/signup.js
   const data = {
     firstname: document.getElementById('firstname').value,
     lastname: document.getElementById('lastname').value,
