@@ -8,12 +8,25 @@ const getToken = () => {
   return 'No token Found';
 };
 
+let imageLink;
+cloudinary.applyUploadWidget('#upload_widget_opener', {
+  cloudName: 'rexben',
+  uploadPreset: 'lcxc1pn1',
+  cropping: true,
+}, (error, result) => {
+  if (result && result.event === 'success') {
+    // do something
+    imageLink = result.info.url;
+    return imageLink;
+  }
+})
 
 document.getElementById('office').addEventListener('submit', (e) => {
   e.preventDefault();
   const data = {
     name: document.getElementById('office-name').value,
-    type: document.getElementById('type').value
+    type: document.getElementById('type').value,
+    logoUrl: imageLink
   }
 
   fetch(`${basePath}/api/v1/offices`, {
