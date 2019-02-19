@@ -14,14 +14,16 @@ const userRoute = express.Router();
 const { dataStorage } = data;
 const uploads = multer({ dataStorage }).single('passportUrl');
 
-userRoute.post('/auth/signup', uploads, signupValidator, UserController.createUser);
+userRoute.post('/auth/signup', signupValidator, UserController.createUser);
 userRoute.post('/auth/login', loginValidator, UserController.loginUser);
-userRoute.post('/auth/reset', Authentication.verifyUser, UserController.resetPassword);
+userRoute.post('/auth/reset', UserController.resetPassword);
 userRoute.post('/office/register', contestValidator, Authentication.verifyUser, ContestController.contestInElection);
 userRoute.post('/votes', voteValidator, Authentication.verifyUser, UserController.userVote);
 userRoute.post('/petitions', petitionValidator, Authentication.verifyUser, UserController.writePetition);
 userRoute.get('/votes/user', Authentication.verifyUser, UserController.totalVotes);
 userRoute.get('/votes/offices&candidates', Authentication.verifyUser, UserController.allVotes);
 userRoute.get('/users/profile', Authentication.verifyUser, UserController.userProfile);
+userRoute.post('/resetpassword/:token', Authentication.verifyResetToken, UserController.passwordChanged);
+userRoute.get('/resetpassword/:token', Authentication.verifyResetToken, UserController.loadResetPage);
 
 export default userRoute;

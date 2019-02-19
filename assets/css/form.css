@@ -49,6 +49,12 @@ label{
     font-weight: 400;
 }
 
+#upload_widget_opener{
+    color: white;
+    background-color: #04310f;
+    padding: 10px;
+}
+
 input[type=text],
 input[type=email],
 input[type=number],
