@@ -34,7 +34,11 @@ class UserControllers {
       //   const uploadFile = await uploader.upload(file);
       //   if (uploadFile) {
       //     passportUrl = uploadFile.url;
+      //   } else {
+      //     console.log('No upload file');
       //   }
+      // } else {
+      //   console.log('It is not a req.file');
       // }
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(password, salt, (err, hash) => {
@@ -57,6 +61,7 @@ class UserControllers {
 
             pool.query(query, value, (error, result) => {
               if (error) {
+                console.log(error);
                 return res.status(400).json({ status: 400, error: `Unable to create user, ${error}` });
               }
               const admin = result.rows[0].is_admin;
