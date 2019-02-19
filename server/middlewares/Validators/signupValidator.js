@@ -23,6 +23,7 @@ const signupValidator = (req, res, next) => {
   if (password) {
     password = password.trim();
   }
+<<<<<<< HEAD
   if (passportUrl) {
     const mediaType = ['jpg', 'jpeg', 'png'];
     const imageFormat = passportUrl.split('.')[1];
@@ -32,6 +33,16 @@ const signupValidator = (req, res, next) => {
       });
     }
   }
+=======
+  // if (passportUrl) {
+  //   const imageFormat = passportUrl.split('.')[1];
+  //   if (imageFormat !== 'jpg' || imageFormat !== 'png' || imageFormat !== 'jpeg') {
+  //     return res.status(415).json({
+  //       status: 415, error: 'Sorry, the format you specified is incorrect. Only .jpeg, .jpg, .png formats are accepted'
+  //     });
+  //   }
+  // }
+>>>>>>> ft-save-images-cloudinary-164051322
 
   const check = /\S+@\S+\.\S+/;
   if (!firstname || typeof (firstname) !== 'string') {

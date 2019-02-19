@@ -342,9 +342,9 @@ class UserControllers {
       }
       res.status(200).json({
         status: 200,
-        username: req.user.username,
-        email: req.user.email,
-        passport: req.user.passportUrl
+        username: result.rows[0].username,
+        email: result.rows[0].email,
+        passport: result.rows[0].passporturl,
       });
     });
   }
