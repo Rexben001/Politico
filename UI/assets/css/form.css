@@ -49,6 +49,17 @@ label{
     font-weight: 400;
 }
 
+#upload_widget_opener{
+    color: white;
+    background-color: #04310f;
+    padding: 10px;
+}
+#logo_image{
+    height: 70px;
+    width: 100px;
+    border-radius: 70px;
+
+}
 input[type=text],
 input[type=email],
 input[type=number],
@@ -91,7 +102,7 @@ input[type=text]:focus,
         font-weight: 600;
     } 
 
-input[type=submit]{
+#submit{
     color: white;
     background: green;
     padding: 10px;
@@ -107,6 +118,14 @@ input[type=submit]{
     font-weight: 700;
 }
 
+.fa {
+    margin-left: -12px;
+    margin-right: 8px;
+  }
+.loader{
+    display: none;
+}
+
  input[type=file]{
     padding: 5px;
     color: #04310f;
@@ -119,7 +138,7 @@ input[type=submit]{
 
 }
 
-input[type=submit]:hover{
+#submit:hover{
     box-shadow: 5px 5px 5px #04310f;
     color: white;
     background: #0fb836;

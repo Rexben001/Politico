@@ -1,4 +1,3 @@
-import database from '../../models/database';
 
 
 const partyValidator = (req, res, next) => {
@@ -27,7 +26,7 @@ const partyValidator = (req, res, next) => {
     }
     req.body.name = name.replace(/\s+/g, ' ');
     req.body.hqAddress = hqAddress.replace(/\s+/g, ' ');
-    req.body.logoUrl = logoUrl.replace(/\s+/g, ' ');
+    req.body.logoUrl = logoUrl;
     next();
 }
 

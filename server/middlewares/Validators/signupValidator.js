@@ -23,9 +23,6 @@ const signupValidator = (req, res, next) => {
   if (password) {
     password = password.trim();
   }
-  // if (passportUrl) {
-  //   passportUrl = passportUrl.trim();
-  // }
 
   const check = /\S+@\S+\.\S+/;
   if (!firstname || typeof (firstname) !== 'string') {
@@ -49,9 +46,9 @@ const signupValidator = (req, res, next) => {
   if (!phonenumber || typeof (phonenumber) !== 'string') {
     return res.status(422).json({ status: 422, error: 'Enter a valid phonenumber' });
   }
-  // if (!passportUrl || typeof (passportUrl) !== 'string') {
-  //   return res.status(422).json({ status: 422, error: 'Enter a valid passportUrl' });
-  // }
+  if (!passportUrl) {
+    return res.status(422).json({ status: 422, error: 'Enter a valid passportUrl' });
+  }
 
   req.body.firstname = firstname.replace(/\s+/g, ' ');
   req.body.lastname = lastname.replace(/\s+/g, ' ');
@@ -60,8 +57,8 @@ const signupValidator = (req, res, next) => {
   req.body.email = email.replace(/\s+/g, ' ');
   req.body.phonenumber = phonenumber.replace(/\s+/g, ' ');
   req.body.password = password.replace(/\s+/g, ' ');
-  // req.body.passportUrl = passportUrl.replace(/\s+/g, ' ');
+  req.body.passportUrl = passportUrl;
   next();
-}
+};
 
 export default signupValidator;
