@@ -1,12 +1,17 @@
 /* eslint-disable no-undef */
 const basePath = 'https://politico-voting.herokuapp.com';
+// const basePath = "http://localhost:8080"
 const getToken = () => {
   const token = window.localStorage.getItem('user_token')
   if (token) {
+    console.log(token);
     return token;
   }
+  console.log('No token')
   window.location.href = './signin.html';
 };
+
+getToken();
 
 let imageLink;
 cloudinary.applyUploadWidget('#upload_widget_opener', {
@@ -14,7 +19,6 @@ cloudinary.applyUploadWidget('#upload_widget_opener', {
   uploadPreset: 'lcxc1pn1',
 }, (error, result) => {
   if (result && result.event === 'success') {
-    // do something
     imageLink = result.info.url;
     return imageLink;
   }

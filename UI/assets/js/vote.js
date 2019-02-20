@@ -3,6 +3,14 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 const basePath = 'https://politico-voting.herokuapp.com';
+// const basePath = "http://localhost:8080"
+const getToken = () => {
+  const token = window.localStorage.getItem('user_token')
+  if (token) {
+    return token;
+  }
+  window.location.href = './signin.html';
+};
 
 const vote = document.getElementById('votes');
 const parties = document.getElementById('parties');
@@ -50,16 +58,6 @@ document.getElementById('resul').addEventListener('click', (e) => {
   result.style.display = 'block';
 
 });
-
-
-const getToken = () => {
-  const token = window.localStorage.getItem('user_token')
-  if (token) {
-    return token;
-  }
-  window.location.href = './signin.html';
-};
-
 
 fetch(`${basePath}/api/v1/populateVote`, {
   method: 'GET',
@@ -111,8 +109,8 @@ function onVal2() {
 }
 document.getElementById('voting').addEventListener('submit', (e) => {
   e.preventDefault();
-  console.log(candidateValue, officeValue);
-
+  document.getElementById('loader1').style.display = 'block';
+  document.getElementById('register').style.display = 'none';
   const data = {
     office: officeValue,
     candidate: candidateValue
@@ -133,10 +131,14 @@ document.getElementById('voting').addEventListener('submit', (e) => {
     .then((response) => {
       if (response.status === 404) {
         document.getElementById('no-data').innerHTML = 'No users has been created';
+        document.getElementById('loader1').style.display = 'none';
+        document.getElementById('register').style.display = 'block';
       }
       if (response.status === 201) {
         window.location.href = './vote.html';
       } else if (response.status === 403) {
+        document.getElementById('loader1').style.display = 'none';
+        document.getElementById('register').style.display = 'block';
         window.location.href = './signin.html';
       } else if (response.status === 401) {
         window.location.href = './401.html';

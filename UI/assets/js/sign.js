@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 const basePath = 'https://politico-voting.herokuapp.com';
+// const basePath = "http://localhost:8080";
 
 document.getElementById('signin').addEventListener('submit', (e) => {
   e.preventDefault();
@@ -23,6 +24,8 @@ document.getElementById('signin').addEventListener('submit', (e) => {
         window.location.href = './userprofile.html';
       } else if (res.status === 404) {
         document.getElementById('error_message').innerHTML = 'Incorrect email or password';
+        document.getElementById('loader1').style.display = 'none';
+        document.getElementById('register').style.display = 'block';
       }
     })
     .catch(error => console.log('Error:', error));

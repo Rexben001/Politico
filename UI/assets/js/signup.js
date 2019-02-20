@@ -47,6 +47,8 @@ document.getElementById('signup').addEventListener('submit', (e) => {
         window.location.href = './userprofile.html';
       } else {
         console.log(response);
+        document.getElementById('loader1').style.display = 'none';
+        document.getElementById('register').style.display = 'block';
       }
     })
     .catch(error => console.log('Error:', error));
