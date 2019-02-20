@@ -57,7 +57,8 @@ label{
 #logo_image{
     height: 70px;
     width: 100px;
-    border-radius: 70px;
+    border-radius: 120px;
+    background-position: center;
 
 }
 input[type=text],
