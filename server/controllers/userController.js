@@ -28,26 +28,13 @@ class UserControllers {
       const {
         firstname, lastname, othernames, username, email, phonenumber, password, passportUrl
       } = req.body;
-      // let passportUrl;
-      // if (req.file) {
-      //   const file = dataUri(req).content;
-      //   const uploadFile = await uploader.upload(file);
-      //   if (uploadFile) {
-      //     passportUrl = uploadFile.url;
-      //   } else {
-      //     console.log('No upload file');
-      //   }
-      // } else {
-      //   console.log('It is not a req.file');
-      // }
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(password, salt, (err, hash) => {
           const passwordHash = hash;
           const query = `INSERT INTO users(firstname, lastname, othernames, username,
                   email, phoneNumber, password, is_admin, passportUrl) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING user_id, firstname, lastname, email, is_admin`;
           const value = [firstname, lastname, othernames, username,
-            email, phonenumber, passwordHash, true, passportUrl];
-          // eslint-disable-next-line no-unused-expressions
+            email, phonenumber, passwordHash, false, passportUrl];
           pool.query('SELECT * FROM users WHERE email=$1 OR username=$2', [email, username], (err, resCheck) => {
             if (err) {
               return res.status(500).json({

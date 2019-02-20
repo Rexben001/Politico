@@ -6,8 +6,7 @@ const basePath = 'https://politico-voting.herokuapp.com';
 let imageLink;
 cloudinary.applyUploadWidget('#upload_widget_opener', {
   cloudName: 'rexben',
-  uploadPreset: 'lcxc1pn1',
-  cropping: true,
+  uploadPreset: 'lcxc1pn1'
 }, (error, result) => {
   if (result && result.event === 'success') {
     // do something
