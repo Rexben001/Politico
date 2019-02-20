@@ -7,7 +7,7 @@ const getToken = () => {
   if (token) {
     return token;
   }
-  return 'No token Found';
+  window.location.href = './signin.html';
 };
 fetch(`${basePath}/api/v1/votes/user`, {
   method: 'GET',
