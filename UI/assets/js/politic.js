@@ -24,7 +24,7 @@ const getToken = () => {
   if (token) {
     return token;
   }
-  return 'No token Found';
+  window.location.href = './signin.html';
 };
 const basePath = 'https://politico-voting.herokuapp.com';
 
@@ -51,7 +51,7 @@ fetch(`${basePath}/api/v1/offices`, {
         populate.innerHTML += `< option id = ${off.office_id} > ${off.name}, ${off.type}</option > `;
       });
     } else if (response.status === 403) {
-      window.location.href = './403.html';
+      window.location.href = './signin.html';
     } else if (response.status === 401) {
       window.location.href = './401.html';
     }
@@ -81,7 +81,7 @@ fetch(`${basePath}/api/v1/parties`, {
         populate.innerHTML += `< option id = "${part.party_id}" > ${part.name}</option > `;
       });
     } else if (response.status === 403) {
-      window.location.href = './403.html';
+      window.location.href = './signin.html';
     } else if (response.status === 401) {
       window.location.href = './401.html';
     }
@@ -129,7 +129,7 @@ document.getElementById('register').addEventListener('submit', (e) => {
       if (response.status === 201) {
         console.log('Worked');
       } else if (response.status === 403) {
-        window.location.href = './403.html';
+        window.location.href = './signin.html';
       } else if (response.status === 401) {
         window.location.href = './401.html';
       }
@@ -171,7 +171,7 @@ document.getElementById('contestForm').addEventListener('submit', (e) => {
       if (response.status === 201) {
         console.log('Worked');
       } else if (response.status === 403) {
-        window.location.href = './403.html';
+        window.location.href = './signin.html';
       } else if (response.status === 401) {
         window.location.href = './401.html';
       }

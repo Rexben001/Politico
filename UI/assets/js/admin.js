@@ -5,15 +5,29 @@ const getToken = () => {
   if (token) {
     return token;
   }
-  return 'No token Found';
+  window.location.href = './signin.html';
 };
 
+let imageLink;
+cloudinary.applyUploadWidget('#upload_widget_opener', {
+  cloudName: 'rexben',
+  uploadPreset: 'lcxc1pn1',
+}, (error, result) => {
+  if (result && result.event === 'success') {
+    // do something
+    imageLink = result.info.url;
+    return imageLink;
+  }
+})
 
 document.getElementById('office').addEventListener('submit', (e) => {
   e.preventDefault();
+  document.getElementById('loader1').style.display = 'block';
+  document.getElementById('register').style.display = 'none';
+
   const data = {
     name: document.getElementById('office-name').value,
-    type: document.getElementById('type').value
+    type: document.getElementById('type').value,
   }
 
   fetch(`${basePath}/api/v1/offices`, {
@@ -29,6 +43,8 @@ document.getElementById('office').addEventListener('submit', (e) => {
         document.getElementById('office-name').value = '';
         document.getElementById('type').value = '';
         document.getElementById('office_message').innerHTML = 'Office successfully created';
+        document.getElementById('loader1').style.display = 'none';
+        document.getElementById('register').style.display = 'block';
       } else if (response.status === 403) {
         window.location.href = './403.html';
       } else if (response.status === 401) {
@@ -41,10 +57,13 @@ document.getElementById('office').addEventListener('submit', (e) => {
 
 document.getElementById('party').addEventListener('submit', (e) => {
   e.preventDefault();
+  document.getElementById('loader2').style.display = 'block';
+  document.getElementById('register2').style.display = 'none';
+
   const data = {
     name: document.getElementById('party-name').value,
     hqAddress: document.getElementById('hq_address').value,
-    passportUrl: document.getElementById('passport').files[0]
+    logoUrl: imageLink
   }
 
   fetch(`${basePath}/api/v1/parties`, {
@@ -60,7 +79,8 @@ document.getElementById('party').addEventListener('submit', (e) => {
         document.getElementById('party-name').value = '';
         document.getElementById('hq_address').value = '';
         document.getElementById('passport').value = '';
-
+        document.getElementById('loader2').style.display = 'none';
+        document.getElementById('register2').style.display = 'block';
       } else if (response.status === 403) {
         window.location.href = './403.html';
       } else if (response.status === 401) {

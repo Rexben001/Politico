@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 const basePath = 'https://politico-voting.herokuapp.com';
-
+// const basePath = "http://localhost:8080"
 const getToken = () => {
   const token = window.localStorage.getItem('user_token')
   if (token) {
@@ -28,10 +28,12 @@ fetch(`${basePath}/api/v1/votes/user`, {
     }
     if (response.status === 200) {
       const { data } = response;
-      console.log(response);
+      console.log(response.passport);
       document.getElementById('tottal_votes').innerHTML = data.total_no;
       document.getElementById('email').innerHTML = response.email;
       document.getElementById('username').innerHTML = response.username;
+      document.getElementById('profile_img').src = response.passport;
+      console.log(document.getElementById('profile_img'));
     } else if (response.status === 403) {
       window.location.href = './403.html';
     } else if (response.status === 401) {
@@ -55,7 +57,7 @@ fetch(`${basePath}/api/v1/votes/offices&candidates`, {
 })
   .then((response) => {
     if (response.status === 404) {
-      document.getElementById('no-data3').innerHTML = 'No candidate has been created';
+      // document.getElementById('no-data3').innerHTML = 'No candidate has been created';
     }
     if (response.status === 200) {
       const { data } = response;
@@ -69,7 +71,7 @@ fetch(`${basePath}/api/v1/votes/offices&candidates`, {
         <td><a href="#" class="delete" id="del">Delete</a></td></tr>`;
       });
     } else if (response.status === 403) {
-      window.location.href = './403.html';
+      window.location.href = './signin.html';
     } else if (response.status === 401) {
       window.location.href = './401.html';
     }
@@ -93,9 +95,10 @@ fetch(`${basePath}/api/v1/users/profile`, {
       // document.getElementById('no-data3').innerHTML = 'No candidate has been created';
     }
     if (response.status === 200) {
-      console.log(response);
+      // console.log(response);
       document.getElementById('email').innerHTML = response.email;
       document.getElementById('username').innerHTML = response.username;
+      document.getElementById('profile_img').src = response.passport;
     } else if (response.status === 403) {
       window.location.href = './403.html';
     } else if (response.status === 401) {

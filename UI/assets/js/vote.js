@@ -57,7 +57,7 @@ const getToken = () => {
   if (token) {
     return token;
   }
-  return 'No token Found';
+  window.location.href = './signin.html';
 };
 
 
@@ -88,7 +88,7 @@ fetch(`${basePath}/api/v1/populateVote`, {
 
       });
     } else if (response.status === 403) {
-      window.location.href = './403.html';
+      window.location.href = './signin.html';
     } else if (response.status === 401) {
       window.location.href = './401.html';
     }
@@ -137,7 +137,7 @@ document.getElementById('voting').addEventListener('submit', (e) => {
       if (response.status === 201) {
         window.location.href = './vote.html';
       } else if (response.status === 403) {
-        window.location.href = './403.html';
+        window.location.href = './signin.html';
       } else if (response.status === 401) {
         window.location.href = './401.html';
       }
