@@ -166,10 +166,11 @@ fetch(`${basePath}/api/v1/parties`, {
     if (response.status === 200) {
       let count = 1;
       response.data.forEach((part) => {
-        document.getElementById('partiess').innerHTML += `<tr><td>${count++}</td>
+        document.getElementById('partiess').innerHTML += `<tr> <td>${count++}</td>
+        <td><img src="${part.logourl}" id="logo_image"></td>
           <td>${part.name}</td>
           <td>${part.hqaddress}</td>
-          <td>${part.logourl}</td></tr>`;
+          </tr>`;
       });
     } else if (response.status === 403) {
       window.location.href = './403.html';
@@ -201,8 +202,10 @@ fetch(`${basePath}/api/v1/populateVote`, {
       const populateTable = document.getElementById('candidatess');
       let count = 1;
       data.forEach((off) => {
+        console.log(off);
         populateTable.innerHTML += `<tr>
         <td>${count++}</td>
+        <td><img src="${off.passporturl}" id="logo_image"></td>
         <td>${off.firstname} ${off.lastname}</td>
         <td>${off.type}</td>
         <td>${off.name}</td>
@@ -269,11 +272,13 @@ const displayResult = (id) => {
         const populateTable = document.getElementById('results');
         let count = 1;
         data.forEach((off) => {
+          console.log(off);
           populateTable.innerHTML += `<tr>
           <td>${count++}</td>
-          <td>${off.office}</td>
-          <td>${off.candidate}</td>
-          <td>${off.result}</td>
+          <td><img src="${off.passporturl}" id="logo_image"></td>
+          <td>${off.firstname} ${off.lastname}</td>
+          <td>${off.name}</td>
+          <td>${off.results}</td>
           </tr>`;
         });
       } else if (response.status === 403) {

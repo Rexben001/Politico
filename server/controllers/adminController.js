@@ -54,7 +54,7 @@ class AdminController {
       const id = Number(req.params.office_id);
       pool.connect((err, client, done) => {
         if (err) throw err;
-        const query = `SELECT office, candidate, COUNT(candidate) AS result FROM votes WHERE office=${id} GROUP BY candidate, office`;
+        const query = `select office, candidate, users.firstname, users.lastname, users.passportUrl, offices.name, count(candidate) as results from votes inner join users on users.user_id=votes.candidate inner join offices on offices.office_id=votes.office where votes.office=${id} group by candidate, offices.name, users.firstname, office, users.lastname, users.passportUrl`;
         client.query(query, (error, result) => {
           done();
           if (error || result.rowCount === 0) {
@@ -214,7 +214,7 @@ class AdminController {
     try {
       pool.connect((err, client, done) => {
         if (err) throw err;
-        const query = 'select offices.office_id, offices.name, offices.type, accept_candidates.candidate_id, users.firstname, users.lastname, parties.name from offices, users,accept_candidates, parties  where offices.office_id=accept_candidates.office and users.user_id=accept_candidates.createdBy and parties.party_id=accept_candidates.party;';
+        const query = 'select offices.office_id, offices.name, offices.type, accept_candidates.candidate_id, users.firstname, users.lastname, users.passportUrl,parties.name from offices, users,accept_candidates, parties  where offices.office_id=accept_candidates.office and users.user_id=accept_candidates.createdBy and parties.party_id=accept_candidates.party;';
         client.query(query, (error, result) => {
           done();
           if (error) {

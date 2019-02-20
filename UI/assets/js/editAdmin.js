@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 const basePath = 'https://politico-voting.herokuapp.com';
+// const basePath = 'http://localhost:8080';
 
 
 const getToken = () => {
@@ -44,7 +45,7 @@ fetch(`${basePath}/api/v1/offices`, {
   .catch(error => console.log('Error:', error));
 
 
-fetch(`${basePath} /api/v1 / parties`, {
+fetch(`${basePath}/api/v1/parties`, {
   method: 'GET',
   headers: {
     'Content-Type': 'application/json',
@@ -60,10 +61,11 @@ fetch(`${basePath} /api/v1 / parties`, {
     if (response.status === 404) {
       document.getElementById('no-data').innerHTML = 'No party has been created'
     }
+    console.log(response);
     if (response.status === 200) {
       let count = 1;
       response.data.forEach((part) => {
-        document.getElementById('parties').innerHTML += `< tr > <td>${count++}</td>
+        document.getElementById('parties').innerHTML += `<tr> <td>${count++}</td>
           <td><img src="${part.logourl}" id="logo_image"></td>
             <td>${part.name}</td>
             <td>${part.hqaddress}</td>
@@ -83,7 +85,7 @@ const editFile = (id) => {
 };
 
 const deleteFile = (id) => {
-  fetch(`${basePath} /api/v1 / parties / ${id} `, {
+  fetch(`${basePath}/api/v1/parties/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -110,7 +112,7 @@ const deleteFile = (id) => {
     .catch(error => console.log('Error:', error));
 };
 
-fetch(`${basePath} /api/v1 / candidates`, {
+fetch(`${basePath}/api/v1/candidates`, {
   method: 'GET',
   headers: {
     'Content-Type': 'application/json',
@@ -131,7 +133,7 @@ fetch(`${basePath} /api/v1 / candidates`, {
       let count = 1;
       console.log(data);
       data.forEach((cand) => {
-        document.getElementById('candidate').innerHTML += `< tr > <td>${count++}</td>
+        document.getElementById('candidate').innerHTML += `<tr><td>${count++}</td>
           <td>${cand.firstname} ${cand.lastname}</td>
           <td>${cand.name}</td>
           <td>${cand.party}</td>
@@ -147,7 +149,7 @@ fetch(`${basePath} /api/v1 / candidates`, {
 
 const acceptIt = (id) => {
   console.log(id);
-  fetch(`${basePath} /api/v1 / office / ${id} /register`, {
+  fetch(`${basePath}/api/v1/office/${id}/register`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
