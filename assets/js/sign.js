@@ -3,6 +3,8 @@ const basePath = 'https://politico-voting.herokuapp.com';
 
 document.getElementById('signin').addEventListener('submit', (e) => {
   e.preventDefault();
+  document.getElementById('loader1').style.display = 'block';
+  document.getElementById('register').style.display = 'none';
   const data = {
     email: document.getElementById('email').value,
     password: document.getElementById('password').value

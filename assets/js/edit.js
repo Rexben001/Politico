@@ -6,7 +6,7 @@ const getToken = () => {
   if (token) {
     return token;
   }
-  return 'No token Found';
+  window.location.href = './signin.html';
 };
 
 const id = Number(window.location.href.split('=')[1]);
@@ -41,6 +41,8 @@ fetch(`${basePath}/api/v1/parties/${id}`, {
 
 document.getElementById('edit_party').addEventListener('submit', (e) => {
   e.preventDefault();
+  document.getElementById('loader1').style.display = 'block';
+  document.getElementById('register').style.display = 'none';
   const data = {
     name: document.getElementById('party_name').value,
     hqAddress: document.getElementById('hq_address').value,
