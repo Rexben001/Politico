@@ -81,9 +81,9 @@ fetch(`${basePath}/api/v1/populateVote`, {
       const populate2 = document.getElementById('candidate');
 
       data.forEach((off) => {
-        populate.innerHTML += `<option id=${off.office_id}>${off.name}, ${off.type}</option>`;
-        populate2.innerHTML += `<option id=${off.candidate_id}>${off.firstname}, ${off.lastname}</option>`;
-
+        console.log(off);
+        populate.innerHTML += `<option id=${off.office_id}>${off.type}</option>`;
+        populate2.innerHTML += `<option id=${off.candidate_id}>${off.firstname} ${off.lastname} (${off.name})</option>`;
       });
     } else if (response.status === 403) {
       window.location.href = './signin.html';

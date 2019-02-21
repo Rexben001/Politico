@@ -1,6 +1,9 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable require-jsdoc */
 /* eslint-disable no-undef */
+const basePath = 'https://politico-voting.herokuapp.com';
+// const basePath = 'http://localhost:8080';
+
 const expresss = document.getElementById('express');
 const petition = document.getElementById('petition');
 
@@ -26,7 +29,17 @@ const getToken = () => {
   }
   window.location.href = './signin.html';
 };
-const basePath = 'https://politico-voting.herokuapp.com';
+
+let imageLink;
+cloudinary.applyUploadWidget('#upload_widget_opener', {
+  cloudName: 'rexben',
+  uploadPreset: 'lcxc1pn1',
+}, (error, result) => {
+  if (result && result.event === 'success') {
+    imageLink = result.info.url;
+    return imageLink;
+  }
+})
 
 fetch(`${basePath}/api/v1/offices`, {
   method: 'GET',
@@ -48,7 +61,7 @@ fetch(`${basePath}/api/v1/offices`, {
       const { data } = response;
       const populate = document.getElementById('offices');
       data.forEach((off) => {
-        populate.innerHTML += `< option id = ${off.office_id} > ${off.name}, ${off.type}</option > `;
+        populate.innerHTML += `<option id="${off.office_id}"> ${off.name}, ${off.type}</option>`;
       });
     } else if (response.status === 403) {
       window.location.href = './signin.html';
@@ -78,7 +91,7 @@ fetch(`${basePath}/api/v1/parties`, {
       const { data } = response;
       const populate = document.getElementById('party');
       data.forEach((part) => {
-        populate.innerHTML += `< option id = "${part.party_id}" > ${part.name}</option > `;
+        populate.innerHTML += `<option id="${part.party_id}">${part.name}</option>`;
       });
     } else if (response.status === 403) {
       window.location.href = './signin.html';
@@ -105,6 +118,8 @@ function onVal2() {
 document.getElementById('register').addEventListener('submit', (e) => {
   e.preventDefault();
 
+  document.getElementById('loader1').style.display = 'block';
+  document.getElementById('register1').style.display = 'none';
   const data = {
     office: officeValue,
     party: partyValue
@@ -124,7 +139,7 @@ document.getElementById('register').addEventListener('submit', (e) => {
   })
     .then((response) => {
       if (response.status === 404) {
-        document.getElementById('no-data').innerHTML = 'No users has been created';
+        // document.getElementById('no-data').innerHTML = 'No users has been created';
       }
       if (response.status === 201) {
         console.log('Worked');
@@ -145,12 +160,13 @@ function onVal3() {
 
 document.getElementById('contestForm').addEventListener('submit', (e) => {
   e.preventDefault();
+  document.getElementById('loader2').style.display = 'block';
+  document.getElementById('register2').style.display = 'none';
   const data = {
     office: officeValue2,
-    evidence: document.getElementById('evidence').value,
+    evidence: imageLink,
     bodyValue: document.getElementById('makePetition').value
   }
-  console.log(data.office);
   fetch(`${basePath}/api/v1/petitions`, {
     method: 'POST',
     body: JSON.stringify(data),
@@ -169,7 +185,7 @@ document.getElementById('contestForm').addEventListener('submit', (e) => {
         document.getElementById('no-data').innerHTML = 'No users has been created';
       }
       if (response.status === 201) {
-        console.log('Worked');
+        window.location.href = './userprofile.html';
       } else if (response.status === 403) {
         window.location.href = './signin.html';
       } else if (response.status === 401) {
@@ -192,6 +208,7 @@ fetch(`${basePath}/api/v1/offices`, {
   return res.json();
 })
   .then((response) => {
+    console.log(response);
     if (response.status === 404) {
       document.getElementById('no-data').innerHTML = 'No users has been created';
     }
@@ -199,7 +216,7 @@ fetch(`${basePath}/api/v1/offices`, {
       const { data } = response;
       const populate = document.getElementById('offices2');
       data.forEach((off) => {
-        populate.innerHTML += `< option id = ${off.office_id} > ${off.name}, ${off.type}</option > `;
+        populate.innerHTML += `<option id=${off.office_id}> ${off.name}, ${off.type}</option> `;
       });
     } else if (response.status === 403) {
       window.location.href = './403.html';

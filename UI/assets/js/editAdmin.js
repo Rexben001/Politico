@@ -176,3 +176,37 @@ const acceptIt = (id) => {
     .catch(error => console.log('Error:', error));
 };
 
+fetch(`${basePath}/api/v1/petitions/all`, {
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: `${getToken()} `
+  }
+}).then((res) => {
+  if (res.status === 404) {
+    return res;
+  }
+  return res.json();
+})
+  .then((response) => {
+    if (response.status === 404) {
+      // document.getElementById('no-data3').innerHTML = 'No pe has been created';
+    }
+    if (response.status === 200) {
+      const { data } = response;
+      let count = 1;
+      data.forEach((petitions) => {
+        document.getElementById('petitions').innerHTML += `<tr><td>${count++}</td>
+          <td>${petitions.firstname} ${petitions.lastname}</td>
+          <td>${petitions.name}, ${petitions.type}</td>
+          <td>${petitions.body}</td>
+          <td><img src="${petitions.evidence}" id="logo_image"></td>
+          </tr>`;
+      });
+    } else if (response.status === 403) {
+      window.location.href = './403.html';
+    } else if (response.status === 401) {
+      window.location.href = './401.html';
+    }
+  })
+  .catch(error => console.log('Error:', error));
