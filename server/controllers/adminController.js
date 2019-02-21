@@ -52,11 +52,10 @@ class AdminController {
   static getAllResults(req, res) {
     try {
       const id = Number(req.params.office_id);
-      pool.connect((err, client, done) => {
+      pool.connect((err, pool, done) => {
         if (err) throw err;
         const query = `select office, candidate, users.firstname, users.lastname, users.passportUrl, offices.name, count(candidate) as results from votes inner join users on users.user_id=votes.candidate inner join offices on offices.office_id=votes.office where votes.office=${id} group by candidate, offices.name, users.firstname, office, users.lastname, users.passportUrl`;
-        client.query(query, (error, result) => {
-          done();
+        pool.query(query, (error, result) => {
           if (error || result.rowCount === 0) {
             return res.status(500).json({ staus: 500, message: 'Vote could not be fetched' });
           }
@@ -83,20 +82,16 @@ class AdminController {
   static getAllUsers(req, res) {
     try {
       if (req.admin) {
-        pool.connect((err, client, done) => {
-          if (err) throw err;
-          const query = 'SELECT * FROM users';
-          client.query(query, (error, result) => {
-            done();
-            if (error) {
-              return res.status(500).json({ staus: 500, message: 'Users could not be fetched' });
-            } if (result.rowCount === 0) {
-              return res.status(404).json({ staus: 404, message: 'No users' });
-            }
-            return res.status(200).json({
-              status: 200,
-              data: result.rows
-            });
+        const query = 'SELECT * FROM users';
+        pool.query(query, (error, result) => {
+          if (error) {
+            return res.status(500).json({ staus: 500, message: 'Users could not be fetched' });
+          } if (result.rowCount === 0) {
+            return res.status(404).json({ staus: 404, message: 'No users' });
+          }
+          return res.status(200).json({
+            status: 200,
+            data: result.rows
           });
         });
       } else {
@@ -177,20 +172,16 @@ class AdminController {
   static getAllPending(req, res) {
     try {
       if (req.admin) {
-        pool.connect((err, client, done) => {
-          if (err) throw err;
-          const query = 'select users.firstname, users.lastname, offices.name, parties.name as party, candidates.candidate_id from users, offices, parties,candidates where user_id=candidates.createdBy and offices.office_id=candidates.office and parties.party_id=candidates.party';
-          client.query(query, (error, result) => {
-            done();
-            if (error) {
-              return res.status(500).json({ staus: 500, message: 'Candidates could not be fetched' });
-            } if (result.rowCount === 0) {
-              return res.status(404).json({ staus: 404, message: 'No candidates' });
-            }
-            return res.status(200).json({
-              status: 200,
-              data: result.rows
-            });
+        const query = 'select users.firstname, users.lastname, offices.name, parties.name as party, candidates.candidate_id from users, offices, parties,candidates where user_id=candidates.createdBy and offices.office_id=candidates.office and parties.party_id=candidates.party';
+        pool.query(query, (error, result) => {
+          if (error) {
+            return res.status(500).json({ staus: 500, message: 'Candidates could not be fetched' });
+          } if (result.rowCount === 0) {
+            return res.status(404).json({ staus: 404, message: 'No candidates' });
+          }
+          return res.status(200).json({
+            status: 200,
+            data: result.rows
           });
         });
       } else {
@@ -212,27 +203,53 @@ class AdminController {
    */
   static populateValuesForVotes(req, res) {
     try {
-      pool.connect((err, client, done) => {
-        if (err) throw err;
-        const query = 'select offices.office_id, offices.name, offices.type, accept_candidates.candidate_id, users.firstname, users.lastname, users.passportUrl,parties.name from offices, users,accept_candidates, parties  where offices.office_id=accept_candidates.office and users.user_id=accept_candidates.createdBy and parties.party_id=accept_candidates.party;';
-        client.query(query, (error, result) => {
-          done();
+      const query = 'select offices.office_id, offices.name, offices.type, accept_candidates.candidate_id, users.firstname, users.lastname, users.passportUrl,parties.name from offices, users,accept_candidates, parties  where offices.office_id=accept_candidates.office and users.user_id=accept_candidates.createdBy and parties.party_id=accept_candidates.party;';
+      pool.query(query, (error, result) => {
+        if (error) {
+          return res.status(500).json({ staus: 500, message: 'Candidates could not be fetched' });
+        } if (result.rowCount === 0) {
+          return res.sofficestatus(404).json({ staus: 404, message: 'No candidates' });
+        }
+        return res.status(200).json({
+          status: 200,
+          data: result.rows
+        });
+      });
+    } catch (error) {
+      return res.status(500).json({ status: 500, error: 'Server error' });
+    }
+  }
+
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @returns
+   * @memberof AdminController
+   */
+  static getAllPetitions(req, res) {
+    try {
+      if (req.admin) {
+        const query = 'select users.firstname, users.lastname, offices.name, offices.type, petitions.body, petitions.evidence from petitions inner join users on users.user_id=petitions.createdby inner join offices on offices.office_id=petitions.office';
+        pool.query(query, (error, result) => {
           if (error) {
-            return res.status(500).json({ staus: 500, message: 'Candidates could not be fetched' });
+            return res.status(500).json({ staus: 500, message: 'Petitions could not be fetched' });
           } if (result.rowCount === 0) {
-            return res.sofficestatus(404).json({ staus: 404, message: 'No candidates' });
+            return res.sofficestatus(404).json({ staus: 404, message: 'No petitions' });
           }
           return res.status(200).json({
             status: 200,
             data: result.rows
           });
         });
-      });
-
+      } else {
+        return res.status(401).json({ status: 401, error: 'You are not authorized to use this route' });
+      }
     } catch (error) {
       return res.status(500).json({ status: 500, error: 'Server error' });
     }
   }
 }
-
 export default AdminController;
