@@ -197,8 +197,8 @@ class UserControllers {
         pool.query(query, [passwordHash, req.id], (err, result) => {
           if (err) res.status(500).json({ status: 500, message: 'Unable to update password' });
           if (result.rowCount === 0) res.status(404).json({ status: 404, message: 'User can not be found' });
-          res.status(200).json({
-            status: 200,
+          res.status(201).json({
+            status: 201,
             data: [{
               message: 'Password changed successfully'
             }]

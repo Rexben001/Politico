@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 
-// const basePath = 'https://politico-voting.herokuapp.com';
-const basePath = 'http://localhost:8080';
+const basePath = 'https://politico-voting.herokuapp.com';
+// const basePath = 'http://localhost:8080';
 const token = window.location.href.split('=')[1];
 console.log(token);
 
@@ -65,8 +65,9 @@ const changePassword = (e) => {
       }
     }).then(res => res.json())
       .then(response => {
+        console.log(response);
         if (response.status === 201) {
-          window.location.href = './userprofile.html';
+          window.location.href = './signin.html';
         } else {
           console.log('Invalid user');
         }

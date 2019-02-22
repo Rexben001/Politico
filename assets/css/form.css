@@ -189,18 +189,9 @@ form .reset{
 
  .instruct {
     padding: 5px;
-<<<<<<< HEAD:assets/css/form.css
-<<<<<<< HEAD:assets/css/form.css
     font-size: 1.2rem;
     text-align: center;
-=======
     font-size: 1.5rem;
-    /* text-align: center; */
->>>>>>> ft-improve-user-experience-164146380:UI/assets/css/form.css
-=======
-    font-size: 1.5rem;
-    /* text-align: center; */
->>>>>>> ft-user-reset-password-163289625:UI/assets/css/form.css
 }
 
 #change{
@@ -210,15 +201,8 @@ form .reset{
 .error{
     font-weight: 600;
     color: rgb(161, 13, 13);
-<<<<<<< HEAD:assets/css/form.css
-<<<<<<< HEAD:assets/css/form.css
     font-size: 12px;
-=======
     text-align: center;
->>>>>>> ft-improve-user-experience-164146380:UI/assets/css/form.css
-=======
-    text-align: center;
->>>>>>> ft-user-reset-password-163289625:UI/assets/css/form.css
 }
 
 
