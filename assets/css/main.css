@@ -556,13 +556,8 @@ a.register:hover, .edit-profile:hover{
             align-items: center;
         }
         .footer-img .fas{
-<<<<<<< HEAD:assets/css/main.css
-            padding-left: 20px;
-            font-size: 2.5rem;
-=======
             padding-left: 10px;
             font-size: 2rem;
->>>>>>> ft-improve-user-experience-164146380:UI/assets/css/main.css
         }
         .politico-trademark{
             display: block;

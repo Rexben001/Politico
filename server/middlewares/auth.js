@@ -50,7 +50,7 @@ class Auth {
    * @memberof Auth
    */
   static verifyResetToken(req, res, next) {
-    const { token } = req.params;
+    const { token } = req.query;
     if (!token || token === undefined) {
       return res.status(403).json({
         status: 403,
