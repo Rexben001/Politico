@@ -23,9 +23,12 @@
 .cloudinary-button{
     background-color: #04310f;
 }
-
-
-
+#link{
+    display: none;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+}
 .signup{
     box-sizing: border-box;
     background: #ffffff;
