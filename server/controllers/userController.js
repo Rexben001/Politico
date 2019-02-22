@@ -26,12 +26,12 @@ class UserControllers {
   static async createUser(req, res) {
     try {
       const {
-        firstname, lastname, othernames, username, email, phonenumber, password, passportUrl
+        firstname, lastname, username, email, phonenumber, password, passportUrl
       } = req.body;
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(password, salt, (err, hash) => {
           const passwordHash = hash;
-          const query = `INSERT INTO users(firstname, lastname, othernames, username,
+          const query = `INSERT INTO users(firstname, lastname, username,
                   email, phoneNumber, password, is_admin, passportUrl) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING user_id, firstname, lastname, email, is_admin`;
           const value = [firstname, lastname, othernames, username,
             email, phonenumber, passwordHash, false, passportUrl];
@@ -134,7 +134,6 @@ class UserControllers {
    */
   static resetPassword(req, res) {
     try {
-      const basePath = 'localhost:8080/api/v1';
       const transporter = nodeMailer.createTransport({
         host: 'smtp.gmail.com',
         port: 465,
@@ -159,7 +158,7 @@ class UserControllers {
               from: 'politicoxpress@gmail.com',
               to: email,
               subject: 'Reset Password Link - Politico',
-              html: `<p>You requested to reset your password. Click <a href="http://localhost:8080/api/v1/resetpassword/${token}">here</a> to reset it</p><p>Pls, ignore if you are not the one</p>. <p>Contact mail us @ politicoxpress@gmail.com for help</p>`
+              html: `<p>You requested to reset your password. Click <a href="https://rexben001.github.io/Politico/changepassword.html?token=${token}">here</a> to reset it</p><p>Pls, ignore if you are not the one</p>. <p>Contact mail us @ politicoxpress@gmail.com for help</p>`
             };
             transporter.sendMail(mailOptions, (err, info) => {
               if (err) {
@@ -198,8 +197,8 @@ class UserControllers {
         pool.query(query, [passwordHash, req.id], (err, result) => {
           if (err) res.status(500).json({ status: 500, message: 'Unable to update password' });
           if (result.rowCount === 0) res.status(404).json({ status: 404, message: 'User can not be found' });
-          res.status(200).json({
-            status: 200,
+          res.status(201).json({
+            status: 201,
             data: [{
               message: 'Password changed successfully'
             }]
