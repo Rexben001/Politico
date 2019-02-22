@@ -32,7 +32,10 @@ a:hover{
     transition: 0.5s ease-in-out;
   }
   
-  
+  .navbar .dropdown .dropbtn .fa-caret-down{
+    margin-left: 8px;
+}
+
   .navbar #menu {
     display: none;
   }
@@ -57,7 +60,7 @@ a:hover{
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    width: 140px;
+    width: 120px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
   }
@@ -123,7 +126,6 @@ a:hover{
      padding: 5px;
      height: 22vh;
      color: #134213;
-
     }
 
     .others{
@@ -180,11 +182,11 @@ a:hover{
     color: green;
     width: 60%;
     margin: auto;
-    padding: 15px 18px 15px 15px;
+    padding: 18px;
     border-left: solid #0fb836 10px;
     margin-top: 30px;
     position: relative;
-    height: 100px;
+    height: 85px;
 
 }
 
@@ -192,8 +194,8 @@ a:hover{
     position: absolute;
     top: 0;
     right: 0;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2rem;
+    height: 2rem;
     background-color: #28db10b9;
 }
 .triangle{
@@ -201,7 +203,7 @@ a:hover{
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 0 2.5rem 2.5rem 0;
+    border-width: 0 2rem 2rem 0;
     border-color: transparent #f1F2f2;
 }
 
@@ -398,6 +400,9 @@ a.register:hover, .edit-profile:hover{
     padding: 15px;
     box-shadow: 2px 2px 5px 5px  #1c4225;
 }
+.show_details{
+    display:none;
+}
 @media screen and (max-width: 1200px){
     .navbar a:not(:first-child), .dropdown .dropbtn {
         display: none;
@@ -406,7 +411,7 @@ a.register:hover, .edit-profile:hover{
         display: block;
         margin-right: 0%;
         margin-left: 1.0rem;
-        font-size: 1.3rem;
+        font-size: 1.1rem;
         font-weight: 600;
 
     }
@@ -414,21 +419,21 @@ a.register:hover, .edit-profile:hover{
         display: block;
         margin-right: 0%;
         margin-left: 1.0rem;
-        font-size: 1.3rem;
+        font-size: 1.1rem;
         font-weight: 600;
     }
 
     .navbar a#menu {
         display: block;
         float: right;
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         margin-right: 0px;
         font-weight: 700;
 
     }
-            .backgroundImage{
-                clear: both;
-            }
+     .backgroundImage{
+         clear: both;
+    }
 }
 
 @media screen and (max-width: 1200px){
@@ -450,66 +455,97 @@ a.register:hover, .edit-profile:hover{
     float: none;
     display: block;
     text-align: left;
-    font-size: 1.3rem;
-    padding: 10px;
+    font-size: 1.1rem;
+    padding: 5px;
   }
   .navbar.responsive .dropdown {
       float: none;
-      margin-left: 20px;
+      margin-left: 5px;
+      padding: 5px;
         }
 
   .navbar.responsive .dropdown-content {
       position: relative;
+      margin: 0;
       margin-left: 15px;
+      padding: 5px;
     }
   .navbar.responsive .dropdown .dropbtn {
     display: block;
     text-align: left;
-    font-size: 1.3rem;
-    padding: 10px;
+    font-size: 1.1rem;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 5px;
+    margin-left: 15px;
   }
-        .backgroundImage{
-            min-height: 100vh;
-        }
-        .backgroundImage .signpage{
-            min-height: 130vh;
-        }
+  .navbar.responsive .dropdown .dropbtn .fa-caret-down{
+      margin-left: 8px;
+  }  
+  .backgroundImage{
+     min-height: 100vh;
+   }
+    .backgroundImage .signpage{
+       min-height: 130vh;
+    }
 
         .aboutPage{
             padding-top: 10vh;
-            font-size: 21px;
+            font-size: 18px;
             margin-top: 0;
+            width: 90%;
         }
         .quo-bg{
-            height: 150px;
+            height: 130px;
+            width: 75%;
+        }
+
+        .round{
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+        .triangle{
+            border-width: 0 1.5rem 1.5rem 0;
         }
         .diplayQuote{
-            padding: 0 15px;
-            font-size: 2.2vh;
+            font-size: 2.5vh;
             resize: both;
+            padding: 5px;
         }
         .aboutPage > p:last-child{
             display: none;
         }
         .author{
-            font-size: 1.7vh;
-            padding: 0 15px;
+            font-size: 2vh;
+            padding: 0 10px;
             margin-left: 40px;
             resize: both;
 
         }
         a.register{
             width: 60%;
+            font-size: 20px;
+            padding: 13px;
         }
         .profile{
             width: 87%;
+        }
+        .profile img{
+            height: 190px;
+            width: 190px;
+            border-radius: 200px;
+            margin: 15px 0;
+        }
+
+       .party_upload #party{
+            height: 310px;
         }
         .voted{
             clear: both;
             width: inherit;
         }
         footer{
-           min-height: 27vh;
+           min-height: 30vh;
            margin: 10px auto 0;
         }
         .footer-img{
@@ -520,24 +556,30 @@ a.register:hover, .edit-profile:hover{
             align-items: center;
         }
         .footer-img .fas{
+<<<<<<< HEAD:assets/css/main.css
             padding-left: 20px;
             font-size: 2.5rem;
+=======
+            padding-left: 10px;
+            font-size: 2rem;
+>>>>>>> ft-improve-user-experience-164146380:UI/assets/css/main.css
         }
         .politico-trademark{
             display: block;
             text-align: center;
-            font-size: 1.2rem;
-            margin-left: 10px;
+            font-size: 1rem;
+            margin-left: 5px;
         }
 
         .footer-columns{
             display: block;
-            margin:20px  auto 5px;
+            margin: 20px auto 5px;
         }
         .column{
             padding-bottom: 15px;
-            font-size: 1.2rem;
-            padding-left: 25px;
+            font-size: 13px;
+            padding-left: 20px;
+            padding-right: 3px;
         }
         .column:first-child{
             display: none;
@@ -548,7 +590,11 @@ a.register:hover, .edit-profile:hover{
             width: 100%;
         }
 
-        
+        .show_details{
+            display:block;
+            font-weight: 500;
+            font-size: 13px;
+        }
     }
 
     @media screen and (min-width: 700px) and (max-width: 1200px){
@@ -578,18 +624,58 @@ a.register:hover, .edit-profile:hover{
             }
             .diplayQuote{
                 padding: 0 15px;
-                font-size: 25px;
+                font-size: 20px;
+                font-weight: 500;
             }
             
             .author{
-                font-size: 25px;
+                font-size: 20px;
                 padding: 0 15px;
                 margin-left: 100px;
+                font-weight: 500;
     
             }
             a.register{
-                width: 50%;
+                width: 40%;
+                font-size: 1.7rem;
             }
+
+            .column:first-child{
+                display: block;
+            }
+
+            .footer-img{
+                margin-top: 20px;
+                width: 30%;
+                float: left;
+                margin-left: 10px;
+            }
+            
+            .footer-img .fas {
+                font-size: 4rem;
+                padding-left: 10px;
+            }
+            
+            .footer-img .politico-trademark{
+                padding-left: 7px;
+                font-weight: 600;
+                font-size: 1.5rem;
+            }
+            .footer-columns{
+                padding-left: 10px;
+                width: 65%;
+                float: left;
+                display: grid;    
+                grid-template-columns: repeat(3, 1fr);
+                grid-gap: 15px;
+                cursor: pointer;
+            }
+            .column{
+                display: block;
+                font-weight: 600;
+                font-size: 1.2rem;
+            }
+            
             .profile{
                 width: 95%;
                 box-shadow: 0 #b6b2b2;
@@ -613,12 +699,20 @@ a.register:hover, .edit-profile:hover{
 
         @media screen and (max-width: 700px){
             .sidebar{
-                width: 19%;
-                margin: 0;
+                width: 21%;
+                margin: 0 auto;
                 height: 70vh;
+                text-align: center;
+            }
+            .details_sidebar{
+                display: none;
             }
             .sidebar a{
-                font-size: 1.2rem;
+                font-size: 1.4rem;
+                padding: 20px 7px;
+            }
+            .show_details{
+                display: block;
             }
             .mainbar{
                 width: 75%;
@@ -628,8 +722,19 @@ a.register:hover, .edit-profile:hover{
             .mainbar .signup{
                 width: 90%;
             }
-            .mainbar table td, .mainbar table th{
-                font-size: 1.4em;
+            .intro{
+                width: 85%;
+            }
+            .intro > p {
+                color: green;
+                font-size: 16px;
+                font-weight: 500;
+                text-align: center;
+            }
+            textarea{
+                height: 100px;
+                font-weight: 500;
+                font-size: 16px;
             }
         }
         

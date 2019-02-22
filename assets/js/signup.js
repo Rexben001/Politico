@@ -26,7 +26,6 @@ document.getElementById('signup').addEventListener('submit', (e) => {
     lastname: document.getElementById('lastname').value,
     username: document.getElementById('username').value,
     email: document.getElementById('email').value,
-    othernames: 'Benson',
     password: document.getElementById('password').value,
     phonenumber: document.getElementById('phonenumber').value,
     passportUrl: imageLink

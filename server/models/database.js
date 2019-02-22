@@ -24,7 +24,7 @@ const users = async () => {
         user_id SERIAL NOT NULL UNIQUE,
         firstname VARCHAR(128) NOT NULL,
         lastname VARCHAR(128) NOT NULL,
-        othernames VARCHAR(128) NOT NULL,
+        othernames VARCHAR(128),
         email VARCHAR(128) NOT NULL,
         password VARCHAR(128) NOT NULL,
         username VARCHAR(128) NOT NULL,

@@ -52,17 +52,14 @@ class AdminController {
   static getAllResults(req, res) {
     try {
       const id = Number(req.params.office_id);
-      pool.connect((err, pool, done) => {
-        if (err) throw err;
-        const query = `select office, candidate, users.firstname, users.lastname, users.passportUrl, offices.name, count(candidate) as results from votes inner join users on users.user_id=votes.candidate inner join offices on offices.office_id=votes.office where votes.office=${id} group by candidate, offices.name, users.firstname, office, users.lastname, users.passportUrl`;
-        pool.query(query, (error, result) => {
-          if (error || result.rowCount === 0) {
-            return res.status(500).json({ staus: 500, message: 'Vote could not be fetched' });
-          }
-          return res.status(200).json({
-            status: 200,
-            data: result.rows
-          });
+      const query = `select office, candidate, users.firstname, users.lastname, users.passportUrl, offices.name, count(candidate) as results from votes inner join users on users.user_id=votes.candidate inner join offices on offices.office_id=votes.office where votes.office=${id} group by candidate, offices.name, users.firstname, office, users.lastname, users.passportUrl`;
+      pool.query(query, (error, result) => {
+        if (error || result.rowCount === 0) {
+          return res.status(500).json({ staus: 500, message: 'Vote could not be fetched' });
+        }
+        return res.status(200).json({
+          status: 200,
+          data: result.rows
         });
       });
     } catch (error) {
@@ -203,7 +200,7 @@ class AdminController {
    */
   static populateValuesForVotes(req, res) {
     try {
-      const query = 'select offices.office_id, offices.name, offices.type, accept_candidates.candidate_id, users.firstname, users.lastname, users.passportUrl,parties.name from offices, users,accept_candidates, parties  where offices.office_id=accept_candidates.office and users.user_id=accept_candidates.createdBy and parties.party_id=accept_candidates.party;';
+      const query = 'select offices.office_id, offices.name as offices_name, offices.type, accept_candidates.candidate_id, users.firstname, users.lastname, users.passportUrl,parties.name from offices, users,accept_candidates, parties  where offices.office_id=accept_candidates.office and users.user_id=accept_candidates.createdBy and parties.party_id=accept_candidates.party;';
       pool.query(query, (error, result) => {
         if (error) {
           return res.status(500).json({ staus: 500, message: 'Candidates could not be fetched' });

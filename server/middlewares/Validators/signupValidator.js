@@ -1,15 +1,12 @@
 const signupValidator = (req, res, next) => {
   let {
-    firstname, lastname, othernames, username, email, phonenumber, password, passportUrl
+    firstname, lastname, username, email, phonenumber, password, passportUrl
   } = req.body;
   if (firstname) {
     firstname = firstname.trim();
   }
   if (lastname) {
     lastname = lastname.trim();
-  }
-  if (othernames) {
-    othernames = othernames.trim();
   }
   if (username) {
     username = username.trim();
@@ -41,9 +38,6 @@ const signupValidator = (req, res, next) => {
   if (!lastname || typeof (lastname) !== 'string') {
     return res.status(422).json({ status: 422, error: 'Enter a valid lastname' });
   }
-  if (!othernames || typeof (othernames) !== 'string') {
-    return res.status(422).json({ status: 422, error: 'Enter a valid othernames' });
-  }
   if (!username || typeof (username) !== 'string') {
     return res.status(422).json({ status: 422, error: 'Enter a valid username' });
   }
@@ -62,7 +56,6 @@ const signupValidator = (req, res, next) => {
 
   req.body.firstname = firstname.replace(/\s+/g, ' ');
   req.body.lastname = lastname.replace(/\s+/g, ' ');
-  req.body.othernames = othernames.replace(/\s+/g, ' ');
   req.body.username = username.replace(/\s+/g, ' ');
   req.body.email = email.replace(/\s+/g, ' ');
   req.body.phonenumber = phonenumber.replace(/\s+/g, ' ');
