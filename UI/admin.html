@@ -25,9 +25,7 @@
             <a href="politics.html">Contest</a>
             <a href="list_all.html">All Parties</a>
             <div class="dropdown">
-                <button class="dropbtn">User
-                    <i class="fa fa-caret-down"></i>
-                </button>
+                <button class="dropbtn"><span>User</span> <i class="fa fa-caret-down"></i></button>
                 <div class="dropdown-content">
                     <a href="userprofile.html">Profile</a><br>
                     <a href="vote.html">Vote</a><br>
@@ -41,8 +39,9 @@
         <div class="register_parties">
             <div class="parties">
                 <h4>Register a political party</h4>
-                <form action="" class="signup" id="party">
-                    <a href="#" id="upload_widget_opener"></a>
+                <form action="" class="signup party_upload" id="party">
+                    <label for="uploads">Upload Logo:</label>
+                    <div id="uploads"><a href="#" id="upload_widget_opener">Upload Passport</a></div>
                     <label for="name"><span class="icon"><i class="fas fa-address-book"></i></span> Name</label>
                     <input type="text" id="party-name" required>
                     <label for="office"><span class="icon"><i class="fas fa-map-marked"></i></span> HQ. Address</label>

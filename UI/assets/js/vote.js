@@ -37,6 +37,7 @@ document.getElementById('vote').addEventListener('click', (e) => {
 document.getElementById('pol').addEventListener('click', (e) => {
   e.preventDefault();
   vote.style.display = 'none';
+
   parties.style.display = 'block';
   candidate.style.display = 'none';
   result.style.display = 'none';
@@ -73,17 +74,14 @@ fetch(`${basePath}/api/v1/populateVote`, {
 })
   .then((response) => {
     if (response.status === 404) {
-      document.getElementById('no-data').innerHTML = 'No users has been created';
+      document.getElementById('error_vote').innerHTML = 'No candidate has been verified by the electoral body';
     }
     if (response.status === 200) {
+      const populate = document.getElementById('card');
       const { data } = response;
-      const populate = document.getElementById('office');
-      const populate2 = document.getElementById('candidate');
-
       data.forEach((off) => {
-        console.log(off);
-        populate.innerHTML += `<option id=${off.office_id}>${off.type}</option>`;
-        populate2.innerHTML += `<option id=${off.candidate_id}>${off.firstname} ${off.lastname} (${off.name})</option>`;
+        populate.innerHTML += `<div class="card_vote"><img src="${off.passporturl}" class="candidate_img"> <p class="candidate_name" id="${off.candidate_id}">${off.firstname} ${off.lastname}</p><p>AS</p><p class="candidate_name" id="${off.office_id}">${off.offices_name}</p>
+        <button type="submit" id="submit" onclick="castVote(${off.candidate_id}, ${off.office_id}, )"><span id="register">Vote</span> <span id="loader1" class="loader"><i class="fa fa-circle-o-notch fa-spin"></i>Loading</span></button></div>`;
       });
     } else if (response.status === 403) {
       window.location.href = './signin.html';
@@ -93,22 +91,9 @@ fetch(`${basePath}/api/v1/populateVote`, {
   })
   .catch(error => console.log('Error:', error));
 
-
-let candidateValue;
-let officeValue;
-function onVal() {
-  const off = document.getElementById('office');
-  const office = off.options[off.selectedIndex].id;
-  officeValue = Number(office);
-}
-
-function onVal2() {
-  const cand = document.getElementById('candidate');
-  const candy = cand.options[cand.selectedIndex].id;
-  candidateValue = Number(candy);
-}
-document.getElementById('voting').addEventListener('submit', (e) => {
-  e.preventDefault();
+const castVote = (cand, off) => {
+  const candidateValue = Number((document.getElementById(cand)).id);
+  const officeValue = Number((document.getElementById(off)).id);
   document.getElementById('loader1').style.display = 'block';
   document.getElementById('register').style.display = 'none';
   const data = {
@@ -145,7 +130,7 @@ document.getElementById('voting').addEventListener('submit', (e) => {
       }
     })
     .catch(error => console.log('Error:', error));
-});
+};
 
 fetch(`${basePath}/api/v1/parties`, {
   method: 'GET',
@@ -161,7 +146,7 @@ fetch(`${basePath}/api/v1/parties`, {
 })
   .then((response) => {
     if (response.status === 404) {
-      document.getElementById('no-data').innerHTML = 'No party has been created';
+      document.getElementById('error_party').innerHTML = 'No party has been created';
     }
     if (response.status === 200) {
       let count = 1;
@@ -195,20 +180,19 @@ fetch(`${basePath}/api/v1/populateVote`, {
 })
   .then((response) => {
     if (response.status === 404) {
-      document.getElementById('no-data').innerHTML = 'No users has been created';
+      document.getElementById('error_candidate').innerHTML = 'No candidate has been verified by the electoral body';
     }
     if (response.status === 200) {
       const { data } = response;
       const populateTable = document.getElementById('candidatess');
       let count = 1;
       data.forEach((off) => {
-        console.log(off);
         populateTable.innerHTML += `<tr>
         <td>${count++}</td>
         <td><img src="${off.passporturl}" id="logo_image"></td>
-        <td>${off.firstname} ${off.lastname}</td>
-        <td>${off.type}</td>
-        <td>${off.name}</td>
+          <td>${off.firstname} ${off.lastname}</td>
+          <td>${off.type}</td>
+          <td>${off.name}</td>
         </tr>`;
       });
     } else if (response.status === 403) {
@@ -239,7 +223,7 @@ fetch(`${basePath}/api/v1/offices`, {
     if (response.status === 200) {
       const { data } = response;
       data.forEach((off) => {
-        document.getElementById('display').innerHTML += `<a class="oficeList" id="${off.office_id}" onclick="displayResult(${off.office_id})">${off.name}</a>`;
+        document.getElementById('display').innerHTML += `<a class="oficeList" id="${off.office_id}" onclick="displayResult(${off.office_id})"> ${off.name}</a> `;
       });
     } else if (response.status === 403) {
       window.location.href = './403.html';
@@ -250,7 +234,6 @@ fetch(`${basePath}/api/v1/offices`, {
   .catch(error => console.log('Error:', error));
 
 const displayResult = (id) => {
-  console.log('Worker')
   fetch(`${basePath}/api/v1/office/${id}/result`, {
     method: 'GET',
     headers: {
@@ -274,8 +257,8 @@ const displayResult = (id) => {
         data.forEach((off) => {
           console.log(off);
           populateTable.innerHTML += `<tr>
-          <td>${count++}</td>
-          <td><img src="${off.passporturl}" id="logo_image"></td>
+        <td>${count++}</td>
+        <td><img src="${off.passporturl}" id="logo_image"></td>
           <td>${off.firstname} ${off.lastname}</td>
           <td>${off.name}</td>
           <td>${off.results}</td>

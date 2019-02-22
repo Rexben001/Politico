@@ -23,7 +23,7 @@ fetch(`${basePath}/api/v1/votes/user`, {
 })
   .then((response) => {
     if (response.status === 404) {
-      // document.getElementById('no-data3').innerHTML = 'No candidate has been created';
+      document.getElementById('error_candidate').innerHTML = 'You have not casted any votes';
       console.log('Not');
     }
     if (response.status === 200) {

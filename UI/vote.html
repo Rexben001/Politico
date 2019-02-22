@@ -8,9 +8,9 @@
     <title>Vote for your candidate</title>
     <link rel="stylesheet" href="./assets/css/main.css">
     <link rel="stylesheet" href="./assets/css/form.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 </head>
 
@@ -22,9 +22,7 @@
             <a href="politics.html">Contest</a>
             <a href="list_all.html">All Parties</a>
             <div class="dropdown">
-                <button class="dropbtn">User
-                    <i class="fa fa-caret-down"></i>
-                </button>
+                <button class="dropbtn"><span>User</span> <i class="fa fa-caret-down"></i></button>
                 <div class="dropdown-content">
                     <a href="userprofile.html">Profile</a><br>
                     <a href="vote.html">Vote</a><br>
@@ -35,10 +33,14 @@
         </header>
     </div>
     <div class="sidebar">
-        <a href="" id="vote"><i class="fas fa-vote-yea"></i> Cast your vote</a>
-        <a href="" id="pol"><i class="fas fa-address-book"></i> Political Parties</a>
-        <a href="" id="candidates"><i class="fa fa-user-circle"></i> Aspirants</a>
-        <a href="" id="resul"><i class="fa fa-user-circle"></i> Election Results</a>
+        <a href="" id="vote"><i class="fas fa-vote-yea"></i> <span class="details_sidebar">Cast your vote</span><span
+                class="show_details">Vote</span></a>
+        <a href="" id="pol"><i class="fas fa-address-book"></i> <span class="details_sidebar"> Political Parties</span><span
+                class="show_details">Parties</span></a>
+        <a href="" id="candidates"><i class="fas fa-user-circle"></i> <span class="details_sidebar"> Aspirants</span><span
+                class="show_details">Aspirants</span></a>
+        <a href="" id="resul"><i class="fas fa-user-circle"></i> <span class="details_sidebar"> Election Results</span><span
+                class="show_details">Results</span></a>
 
     </div>
     <div class="mainbar">
@@ -46,28 +48,19 @@
             <div class="heading">
                 <h4>Vote wisely</h4>
             </div>
-            <form class="signup not-signup" id="voting">
-                <label for="party"><span class="icon"><i class="fas fa-address-book"></i></span> Office</label>
-                <select class="select-text" id="office" onchange="onVal()">
-                    <option disabled selected>Select Office</option>
-                </select>
-                <label for="office"><span class="icon"><i class="fas fa-briefcase"></i></span> Candidate</label>
-                <select class="select-text" id="candidate" onchange="onVal2()">
-                    <option disabled selected>Select candidate</option>
-
-                </select>
-                <br>
-                <button type="submit" id="submit"><span id="register">Vote</span> <span id="loader1" class="loader"><i
-                            class="fa fa-circle-o-notch fa-spin"></i>Loading</span></button> </form>
+            <p class="error" id="error_vote"></p>
+            <div class="card" id="card">
+            </div>
         </div>
         <div class="list part" id="parties">
             <table id="partiess">
                 <h4>List of registered political parties</h4>
+                <p class="error" id="error_party"></p>
                 <tr>
                     <th>S/N</th>
+                    <th>Logo</th>
                     <th>Name</th>
                     <th>HQ. Address</th>
-                    <th>Logo URL</th>
                 </tr>
                 <p id="no-data"></p>
             </table>
@@ -75,6 +68,7 @@
         <div class="list cand" id="candy">
             <table id="candidatess">
                 <h4>List of qualified candidate</h4>
+                <p class="error" id="error_candidate"></p>
                 <tr>
                     <th>S/N</th>
                     <th>Picture</th>
@@ -85,7 +79,10 @@
             </table>
         </div>
         <div class="list result" id="resulty">
-            <div id="display"></div>
+            <div id="display">
+                <h4>Results by Offices</h4>
+
+            </div>
             <table id="results">
                 <h4>Election results</h4>
                 <tr>
