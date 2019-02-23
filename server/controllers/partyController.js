@@ -127,7 +127,6 @@ class PartyController {
   static editOneParty(req, res) {
     try {
       if (req.admin) {
-
         const id = Number(req.params.party_id);
         const {
           name, hqAddress, logoUrl
@@ -136,6 +135,9 @@ class PartyController {
         const value = [name, hqAddress, logoUrl, id];
         pool.query(query, value, (error, result) => {
           if (error) {
+            return res.status(400).json({ staus: 400, message: 'The party with this ID could not be fetched' });
+          }
+          if (result.rowCount === 0) {
             return res.status(404).json({ staus: 404, message: 'The party with this ID could not be fetched' });
           }
           return res.status(201).json({
@@ -172,6 +174,9 @@ class PartyController {
         pool.query(query, (error, result) => {
           if (error) {
             return res.status(404).json({ staus: 404, error: 'Cant fetch any party with this ID' });
+          }
+          if (result.rowCount === 0) {
+            return res.status(404).json({ staus: 404, message: 'The party with this ID could not be fetched' });
           }
           return res.status(200).json({
             status: 200,

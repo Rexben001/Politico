@@ -1,13 +1,9 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import nodeMailer from 'nodemailer';
-import multer from '../middlewares/multer';
-import config from '../config';
 import database from '../models/database';
 
 const { pool } = database;
-const { dataUri } = multer;
-const { uploader } = config;
 /**
  *
  *
@@ -32,8 +28,8 @@ class UserControllers {
         bcrypt.hash(password, salt, (err, hash) => {
           const passwordHash = hash;
           const query = `INSERT INTO users(firstname, lastname, username,
-                  email, phoneNumber, password, is_admin, passportUrl) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING user_id, firstname, lastname, email, is_admin`;
-          const value = [firstname, lastname, othernames, username,
+                  email, phoneNumber, password, is_admin, passportUrl) VALUES($1,$2,$3,$4,$5,$6,$7,$8) RETURNING user_id, firstname, lastname, email, is_admin`;
+          const value = [firstname, lastname, username,
             email, phonenumber, passwordHash, false, passportUrl];
           pool.query('SELECT * FROM users WHERE email=$1 OR username=$2', [email, username], (err, resCheck) => {
             if (err) {
@@ -42,13 +38,12 @@ class UserControllers {
                 error: 'An unexpected error occurred',
               });
             }
-            if (resCheck.rowCount > 0) {
-              return res.status(400).json({ status: 400, error: 'User has been registered already' });
+            if (resCheck.rowCount === 0) {
+              return res.status(409).json({ status: 409, error: 'User has been registered already' });
             }
 
             pool.query(query, value, (error, result) => {
               if (error) {
-                console.log(error);
                 return res.status(400).json({ status: 400, error: `Unable to create user, ${error}` });
               }
               const admin = result.rows[0].is_admin;
@@ -212,26 +207,6 @@ class UserControllers {
    *
    *
    * @static
-   * @param {*} req
-   * @param {*} res
-   * @memberof UserControllers
-   */
-  static loadResetPage(req, res) {
-    try {
-      res.sendFile('changepassword.html', { root: './UI' });
-      // res.json({
-      //   display,
-      //   token: req.token
-      // });
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
-  /**
-   *
-   *
-   * @static
    * @param {Object} req
    * @param {Object} res
    * @memberof UserControllers
@@ -276,8 +251,11 @@ class UserControllers {
     const query = 'INSERT INTO petitions(office, createdOn, createdBy, body, evidence) VALUES($1, NOW(), $2, $3, $4) RETURNING*';
     const value = [office, req.id, bodyValue, evidence];
     pool.query(query, value, (error, result) => {
-      if (error || result.rowCount === 0) {
+      if (error) {
         return res.status(400).json({ status: 400, error: 'Unable to create petition' });
+      }
+      if (result.rowCount === 0) {
+        return res.status(404).json({ status: 404, error: 'Unable to create petition' });
       }
       res.status(201).json({
         status: 201,
@@ -303,10 +281,7 @@ class UserControllers {
       }
       res.status(200).json({
         status: 200,
-        data: result.rows[0],
-        username: req.user.username,
-        email: req.user.email,
-        passport: req.user.passportUrl
+        data: result.rows[0]
       });
     });
   }

@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   version: '1.0'
   title: Politico
-  description: Politico enables citizens give their mandate to politicians running for different government offices while building trust in the process through transparency.
+    description: Politico enables citizens give their mandate to politicians running for different government offices while building trust in the process through transparency.
   contact: 
     email: "rexben.rb@gmail.com"
 host: politico-voting.herokuapp.com
@@ -14,386 +14,611 @@ consumes:
 produces:
 - application/json
 paths:
-  /api/v1/auth/signup:
-    post:
-      description: Create new users
-      summary: signup
-      tags:
-      - Users
-      operationId: ApiV1AuthSignupPost
-      deprecated: false
-      produces:
-      - application/json
-      parameters:
-      - name: Content-Type
-        in: header
-        required: true
-        type: string
-        description: ''
-      - name: Body
-        in: body
-        required: true
-        description: ''
-        schema:
-          $ref: '#/definitions/signupRequest'
-      responses:
-        201:
-          description: ''
-          headers: {}
-  /api/v1/auth/reset:
-    post:
-      description: Reset password of a user
-      summary: reset password
-      tags:
-      - Users
-      operationId: ApiV1AuthResetPost
-      deprecated: false
-      produces:
-      - application/json
-      parameters:
-      - name: Content-Type
-        in: header
-        required: true
-        type: string
-        description: ''
-      - name: Body
-        in: body
-        required: true
-        description: ''
-        schema:
-          $ref: '#/definitions/resetpasswordRequest'
-      responses:
-        201:
-          description: ''
-          headers: {}
-  /api/v1/auth/login:
-    post:
-      description: Log in a user
-      summary: login
-      tags:
-      - Users
-      operationId: ApiV1AuthLoginPost
-      deprecated: false
-      produces:
-      - application/json
-      parameters:
-      - name: Content-Type
-        in: header
-        required: true
-        type: string
-        description: ''
-      - name: Body
-        in: body
-        required: true
-        description: ''
-        schema:
-          $ref: '#/definitions/loginRequest'
-      responses:
-        200:
-          description: ''
-          headers: {}
-  /api/v1/parties:
-    get:
-      description: Get list of parties
-      summary: get party
-      tags:
-      - Parties
-      operationId: ApiV1PartiesGet
-      deprecated: false
-      produces:
-      - application/json
-      parameters: []
-      responses:
-        200:
-          description: ''
-          headers: {}
-    post:
-      description: Create a new party
-      summary: post party
-      tags:
-      - Parties
-      operationId: ApiV1PartiesPost
-      deprecated: false
-      produces:
-      - application/json
-      parameters:
-      - name: Content-Type
-        in: header
-        required: true
-        type: string
-        description: ''
-      - name: Body
-        in: body
-        required: true
-        description: ''
-        schema:
-          $ref: '#/definitions/postpartyRequest'
-      responses:
-        200:
-          description: ''
-          headers: {}
-  /api/v1/parties/3:
-   get:
-      description: Get a specific party
-      summary: get a specific party
-      tags:
-      - Parties
-      operationId: ApiV1Parties3Get
-      deprecated: false
-      produces:
-      - application/json
-      parameters: []
-      responses:
-        200:
-          description: ''
-          headers: {}
-  /api/v1/parties/3/name:
-    patch:
-      description: Edit a party
-      summary: edit a party
-      tags:
-      - Parties
-      operationId: ApiV1Parties3NamePatch
-      deprecated: false
-      produces:
-      - application/json
-      parameters:
-      - name: Content-Type
-        in: header
-        required: true
-        type: string
-        description: ''
-      - name: Body
-        in: body
-        required: true
-        description: ''
-        schema:
-          $ref: '#/definitions/editapartyRequest'
-      responses:
-        201:
-          description: ''
-          headers: {}
-  /api/v1/parties/10:
-    delete:
-      description: 'Delete a party'
-      summary: delete party
-      tags:
-      - Parties
-      operationId: ApiV1Parties10Delete
-      deprecated: false
-      produces:
-      - application/json
-      parameters: []
-      responses:
-        200:
-          description: ''
-          headers: {}
   /api/v1/offices:
     post:
-      description: 'Create a new office'
-      summary: post offices
+      description: Create a new office
+      summary: post office
       tags:
       - Offices
-      operationId: ApiV1OfficesPost
+      operationId: OfficesPost
       deprecated: false
       produces:
       - application/json
       parameters:
       - name: Content-Type
         in: header
-        required: true
+        required: false
         type: string
         description: ''
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: 'Token used to protect routes'
       - name: Body
         in: body
         required: true
-        description: ''
+        description: 'Request body sent to the server'
         schema:
           $ref: '#/definitions/postofficeRequest'
       responses:
         201:
-          description: ''
+          description: 'Returns the details of the newly created office'
           headers: {}
-  /api/v1/offices:
+        422:
+          description: 'Invalid inputs'
+          headers: {}
     get:
-      description: Get list of offices
-      summary: get lsit of all offices
+      description: 'Get lists of all created offices'
+      summary: get all offices
       tags:
       - Offices
-      operationId: ApiV1officesGet
+      operationId: OfficesGet
       deprecated: false
       produces:
       - application/json
-      parameters: []
+      parameters: 
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: 'Token used to protect routes'
       responses:
         200:
-          description: ''
+          description: 'Returns the details of all offices'
           headers: {}
   /api/v1/offices/1:
     get:
-      description: 'Get a specific office'
-      summary: get one office
+      description: 'Get the details of a particular office'
+      summary: get an office
       tags:
       - Offices
-      operationId: ApiV1Offices1Get
+      operationId: Offices1Get
       deprecated: false
       produces:
       - application/json
-      parameters: []
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: 'Token used to protect routes'
       responses:
         200:
-          description: ''
+          description: 'Returns the details of a particular office'
           headers: {}
-  /api/v1/office/1/register:
+  /api/v1/auth/signup:
     post:
-      description: 'Register a user as a candidate'
-      summary: candidate
+      description: 'Create a new user'
+      summary: signup new user
       tags:
-      - Admin
-      operationId: ApiV1Office1RegisterPost
+      - Users
+      operationId: AuthSignupPost
       deprecated: false
       produces:
       - application/json
       parameters:
       - name: Content-Type
         in: header
-        required: true
+        required: false
         type: string
         description: ''
       - name: Body
         in: body
         required: true
+        description: 'Request body sent to the server'
+        schema:
+          $ref: '#/definitions/signupRequest'
+      responses:
+        201:
+          description: 'Returns the details of the newly created user'
+          headers: {}
+        422:
+          description: 'Invalid inputs'
+          headers: {}
+  /api/v1/auth/reset:
+    post:
+      description: 'Send a link to reset a password'
+      summary: reset password
+      tags:
+      - Users
+      operationId: AuthResetPost
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Content-Type
+        in: header
+        required: false
+        type: string
         description: ''
+      - name: Body
+        in: body
+        required: true
+        description: 'Request body sent to the server'
+        schema:
+          $ref: '#/definitions/resetpasswordRequest'
+      responses:
+        201:
+          description: 'Returns the response of the message sent'
+          headers: {}
+        422:
+          description: 'Invalid inputs'
+          headers: {}
+  /api/v1/auth/login:
+    post:
+      description: 'Login an existing user'
+      summary: login
+      tags:
+      - Users
+      operationId: AuthLoginPost
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Content-Type
+        in: header
+        required: false
+        type: string
+        description: ''
+      - name: Body
+        in: body
+        required: true
+        description: 'Request body sent to the server'
+        schema:
+          $ref: '#/definitions/loginRequest'
+      responses:
+        201:
+          description: 'Returns the details of the user'
+          headers: {}
+        422:
+          description: 'Invalid inputs'
+          headers: {}
+  /api/v1/office/register:
+    post:
+      description: 'A user shows interest in a political office'
+      summary: candidate
+      tags:
+      - Users
+      operationId: OfficeRegisterPost
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Content-Type
+        in: header
+        required: false
+        type: string
+        description: ''
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: 'Token used to protect routes'
+      - name: Body
+        in: body
+        required: true
+        description: 'Request body sent to the server'
         schema:
           $ref: '#/definitions/candidateRequest'
       responses:
         201:
-          description: ''
+          description: 'Returns the details of an entry'
           headers: {}
-  /api/v1/users:
-    get:
-      description: 'Get the list of all users in the App'
-      summary: get all users
+        422:
+          description: 'Invalid inputs'
+          headers: {}
+  /api/v1/resetpassword/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJleGJlbi5yYkBnbWFpbC5jb20iLCJpZCI6MiwiaWF0IjoxNTUwODYzOTgwLCJleHAiOjE1NTA5NTAzODB9.iG-c4m5CsEK35X3Y8Lg3Zf0aI82iSMo2WGUo3sDT6uk:
+    post:
+      description: 'Replace the old password with the new one'
+      summary: password changed
       tags:
-      - Admin
-      operationId: ApiV1UsersGet
+      - Users
+      operationId: ResetpasswordEyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9EyJlbWFpbCI6InJleGJlbi5yYkBnbWFpbC5jb20iLCJpZCI6MiwiaWF0IjoxNTUwODYzOTgwLCJleHAiOjE1NTA5NTAzODB9IGC4m5CsEK35X3Y8Lg3Zf0aI82iSMo2WGUo3sDT6ukPost
       deprecated: false
       produces:
       - application/json
-      parameters: []
+      parameters:
+      - name: Content-Type
+        in: header
+        required: false
+        type: string
+        description: ''
+      - name: Body
+        in: body
+        required: true
+        description: 'Request body sent to the server'
+        schema:
+          $ref: '#/definitions/passwordchangedRequest'
+      responses:
+        201:
+          description: 'Changed password'
+          headers: {}
+        422:
+          description: 'Invalid inputs'
+          headers: {}
+  /api/v1/users/profile:
+    get:
+      description: 'Get all the details of a particular user'
+      summary: get profile
+      tags:
+      - Users
+      operationId: UsersProfileGet
+      deprecated: false
+      produces:
+      - application/json
+      parameters: 
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: 'Token used to protect routes'
       responses:
         200:
-          description: ''
+          description: 'Returns the details of a particular user'
+  /api/v1/parties/:
+    get:
+      description: 'Get the list off all created parties'
+      summary: get all parties
+      tags:
+      - Parties
+      operationId: PartiesGet
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: 'Token used to protect routes'
+      responses:
+        200:
+          description: 'Returns the list off all created parties'
           headers: {}
-  /api/v1/makeAdmin/1:
+  /api/v1/parties/3/name:
+    patch:
+      description: 'Edit a specific party details'
+      summary: edit a party
+      tags:
+      - Parties
+      operationId: Parties3NamePatch
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Content-Type
+        in: header
+        required: false
+        type: string
+        description: ''
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: 'Token used to protect routes'
+      - name: Body
+        in: body
+        required: true
+        description: 'Request body sent to the server'
+        schema:
+          $ref: '#/definitions/editapartyRequest'
+      responses:
+        201:
+          description: 'Returns the updated details'
+          headers: {}
+        422:
+          description: 'Invalid inputs'
+          headers: {} 
+  /api/v1/parties:
     post:
+      description: 'Create a new party'
+      summary: post party
+      tags:
+      - Parties
+      operationId: PartiesPost
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Content-Type
+        in: header
+        required: false
+        type: string
+        description: ''
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: 'Token used to protect routes'
+      - name: Body
+        in: body
+        required: true
+        description: 'Request body sent to the server'
+        schema:
+          $ref: '#/definitions/postpartyRequest'
+      responses:
+        201:
+          description: 'Returns the details of the newly created party'
+          headers: {}
+        422:
+          description: 'Invalid inputs'
+          headers: {}
+  /api/v1/parties/2:
+    delete:
+      description: 'Delete a specific party'
+      summary: delete party
+      tags:
+      - Parties
+      operationId: Parties2Delete
+      deprecated: false
+      produces:
+      - application/json
+      parameters: 
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: 'Token used to protect routes'
+      responses:
+        200:
+          description: 'Returns a message'
+          headers: {}
+  /api/v1/parties/3:
+    get:
+      description: 'Get the details a specific party'
+      summary: get a party
+      tags:
+      - Parties
+      operationId: Parties3Get
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: 'Token used to protect routes'
+      responses:
+        200:
+          description: 'Returns the details of the specified party'
+          headers: {}
+  /api/v1/users/:
+    get:
+      description: 'Get the list of all registered users'
+      summary: get all users
+      tags:
+      - Admin
+      operationId: UsersGet
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: 'Token used to protect routes'
+      responses:
+        200:
+          description: 'Returns the details of all registered user'
+  /api/v1/admin/1:
+    patch:
       description: 'Make a user an Admin'
       summary: make Admin
       tags:
       - Admin
-      operationId: ApiV1MakeAdmin1Post
+      operationId: Admin1Patch
       deprecated: false
       produces:
       - application/json
-      parameters: []
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: 'Token used to protect routes'
       responses:
         201:
-          description: ''
+          description: 'Returns the details of the new Admin'
           headers: {}
-  /api/v1/votes/1/result:
+  /api/v1/office/1/result:
     get:
-      description: 'Collates and fetch election results per office'
-      summary: results
+      description: 'Get the results of an election by offices'
+      summary: results of an office
       tags:
       - Admin
-      operationId: ApiV1Votes1ResultGet
+      operationId: Office1ResultGet
       deprecated: false
       produces:
       - application/json
-      parameters: []
+      parameters: 
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: 'Token used to protect routes'
+      responses:
+        201:
+          description: 'Returns the results of the specified office'
+          headers: {}
+  /api/v1/office/21/register:
+    post:
+      description: 'Accept the application of a electoral candidate'
+      summary: accept candidate
+      tags:
+      - Admin
+      operationId: Office20RegisterPost
+      deprecated: false
+      produces:
+      - application/json
+      parameters: 
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: 'Token used to protect routes'
+      responses:
+        201:
+          description: 'Returns the details of the accepted application'
+          headers: {}
+        422:
+          description: 'Invalid inputs'
+          headers: {}
+  /api/v1/candidates:
+    get:
+      description: 'Get the list of all applications made by users for political offices'
+      summary: get all prospective candidates
+      tags:
+      - Admin
+      operationId: CandidatesGet
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: 'Token used to protect routes'
       responses:
         200:
-          description: ''
+          description: 'Returns the details of all applicants'
+          headers: {}
+  /api/v1/populateVote:
+    get:
+      description: 'Get the list of all accepted candidates'
+      summary: get all accepted candidate
+      tags:
+      - Admin
+      operationId: PopulateVoteGet
+      deprecated: false
+      produces:
+      - application/json
+      parameters: 
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: 'Token used to protect routes'
+      responses:
+        200:
+          description: 'Returns the details of all accepted candidates'
+          headers: {}
+  /api/v1/petitions/all:
+    get:
+      description: 'Get the list of all petitions created'
+      summary: get all petitions
+      tags:
+      - Admin
+      operationId: PetitionsAllGet
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: 'Token used to protect routes'
+      responses:
+        200:
+          description: 'Returns the details of all petitions'
           headers: {}
   /api/v1/votes:
     post:
-      description: 'User can be able to vote'
+      description: 'User casts their respective votes'
       summary: vote
       tags:
       - Vote
-      operationId: ApiV1VotesPost
+      operationId: Votes28Post
       deprecated: false
       produces:
       - application/json
       parameters:
       - name: Content-Type
         in: header
-        required: true
+        required: false
         type: string
         description: ''
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: 'Token used to protect routes'
       - name: Body
         in: body
         required: true
-        description: ''
+        description: 'Request body sent to the server'
         schema:
           $ref: '#/definitions/voteRequest'
       responses:
         201:
-          description: ''
+          description: 'Returns the details of the vote casted'
+          headers: {}
+        422:
+          description: 'Invalid inputs'
           headers: {}
   /api/v1/petitions:
     post:
-      description: 'Write petitions'
-      summary: post petitions
+      description: 'Make a petition'
+      summary: post petition
       tags:
       - Vote
-      operationId: ApiV1PetitionsPost
+      operationId: PetitionsPost
       deprecated: false
       produces:
       - application/json
       parameters:
       - name: Content-Type
         in: header
-        required: true
+        required: false
         type: string
         description: ''
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: 'Token used to protect routes'
       - name: Body
         in: body
         required: true
-        description: ''
+        description: 'Request body sent to the server'
         schema:
           $ref: '#/definitions/postpetitionsRequest'
       responses:
         201:
-          description: ''
+          description: 'Returns the details of the new created petitions'
           headers: {}
-  /api/v1/votes/1/result:
-    get:
-      description: 'Collates and fetch election results per office'
-      summary: results
-      tags:
-      - Vote
-      operationId: ApiV1Votes1ResultGet
-      deprecated: false
-      produces:
-      - application/json
-      parameters: []
-      responses:
-        200:
-          description: ''
+        422:
+          description: 'Invalid inputs'
           headers: {}
 definitions:
+  postofficeRequest:
+    title: postofficeRequest
+    example:
+      type: Federal
+      name: Senate (Lagos 2)
+    type: object
+    properties:
+      type:
+        type: string
+      name:
+        type: string
+    required:
+    - type
+    - name
   signupRequest:
     title: signupRequest
     example:
-      firstname: ABen
-      lastname: ARex
-      othernames: ASeyi
-      email: rdex@gmail.com
-      password: 1234
-      username: nebn
-      phonenumber: +234567890
-      passportUrl: http://www.politico.com/aban
+      firstname: Titi
+      lastname: Faith
+      username: Peace
+      email: peace@gmail.com
+      password: '1234'
+      passportUrl: https://res.cloudinary.com/rexben/image/upload/v1550596757/h6vdmirqinou1cpnxydk.jpg
+      phonenumber: '+234567890'
     type: object
     properties:
       firstname:
@@ -402,29 +627,28 @@ definitions:
         type: string
       othernames:
         type: string
+      username:
+        type: string
       email:
         type: string
       password:
         type: string
-      username:
+      passportUrl:
         type: string
       phonenumber:
-        type: string
-      passportUrl:
         type: string
     required:
     - firstname
     - lastname
-    - othernames
+    - username
     - email
     - password
-    - username
-    - phonenumber
     - passportUrl
+    - phonenumber
   resetpasswordRequest:
     title: resetpasswordRequest
     example:
-      email: rex@gmail.com
+      email: rexben.rb@gmail.com
     type: object
     properties:
       email:
@@ -434,8 +658,8 @@ definitions:
   loginRequest:
     title: loginRequest
     example:
-      email: rex@gmail.com
-      password: 1234
+      email: rexben.rb@gmail.com
+      password: '12345'
     type: object
     properties:
       email:
@@ -445,12 +669,38 @@ definitions:
     required:
     - email
     - password
+  candidateRequest:
+    title: candidateRequest
+    example:
+      office: 2
+      party: 3
+    type: object
+    properties:
+      office:
+        type: integer
+        format: int32
+      party:
+        type: integer
+        format: int32
+    required:
+    - office
+    - party
+  passwordchangedRequest:
+    title: passwordchangedRequest
+    example:
+      password: '12345'
+    type: object
+    properties:
+      password:
+        type: string
+    required:
+    - password
   editapartyRequest:
     title: editapartyRequest
     example:
-      name: 'People Party'
-      hqAddress: '10, Adeniy Drive, Lagos'
-      logoUrl: https://politico.com/pp_logo
+      name: Forever Living Party
+      hqAddress: 10, Faniyi Street, Plateau
+      logoUrl: https://res.cloudinary.com/rexben/image/upload/v1550596757/h6vdmirqinou1cpnxydk.jpg
     type: object
     properties:
       name:
@@ -466,9 +716,9 @@ definitions:
   postpartyRequest:
     title: postpartyRequest
     example:
-      name: 'Atention People Party'
-      hqAddress: '10, Allison Street, Lagos'
-      logoUrl: https://politico.com/ap_logo
+      name: Young Heart Party
+      hqAddress: Ikeja, Lagos
+      logoUrl: https://res.cloudinary.com/rexben/image/upload/v1550594945/cgekysap2uc98id9rqzi.jpg
     type: object
     properties:
       name:
@@ -481,57 +731,14 @@ definitions:
     - name
     - hqAddress
     - logoUrl
-  postofficeRequest:
-    title: postofficeRequest
-    example:
-      office_id: 2
-      type: federal
-      name: Senator
-      region: Gombe
-    type: object
-    properties:
-      office_id:
-        type: integer
-        format: int32
-      type:
-        type: string
-      name:
-        type: string
-      region:
-        type: string
-    required:
-    - office_id
-    - type
-    - name
-    - region
-  candidateRequest:
-    title: candidateRequest
-    example:
-      office: 1
-      party: 1
-    type: object
-    properties:
-      office:
-        type: integer
-        format: int32
-      party:
-        type: integer
-        format: int32
-    required:
-    - office
-    - party
   voteRequest:
     title: voteRequest
     example:
       office: 1
-      createdBy: 1
-      candidate: 2
+      candidate: 1
     type: object
     properties:
       office:
-        type: integer
-        format: int32
-      createdBy:
         type: integer
         format: int32
       candidate:
@@ -539,21 +746,16 @@ definitions:
         format: int32
     required:
     - office
-    - createdBy
     - candidate
   postpetitionsRequest:
     title: postpetitionsRequest
     example:
-      office: 1
-      createdBy: 1
-      body: Insatisfaction
-      evidence: Img_t789oijc
+      office: 2
+      bodyValue: Election seems free and fair but it wasn't. Rigging was the other of the day
+      evidence: https://res.cloudinary.com/rexben/image/upload/v1550596757/h6vdmirqinou1cpnxydk.jpg
     type: object
     properties:
       office:
-        type: integer
-        format: int32
-      createdBy:
         type: integer
         format: int32
       body:
@@ -562,17 +764,16 @@ definitions:
         type: string
     required:
     - office
-    - createdBy
-    - body
+    - bodyValue
     - evidence
 tags:
-- name: Users
-  description: 'All users operations'
-- name: Parties
-  description: 'All parties operations'
 - name: Offices
-  description: 'All offices operations'
+  description: 'Contains all the routes for offices'
+- name: Users
+  description: 'Contains all the routes for users'
+- name: Parties
+  description: 'Contains all the routes for parties'
 - name: Admin
-  description: 'All admin operations'
+  description: 'Contains all the routes for admin'
 - name: Vote
-  description: 'All vote operations'
+  description: 'Contains all the routes for vote'
