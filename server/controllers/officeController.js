@@ -8,7 +8,6 @@ const { pool } = database;
  */
 class OfficeCOntroller {
 
-
   /**
    *
    *
@@ -37,7 +36,7 @@ class OfficeCOntroller {
           }
           pool.query(query, value, (error, result) => {
             if (error) {
-              return res.status(400).json({ status: 400, error: '' });
+              return res.status(400).json({ status: 400, error: 'Unable to create office' });
             }
             return res.status(201).json({
               status: 201,
@@ -102,6 +101,9 @@ class OfficeCOntroller {
       const query = `SELECT * FROM offices WHERE office_id=${id}`;
       pool.query(query, (error, result) => {
         if (error) {
+          return res.status(404).json({ staus: 404, error: 'The office with this ID cannot be retrieved' });
+        }
+        if (result.rowCount === 0) {
           return res.status(404).json({ staus: 404, error: 'The office with this ID cannot be retrieved' });
         }
         return res.status(200).json({

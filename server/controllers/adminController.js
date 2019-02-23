@@ -55,7 +55,7 @@ class AdminController {
       const query = `select office, candidate, users.firstname, users.lastname, users.passportUrl, offices.name, count(candidate) as results from votes inner join users on users.user_id=votes.candidate inner join offices on offices.office_id=votes.office where votes.office=${id} group by candidate, offices.name, users.firstname, office, users.lastname, users.passportUrl`;
       pool.query(query, (error, result) => {
         if (error || result.rowCount === 0) {
-          return res.status(500).json({ staus: 500, message: 'Vote could not be fetched' });
+          return res.status(404).json({ staus: 404, message: 'Vote could not be fetched' });
         }
         return res.status(200).json({
           status: 200,
@@ -83,8 +83,6 @@ class AdminController {
         pool.query(query, (error, result) => {
           if (error) {
             return res.status(500).json({ staus: 500, message: 'Users could not be fetched' });
-          } if (result.rowCount === 0) {
-            return res.status(404).json({ staus: 404, message: 'No users' });
           }
           return res.status(200).json({
             status: 200,
@@ -110,48 +108,49 @@ class AdminController {
    */
   static acceptCandidate(req, res) {
     try {
-      const id = Number(req.params.user_id);
-      const query = 'INSERT INTO accept_candidates(office, party, createdBy) VALUES($1, $2, $3) RETURNING*';
-      pool.query('SELECT * FROM candidates WHERE candidate_id=$1', [id], (err, resultCheck) => {
-        if (err) {
-          return res.status(500).json({ staus: 500, message: 'Something unexpected happened' });
-        }
-        if (resultCheck.rowCount === 0) {
-          return res.status(409).json({ staus: 409, message: 'User does not exists ' });
-        }
-        const { office } = resultCheck.rows[0];
-        const { createdby } = resultCheck.rows[0];
-        const { party } = resultCheck.rows[0];
-        const value = [office, party, createdby];
-        pool.query('SELECT * FROM accept_candidates WHERE office=$1 AND party=$2 AND createdBy=$3', value, (errSelect, resultOfCheck) => {
-          if (errSelect) {
+      if (req.admin) {
+        const id = Number(req.params.user_id);
+        const query = 'INSERT INTO accept_candidates(office, party, createdBy) VALUES($1, $2, $3) RETURNING*';
+        pool.query('SELECT * FROM candidates WHERE candidate_id=$1', [id], (err, resultCheck) => {
+          if (err) {
             return res.status(500).json({ staus: 500, message: 'Something unexpected happened' });
           }
-          if (resultOfCheck.rowCount !== 0) {
-            return res.status(409).json({ status: 409, message: 'Candidate has been accepted already' })
+          if (resultCheck.rowCount > 0) {
+            return res.status(409).json({ staus: 409, message: 'User does not exists ' });
           }
-          pool.query(query, value, (error, result) => {
-            if (error || result.rowCount === 0) {
-              return res.status(404).json({ status: 404, error: `Unable to create a contestant, ${error}` });
+          const { office } = resultCheck.rows[0];
+          const { createdby } = resultCheck.rows[0];
+          const { party } = resultCheck.rows[0];
+          const value = [office, party, createdby];
+          pool.query('SELECT * FROM accept_candidates WHERE office=$1 AND party=$2 AND createdBy=$3', value, (errSelect, resultOfCheck) => {
+            if (errSelect) {
+              return res.status(500).json({ staus: 500, message: 'Something unexpected happened' });
             }
-            pool.query('DELETE FROM candidates WHERE candidate_id=$1 RETURNING *', [id], (err, results) => {
-              if (err || result.rowCount === 0) {
-                return res.status(500).json({ status: 500, error: `Unable to create a contestant, ${err}` });
+            if (resultOfCheck.rowCount > 0) {
+              return res.status(409).json({ status: 409, message: 'Candidate has been accepted already' })
+            }
+            pool.query(query, value, (error, result) => {
+              if (error || result.rowCount === 0) {
+                return res.status(404).json({ status: 404, error: `Unable to create a contestant, ${error}` });
               }
-              if (results.rowCount >= 1) {
-                console.log(results.rows[0])
-              }
-              return res.status(201).json({
-                status: 201,
-                data: {
-                  office: result.rows[0].office,
-                  user: result.rows[0].createdby
+              pool.query('DELETE FROM candidates WHERE candidate_id=$1 RETURNING *', [id], (err, results) => {
+                if (err || result.rowCount === 0) {
+                  return res.status(500).json({ status: 500, error: `Unable to create a contestant, ${err}` });
                 }
+                return res.status(201).json({
+                  status: 201,
+                  data: {
+                    office: result.rows[0].office,
+                    user: result.rows[0].createdby
+                  }
+                });
               });
             });
           });
         });
-      });
+      } else {
+        return res.status(401).json({ status: 401, error: 'You are not authorized to use this route' });
+      }
     } catch (error) {
       return res.status(500).json({ status: 500, error: 'Something unexpected just happened. Try again' });
     }
@@ -234,7 +233,7 @@ class AdminController {
           if (error) {
             return res.status(500).json({ staus: 500, message: 'Petitions could not be fetched' });
           } if (result.rowCount === 0) {
-            return res.sofficestatus(404).json({ staus: 404, message: 'No petitions' });
+            return res.status(404).json({ staus: 404, message: 'No petitions' });
           }
           return res.status(200).json({
             status: 200,
