@@ -3,7 +3,6 @@ import bodyParser from 'body-parser';
 import swaggerUi from 'swagger-ui-express';
 import yaml from 'yamljs';
 import cors from 'cors';
-import config from './config';
 import partyRouter from './routes/partyRoute';
 import officeRouter from './routes/officeRoute';
 import userRouter from './routes/userRoute';
@@ -12,7 +11,6 @@ import database from './models/database';
 
 
 const app = express();
-const { cloudinaryConfig } = config;
 const {
   users, party, office, candidate, vote, petition, acceptedCandidate
 } = database;
@@ -40,11 +38,10 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.use(cors());
-app.use('*', cloudinaryConfig);
 
 
 app.get('/', (req, res) => {
-  res.json('Welcome to politico Express');
+  res.status(200).json('Welcome to politico Express');
 });
 
 const createTable = async () => {

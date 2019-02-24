@@ -2,22 +2,22 @@ const signupValidator = (req, res, next) => {
   let {
     firstname, lastname, username, email, phonenumber, password, passportUrl
   } = req.body;
-  if (firstname) {
+  if (firstname && typeof (firstname) === 'string') {
     firstname = firstname.trim();
   }
-  if (lastname) {
+  if (lastname && typeof (lastname) === 'string') {
     lastname = lastname.trim();
   }
-  if (username) {
+  if (username && typeof (username) === 'string') {
     username = username.trim();
   }
-  if (email) {
+  if (email && typeof (email) === 'string') {
     email = email.trim();
   }
-  if (phonenumber) {
+  if (phonenumber && typeof (phonenumber) === 'string') {
     phonenumber = phonenumber.trim();
   }
-  if (password) {
+  if (password && typeof (password) === 'string') {
     password = password.trim();
   }
 

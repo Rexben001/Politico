@@ -8,7 +8,6 @@ const contestValidator = (req, res, next) => {
   if (!party || typeof (party) !== 'number') {
     return res.status(422).json({ status: 422, error: 'Enter a valid party' });
   }
-
   next();
 };
 

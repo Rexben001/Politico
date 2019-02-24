@@ -41,6 +41,9 @@ class contestController {
             if (error) {
               return res.status(404).json({ status: 404, error: `Unable to create a contestant, ${error}` });
             }
+            if (result.rowCount === 0) {
+              return res.status(404).json({ status: 404, error: `Unable to create a contestant, ${error}` });
+            }
             return res.status(201).json({
               status: 201,
               data: {

@@ -2,10 +2,10 @@ const loginValidator = (req, res, next) => {
   let {
     email, password
   } = req.body;
-  if (email) {
+  if (email && typeof (email) === 'string') {
     email = email.trim().toLowerCase();
   }
-  if (password) {
+  if (password && typeof (password) === 'string') {
     password = password.trim();
   }
   const check = /\S+@\S+\.\S+/;

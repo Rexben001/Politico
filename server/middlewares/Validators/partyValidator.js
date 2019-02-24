@@ -4,14 +4,13 @@ const partyValidator = (req, res, next) => {
     let {
         name, hqAddress, logoUrl
     } = req.body;
-    if (name) {
-
+    if (name && typeof (name) === 'string') {
         name = name.trim();
     }
-    if (hqAddress) {
+    if (hqAddress && typeof (hqAddress) === 'string') {
         hqAddress = hqAddress.trim();
     }
-    if (logoUrl) {
+    if (logoUrl && typeof (logoUrl) === 'string') {
         logoUrl = logoUrl.trim();
     }
 
