@@ -19,6 +19,8 @@ const pool = new pg.Pool({
   // port: 5432
 });
 
+console.log(connectionString);
+
 pool.on('connect', () => { });
 
 
@@ -149,6 +151,7 @@ const petition = async () => {
   );`;
   await pool.query(petitionTable)
     .then(() => {
+      console.log('Petitions table created')
     }).catch(() => {
       pool.end();
     });
