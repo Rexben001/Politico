@@ -127,14 +127,14 @@ describe('GET /parties/1', () => {
 
 
 describe('PATCH /parties/3', () => {
-  it('it should get all accepted candidates', ((done) => {
+  it('it should edit a party', ((done) => {
     const party = {
       name: 'Peace and Unity Group',
       hqAddress: 'Blk 2, Adeun Estate',
       logoUrl: 'partylogo.jpg'
     }
     chai.request(app)
-      .patch('/api/v1/parties/4/name')
+      .patch('/api/v1/parties/3/name')
       .send(party)
       .set('authorization', token)
       .end((err, res) => {
@@ -176,7 +176,7 @@ describe('PATCH /parties/3', () => {
 
 
 describe('DELETE /parties/1', () => {
-  it('it should get all accepted candidates', ((done) => {
+  it('it should delete a party', ((done) => {
     chai.request(app)
       .delete('/api/v1/parties/5')
       .set('authorization', token)

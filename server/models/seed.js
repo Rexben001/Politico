@@ -15,6 +15,8 @@ const users1 = `INSERT INTO users(firstname, lastname, username, email, phoneNum
 const users2 = `INSERT INTO users(firstname, lastname, username, email, phoneNumber, password, is_admin, passportUrl) VALUES('Bens','Johns','ben','ben@gmail.com','+4567899865','$2a$10$uRuYmAhsCNnnIbGGXwcEIOYsUoDC./J1NNAVBeb0/SqeTWVYTjEvK',false,'http://www.locoococcoc/jpg')`;
 const users3 = `INSERT INTO users(firstname, lastname, username, email, phoneNumber, password, is_admin, passportUrl) VALUES('Love','Peace','Joy','joy@gmail.com','+4567899865','$2a$10$uRuYmAhsCNnnIbGGXwcEIOYsUoDC./J1NNAVBeb0/SqeTWVYTjEvK',false,'http://www.locoococcoc/jpg')`;
 const users4 = `INSERT INTO users(firstname, lastname, username, email, phoneNumber, password, is_admin, passportUrl) VALUES('Love','Peace','Joyce','joyce@gmail.com','+4567899865','$2a$10$uRuYmAhsCNnnIbGGXwcEIOYsUoDC./J1NNAVBeb0/SqeTWVYTjEvK',false,'http://www.locoococcoc/jpg')`;
+const users5 = `INSERT INTO users(firstname, lastname, username, email, phoneNumber, password, is_admin, passportUrl) VALUES('Love','Peace','Rexben','rexben.rb@gmail.com','+4567899865','$2a$10$uRuYmAhsCNnnIbGGXwcEIOYsUoDC./J1NNAVBeb0/SqeTWVYTjEvK',false,'http://www.locoococcoc/jpg')`;
+
 
 const office1 = `INSERT INTO offices (name, type) VALUES('Senate(Lagos)','Federal')`;
 const office2 = `INSERT INTO offices (name, type) VALUES('Governor(Lagos)','State')`;
@@ -43,7 +45,7 @@ const tables = async () => {
   await acceptedCandidate();
   await vote();
   await petition();
-  await pool.query(`${users1}; ${users2}; ${users3}; ${users4}`);
+  await pool.query(`${users1}; ${users2}; ${users3}; ${users4}; ${users5}`);
   await pool.query(`${office1}; ${office2};`);
   await pool.query(`${parties1}; ${parties2}; ${parties3}; ${parties4};`);
   await pool.query(`${candidate1};`);

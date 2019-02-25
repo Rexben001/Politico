@@ -38,7 +38,7 @@ class UserControllers {
                 error: 'An unexpected error occurred',
               });
             }
-            if (resCheck.rowCount === 0) {
+            if (resCheck.rowCount > 0) {
               return res.status(409).json({ status: 409, error: 'User has been registered already' });
             }
 

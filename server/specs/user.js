@@ -42,28 +42,28 @@ describe('GET /auth/login', () => {
 });
 
 describe('POST /auth/signup', () => {
-  // it('it should create new user', ((done) => {
-  //   const user = {
-  //     firstname: 'Tit',
-  //     lastname: 'Faith',
-  //     username: 'faithtiti',
-  //     email: 'faithtiti@gmail.com',
-  //     password: '1234',
-  //     passportUrl: 'https://res.cloudinary.com/rexben/image/upload/v1550596757/h6vdmirqinou1cpnxydk.webp.jpg',
-  //     phonenumber: '234567890'
-  //   }
-  //   chai.request(app)
-  //     .post('/api/v1/auth/signup')
-  //     .send(user)
-  //     .end((err, res) => {
-  //       res.should.have.status(201);
-  //       done(err);
-  //     });
-  // }));
+  it('it should create new user', ((done) => {
+    const user = {
+      firstname: 'Titi',
+      lastname: 'Faith',
+      username: 'faithtiti',
+      email: 'faithtiti@gmail.com',
+      password: '1234',
+      passportUrl: 'https://res.cloudinary.com/rexben/image/upload/v1550596757/h6vdmirqinou1cpnxydk.webps.jpg',
+      phonenumber: '234567445890'
+    }
+    chai.request(app)
+      .post('/api/v1/auth/signup')
+      .send(user)
+      .end((err, res) => {
+        res.should.have.status(201);
+        done(err);
+      });
+  }));
 
   it('it should return 409', ((done) => {
     const user = {
-      firstname: 'Tit',
+      firstname: 'Titi',
       lastname: 'Faith',
       username: 'faithtiti',
       email: 'faithtiti@gmail.com',
@@ -159,10 +159,10 @@ describe('POST /office/register', () => {
 });
 
 describe('POST /votes', () => {
-  it('it should log in the user', ((done) => {
+  it('it should cast votes', ((done) => {
     const interest = {
       office: 1,
-      candidate: 3
+      candidate: 2
     };
     chai.request(app)
       .post('/api/v1/votes')
@@ -174,7 +174,7 @@ describe('POST /votes', () => {
       });
   }));
 
-  it('it should log in the user', ((done) => {
+  it('it should return error 409', ((done) => {
     const interest = {
       office: 1,
       candidate: 72

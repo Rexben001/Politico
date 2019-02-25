@@ -115,7 +115,7 @@ class AdminController {
           if (err) {
             return res.status(500).json({ staus: 500, message: 'Something unexpected happened' });
           }
-          if (resultCheck.rowCount === 0) {
+          if (resultCheck.rowCount > 0) {
             return res.status(409).json({ staus: 409, message: 'User does not exists ' });
           }
           const { office } = resultCheck.rows[0];
@@ -126,7 +126,8 @@ class AdminController {
             if (errSelect) {
               return res.status(500).json({ staus: 500, message: 'Something unexpected happened' });
             }
-            if (resultOfCheck.rowCount !== 0) {
+            if (resultOfCheck.rowCount > 0) {
+
               return res.status(409).json({ status: 409, message: 'Candidate has been accepted already' })
             }
             pool.query(query, value, (error, result) => {

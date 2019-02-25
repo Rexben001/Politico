@@ -146,12 +146,22 @@ describe('GET /candidates', () => {
 
 
 describe('POST /office/:user_id/register', () => {
-  it('it should accept candidate', ((done) => {
+  // it('it should accept candidate', ((done) => {
+  //   chai.request(app)
+  //     .post('/api/v1/office/3/register')
+  //     .set('authorization', token)
+  //     .end((err, res) => {
+  //       res.should.have.status(201);
+  //       done(err);
+  //     });
+  // }));
+  it('it should return 401', ((done) => {
     chai.request(app)
       .post('/api/v1/office/1/register')
       .set('authorization', token)
       .end((err, res) => {
-        res.should.have.status(201);
+
+        res.should.have.status(409);
         done(err);
       });
   }));
