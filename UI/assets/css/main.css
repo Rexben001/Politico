@@ -403,6 +403,17 @@ a.register:hover, .edit-profile:hover{
 .show_details{
     display:none;
 }
+.error_401{
+    margin-top: 40vh;
+    text-align: center;
+}
+.error_401 > p{
+    font-size: 2rem;
+}
+
+.error_401 #submit{
+    width: 200px;
+}
 @media screen and (max-width: 1200px){
     .navbar a:not(:first-child), .dropdown .dropbtn {
         display: none;

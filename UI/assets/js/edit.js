@@ -8,6 +8,36 @@ const getToken = () => {
   }
   window.location.href = './signin.html';
 };
+let imageLink;
+cloudinary.applyUploadWidget('#upload_widget_opener', {
+  cloudName: 'rexben',
+  uploadPreset: 'lcxc1pn1',
+}, (error, result) => {
+  if (result && result.event === 'success') {
+    imageLink = result.info.url;
+    return imageLink;
+  }
+});
+
+fetch(`${basePath}/api/v1/users`, {
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: `${getToken()}`
+  }
+}).then((res) => {
+  if (res.status !== 200) {
+    return res;
+  }
+  return res.json();
+})
+  .then((response) => {
+    console.log('Hey');
+    if (response.status === 401) {
+      window.location.href = './401.html';
+    }
+  })
+  .catch(error => console.log('Error:', error));
 
 const id = Number(window.location.href.split('=')[1]);
 
@@ -43,10 +73,16 @@ document.getElementById('edit_party').addEventListener('submit', (e) => {
   e.preventDefault();
   document.getElementById('loader1').style.display = 'block';
   document.getElementById('register').style.display = 'none';
+  if (imageLink === undefined || imageLink === null || imageLink === '') {
+    alert('Pls, select an image');
+    document.getElementById('loader2').style.display = 'none';
+    document.getElementById('register2').style.display = 'block';
+    return false;
+  }
   const data = {
     name: document.getElementById('party_name').value,
     hqAddress: document.getElementById('hq_address').value,
-    logoUrl: 'logo.jpg'
+    logoUrl: imageLink
   };
   fetch(`${basePath}/api/v1/parties/${id}/name`, {
     method: 'PATCH',
@@ -55,17 +91,17 @@ document.getElementById('edit_party').addEventListener('submit', (e) => {
       'Content-Type': 'application/json',
       Authorization: `${getToken()}`
     }
-  }).then(res2 => res2.json())
-    .then((res) => {
-      if (res.status === 201) {
-        window.location.href = './list_all.html';
-      } else if (res.status === 404) {
-        window.location.href = './404.html';
-      } else if (res.status === 403) {
-        window.location.href = './403.html';
-      } else if (res.status === 401) {
-        window.location.href = './401.html';
-      }
-    })
+  }).then((res2) => {
+    if (res2.status !== 201) {
+      return res2;
+    }
+    return res2.json();
+  }).then((res) => {
+    if (res.status === 201) {
+      window.location.href = './list_all.html';
+    } else if (res.status === 404) {
+      window.location.href = './404.html';
+    }
+  })
     .catch(error => console.log('Error:', error));
 });
