@@ -43,7 +43,7 @@ class UserControllers {
             }
 
             pool.query(query, value, (error, result) => {
-              if (error) {
+              if (error || result.rowCount === 0) {
                 return res.status(400).json({ status: 400, error: `Unable to create user, ${error}` });
               }
               const admin = result.rows[0].is_admin;
@@ -98,11 +98,7 @@ class UserControllers {
                   status: 201,
                   data: [{
                     token,
-                    user: {
-                      id: result.rows[0].user_id,
-                      username: result.rows[0].username,
-                      email: result.rows[0].email
-                    }
+                    user: result.rows[0]
                   }]
                 });
               });
@@ -116,7 +112,36 @@ class UserControllers {
     }
   }
 
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @memberof UserControllers
+   */
+  static editUserDetails(req, res) {
+    const { firstname, lastname, passportUrl } = req.body;
+    const query = 'UPDATE users SET firstname=$1, lastname=$2, passportUrl=$3  WHERE user_id=$4 RETURNING *';
+    const value = [firstname, lastname, passportUrl, req.id];
 
+    pool.query(query, value, (err, result) => {
+      if (err) {
+        return res.status(500).json({ status: 500, error: `Something unexpected just happened. Try again, ${err}` });
+      } if (result.rowCount === 0) {
+        return res.status(500).json({ status: 500, error: 'Unable to edit your profile' });
+      }
+      res.status(201).json({
+        status: 201,
+        data: [{
+          id: result.rows[0].user_id,
+          username: result.rows[0].firstname,
+          email: result.rows[0].lastname,
+          passportUrl: result.rows[0].passporturl
+        }]
+      });
+    });
+  }
 
   /**
    *
@@ -163,8 +188,7 @@ class UserControllers {
                 status: 200,
                 data: [{
                   message: 'Check your email for password reset link',
-                  email: result.rows[0].email,
-                  info
+                  email: result.rows[0].email
                 }]
               });
             });
@@ -303,9 +327,7 @@ class UserControllers {
       }
       res.status(200).json({
         status: 200,
-        username: result.rows[0].username,
-        email: result.rows[0].email,
-        passport: result.rows[0].passporturl,
+        data: result.rows[0]
       });
     });
   }
@@ -320,7 +342,7 @@ class UserControllers {
    * @memberof UserControllers
    */
   static allVotes(req, res) {
-    const query = 'select * from votes where voter=$1';
+    const query = 'select users.firstname, users.lastname, offices.name from votes inner join users on users.user_id=votes.candidate inner join offices on offices.office_id=votes.office where voter=$1';
     const value = [req.id];
     pool.query(query, value, (error, result) => {
       if (error) {
