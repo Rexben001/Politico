@@ -142,10 +142,16 @@ document.getElementById('register').addEventListener('submit', (e) => {
         // document.getElementById('no-data').innerHTML = 'No users has been created';
       }
       if (response.status === 201) {
-        console.log('Worked');
-      } else if (response.status === 403) {
-        window.location.href = './signin.html';
-      } else if (response.status === 401) {
+        document.getElementById('error_politics').innerHTML = 'Application successful';
+        setTimeout(() => {
+          window.location.href = './politics.html';
+        }, 1000);
+      } else if (response.status === 409) {
+        document.getElementById('error_politics').innerHTML = 'You can only register once';
+        setTimeout(() => {
+          window.location.href = './politics.html';
+        }, 1000);
+      } else (response.status === 401) {
         window.location.href = './401.html';
       }
     })
@@ -185,11 +191,12 @@ document.getElementById('contestForm').addEventListener('submit', (e) => {
         document.getElementById('no-data').innerHTML = 'No users has been created';
       }
       if (response.status === 201) {
-        window.location.href = './userprofile.html';
-      } else if (response.status === 403) {
-        window.location.href = './signin.html';
-      } else if (response.status === 401) {
-        window.location.href = './401.html';
+        document.getElementById('error_petitions').innerHTML = 'Petitions created';
+        setTimeout(() => {
+          window.location.href = './politics.html';
+        }, 1000);
+      } else {
+        document.getElementById('error_petitions').innerHTML = 'Something unexpected happened. Try again';
       }
     })
     .catch(error => console.log('Error:', error));

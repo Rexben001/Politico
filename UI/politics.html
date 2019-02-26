@@ -49,6 +49,7 @@
                 <p>Express your interest to run for a political office by filling the form below correctly</p>
             </div>
             <form class="signup not-signup" id="register">
+                <p class="error" id="error_politics"></p>
                 <label for="party"><span class="icon"><i class="fas fa-address-book"></i></span> Name of Party</label>
                 <select class="select-text" id="party" onchange="onVal2()">
                     <option disabled selected>Select Party</option>
@@ -60,7 +61,8 @@
                 <br>
 
                 <button type="submit" id="submit"><span id="register1">Apply</span> <span id="loader1" class="loader"><i
-                            class="fa fa-circle-o-notch fa-spin"></i>Loading</span></button> </form>
+                            class="fa fa-circle-o-notch fa-spin"></i>Loading</span></button>
+            </form>
         </div><br>
 
         <div id="petitionForm">
@@ -68,6 +70,7 @@
                 <p>Are you not satisfied the outcome of a particular election activity? Write to us today.</p>
             </div>
             <form class="signup not-signup" id="contestForm">
+                <p class="error" id="error_petitions"></p>
                 <label for="office"><span class="icon"><i class="fas fa-briefcase"></i></span> Office</label>
                 <select class="select-text" id="offices2" onchange="onVal3()">
                     <option disabled selected>Select Office</option>
@@ -80,7 +83,8 @@
                 <br>
 
                 <button type="submit" id="submit"><span id="register2">Submit</span> <span id="loader2" class="loader"><i
-                            class="fa fa-circle-o-notch fa-spin"></i>Loading</span></button> </form>
+                            class="fa fa-circle-o-notch fa-spin"></i>Loading</span></button>
+            </form>
         </div><br>
     </div>
     <footer class="others">
