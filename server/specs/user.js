@@ -294,3 +294,21 @@ describe('GET /users/profile', () => {
 //       });
 //   }));
 // });
+
+describe('PATCH /editprofile', () => {
+  it('it should edit user profile', ((done) => {
+    const profile = {
+      firstname: 'Rex',
+      lastname: 'Ben',
+      passportUrl: 'logo.jpg'
+    }
+    chai.request(app)
+      .patch('/api/v1/editprofile')
+      .send(profile)
+      .set('authorization', token2)
+      .end((err, res) => {
+        res.should.have.status(201);
+        done(err);
+      });
+  }));
+});
