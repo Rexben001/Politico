@@ -37,11 +37,16 @@ document.getElementById('signup').addEventListener('submit', (e) => {
     headers: {
       'Content-Type': 'application/json'
     }
-  }).then(res => res.json())
+  }).then((res) => {
+    if (res.status === 404) {
+      return res;
+    }
+    return res.json();
+  })
     .then((response) => {
       if (response.status === 201) {
-        if (!res.data[0].token) throw ('no token in response');
-        window.localStorage.setItem('user_token', res.data[0].token);
+        if (!response.data[0].token) throw ('no token in response');
+        window.localStorage.setItem('user_token', response.data[0].token);
         window.location.href = './userprofile.html';
       } else {
         console.log(response);

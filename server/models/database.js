@@ -3,15 +3,20 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+let connectionString;
+if (process.env.NODE_ENV === 'development') {
+  connectionString = process.env.PRODUCTION
+} else {
+  connectionString = process.env.TESTING
+}
 const pool = new pg.Pool({
-  connectionString: process.env.PRODUCTION
+  connectionString
 
   // user: 'rex',
   // host: 'localhost',
   // database: 'politicodb',
   // password: '73941995',
   // port: 5432
-
 });
 
 pool.on('connect', () => { });
@@ -126,7 +131,6 @@ const vote = async () => {
   );`;
   await pool.query(voteTable)
     .then(() => {
-      console.log('Votes table created')
     }).catch(() => {
       pool.end();
     });

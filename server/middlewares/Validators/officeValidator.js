@@ -2,10 +2,10 @@ const officeValidator = (req, res, next) => {
     let {
         name, type
     } = req.body;
-    if (name) {
+    if (name && typeof (name) === 'string') {
         name = name.trim().toLowerCase();
     }
-    if (type) {
+    if (type && typeof (type) === 'string') {
         type = type.trim().toLowerCase();
     }
     if (!name || typeof (name) !== 'string') {
