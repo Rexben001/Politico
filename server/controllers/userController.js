@@ -43,7 +43,7 @@ class UserControllers {
             }
 
             pool.query(query, value, (error, result) => {
-              if (error) {
+              if (error || result.rowCount === 0) {
                 return res.status(400).json({ status: 400, error: `Unable to create user, ${error}` });
               }
               const admin = result.rows[0].is_admin;

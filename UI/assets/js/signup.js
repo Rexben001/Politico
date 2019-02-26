@@ -37,14 +37,27 @@ document.getElementById('signup').addEventListener('submit', (e) => {
     headers: {
       'Content-Type': 'application/json'
     }
-  }).then(res => res.json())
+  }).then((res) => {
+    if (res.status !== 201) {
+      return res;
+    }
+    return res.json();
+  })
     .then((response) => {
       if (response.status === 201) {
-        if (!res.data[0].token) throw ('no token in response');
-        window.localStorage.setItem('user_token', res.data[0].token);
+        if (!response.data[0].token) throw ('no token in response');
+        window.localStorage.setItem('user_token', response.data[0].token);
         window.location.href = './userprofile.html';
-      } else {
-        console.log(response);
+      } if (response.status === 409) {
+        document.getElementById('error_message').innerHTML = 'Username or email taken';
+        document.getElementById('loader1').style.display = 'none';
+        document.getElementById('register').style.display = 'block';
+      } if (response.status === 400) {
+        document.getElementById('loader1').style.display = 'none';
+        document.getElementById('register').style.display = 'block';
+        document.getElementById('error_message').innerHTML = 'Something unexpected happened. Pls, try again';
+      }
+      else {
         document.getElementById('loader1').style.display = 'none';
         document.getElementById('register').style.display = 'block';
       }
