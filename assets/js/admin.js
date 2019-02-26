@@ -6,12 +6,30 @@ const getToken = () => {
   if (token) {
     return token;
   }
-  console.log('No token')
   window.location.href = './signin.html';
 };
 
 getToken();
 
+
+fetch(`${basePath}/api/v1/users`, {
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: `${getToken()}`
+  }
+}).then((res) => {
+  if (res.status !== 200) {
+    return res;
+  }
+  return res.json();
+})
+  .then((response) => {
+    if (response.status === 401) {
+      window.location.href = './401.html';
+    }
+  })
+  .catch(error => console.log('Error:', error));
 let imageLink;
 cloudinary.applyUploadWidget('#upload_widget_opener', {
   cloudName: 'rexben',
@@ -21,13 +39,13 @@ cloudinary.applyUploadWidget('#upload_widget_opener', {
     imageLink = result.info.url;
     return imageLink;
   }
-})
+});
+
 
 document.getElementById('office').addEventListener('submit', (e) => {
   e.preventDefault();
   document.getElementById('loader1').style.display = 'block';
   document.getElementById('register').style.display = 'none';
-
   const data = {
     name: document.getElementById('office-name').value,
     type: document.getElementById('type').value,
@@ -40,17 +58,26 @@ document.getElementById('office').addEventListener('submit', (e) => {
       'Content-Type': 'application/json',
       Authorization: `${getToken()}`
     }
-  }).then(res => res.json())
+  }).then((res) => {
+    if (res.status !== 201) {
+      return res;
+    }
+    return res.json();
+  })
     .then((response) => {
       if (response.status === 201) {
         document.getElementById('office-name').value = '';
         document.getElementById('type').value = '';
         document.getElementById('office_message').innerHTML = 'Office successfully created';
         window.location.href = './list_all.html';
-      } else if (response.status === 403) {
-        window.location.href = './403.html';
-      } else if (response.status === 401) {
-        window.location.href = './401.html';
+      } if (response.status === 409) {
+        document.getElementById('office_message').innerHTML = 'Username or email taken';
+        document.getElementById('loader1').style.display = 'none';
+        document.getElementById('register').style.display = 'block';
+      } else {
+        document.getElementById('loader1').style.display = 'none';
+        document.getElementById('register').style.display = 'block';
+        document.getElementById('office_message').innerHTML = 'Something unexpected happened. Pls, try again';
       }
     })
     .catch(error => console.log('Error:', error));
@@ -61,7 +88,12 @@ document.getElementById('party').addEventListener('submit', (e) => {
   e.preventDefault();
   document.getElementById('loader2').style.display = 'block';
   document.getElementById('register2').style.display = 'none';
-
+  if (imageLink === undefined || imageLink === null || imageLink === '') {
+    alert('Pls, select an image');
+    document.getElementById('loader2').style.display = 'none';
+    document.getElementById('register2').style.display = 'block';
+    return false;
+  }
   const data = {
     name: document.getElementById('party-name').value,
     hqAddress: document.getElementById('hq_address').value,
@@ -75,7 +107,12 @@ document.getElementById('party').addEventListener('submit', (e) => {
       'Content-Type': 'application/json',
       Authorization: `${getToken()}`
     }
-  }).then(res => res.json())
+  }).then((res) => {
+    if (res.status !== 201) {
+      return res;
+    }
+    return res.json();
+  })
     .then((response) => {
       if (response.status === 201) {
         window.location.href = './list_all.html';
