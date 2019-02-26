@@ -3,20 +3,20 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-let connectionString;
-if (process.env.NODE_ENV === 'development') {
-  connectionString = process.env.PRODUCTION
-} else {
-  connectionString = process.env.TESTING
-}
+// let connectionString;
+// if (process.env.NODE_ENV === 'development') {
+//   connectionString = process.env.PRODUCTION
+// } else {
+//   connectionString = process.env.TESTING
+// }
 const pool = new pg.Pool({
-  connectionString
+  // connectionString
 
-  // user: 'rex',
-  // host: 'localhost',
-  // database: 'politicodb',
-  // password: '73941995',
-  // port: 5432
+  user: 'rex',
+  host: 'localhost',
+  database: 'politicodb',
+  password: '73941995',
+  port: 5432
 });
 
 pool.on('connect', () => { });
@@ -149,6 +149,7 @@ const petition = async () => {
   );`;
   await pool.query(petitionTable)
     .then(() => {
+      console.log('Table all created')
     }).catch(() => {
       pool.end();
     });
