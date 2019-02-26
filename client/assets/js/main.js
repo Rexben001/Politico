@@ -17,6 +17,9 @@ document.getElementById('menu').addEventListener('click', (e) => {
 
 
 const logout = () => {
-  window.location.href = './signin.html';
+  const token = window.localStorage.getItem('user_token')
+  if (token) {
+    window.localStorage.clear();
+    window.location.href = './signin.html';
+  }
 }
-
