@@ -20,5 +20,6 @@ userRoute.get('/votes/user', Authentication.verifyUser, UserController.totalVote
 userRoute.get('/votes/offices&candidates', Authentication.verifyUser, UserController.allVotes);
 userRoute.get('/users/profile', Authentication.verifyUser, UserController.userProfile);
 userRoute.post('/resetpassword/:token', Authentication.verifyResetToken, UserController.passwordChanged);
+userRoute.patch('/editprofile', Authentication.verifyUser, UserController.editUserDetails);
 
 export default userRoute;

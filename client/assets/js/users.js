@@ -59,10 +59,8 @@ fetch(`${basePath}/api/v1/votes/offices&candidates`, {
       data.forEach((off) => {
         console.log(off);
         document.getElementById('list_all').innerHTML += `<tr><td>${count++}</td>
-        <td>${off.office}</td>
-        <td>${off.candidate}</td>
-        <td><a href="#" id="editLo" class="edit">Edit</a></td>
-        <td><a href="#" class="delete" id="del">Delete</a></td></tr>`;
+        <td>${off.name}</td>
+        <td>${off.firstname} ${off.lastname}</td></tr>`;
       });
     } else if (response.status === 403) {
       window.location.href = './signin.html';

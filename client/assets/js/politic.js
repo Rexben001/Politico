@@ -151,7 +151,7 @@ document.getElementById('register').addEventListener('submit', (e) => {
         setTimeout(() => {
           window.location.href = './politics.html';
         }, 1000);
-      } else (response.status === 401) {
+      } else if (response.status === 401) {
         window.location.href = './401.html';
       }
     })

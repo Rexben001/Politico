@@ -749,4 +749,6 @@ a.register:hover, .edit-profile:hover{
                 font-size: 16px;
             }
         }
-        
+       .token #signup, .token #signin, .token #menu{
+           display: none
+       }
