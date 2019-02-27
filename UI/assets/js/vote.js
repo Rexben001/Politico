@@ -108,23 +108,23 @@ const castVote = (cand, off) => {
       Authorization: `${getToken()}`
     }
   }).then((res) => {
-    if (res.status === 404) {
+    if (res.status !== 201) {
       return res;
     }
     return res.json();
   })
     .then((response) => {
       if (response.status === 404) {
-        document.getElementById('no-data').innerHTML = 'No users has been created';
+        document.getElementById('error_vote').innerHTML = 'No users has been created';
         document.getElementById('loader1').style.display = 'none';
         document.getElementById('register').style.display = 'block';
       }
       if (response.status === 201) {
         window.location.href = './vote.html';
-      } else if (response.status === 403) {
+      } else if (response.status === 409) {
+        document.getElementById('error_vote').innerHTML = 'You have voted for this office already';
         document.getElementById('loader1').style.display = 'none';
         document.getElementById('register').style.display = 'block';
-        window.location.href = './signin.html';
       } else if (response.status === 401) {
         window.location.href = './401.html';
       }
@@ -223,7 +223,7 @@ fetch(`${basePath}/api/v1/offices`, {
     if (response.status === 200) {
       const { data } = response;
       data.forEach((off) => {
-        document.getElementById('display').innerHTML += `<a class="oficeList" id="${off.office_id}" onclick="displayResult(${off.office_id})"> ${off.name}</a> `;
+        document.getElementById('display').innerHTML += `<table><tr><a class="oficeList" id="${off.office_id}" onclick="displayResult(${off.office_id})"> ${off.name}</a></tr></table>`;
       });
     } else if (response.status === 403) {
       window.location.href = './403.html';

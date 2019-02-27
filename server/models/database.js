@@ -151,7 +151,7 @@ const petition = async () => {
   );`;
   await pool.query(petitionTable)
     .then(() => {
-      console.log('Petitions table created')
+      console.log('Table all created')
     }).catch(() => {
       pool.end();
     });

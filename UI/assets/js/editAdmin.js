@@ -12,6 +12,26 @@ const getToken = () => {
   window.location.href = './signin.html';
 };
 
+fetch(`${basePath}/api/v1/users`, {
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: `${getToken()}`
+  }
+}).then((res) => {
+  if (res.status !== 200) {
+    return res;
+  }
+  return res.json();
+})
+  .then((response) => {
+    console.log('Hey');
+    if (response.status === 401) {
+      window.location.href = './401.html';
+    }
+  })
+  .catch(error => console.log('Error:', error));
+
 fetch(`${basePath}/api/v1/offices`, {
   method: 'GET',
   headers: {

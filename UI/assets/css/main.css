@@ -403,6 +403,17 @@ a.register:hover, .edit-profile:hover{
 .show_details{
     display:none;
 }
+.error_401{
+    margin-top: 40vh;
+    text-align: center;
+}
+.error_401 > p{
+    font-size: 2rem;
+}
+
+.error_401 #submit{
+    width: 200px;
+}
 @media screen and (max-width: 1200px){
     .navbar a:not(:first-child), .dropdown .dropbtn {
         display: none;
@@ -487,6 +498,9 @@ a.register:hover, .edit-profile:hover{
    }
     .backgroundImage .signpage{
        min-height: 130vh;
+    }
+    #index_button{
+        font-size: 1.1rem;
     }
 
         .aboutPage{
@@ -589,6 +603,9 @@ a.register:hover, .edit-profile:hover{
             display:block;
             font-weight: 500;
             font-size: 13px;
+        }
+        .editPage{
+            width: 90%;
         }
     }
 
