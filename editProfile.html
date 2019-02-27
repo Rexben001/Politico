@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Edit Page</title>
+    <title>Edit Profile Page</title>
     <link rel="stylesheet" href="./assets/css/main.css">
     <link rel="stylesheet" href="./assets/css/form.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
@@ -17,21 +17,20 @@
 
 <body>
     <div class="parties">
-        <h4>Edit Party</h4>
-        <form action="" class="editPage" id="edit_party">
-            <label for="uploads">Upload Logo:</label>
-            <p id="edit_message" class="error"></p>
+        <h4>Edit Profile</h4>
+        <form action="" class="editPage" id="edit_profile">
+            <label for="uploads">Upload Passport:</label>
             <div id="uploads"><a href="#" id="upload_widget_opener">Upload Passport</a></div>
-            <label for="name"><span class="icon"><i class="fas fa-address-book"></i></span> Name</label>
-            <input type="text" id="party_name" required>
-            <label for="office"><span class="icon"><i class="fas fa-map-marked"></i></span> HQ. Address</label>
-            <input type="text" id="hq_address" required>
+            <label for="name"><span class="icon"><i class="fa fa-user-circle"></i></span> Firstname</label>
+            <input type="text" id="firstname" required>
+            <label for="name"><span class="icon"><i class="fa fa-user-circle"></i></span> Lastname</label>
+            <input type="text" id="lastname" required>
             <br>
-            <button type="submit" id="submit"><span id="register">Register</span> <span id="loader1" class="loader"><i
+            <button type="submit" id="submit"><span id="register">Update</span> <span id="loader1" class="loader"><i
                         class="fa fa-circle-o-notch fa-spin"></i>Loading</span></button>
         </form>
     </div>
-    <script src="./assets/js/edit.js"></script>
+    <script src="./assets/js/editProfile.js"></script>
 </body>
 
 </html>

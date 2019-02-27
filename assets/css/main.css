@@ -499,6 +499,9 @@ a.register:hover, .edit-profile:hover{
     .backgroundImage .signpage{
        min-height: 130vh;
     }
+    #index_button{
+        font-size: 1.1rem;
+    }
 
         .aboutPage{
             padding-top: 10vh;
@@ -600,6 +603,9 @@ a.register:hover, .edit-profile:hover{
             display:block;
             font-weight: 500;
             font-size: 13px;
+        }
+        .editPage{
+            width: 90%;
         }
     }
 

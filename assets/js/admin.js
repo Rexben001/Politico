@@ -71,7 +71,7 @@ document.getElementById('office').addEventListener('submit', (e) => {
         document.getElementById('office_message').innerHTML = 'Office successfully created';
         window.location.href = './list_all.html';
       } if (response.status === 409) {
-        document.getElementById('office_message').innerHTML = 'Username or email taken';
+        document.getElementById('office_message').innerHTML = 'Office has been created already';
         document.getElementById('loader1').style.display = 'none';
         document.getElementById('register').style.display = 'block';
       } else {
@@ -115,11 +115,16 @@ document.getElementById('party').addEventListener('submit', (e) => {
   })
     .then((response) => {
       if (response.status === 201) {
+        document.getElementById('party_message').innerHTML = 'Party was created successfully';
         window.location.href = './list_all.html';
-      } else if (response.status === 403) {
-        window.location.href = './403.html';
-      } else if (response.status === 401) {
-        window.location.href = './401.html';
+      } if (response.status === 409) {
+        document.getElementById('party_message').innerHTML = 'Party has been created already';
+        document.getElementById('loader2').style.display = 'none';
+        document.getElementById('register2').style.display = 'block';
+      } else {
+        document.getElementById('loader2').style.display = 'none';
+        document.getElementById('register2').style.display = 'block';
+        document.getElementById('party_message').innerHTML = 'Something unexpected happened. Pls, try again';
       }
     })
     .catch(error => console.log('Error:', error));

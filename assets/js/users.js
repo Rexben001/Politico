@@ -24,7 +24,6 @@ fetch(`${basePath}/api/v1/votes/user`, {
   .then((response) => {
     if (response.status === 404) {
       document.getElementById('error_candidate').innerHTML = 'You have not casted any votes';
-      console.log('Not');
     }
     if (response.status === 200) {
       const { data } = response;
@@ -91,9 +90,9 @@ fetch(`${basePath}/api/v1/users/profile`, {
     }
     if (response.status === 200) {
       console.log(response);
-      document.getElementById('email').innerHTML = response.email;
-      document.getElementById('username').innerHTML = response.username;
-      document.getElementById('profile_img').src = response.passport;
+      document.getElementById('email').innerHTML = response.data.email;
+      document.getElementById('username').innerHTML = response.data.username;
+      document.getElementById('profile_img').src = response.data.passporturl;
     } else if (response.status === 403) {
       window.location.href = './403.html';
     } else if (response.status === 401) {
@@ -101,3 +100,7 @@ fetch(`${basePath}/api/v1/users/profile`, {
     }
   })
   .catch(error => console.log('Error:', error));
+
+const editProfile = () => {
+  window.location.href = './editProfile.html';
+}

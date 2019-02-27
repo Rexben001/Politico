@@ -116,7 +116,36 @@ class UserControllers {
     }
   }
 
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @memberof UserControllers
+   */
+  static editUserDetails(req, res) {
+    const { firstname, lastname, passportUrl } = req.body;
+    const query = 'UPDATE users SET firstname=$1, lastname=$2, passportUrl=$3  WHERE user_id=$4 RETURNING *';
+    const value = [firstname, lastname, passportUrl, req.id];
 
+    pool.query(query, value, (err, result) => {
+      if (err) {
+        return res.status(500).json({ status: 500, error: `Something unexpected just happened. Try again, ${err}` });
+      } if (result.rowCount === 0) {
+        return res.status(500).json({ status: 500, error: 'Unable to edit your profile' });
+      }
+      res.status(201).json({
+        status: 201,
+        data: [{
+          id: result.rows[0].user_id,
+          username: result.rows[0].firstname,
+          email: result.rows[0].lastname,
+          passportUrl: result.rows[0].passporturl
+        }]
+      });
+    });
+  }
 
   /**
    *
@@ -303,9 +332,7 @@ class UserControllers {
       }
       res.status(200).json({
         status: 200,
-        username: result.rows[0].username,
-        email: result.rows[0].email,
-        passport: result.rows[0].passporturl,
+        data: result.rows[0]
       });
     });
   }

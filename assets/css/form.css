@@ -326,8 +326,8 @@ table tr th{
     flex-wrap: wrap;
 }
 .card_vote{
-    width: 150px;
-    height: 280px;
+    width: 170px;
+    height: 310px;
     margin: 25px;
     box-shadow: 1px 1px 5px 5px #b6b2b2;
 }
@@ -463,6 +463,27 @@ table tr th{
     }
     .oficeList{
         width: 70%;
+    }
+    .card_vote{
+        width: 150px;
+        height: 230px;
+        margin: 15px;
+        box-shadow: 1px 1px 5px 5px #b6b2b2;
+    }
+    .card_vote > p {
+        text-align: center;
+    }
+    .candidate_img{
+        width: inherit;
+        height: 120px;
+    }
+    .candidate_name{
+        font-size: 16px;
+        font-weight: 500;
+    }
+    .card_vote #submit{
+        font-size: 16px;
+        font-weight: 500;
     }
 }
 
