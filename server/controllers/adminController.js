@@ -127,6 +127,7 @@ class AdminController {
               return res.status(500).json({ staus: 500, message: 'Something unexpected happened' });
             }
             if (resultOfCheck.rowCount > 0) {
+
               return res.status(409).json({ status: 409, message: 'Candidate has been accepted already' })
             }
             pool.query(query, value, (error, result) => {

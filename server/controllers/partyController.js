@@ -135,7 +135,7 @@ class PartyController {
         const value = [name, hqAddress, logoUrl, id];
         pool.query(query, value, (error, result) => {
           if (error) {
-            return res.status(400).json({ staus: 400, message: `The party with this ID could not be fetched, ${error}` });
+            return res.status(400).json({ staus: 400, message: 'The party with this ID could not be fetched' });
           }
           if (result.rowCount === 0) {
             return res.status(404).json({ staus: 404, message: 'The party with this ID could not be fetched' });

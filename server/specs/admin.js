@@ -160,10 +160,21 @@ describe('POST /office/:user_id/register', () => {
       .post('/api/v1/office/1/register')
       .set('authorization', token)
       .end((err, res) => {
+
         res.should.have.status(409);
         done(err);
       });
   }));
+
+  // it('it should return 404', ((done) => {
+  //   chai.request(app)
+  //     .post('/api/v1/office/15/register')
+  //     .set('authorization', token)
+  //     .end((err, res) => {
+  //       res.should.have.status(404);
+  //       done(err);
+  //     });
+  // }));
   it('it should return 401', ((done) => {
     chai.request(app)
       .post('/api/v1/office/1/register')

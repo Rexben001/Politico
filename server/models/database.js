@@ -19,6 +19,8 @@ const pool = new pg.Pool({
   // port: 5432
 });
 
+console.log(connectionString);
+
 pool.on('connect', () => { });
 
 
