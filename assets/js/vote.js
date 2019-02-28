@@ -79,9 +79,13 @@ fetch(`${basePath}/api/v1/populateVote`, {
     if (response.status === 200) {
       const populate = document.getElementById('card');
       const { data } = response;
+      let count = 1;
+      let register;
+      let loader;
       data.forEach((off) => {
+        count = count++;
         populate.innerHTML += `<div class="card_vote"><img src="${off.passporturl}" class="candidate_img"> <p class="candidate_name" id="${off.candidate_id}">${off.firstname} ${off.lastname}</p><p>AS</p><p class="candidate_name" id="${off.office_id}">${off.offices_name}</p>
-        <button type="submit" id="submit" onclick="castVote(${off.candidate_id}, ${off.office_id}, )"><span id="register">Vote</span> <span id="loader1" class="loader"><i class="fa fa-circle-o-notch fa-spin"></i>Loading</span></button></div>`;
+        <button type="submit" id="submit" onclick="castVote(${off.candidate_id}, ${off.office_id}, ${count})"><span id="register${count}">Vote</span> <span id="loader${count}" class="loader"><i class="fa fa-circle-o-notch fa-spin"></i>Loading</span></button></div>`;
       });
     } else if (response.status === 403) {
       window.location.href = './signin.html';
@@ -91,11 +95,11 @@ fetch(`${basePath}/api/v1/populateVote`, {
   })
   .catch(error => console.log('Error:', error));
 
-const castVote = (cand, off) => {
+const castVote = (cand, off, count) => {
   const candidateValue = Number((document.getElementById(cand)).id);
   const officeValue = Number((document.getElementById(off)).id);
-  document.getElementById('loader1').style.display = 'block';
-  document.getElementById('register').style.display = 'none';
+  document.getElementById(`register${count}`).style.display = 'none';
+  document.getElementById(`loader${count}`).style.display = 'block';
   const data = {
     office: officeValue,
     candidate: candidateValue
@@ -116,15 +120,23 @@ const castVote = (cand, off) => {
     .then((response) => {
       if (response.status === 404) {
         document.getElementById('error_vote').innerHTML = 'No users has been created';
-        document.getElementById('loader1').style.display = 'none';
-        document.getElementById('register').style.display = 'block';
+        document.getElementById(`register${count}`).style.display = 'block';
+        document.getElementById(`loader${count}`).style.display = 'none';
       }
       if (response.status === 201) {
-        window.location.href = './vote.html';
+        document.getElementById('error_vote').innerHTML = 'Your vote has been recorded';
+        document.getElementById(`register${count}`).style.display = 'block';
+        document.getElementById(`loader${count}`).style.display = 'none';
+        setTimeout(() => {
+          window.location.href = './vote.html';
+        }, 1000);
       } else if (response.status === 409) {
         document.getElementById('error_vote').innerHTML = 'You have voted for this office already';
-        document.getElementById('loader1').style.display = 'none';
-        document.getElementById('register').style.display = 'block';
+        document.getElementById(`register${count}`).style.display = 'block';
+        document.getElementById(`loader${count}`).style.display = 'none';
+        setTimeout(() => {
+          window.location.href = './vote.html';
+        }, 1000);
       } else if (response.status === 401) {
         window.location.href = './401.html';
       }

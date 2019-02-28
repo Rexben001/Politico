@@ -69,7 +69,13 @@ document.getElementById('office').addEventListener('submit', (e) => {
         document.getElementById('office-name').value = '';
         document.getElementById('type').value = '';
         document.getElementById('office_message').innerHTML = 'Office successfully created';
+<<<<<<< HEAD:assets/js/admin.js
         window.location.href = './list_all.html';
+=======
+        setTimeout(() => {
+          window.location.href = './list_all.html';
+        }, 1000);
+>>>>>>> ft-feedback-message-164257823:UI/assets/js/admin.js
       } if (response.status === 409) {
         document.getElementById('office_message').innerHTML = 'Office has been created already';
         document.getElementById('loader1').style.display = 'none';
@@ -116,7 +122,9 @@ document.getElementById('party').addEventListener('submit', (e) => {
     .then((response) => {
       if (response.status === 201) {
         document.getElementById('party_message').innerHTML = 'Party was created successfully';
-        window.location.href = './list_all.html';
+        setTimeout(() => {
+          window.location.href = './list_all.html';
+        }, 1000);
       } if (response.status === 409) {
         document.getElementById('party_message').innerHTML = 'Party has been created already';
         document.getElementById('loader2').style.display = 'none';
