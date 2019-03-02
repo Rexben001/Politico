@@ -18,9 +18,6 @@ const getToken = () => {
   } else {
     btn.innerHTML = 'Sign up for free';
     btn.addEventListener('click', () => { window.location.href = './signup.html' });
-    signin.style.display = 'block';
-    signup.style.display = 'block';
-    menu.style.display = 'block';
   }
 };
 

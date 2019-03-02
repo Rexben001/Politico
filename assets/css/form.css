@@ -38,10 +38,10 @@
     margin: auto;
     width: 70%;
     padding: 15px;
-    box-shadow: 2px 2px 5px 5px  #25492e;
+    box-shadow: 2px 2px 10px 10px  #1c4225;
 }
 .not-signup{
-    box-shadow: 2px 2px 5px 5px #b6b2b2;
+    box-shadow: 2px 2px 10px 10px #b6b2b2;
 }
 .sign .signup{
     margin-top: 40px;
@@ -189,9 +189,8 @@ form .reset{
 
  .instruct {
     padding: 5px;
-    font-size: 1.2rem;
-    text-align: center;
     font-size: 1.5rem;
+    /* text-align: center; */
 }
 
 #change{
@@ -201,7 +200,6 @@ form .reset{
 .error{
     font-weight: 600;
     color: rgb(161, 13, 13);
-    font-size: 12px;
     text-align: center;
 }
 
@@ -223,7 +221,7 @@ form .reset{
 }
 .parties .signup{
     width: 90%;
-    box-shadow: 2px 2px 5px 5px #b6b2b2;
+    box-shadow: 2px 2px 10px 10px #b6b2b2;
     border-radius: 15px;
     height: 340px;
 }
@@ -256,7 +254,7 @@ table{
     width: 100%;
     border-spacing: 0;
     color: #0c5511;
-    box-shadow: 2px 2px 5px 5px #b6b2b2;
+    box-shadow: 2px 2px 10px 10px #b6b2b2;
 }
 
 table tr th, table tr td{
@@ -312,7 +310,7 @@ table tr th{
     font-size: 1rem;
     font-weight: 700;
     background: transparent;
-    /* margin-top: 10px; */
+    margin-top: 10px;
     color: #054e0a;
     border: #0c5511 solid 1px;
     border-radius: 5px;

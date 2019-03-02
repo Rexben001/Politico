@@ -347,7 +347,7 @@ class UserControllers {
    * @memberof UserControllers
    */
   static allVotes(req, res) {
-    const query = 'select * from votes where voter=$1';
+    const query = 'select users.firstname, users.lastname, offices.name from votes inner join users on users.user_id=votes.candidate inner join offices on offices.office_id=votes.office where voter=$1';
     const value = [req.id];
     pool.query(query, value, (error, result) => {
       if (error) {
