@@ -61,6 +61,7 @@ fetch(`${basePath}/api/v1/offices`, {
       const { data } = response;
       const populate = document.getElementById('offices');
       data.forEach((off) => {
+        console.log(off);
         populate.innerHTML += `<option id="${off.office_id}"> ${off.name}, ${off.type}</option>`;
       });
     } else if (response.status === 403) {
@@ -91,6 +92,7 @@ fetch(`${basePath}/api/v1/parties`, {
       const { data } = response;
       const populate = document.getElementById('party');
       data.forEach((part) => {
+        console.log(part);
         populate.innerHTML += `<option id="${part.party_id}">${part.name}</option>`;
       });
     } else if (response.status === 403) {
@@ -151,7 +153,7 @@ document.getElementById('register').addEventListener('submit', (e) => {
         setTimeout(() => {
           window.location.href = './politics.html';
         }, 1000);
-      } else (response.status === 401) {
+      } else if (response.status === 401) {
         window.location.href = './401.html';
       }
     })
