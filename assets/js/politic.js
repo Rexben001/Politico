@@ -153,7 +153,11 @@ document.getElementById('register').addEventListener('submit', (e) => {
         setTimeout(() => {
           window.location.href = './politics.html';
         }, 1000);
+<<<<<<< HEAD:assets/js/politic.js
       } else if (response.status === 401) {
+=======
+      } else (response.status === 401) {
+>>>>>>> ft-feedback-message-164257823:UI/assets/js/politic.js
         window.location.href = './401.html';
       }
     })
