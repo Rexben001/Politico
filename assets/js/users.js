@@ -1,3 +1,4 @@
+
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 const basePath = 'https://politico-voting.herokuapp.com';
@@ -12,8 +13,14 @@ const getToken = () => {
 
 const isAdmin = window.localStorage.getItem('isAdmin');
 if (isAdmin !== 'true') {
-  document.getElementById('admin').style.visibility = 'hidden';
-  document.getElementById('allparties').style.visibility = 'hidden';
+  const width = window.screen.width || document.documentElement.clientWidth || document.body.clientWidth;
+  if (width < 1200) {
+    document.getElementById('admin').style.display = 'none';
+    document.getElementById('allparties').style.display = 'none';
+  } else if (width > 1200) {
+    document.getElementById('admin').style.visibility = 'hidden';
+    document.getElementById('allparties').style.visibility = 'hidden';
+  }
 }
 
 fetch(`${basePath}/api/v1/votes/user`, {
