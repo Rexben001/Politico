@@ -17,6 +17,7 @@ const users3 = `INSERT INTO users(firstname, lastname, username, email, phoneNum
 const users4 = `INSERT INTO users(firstname, lastname, username, email, phoneNumber, password, is_admin, passportUrl) VALUES('Love','Peace','Joyce','joyce@gmail.com','+4567899865','$2a$10$uRuYmAhsCNnnIbGGXwcEIOYsUoDC./J1NNAVBeb0/SqeTWVYTjEvK',false,'http://www.locoococcoc/jpg')`;
 const users5 = `INSERT INTO users(firstname, lastname, username, email, phoneNumber, password, is_admin, passportUrl) VALUES('Love','Peace','Rexben','rexben.rb@gmail.com','+4567899865','$2a$10$uRuYmAhsCNnnIbGGXwcEIOYsUoDC./J1NNAVBeb0/SqeTWVYTjEvK',false,'http://www.locoococcoc/jpg')`;
 
+
 const office1 = `INSERT INTO offices (name, type) VALUES('Senate(Lagos)','Federal')`;
 const office2 = `INSERT INTO offices (name, type) VALUES('Governor(Lagos)','State')`;
 
