@@ -9,6 +9,13 @@ const getToken = () => {
   }
   window.location.href = './signin.html';
 };
+
+const isAdmin = window.localStorage.getItem('isAdmin');
+if (isAdmin !== 'true') {
+  document.getElementById('admin').style.visibility = 'hidden';
+  document.getElementById('allparties').style.visibility = 'hidden';
+}
+
 fetch(`${basePath}/api/v1/votes/user`, {
   method: 'GET',
   headers: {

@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
-const basePath = 'https://politico-voting.herokuapp.com';
-// const basePath = "http://localhost:8080";
+// const basePath = 'https://politico-voting.herokuapp.com';
+const basePath = "http://localhost:8080";
 
 document.getElementById('signin').addEventListener('submit', (e) => {
   e.preventDefault();
@@ -16,15 +16,17 @@ document.getElementById('signin').addEventListener('submit', (e) => {
     headers: {
       'Content-Type': 'application/json',
     }
-  }).then((res) => {
-    if (res.status !== 201) {
-      return res;
+  }).then((res2) => {
+    if (res2.status !== 201) {
+      return res2;
     }
-    return res.json();
+    return res2.json();
   }).then((res) => {
     if (res.status === 201) {
+      console.log(res)
       if (!res.data[0].token) throw ('no token in response');
       window.localStorage.setItem('user_token', res.data[0].token);
+      window.localStorage.setItem('isAdmin', res.data[0].user.is_admin);
       window.location.href = './userprofile.html';
     } else if (res.status === 404) {
       document.getElementById('error_message').innerHTML = 'Incorrect email or password';

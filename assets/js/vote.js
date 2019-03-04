@@ -60,6 +60,12 @@ document.getElementById('resul').addEventListener('click', (e) => {
 
 });
 
+const isAdmin = window.localStorage.getItem('isAdmin');
+if (isAdmin !== 'true') {
+  document.getElementById('admin').style.visibility = 'hidden';
+  document.getElementById('allparties').style.visibility = 'hidden';
+}
+
 fetch(`${basePath}/api/v1/populateVote`, {
   method: 'GET',
   headers: {
@@ -67,7 +73,7 @@ fetch(`${basePath}/api/v1/populateVote`, {
     Authorization: `${getToken()}`
   }
 }).then((res) => {
-  if (res.status === 404) {
+  if (res.status !== 200) {
     return res;
   }
   return res.json();
@@ -80,8 +86,6 @@ fetch(`${basePath}/api/v1/populateVote`, {
       const populate = document.getElementById('card');
       const { data } = response;
       let count = 1;
-      let register;
-      let loader;
       data.forEach((off) => {
         count = count++;
         populate.innerHTML += `<div class="card_vote"><img src="${off.passporturl}" class="candidate_img"> <p class="candidate_name" id="${off.candidate_id}">${off.firstname} ${off.lastname}</p><p>AS</p><p class="candidate_name" id="${off.office_id}">${off.offices_name}</p>
@@ -136,7 +140,7 @@ const castVote = (cand, off, count) => {
         document.getElementById(`loader${count}`).style.display = 'none';
         setTimeout(() => {
           window.location.href = './vote.html';
-        }, 1000);
+        }, 2000);
       } else if (response.status === 401) {
         window.location.href = './401.html';
       }

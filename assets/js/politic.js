@@ -30,6 +30,12 @@ const getToken = () => {
   window.location.href = './signin.html';
 };
 
+const isAdmin = window.localStorage.getItem('isAdmin');
+if (isAdmin !== 'true') {
+  document.getElementById('admin').style.visibility = 'hidden';
+  document.getElementById('allparties').style.visibility = 'hidden';
+}
+
 let imageLink;
 cloudinary.applyUploadWidget('#upload_widget_opener', {
   cloudName: 'rexben',
@@ -61,7 +67,6 @@ fetch(`${basePath}/api/v1/offices`, {
       const { data } = response;
       const populate = document.getElementById('offices');
       data.forEach((off) => {
-        console.log(off);
         populate.innerHTML += `<option id="${off.office_id}"> ${off.name}, ${off.type}</option>`;
       });
     } else if (response.status === 403) {
@@ -92,7 +97,6 @@ fetch(`${basePath}/api/v1/parties`, {
       const { data } = response;
       const populate = document.getElementById('party');
       data.forEach((part) => {
-        console.log(part);
         populate.innerHTML += `<option id="${part.party_id}">${part.name}</option>`;
       });
     } else if (response.status === 403) {
@@ -134,12 +138,13 @@ document.getElementById('register').addEventListener('submit', (e) => {
       Authorization: `${getToken()}`
     }
   }).then((res) => {
-    if (res.status === 404) {
+    if (res.status !== 201) {
       return res;
     }
     return res.json();
   })
     .then((response) => {
+      console.log(response);
       if (response.status === 404) {
         // document.getElementById('no-data').innerHTML = 'No users has been created';
       }
@@ -147,12 +152,12 @@ document.getElementById('register').addEventListener('submit', (e) => {
         document.getElementById('error_politics').innerHTML = 'Application successful';
         setTimeout(() => {
           window.location.href = './politics.html';
-        }, 1000);
+        }, 2000);
       } else if (response.status === 409) {
-        document.getElementById('error_politics').innerHTML = 'You can only register once';
+        document.getElementById('error_politics').innerHTML = 'You can only register once || Party has been registered';
         setTimeout(() => {
           window.location.href = './politics.html';
-        }, 1000);
+        }, 2000);
       } else if (response.status === 401) {
         window.location.href = './401.html';
       }

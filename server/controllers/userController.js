@@ -98,11 +98,7 @@ class UserControllers {
                   status: 201,
                   data: [{
                     token,
-                    user: {
-                      id: result.rows[0].user_id,
-                      username: result.rows[0].username,
-                      email: result.rows[0].email
-                    }
+                    user: result.rows[0]
                   }]
                 });
               });
