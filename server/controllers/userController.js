@@ -98,11 +98,7 @@ class UserControllers {
                   status: 201,
                   data: [{
                     token,
-                    user: {
-                      id: result.rows[0].user_id,
-                      username: result.rows[0].username,
-                      email: result.rows[0].email
-                    }
+                    user: result.rows[0]
                   }]
                 });
               });
@@ -192,8 +188,7 @@ class UserControllers {
                 status: 200,
                 data: [{
                   message: 'Check your email for password reset link',
-                  email: result.rows[0].email,
-                  info
+                  email: result.rows[0].email
                 }]
               });
             });
@@ -347,7 +342,7 @@ class UserControllers {
    * @memberof UserControllers
    */
   static allVotes(req, res) {
-    const query = 'select * from votes where voter=$1';
+    const query = 'select users.firstname, users.lastname, offices.name from votes inner join users on users.user_id=votes.candidate inner join offices on offices.office_id=votes.office where voter=$1';
     const value = [req.id];
     pool.query(query, value, (error, result) => {
       if (error) {

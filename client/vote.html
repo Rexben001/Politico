@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vote for your candidate</title>
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="./assets/css/form.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+</head>
+
+<body>
+    <div class="menu_bar">
+        <header id="top_menu" class="navbar">
+            <a href="index.html" id="home"><i class="fas fa-vote-yea"></i> Politico</a>
+            <a href="admin.html" id="admin">Admin</a>
+            <a href="list_all.html" id="allparties">All Parties</a>
+            <a href="politics.html">Contest</a>
+            <div class="dropdown">
+                <button class="dropbtn"><span>User</span> <i class="fa fa-caret-down"></i></button>
+                <div class="dropdown-content">
+                    <a href="userprofile.html">Profile</a><br>
+                    <a href="vote.html">Vote</a><br>
+                    <a href="#" onclick="logout()">Logout</a><br>
+                </div>
+            </div>
+            <a href="" id="menu">&#9776;</a>
+        </header>
+    </div>
+    <div class="sidebar">
+        <a href="" id="vote"><i class="fas fa-vote-yea"></i> <span class="details_sidebar">Cast your vote</span><span
+                class="show_details">Vote</span></a>
+        <a href="" id="pol"><i class="fas fa-address-book"></i> <span class="details_sidebar"> Political Parties</span><span
+                class="show_details">Parties</span></a>
+        <a href="" id="candidates"><i class="fas fa-user-circle"></i> <span class="details_sidebar"> Aspirants</span><span
+                class="show_details">Aspirants</span></a>
+        <a href="" id="resul"><i class="fas fa-user-circle"></i> <span class="details_sidebar"> Election Results</span><span
+                class="show_details">Results</span></a>
+
+    </div>
+    <div class="mainbar">
+        <div class="signup-form" id="votes">
+            <div class="heading">
+                <h4>Vote wisely</h4>
+            </div>
+            <p class="error" id="error_vote"></p>
+            <div class="card" id="card">
+            </div>
+        </div>
+        <div class="list part" id="parties">
+            <table id="partiess">
+                <h4>List of registered political parties</h4>
+                <p class="error" id="error_party"></p>
+                <tr>
+                    <th>S/N</th>
+                    <th>Logo</th>
+                    <th>Name</th>
+                    <th>HQ. Address</th>
+                </tr>
+                <p id="no-data"></p>
+            </table>
+        </div>
+        <div class="list cand" id="candy">
+            <table id="candidatess">
+                <h4>List of qualified candidate</h4>
+                <p class="error" id="error_candidate"></p>
+                <tr>
+                    <th>S/N</th>
+                    <th>Picture</th>
+                    <th>Name</th>
+                    <th>Government Office</th>
+                    <th>Political Party</th>
+                </tr>
+            </table>
+        </div>
+        <div class="list result" id="resulty">
+            <div id="display">
+                <h4>Results by Offices</h4>
+
+            </div>
+            <table id="results">
+                <h4>Election results</h4>
+                <p id="no-data"></p>
+                <tr>
+                    <th>S/N</th>
+                    <th>Image</th>
+                    <th>Candidates</th>
+                    <th>Office</th>
+                    <th>No. of Votes</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <footer class="others">
+        <div class="footer-img">
+            <p><i class="fas fa-vote-yea"></i> <span class="politico-trademark">Politico &reg;</span></p>
+        </div>
+        <div class="footer-columns">
+            <div class="column">
+                <p>User Accounts</p>
+                <p>Vote</p>
+                <p>Profile</p>
+            </div>
+            <div class="column">
+                <p>Terms and Conditions</p>
+                <p>Privacy Policy</p>
+            </div>
+            <div class="column">
+                <p><i class="fab fa-facebook"></i> Facebook</p>
+                <p><i class="fab fa-twitter"></i> Twitter</p>
+                <p><i class="fab fa-linkedin-in"></i> LinkedIn</p>
+
+            </div>
+        </div>
+    </footer>
+</body>
+<script src="./assets/js/main.js"></script>
+<script src="./assets/js/vote.js"></script>
+
+</html>

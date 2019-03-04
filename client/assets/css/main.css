@@ -1,0 +1,768 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+a:hover{
+    color: #04310f;
+}
+
+.navbar {
+    overflow: hidden;
+    box-shadow: 0 0 15px 0 rgb(120, 136, 136);
+  
+  }
+  
+  .navbar a {
+    float: left;
+    display: block;
+    color: green;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    font-size: 1.5rem;
+    margin: 10px 1.2rem;
+    font-weight: 500;
+    transition: 0.5s ease-in-out;
+  }
+
+ 
+  
+  .navbar .dropdown .dropbtn .fa-caret-down{
+    margin-left: 8px;
+}
+
+  .navbar #menu {
+    display: none;
+  }
+  
+  .dropdown {
+    float: left;
+    overflow: hidden;
+  }
+  
+  .dropdown .dropbtn {
+    border: none;
+    outline: none;
+    color: green;
+    padding: 10px 10px 0px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 10px 0 0px;
+    font-size: 1.5rem;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 120px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    float: none;
+    color: green;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    margin: 0 5px;
+    padding: 0 5px;
+  }
+  
+  .navbar a:hover, .dropdown:hover .dropbtn {
+      border-left: 1.5px solid green;
+      border-right: 1.5px solid green;
+      padding-bottom: -5px;
+      transition: .5s;
+      background-color: #ddd;
+      color: #134213;
+      font-weight: 700;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .menu_bar .navbar a#home{
+    margin-right: 35%;
+    margin-left: 6rem;
+    font-weight: 700;
+
+}
+  
+.navbar a#home{
+    margin-right: 50%;
+    margin-left: 6.0rem;
+    font-weight: 700;
+}
+
+/* admin.navbar a#home{
+    margin-right: 0%;
+    margin-left: 7.0rem;
+} */
+
+.backgroundImage{
+    background-image: linear-gradient(
+        to right bottom,
+        rgba(46, 167, 42, 0.87),
+        rgba(24, 224, 17, 0.87)
+      ),
+      url(../img/election.jpg);
+    background-size: cover;
+    height: 90vh;
+    color: #fff;
+    padding: 40px;
+}
+
+ footer{
+     margin: auto;
+     clear: both;
+     padding: 5px;
+     height: 22vh;
+     color: #134213;
+    }
+
+    .others{
+        background: #ddd;
+    }
+
+.footer-img{
+    margin-top: 20px;
+    width: 30%;
+    float: left;
+    margin-left: 6.0rem;
+}
+
+.footer-img .fas {
+    font-size: 4.5rem;
+    padding-left: 60px;
+}
+
+.footer-img .politico-trademark{
+    padding-left: 7px;
+    font-weight: 600;
+}
+.footer-columns{
+    margin-top: 30px;
+    width: 60%;
+    float: right;
+    display: grid;    
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+.column{
+    display: block;
+    font-weight: 600;
+}
+
+.column > p{
+    padding: 5px;
+}
+
+
+
+/* Begining of Index page */
+.aboutPage{
+    margin: auto;
+    padding-top: 20vh;
+    text-align: center;
+    width: 50%;
+    font-size: 25px;
+
+}
+
+.quo-bg{
+    background: rgb(192, 187, 187);
+    color: green;
+    width: 60%;
+    margin: auto;
+    padding: 18px;
+    border-left: solid #0fb836 10px;
+    margin-top: 30px;
+    position: relative;
+    height: 85px;
+
+}
+
+.round{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2rem;
+    height: 2rem;
+    background-color: #28db10b9;
+}
+.triangle{
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 2rem 2rem 0;
+    border-color: transparent #f1F2f2;
+}
+
+.diplayQuote{
+    margin: auto;
+    text-align: center;
+    font-size: 3.5vh;
+    resize: both;
+    font-style: italic;
+    line-height: 1.3;
+}
+
+
+.author{
+    margin: auto;
+    text-align: center;
+    font-size: 2.5vh;
+    resize: both;
+    font-style: italic;
+    margin-left: 250px;
+    
+}
+
+.btn{
+    margin: 0 auto 40px;
+}
+a.register{
+    padding: 15px;
+    background: white;
+    border-radius: 15px;
+    text-decoration: none;
+    color: green;
+    margin: 40px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    font-size: 1.5rem;
+    transition: .5s;
+}
+
+a.register:hover, .edit-profile:hover{
+    box-shadow: 5px 5px 5px #04310f;
+    color: white;
+    background: #0fb836;
+}
+/* End of index page */
+
+
+
+/* Politics page */
+.intro{
+    padding: 20px 0;
+    margin: 40px auto 10px;
+    width: 65%;
+}
+.intro > p {
+    color: green;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.register_parties{
+   min-height: 85vh;
+   margin: auto;
+   width: 80%;
+   display: grid;    
+   grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+}
+
+.bg-colors{
+   background-color: hsl(120, 15%, 92%);
+}
+
+/* Vote Page */
+.sidebar{
+    width: 25%;
+    float: left;
+    margin-right: 10px;
+    background: #04310f;
+    border-right: #0fb836 1px solid;
+    height: 100vh;
+    margin-top: 2px;
+    padding-top: 10px;
+}
+
+.sidebar a{
+    color: white;
+    display: block;
+    padding: 20px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+
+.sidebar a:hover, .sidebar a:focus {
+    background: white;
+    color: green;
+}
+
+.mainbar{
+    width: 70%;
+    float: right;
+    margin: 10px;
+    margin-bottom: 50px;
+}
+
+.mainbar .signup-form{
+    width: 95%;
+    margin-top: 30px;
+}
+
+.mainbar .signup{
+    width: 65%;
+}
+
+.cand, .part, .result{
+    display: none;
+}
+
+.heading{
+    text-align: center;
+    color: green;
+    font-size: 1.7rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.profile{
+    width: 25%;
+    background: white;
+    padding: 20px;
+    float: left;
+    margin: 10px;
+    box-shadow: 10px 10px 10px #b6b2b2;
+}
+
+.profile >.image{
+    margin:auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.profile img{
+    height: 250px;
+    width: 250px;
+    border-radius: 240px;
+    background: #b87272;
+    color: #fffffa;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.profile > p{
+    text-align: center;
+    font-size: 1.2rem;
+    color: green;
+}
+.profile .topic{
+    display: none;
+}
+
+.edit-profile{
+    margin-top: 30px;
+    text-align: center;
+    background: green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+}
+
+.voted{
+    width: 70%;
+    float: right;
+}
+#petitionForm{
+    display: none;
+}
+ .editPage{
+     margin: 0 auto;
+    width: 40%;
+    box-sizing: border-box;
+    background: #ffffff;
+    color: green;
+    border-radius: 15px;
+    display: block;
+    margin: auto;
+    padding: 15px;
+    box-shadow: 2px 2px 5px 5px  #1c4225;
+}
+.show_details{
+    display:none;
+}
+.error_401{
+    margin-top: 40vh;
+    text-align: center;
+}
+.error_401 > p{
+    font-size: 2rem;
+}
+
+.error_401 #submit{
+    width: 200px;
+}
+.navbar.admin a#contest{
+    margin-left: 250px;
+}
+@media screen and (max-width: 1200px){
+    .navbar a:not(:first-child), .dropdown .dropbtn {
+        display: none;
+      }
+      .navbar a#home{
+        display: block;
+        margin-right: 0%;
+        margin-left: 1.0rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+
+    }
+    .menu_bar .navbar a#home{
+        display: block;
+        margin-right: 0%;
+        margin-left: 1.0rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+    .navbar a#menu {
+        display: block;
+        float: right;
+        font-size: 1.3rem;
+        margin-right: 0px;
+        font-weight: 700;
+
+    }
+     .backgroundImage{
+         clear: both;
+    }
+}
+
+@media screen and (max-width: 1200px){
+
+    body{
+        width: 100%
+    }
+      .navbar.responsive {
+          position: absolute;
+          background: white;
+          width: 100%;
+        }
+     .navbar.responsive #menu {
+        position: absolute;
+        right: 0;
+        top: 0;
+  }
+  .navbar .responsive .admin a#contest{
+    margin-left: 20px;
+}
+
+  .navbar.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+    font-size: 1.1rem;
+    padding: 5px;
+  }
+  .navbar.responsive .dropdown {
+      float: none;
+      margin-left: 5px;
+      padding: 5px;
+        }
+
+  .navbar.responsive .dropdown-content {
+      position: relative;
+      margin: 0;
+      margin-left: 15px;
+      padding: 5px;
+    }
+  .navbar.responsive .dropdown .dropbtn {
+    display: block;
+    text-align: left;
+    font-size: 1.1rem;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 5px;
+    margin-left: 15px;
+  }
+  .navbar.responsive .dropdown .dropbtn .fa-caret-down{
+      margin-left: 8px;
+  }  
+  .backgroundImage{
+     min-height: 100vh;
+   }
+    .backgroundImage .signpage{
+       min-height: 130vh;
+    }
+    #index_button{
+        font-size: 1.1rem;
+    }
+
+        .aboutPage{
+            padding-top: 10vh;
+            font-size: 18px;
+            margin-top: 0;
+            width: 90%;
+        }
+        .quo-bg{
+            height: 130px;
+            width: 75%;
+        }
+
+        .round{
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+        .triangle{
+            border-width: 0 1.5rem 1.5rem 0;
+        }
+        .diplayQuote{
+            font-size: 2.5vh;
+            resize: both;
+            padding: 5px;
+        }
+        .aboutPage > p:last-child{
+            display: none;
+        }
+        .author{
+            font-size: 2vh;
+            padding: 0 10px;
+            margin-left: 40px;
+            resize: both;
+
+        }
+        a.register{
+            width: 60%;
+            font-size: 20px;
+            padding: 13px;
+        }
+        .profile{
+            width: 87%;
+        }
+        .profile img{
+            height: 190px;
+            width: 190px;
+            border-radius: 200px;
+            margin: 15px 0;
+        }
+
+       .party_upload #party{
+            height: 310px;
+        }
+        .voted{
+            clear: both;
+            width: inherit;
+        }
+        footer{
+           min-height: 30vh;
+           margin: 10px auto 0;
+        }
+        .footer-img{
+            margin: 20px auto 5px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .footer-img .fas{
+            padding-left: 10px;
+            font-size: 2rem;
+        }
+        .politico-trademark{
+            display: block;
+            text-align: center;
+            font-size: 1rem;
+            margin-left: 5px;
+        }
+
+        .footer-columns{
+            display: block;
+            margin: 20px auto 5px;
+        }
+        .column{
+            padding-bottom: 15px;
+            font-size: 13px;
+            padding-left: 20px;
+            padding-right: 3px;
+        }
+        .column:first-child{
+            display: none;
+        }
+
+        .register_parties{
+            display: block;
+            width: 100%;
+        }
+
+        .show_details{
+            display:block;
+            font-weight: 500;
+            font-size: 13px;
+        }
+        .editPage{
+            width: 90%;
+        }
+    }
+
+    @media screen and (min-width: 700px) and (max-width: 1200px){
+
+        body{
+            width: 100%
+        }
+
+        .navbar a#home, .menu_bar .navbar a#home, .navbar a#menu{
+            font-size: 1.9rem;
+            font-weight: 700;
+        }
+
+        .menu_bar .navbar a, .navbar a, .navbar.responsive .dropdown .dropbtn, .navbar.responsive a{
+            font-size: 1.7rem;
+            font-weight: 700;
+            padding: 15px;
+        }
+    
+        .backgroundImage{
+            height: 90vh;
+        }
+            .aboutPage{
+                padding-top: 20vh;
+                font-size: 25px;
+                width: 60%;
+            }
+            .diplayQuote{
+                padding: 0 15px;
+                font-size: 20px;
+                font-weight: 500;
+            }
+            
+            .author{
+                font-size: 20px;
+                padding: 0 15px;
+                margin-left: 100px;
+                font-weight: 500;
+    
+            }
+            a.register{
+                width: 40%;
+                font-size: 1.7rem;
+            }
+
+            .column:first-child{
+                display: block;
+            }
+
+            .footer-img{
+                margin-top: 20px;
+                width: 30%;
+                float: left;
+                margin-left: 10px;
+            }
+            
+            .footer-img .fas {
+                font-size: 4rem;
+                padding-left: 10px;
+            }
+            
+            .footer-img .politico-trademark{
+                padding-left: 7px;
+                font-weight: 600;
+                font-size: 1.5rem;
+            }
+            .footer-columns{
+                padding-left: 10px;
+                width: 65%;
+                float: left;
+                display: grid;    
+                grid-template-columns: repeat(3, 1fr);
+                grid-gap: 15px;
+                cursor: pointer;
+            }
+            .column{
+                display: block;
+                font-weight: 600;
+                font-size: 1.2rem;
+            }
+            
+            .profile{
+                width: 95%;
+                box-shadow: 0 #b6b2b2;
+            }
+            .profile >.image{
+                width: 50%;
+                float: left;
+            }
+            .profile > p{
+                width: 40%;
+                float: left;
+                padding: 10px;
+                font-size: 1.5rem
+            }
+            
+            .profile .topic{
+                display: block;
+                font-weight: 900;
+            }
+        }
+
+        @media screen and (max-width: 700px){
+            .sidebar{
+                width: 21%;
+                margin: 0 auto;
+                height: 70vh;
+                text-align: center;
+            }
+            .details_sidebar{
+                display: none;
+            }
+            .sidebar a{
+                font-size: 1.4rem;
+                padding: 20px 7px;
+            }
+            .show_details{
+                display: block;
+            }
+            .mainbar{
+                width: 75%;
+                margin: 0;
+                float: left;
+            }
+            .mainbar .signup{
+                width: 90%;
+            }
+            .intro{
+                width: 85%;
+            }
+            .intro > p {
+                color: green;
+                font-size: 16px;
+                font-weight: 500;
+                text-align: center;
+            }
+            textarea{
+                height: 100px;
+                font-weight: 500;
+                font-size: 16px;
+            }
+        }
+       .token #signup, .token #signin, .token #menu{
+           display: none
+       }

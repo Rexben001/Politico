@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Profile</title>
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="./assets/css/form.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+
+</head>
+
+<body>
+    <div class="menu_bar">
+        <header id="top_menu" class="navbar">
+            <a href="index.html" id="home"><i class="fas fa-vote-yea"></i> Politico</a>
+            <a href="admin.html" id="admin">Admin</a>
+            <a href="list_all.html" id="allparties">All Parties</a>
+            <a href="politics.html">Contest</a>
+            <div class="dropdown">
+                <button class="dropbtn"><span>User</span> <i class="fa fa-caret-down"></i></button>
+                <div class="dropdown-content">
+                    <a href="userprofile.html">Profile</a><br>
+                    <a href="vote.html">Vote</a><br>
+                    <a href="#" onclick="logout()">Logout</a><br>
+                </div>
+            </div>
+            <a href="" id="menu">&#9776;</a>
+        </header>
+    </div>
+    <div class="profile">
+        <div class="image">
+            <img src="" alt="" id="profile_img">
+        </div>
+        <p class="topic"></i> Username</p>
+        <p id="username"></p>
+        <p class="topic">Email Address</p>
+        <p id="email"></p>
+        <p><span class="hide">Total votes casted:</span> <span id="tottal_votes">0</span></p>
+        <a href="#" class="edit-profile" onclick="editProfile()">Edit Profile</a>
+    </div>
+    <div class="voted">
+
+        <div class="list">
+            <table id="list_all">
+                <h4>List of Political parties and offices that you have voted</h4>
+                <p class="error" id="error_candidate"></p>
+                <tr>
+                    <th>S/N</th>
+                    <th>Office</th>
+                    <th>Name</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <footer class="others">
+
+        <div class="footer-img">
+            <p><i class="fas fa-vote-yea"></i> <span class="politico-trademark">Politico &reg;</span></p>
+        </div>
+        <div class="footer-columns">
+            <div class="column">
+                <p>User Accounts</p>
+                <p>Vote</p>
+                <p>Profile</p>
+            </div>
+            <div class="column">
+                <p>Terms and Conditions</p>
+                <p>Privacy Policy</p>
+            </div>
+            <div class="column">
+                <p><i class="fab fa-facebook"></i> Facebook</p>
+                <p><i class="fab fa-twitter"></i> Twitter</p>
+                <p><i class="fab fa-linkedin-in"></i> LinkedIn</p>
+
+            </div>
+        </div>
+    </footer>
+    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/users.js"></script>
+</body>
+
+</html>
