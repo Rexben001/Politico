@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 const basePath = 'https://politico-voting.herokuapp.com';
-// const basePath = "http://localhost:8080"
 const getToken = () => {
   const token = window.localStorage.getItem('user_token')
   if (token) {

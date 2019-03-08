@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-undef */
 const basePath = 'https://politico-voting.herokuapp.com';
-// const basePath = "http://localhost:8080";
 
 let imageLink;
 cloudinary.applyUploadWidget('#upload_widget_opener', {
@@ -50,7 +49,7 @@ document.getElementById('signup').addEventListener('submit', (e) => {
       if (response.status === 201) {
         if (!response.data[0].token) throw ('no token in response');
         window.localStorage.setItem('user_token', response.data[0].token);
-        window.localStorage.setItem('isAdmin', res.data[0].user.is_admin);
+        window.localStorage.setItem('isAdmin', response.data[0].user.is_admin);
         window.location.href = './userprofile.html';
       } if (response.status === 409) {
         document.getElementById('error_message').innerHTML = 'Username or email taken';

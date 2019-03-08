@@ -2,7 +2,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 const basePath = 'https://politico-voting.herokuapp.com';
-// const basePath = "http://localhost:8080"
 const getToken = () => {
   const token = window.localStorage.getItem('user_token')
   if (token) {
@@ -65,7 +64,7 @@ fetch(`${basePath}/api/v1/votes/offices&candidates`, {
 })
   .then((response) => {
     if (response.status === 404) {
-      // document.getElementById('no-data3').innerHTML = 'No candidate has been created';
+      document.getElementById('list_all').innerHTML = 'No candidate has been created';
     }
     if (response.status === 200) {
       const { data } = response;

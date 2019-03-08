@@ -4,20 +4,18 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 let connectionString;
-if (process.env.NODE_ENV === 'development') {
-  connectionString = process.env.PRODUCTION
+const environmentVariable = process.env.NODE_ENV;
+if (environmentVariable.includes('test')) {
+  connectionString = process.env.TESTING;
+
 } else {
-  connectionString = process.env.TESTING
+  connectionString = process.env.PRODUCTION;
 }
 const pool = new pg.Pool({
   connectionString
-
-  // user: 'rex',
-  // host: 'localhost',
-  // database: 'politicodb',
-  // password: '73941995',
-  // port: 5432
 });
+
+console.log(connectionString);
 
 pool.on('connect', () => { });
 
@@ -29,7 +27,6 @@ const users = async () => {
         user_id SERIAL NOT NULL UNIQUE,
         firstname VARCHAR(128) NOT NULL,
         lastname VARCHAR(128) NOT NULL,
-        othernames VARCHAR(128),
         email VARCHAR(128) NOT NULL,
         password VARCHAR(128) NOT NULL,
         username VARCHAR(128) NOT NULL,
@@ -82,6 +79,7 @@ const candidate = async () => {
     candidate_id SERIAL NOT NULL UNIQUE,
     office INTEGER,
     party INTEGER,
+    acceptance VARCHAR NOT NULL,
     createdBy INTEGER UNIQUE,
     FOREIGN KEY (party) REFERENCES parties(party_id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (createdBy) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -89,26 +87,6 @@ const candidate = async () => {
     PRIMARY KEY (createdBy, office)
   );`;
   await pool.query(candidateTable)
-    .then(() => {
-    }).catch(() => {
-      pool.end();
-    });
-};
-
-const acceptedCandidate = async () => {
-  const candidateTable2 = `
-  CREATE TABLE IF NOT EXISTS 
-  accept_candidates(
-    candidate_id SERIAL NOT NULL UNIQUE,
-    office INTEGER,
-    party INTEGER,
-    createdBy INTEGER UNIQUE,
-    FOREIGN KEY (party) REFERENCES parties(party_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (createdBy) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (office) REFERENCES offices(office_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    PRIMARY KEY (createdBy, office)
-  );`;
-  await pool.query(candidateTable2)
     .then(() => {
     }).catch(() => {
       pool.end();
@@ -126,7 +104,7 @@ const vote = async () => {
     office INTEGER,
     FOREIGN KEY (voter) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (office) REFERENCES offices(office_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (candidate) REFERENCES accept_candidates(createdBy) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (candidate) REFERENCES candidates(createdBy) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (office, voter, candidate)
   );`;
   await pool.query(voteTable)
@@ -156,5 +134,5 @@ const petition = async () => {
 };
 
 export default {
-  pool, users, party, office, candidate, acceptedCandidate, vote, petition,
+  pool, users, party, office, candidate, vote, petition,
 };
