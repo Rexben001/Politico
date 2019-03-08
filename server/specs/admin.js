@@ -146,35 +146,25 @@ describe('GET /candidates', () => {
 
 
 describe('POST /office/:user_id/register', () => {
-  // it('it should accept candidate', ((done) => {
-  //   chai.request(app)
-  //     .post('/api/v1/office/3/register')
-  //     .set('authorization', token)
-  //     .end((err, res) => {
-  //       res.should.have.status(201);
-  //       done(err);
-  //     });
-  // }));
-  it('it should return 401', ((done) => {
+  it('it should accept candidate', ((done) => {
     chai.request(app)
-      .post('/api/v1/office/1/register')
+      .post('/api/v1/office/3/register')
       .set('authorization', token)
       .end((err, res) => {
-
-        res.should.have.status(409);
+        res.should.have.status(201);
         done(err);
       });
   }));
 
-  // it('it should return 404', ((done) => {
-  //   chai.request(app)
-  //     .post('/api/v1/office/15/register')
-  //     .set('authorization', token)
-  //     .end((err, res) => {
-  //       res.should.have.status(404);
-  //       done(err);
-  //     });
-  // }));
+  it('it should return 404', ((done) => {
+    chai.request(app)
+      .post('/api/v1/office/15/register')
+      .set('authorization', token)
+      .end((err, res) => {
+        res.should.have.status(404);
+        done(err);
+      });
+  }));
   it('it should return 401', ((done) => {
     chai.request(app)
       .post('/api/v1/office/1/register')
@@ -186,6 +176,36 @@ describe('POST /office/:user_id/register', () => {
   }));
 });
 
+describe('POST /office/:user_id/reject', () => {
+  it('it should accept candidate', ((done) => {
+    chai.request(app)
+      .post('/api/v1/office/3/reject')
+      .set('authorization', token)
+      .end((err, res) => {
+        res.should.have.status(201);
+        done(err);
+      });
+  }));
+
+  it('it should return 404', ((done) => {
+    chai.request(app)
+      .post('/api/v1/office/15/reject')
+      .set('authorization', token)
+      .end((err, res) => {
+        res.should.have.status(404);
+        done(err);
+      });
+  }));
+  it('it should return 401', ((done) => {
+    chai.request(app)
+      .post('/api/v1/office/1/reject')
+      .set('authorization', token2)
+      .end((err, res) => {
+        res.should.have.status(401);
+        done(err);
+      });
+  }));
+});
 
 describe('GET /populateVote', () => {
   it('it should get all accepted candidates', ((done) => {
@@ -200,15 +220,6 @@ describe('GET /populateVote', () => {
 });
 
 describe('GET /petitions/all', () => {
-  it('it should get all petitions', ((done) => {
-    chai.request(app)
-      .get('/api/v1/petitions/all')
-      .set('authorization', token)
-      .end((err, res) => {
-        res.should.have.status(200);
-        done(err);
-      });
-  }));
   it('it should return 401', ((done) => {
     chai.request(app)
       .get('/api/v1/petitions/all')

@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
 const getToken = () => {
-  console.log('working');
   const token = window.localStorage.getItem('user_token')
   const btn = document.getElementById('index_button');
   const signup = document.getElementById('signup');

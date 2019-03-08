@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 
 const basePath = 'https://politico-voting.herokuapp.com';
-// const basePath = 'http://localhost:8080';
 const token = window.location.href.split('=')[1];
 console.log(token);
 

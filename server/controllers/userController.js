@@ -51,7 +51,7 @@ class UserControllers {
               jwt.sign({
                 username, admin, id
               },
-                process.env.SECRETKEY, { expiresIn: '20d' }, (err, token) => {
+                process.env.SECRETKEY, { expiresIn: '7d' }, (err, token) => {
                   res.status(201).json({
                     status: 201,
                     data: [{
@@ -322,9 +322,6 @@ class UserControllers {
     const query = 'select * from users where user_id=$1';
     const value = [req.id];
     pool.query(query, value, (error, result) => {
-      if (error || result.rowCount === 0) {
-        return res.status(400).json({ status: 400, error: `Unable to get total votes, ${error}` });
-      }
       res.status(200).json({
         status: 200,
         data: result.rows[0]
