@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
-// const basePath = 'https://politico-voting.herokuapp.com';
-const basePath = "http://localhost:8080";
+const basePath = 'https://politico-voting.herokuapp.com';
 
 document.getElementById('signin').addEventListener('submit', (e) => {
   e.preventDefault();

@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-undef */
 const basePath = 'https://politico-voting.herokuapp.com';
-// const basePath = "http://localhost:8080";
 
 let imageLink;
 cloudinary.applyUploadWidget('#upload_widget_opener', {

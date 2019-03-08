@@ -2,7 +2,6 @@
 /* eslint-disable require-jsdoc */
 /* eslint-disable no-undef */
 const basePath = 'https://politico-voting.herokuapp.com';
-// const basePath = 'http://localhost:8080';
 
 const expresss = document.getElementById('express');
 const petition = document.getElementById('petition');

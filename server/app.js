@@ -12,7 +12,7 @@ import database from './models/database';
 
 const app = express();
 const {
-  users, party, office, candidate, vote, petition, acceptedCandidate
+  users, party, office, candidate, vote, petition
 } = database;
 
 const swaggerDoc = yaml.load(`${process.cwd()}/swagger.yaml`);
@@ -49,7 +49,6 @@ const createTable = async () => {
   await party();
   await office();
   await candidate();
-  await acceptedCandidate();
   await vote();
   await petition();
 };

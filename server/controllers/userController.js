@@ -51,7 +51,7 @@ class UserControllers {
               jwt.sign({
                 username, admin, id
               },
-                process.env.SECRETKEY, { expiresIn: '20d' }, (err, token) => {
+                process.env.SECRETKEY, { expiresIn: '7d' }, (err, token) => {
                   res.status(201).json({
                     status: 201,
                     data: [{

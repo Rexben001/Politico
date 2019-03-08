@@ -1,8 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 const basePath = 'https://politico-voting.herokuapp.com';
-// const basePath = 'http://localhost:8080';
-
 
 const getToken = () => {
   const token = window.localStorage.getItem('user_token')
@@ -46,7 +44,7 @@ fetch(`${basePath}/api/v1/offices`, {
 })
   .then((response) => {
     if (response.status === 404) {
-      document.getElementById('no-data').innerHTML = 'No party has been created'
+      document.getElementById('offices').innerHTML = 'No party has been created'
     }
     if (response.status === 200) {
       const { data } = response;
@@ -79,7 +77,7 @@ fetch(`${basePath}/api/v1/parties`, {
 })
   .then((response) => {
     if (response.status === 404) {
-      document.getElementById('no-data').innerHTML = 'No party has been created'
+      document.getElementById('parties').innerHTML = 'No party has been created'
     }
     console.log(response);
     if (response.status === 200) {
@@ -146,7 +144,7 @@ fetch(`${basePath}/api/v1/candidates`, {
 })
   .then((response) => {
     if (response.status === 404) {
-      document.getElementById('no-data3').innerHTML = 'No candidate has been created';
+      document.getElementById('candidate').innerHTML = 'No candidate details';
     }
     if (response.status === 200) {
       const { data } = response;
@@ -157,7 +155,10 @@ fetch(`${basePath}/api/v1/candidates`, {
           <td>${cand.firstname} ${cand.lastname}</td>
           <td>${cand.name}</td>
           <td>${cand.party}</td>
-          <td><a href="#" id="editLo" onclick="acceptIt(${cand.candidate_id})" class="edit">Accept</a></td>`;
+          <td>${cand.acceptance}</td>
+          <td><a href="#" id="editLo" onclick="acceptIt(${cand.createdby})" class="edit">Accept</a></td>
+          <td><a href="#" id="editLo" onclick="rejectIt(${cand.createdby})" class="delete">Delete</a></td>`;
+
       });
     } else if (response.status === 403) {
       window.location.href = './403.html';
@@ -170,6 +171,35 @@ fetch(`${basePath}/api/v1/candidates`, {
 const acceptIt = (id) => {
   console.log(id);
   fetch(`${basePath}/api/v1/office/${id}/register`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `${getToken()}`
+    }
+  }).then((res) => {
+    if (res.status !== 200) {
+      return res;
+    }
+    return res.json();
+  })
+    .then((response) => {
+      if (response.status === 404) {
+        document.getElementById('no-data3').innerHTML = 'No party has been created';
+      }
+      if (response.status === 201) {
+        window.location.href = './list_all.html';
+      } else if (response.status === 403) {
+        window.location.href = './403.html';
+      } else if (response.status === 401) {
+        window.location.href = './401.html';
+      }
+    })
+    .catch(error => console.log('Error:', error));
+};
+
+const rejectIt = (id) => {
+  console.log(id);
+  fetch(`${basePath}/api/v1/office/${id}/reject`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -210,7 +240,7 @@ fetch(`${basePath}/api/v1/petitions/all`, {
 })
   .then((response) => {
     if (response.status === 404) {
-      // document.getElementById('no-data3').innerHTML = 'No pe has been created';
+      document.getElementById('petitions').innerHTML = 'No petition has been created';
     }
     if (response.status === 200) {
       const { data } = response;
