@@ -82,35 +82,6 @@ describe('POST /auth/signup', () => {
 });
 
 
-describe('POST /auth/reset', () => {
-  //   it('it should log in the user', ((done) => {
-  //     const resetDetails = {
-  //       email: 'rexben.rb@gmail.com',
-  //     };
-  //     chai.request(app)
-  //       .post('/api/v1/auth/reset')
-  //       .send(resetDetails)
-  //       .end((err, res) => {
-  //         res.should.have.status(201);
-  //         done(err);
-  //       });
-  //   }));
-
-  // it('it should log in the user', ((done) => {
-  //   const resetDetails = {
-  //     email: 'rexben.rbbbb@gmail.com',
-  //   };
-  //   chai.request(app)
-  //     .post('/api/v1/auth/reset')
-  //     .send(resetDetails)
-  //     .end((err, res) => {
-  //       res.should.have.status(404);
-  //       done(err);
-  //     });
-  // }));
-});
-
-
 describe('POST /office/register', () => {
   it('it should log in the user', ((done) => {
     const interest = {
@@ -138,21 +109,6 @@ describe('POST /office/register', () => {
       .set('authorization', token)
       .end((err, res) => {
         res.should.have.status(409);
-        done(err);
-      });
-  }));
-
-  it('it should log in the user', ((done) => {
-    const interest = {
-      office: 100,
-      party: 100
-    };
-    chai.request(app)
-      .post('/api/v1/office/register')
-      .send(interest)
-      .set('authorization', token)
-      .end((err, res) => {
-        res.should.have.status(404);
         done(err);
       });
   }));
