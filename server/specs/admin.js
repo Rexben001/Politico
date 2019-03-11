@@ -220,15 +220,6 @@ describe('GET /populateVote', () => {
 });
 
 describe('GET /petitions/all', () => {
-  it('it should get all petitions', ((done) => {
-    chai.request(app)
-      .get('/api/v1/petitions/all')
-      .set('authorization', token)
-      .end((err, res) => {
-        res.should.have.status(200);
-        done(err);
-      });
-  }));
   it('it should return 401', ((done) => {
     chai.request(app)
       .get('/api/v1/petitions/all')

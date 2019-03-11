@@ -36,9 +36,7 @@ const users = async () => {
         UNIQUE(username, email)
         );`;
   await pool.query(userTable)
-    .then(() => { }).catch(() => {
-      pool.end();
-    });
+    .then(() => { })
 };
 
 const party = async () => {
@@ -52,9 +50,7 @@ const party = async () => {
       );`;
   await pool.query(partyTable)
     .then(() => {
-    }).catch(() => {
-      pool.end();
-    });
+    })
 };
 
 const office = async () => {
@@ -67,9 +63,7 @@ const office = async () => {
       );`;
   await pool.query(officeTable)
     .then(() => {
-    }).catch(() => {
-      pool.end();
-    });
+    })
 };
 
 const candidate = async () => {
@@ -88,9 +82,7 @@ const candidate = async () => {
   );`;
   await pool.query(candidateTable)
     .then(() => {
-    }).catch(() => {
-      pool.end();
-    });
+    })
 };
 
 const vote = async () => {
@@ -109,9 +101,7 @@ const vote = async () => {
   );`;
   await pool.query(voteTable)
     .then(() => {
-    }).catch(() => {
-      pool.end();
-    });
+    })
 };
 
 const petition = async () => {
@@ -128,9 +118,7 @@ const petition = async () => {
   await pool.query(petitionTable)
     .then(() => {
       console.log('Table all created')
-    }).catch(() => {
-      pool.end();
-    });
+    })
 };
 
 export default {

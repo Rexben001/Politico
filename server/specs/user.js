@@ -162,6 +162,15 @@ describe('POST /votes', () => {
 });
 
 describe('POST /petitions', () => {
+  it('it should return status code of 404 and an error message', ((done) => {
+    chai.request(app)
+      .get('/api/v1/petitions/all')
+      .set('authorization', token)
+      .end((err, res) => {
+        res.should.have.status(404);
+        done(err);
+      });
+  }));
   it('it should create petition', ((done) => {
     const petitionsDetails = {
       office: 1,
@@ -179,6 +188,15 @@ describe('POST /petitions', () => {
       });
   }));
 
+  it('it should get all petitions', ((done) => {
+    chai.request(app)
+      .get('/api/v1/petitions/all')
+      .set('authorization', token)
+      .end((err, res) => {
+        res.should.have.status(200);
+        done(err);
+      });
+  }));
   it('it should return status code of 400 and an error message', ((done) => {
     const petitions = {
       office: 100,
@@ -235,21 +253,6 @@ describe('GET /users/profile', () => {
   }));
 });
 
-// describe('POST /resetpassword/:token', () => {
-//   it('it should get users profile', ((done) => {
-//     const update = {
-//       password: '1234'
-//     }
-//     chai.request(app)
-//       .post('/api/v1/resetpassword/:token')
-//       .send(update)
-//       .set('authorization', token)
-//       .end((err, res) => {
-//         res.should.have.status(200);
-//         done(err);
-//       });
-//   }));
-// });
 
 describe('PATCH /editprofile', () => {
   it('it should edit user profile', ((done) => {

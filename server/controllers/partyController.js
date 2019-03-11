@@ -172,9 +172,6 @@ class PartyController {
         const id = Number(req.params.party_id);
         const query = `DELETE FROM parties WHERE party_id=${id}`;
         pool.query(query, (error, result) => {
-          if (error) {
-            return res.status(404).json({ staus: 404, error: 'Cant fetch any party with this ID' });
-          }
           if (result.rowCount === 0) {
             return res.status(404).json({ staus: 404, message: 'The party with this ID could not be fetched' });
           }

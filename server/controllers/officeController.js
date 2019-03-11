@@ -120,37 +120,7 @@ class OfficeCOntroller {
     }
   }
 
-  /**
-   *
-   *
-   * @static
-   * @param {Object} req
-   * @param {Object} res
-   * @returns
-   * @memberof OfficeCOntroller
-   */
-  static getAllResults(req, res) {
-    try {
-      if (req.admin) {
 
-        const id = Number(req.params.office_id);
-        const query = `SELECT COUNT(votes.candidate) AS result, candidates.candidate_id, candidates.office FROM votes JOIN candidates ON candidates.candidate_id =votes.candidate  WHERE votes.office = ${id} GROUP BY candidates.candidate_id, candidates.createdBy, candidates.office`;
-        pool.query(query, (error, result) => {
-          if (error) {
-            return res.status(500).json({ staus: 500, message: 'Vote could not be fetched' });
-          }
-          return res.status(200).json({
-            status: 200,
-            data: result.rows
-          });
-        });
-      } else {
-        return res.status(401).json({ status: 401, error: 'You are not authorized to use this route' });
-      }
-    } catch (error) {
-      return res.status(500).json({ status: 500, error: 'Something unexpected just happened. Try again' });
-    }
-  }
 }
 
 

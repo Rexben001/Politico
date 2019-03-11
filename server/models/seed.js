@@ -34,7 +34,7 @@ const candidate3 = `INSERT INTO candidates(office, party, createdBy, acceptance)
 const votes1 = `INSERT INTO votes(office, voter, createdOn, candidate) VALUES(1, 1, NOW(), 1)`;
 const votes2 = `INSERT INTO votes(office, voter, createdOn, candidate) VALUES(1, 2, NOW(), 1)`;
 
-const petitions = `INSERT INTO petitions(office, createdOn, createdBy, body, evidence) VALUES(1, NOW(), 1, 'guuiuie.jpg', 'Ballot')`;
+// const petitions = `INSERT INTO petitions(office, createdOn, createdBy, body, evidence) VALUES(1, NOW(), 1, 'guuiuie.jpg', 'Ballot')`;
 
 const tables = async () => {
   await pool.query(dropTables);
@@ -49,7 +49,7 @@ const tables = async () => {
   await pool.query(`${parties1}; ${parties2}; ${parties3}; ${parties4};`);
   await pool.query(`${candidate1}; ${candidate2}; ${candidate3};`);
   await pool.query(`${votes1}; ${votes2};`);
-  await pool.query(`${petitions};`);
+  // await pool.query(`${petitions};`);
 };
 
 tables();
