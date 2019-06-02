@@ -92,9 +92,10 @@ fetch(`${basePath}/api/v1/populateVote`, {
       const { data } = response;
       let count = 1;
       data.forEach((off) => {
+        console.log(off.createdby)
         count = count++;
-        populate.innerHTML += `<div class="card_vote"><img src="${off.passporturl}" class="candidate_img"> <p class="candidate_name" id="${off.candidate_id}">${off.firstname} ${off.lastname}</p><p>AS</p><p class="candidate_name" id="${off.office_id}">${off.offices_name}</p>
-        <button type="submit" id="submit" onclick="castVote(${off.candidate_id}, ${off.office_id}, ${count})"><span id="register${count}">Vote</span> <span id="loader${count}" class="loader"><i class="fa fa-circle-o-notch fa-spin"></i>Loading</span></button></div>`;
+        populate.innerHTML += `<div class="card_vote"><img src="${off.passporturl}" class="candidate_img"> <p class="candidate_name" id=${off.createdby}>${off.firstname} ${off.lastname}</p><p>AS</p><p class="candidate_name" id="${off.office_id}">${off.offices_name}</p>
+        <button type="submit" id="submit" onclick="castVote(${off.createdby}, ${off.office_id}, ${count})"><span id="register${count}">Vote</span> <span id="loader${count}" class="loader"><i class="fa fa-circle-o-notch fa-spin"></i>Loading</span></button></div>`;
       });
     } else if (response.status === 403) {
       window.location.href = './signin.html';
@@ -105,14 +106,18 @@ fetch(`${basePath}/api/v1/populateVote`, {
   .catch(error => console.log('Error:', error));
 
 const castVote = (cand, off, count) => {
+  console.log(document.getElementById(cand))
   const candidateValue = Number((document.getElementById(cand)).id);
   const officeValue = Number((document.getElementById(off)).id);
+  debugger
   document.getElementById(`register${count}`).style.display = 'none';
   document.getElementById(`loader${count}`).style.display = 'block';
   const data = {
     office: officeValue,
     candidate: candidateValue
   };
+
+  console.log(data);
   fetch(`${basePath}/api/v1/votes`, {
     method: 'POST',
     body: JSON.stringify(data),
