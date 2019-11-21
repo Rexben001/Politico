@@ -22,5 +22,19 @@ function getCache(req, res, next) {
   }
   return next();
 }
+function clearCache(req, res, next) {
+  cache.keys(function(err, keys) {
+      if (!err) {
+          // again, it depends on your application architecture,
+          // how you would retrive and clear the cache that needs to be cleared.
+          // You may use query path, query params or anything. 
+          let resourceUrl = req.baseUrl;
+          const resourceKeys = keys.filter(k => k.includes(resourceUrl));
 
-module.exports = { getCache, setCache };
+          cache.del(resourceKeys);
+      }
+  });
+  return next();
+}
+
+module.exports = { getCache, setCache, clearCache };

@@ -3,7 +3,7 @@ import OfficeController from "../controllers/officeController";
 import officeValidator from "../middlewares/Validators/officeValidator";
 import Authentication from "../middlewares/auth";
 
-import { getCache, setCache } from "../middlewares/cache";
+import { getCache, setCache, clearCache } from "../middlewares/cache";
 
 const officeRoute = express.Router();
 
@@ -11,7 +11,8 @@ officeRoute.post(
   "/offices",
   officeValidator,
   Authentication.verifyUser,
-  OfficeController.registerOffice
+  OfficeController.registerOffice,
+  clearCache
 );
 officeRoute.get(
   "/offices",
